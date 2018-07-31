@@ -1,2 +1,5 @@
-dist/*
-node_modules/*
+node_modules
+dist
+build
+data/*.gz
+src/index.js

@@ -1,0 +1,37 @@
+server {
+        ## Your website name goes here.
+        server_name material.local;
+        ## Your only path reference.
+        root /var/www/material;
+        ## This should be in your http block and if it is, it's not needed here.
+        index index.html;
+
+        location = /favicon.ico {
+                log_not_found off;
+                access_log off;
+        }
+
+        location = /robots.txt {
+                allow all;
+                log_not_found off;
+                access_log off;
+        }
+
+        location ^~ /dist/ {
+          gzip_static on;
+          gzip_types      text/plain application/javascript text/css; # optional
+          expires max;
+          log_not_found off;
+        }
+
+        location ^~ /data/ {
+          gzip_static on;
+          gzip_types      text/plain application/javascript text/css; # optional
+        }
+
+        location ~* \.(js|css|png|jpg|jpeg|gif|ico)$ {
+          expires max;
+          log_not_found off;
+        }
+
+}

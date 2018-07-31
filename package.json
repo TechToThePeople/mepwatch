@@ -1,0 +1,40 @@
+{
+  "name": "material",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "js-compile": "rollup --config build/rollup2.config.js --sourcemap",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "bootstrap": "^4.1.1",
+    "crossfilter2": "^1.4.6",
+    "d3": "^5.5.0",
+    "daemonite-material": "^4.1.1",
+    "dc": "^3.0.4",
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^3.9.4",
+    "gulp-concat": "^2.6.1",
+    "gulp-google-webfonts": "^1.1.1",
+    "gulp-rename": "^1.3.0",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-uglify": "^3.0.0",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.14.3",
+    "reductio": "^0.6.3"
+  },
+  "nokDependencies": {
+    "rollup": "^0.61.2",
+    "rollup-plugin-babel": "^3.0.5",
+    "rollup-plugin-commonjs": "^9.1.3",
+    "rollup-plugin-json": "^3.0.0",
+    "rollup-plugin-node-resolve": "^3.3.0"
+  },
+  "dependencies": {
+    "gulp-gzip": "^1.4.2"
+  }
+}
