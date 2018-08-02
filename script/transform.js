@@ -10,15 +10,17 @@ const util = require('util');
 const path = require('path');
 const {chain}  = require('stream-chain');
 
-const streamToPromise = require('stream-to-promise');
+//const streamToPromise = require('stream-to-promise');
 const {parser} = require('stream-json');
 const {pick}   = require('stream-json/filters/Pick');
 const {ignore} = require('stream-json/filters/Ignore');
 const {streamArray} = require('stream-json/streamers/StreamArray');
 
+/*
+Do NOT use the xz compression on the stream, it does make a mess and stops after a while
 const xz = require("xz");
 const decompression = new xz.Decompressor();
-
+*/ 
  
 
 //var mepid= require('../data/mepid.json'); // direct from EP site, for QA
@@ -26,7 +28,7 @@ const decompression = new xz.Decompressor();
 
 
 function write(options = {
-  from: "data/ep_votes.json.xz",
+  from: "data/ep_votes.json",
   ddfrom: "data/vote1.json",
   since:Date.parse("2014-07-01"),
   summary: "data/ep_votes.csv",
@@ -39,24 +41,24 @@ function write(options = {
   mepvotes.on("data",data => {
     console.log(data);
   });
-  const pipeline = chain([
-    fs.createReadStream(options.from),
-    decompression,
+  const pipeline = 
+    fs.createReadStream(options.from)
 //    .pipe(decompression)
-    parseVotes(options.since),
-    writeMEPvotes(mepvotes)
-//    .pipe(writeSummary(options.summary))
-  ]);
+    .pipe(parseVotes(options.since))
+//    .pipe(fs.createWriteStream("data/8term.json"))
+//    writeMEPvotes(mepvotes)
+    .pipe(writeSummary(options.summary))
   
-  pipeline.on('end', () =>
-    mepvotes.end());
+  pipeline.on('end', () =>{
+      console.log("the end")
+    //mepvotes.end());
   const p1=streamToPromise(mepvotes);
   const p2=streamToPromise(pipeline);
   Promise.all([p1,p2]).then( ()=>{
       console.log("the end")
     }
   );
-
+  });
 };
 
 function parseVotes(since) {
@@ -64,21 +66,38 @@ function parseVotes(since) {
   const pipeline = chain([
 //    decompression,
     parser(),
-    ignore({filter: /url/}),
-    ignore({filter: /^_id$/}),
-    streamArray(),
+    ignore({filter: /\d+\.url$/}),
+    ignore({filter: /\d+\._id$/}),
+    ignore({filter: /\.groups/}), //if we only want the summary
+    streamArray({objectFilter: asm => {
+      const value = asm.current; // the value we are working on
+      // the value can be incomplete, check if we have necessary properties
+      if (value && typeof value.ts == 'string') {
+        // we have the timestamp value and can make the final decision now
+        return (Date.parse(value.ts.substring(0,10)) >= since);
+        // depending on the return value above we made a final decision
+        // we accepted or rejected an object,
+        // now it will be speedily assembled or skipped.
+      }
+      // return undefined by default meaning "we are undecided yet"
+    }}),
     data => {
-      console.log(data.value.ts.substring(0,10));
-      if (Date.parse(data.value.ts.substring(0,10)) <= since) return false; // ignore the votes beside the current 8th term
+      if (Date.parse(data.value.ts.substring(0,10)) < since) {
+        process.stdout.write(" ");
+        return; // ignore the votes beside the current 8th term
+      }
       return data.value;
     }
   ]);
   pipeline.on('data', data => {
-    //console.log(data);
-    //    process.exit(1);
+    process.stdout.write(".");
+//    console.log(data);
     ++counter});
   pipeline.on('end', () =>
     console.log(`The MEP voted ${counter} with rollcalls.`));
+  pipeline.on('drain', () => process.stdout.write("D"));
+  pipeline.on('readable', () => process.stdout.write("R"));
+  pipeline.on('error', (e) => {console.log(e);process.stdout.write("E")});
 
   return pipeline;
 }
@@ -95,6 +114,7 @@ function mepstream(file) {
 };
 
 function writeMEPvotes(mepvotes){
+  return;
   const types = {
     "Against":"against",
     "For":"for",
@@ -116,6 +136,9 @@ function writeMEPvotes(mepvotes){
       };
     }
   ]);
+  pipeline.on('data', data => {
+    process.stdout.write("x");
+  });
   return pipeline;
 
 //  stream.write(d);
@@ -129,7 +152,6 @@ function writeSummary(file){
         return r.map(a=>a.ref).join("|");
       };
   var csvRow = function (d) {
-    if (!d) return false;
     var data= {
       date: d.ts,
       report: d.report || "",
@@ -141,6 +163,7 @@ function writeSummary(file){
       id:d.voteid,
       rapporteur:(r => r ? r.map(a=>a.ref).join("|") : "")(d.rapporteur)
     };
+    process.stdout.write("*");
     return data;
   };
 
@@ -152,7 +175,14 @@ function writeSummary(file){
     csvwriter,
     fs.createWriteStream(file)
   ]);
-//  csvwriter.on('data', data => console.log(data));
+
+  pipeline.on('error', (e) => {console.log(e);process.stdout.write("E")});
+  pipeline.on('drain', data => {
+    process.stdout.write("]");
+  });
+  pipeline.on('pipe', data => {
+    process.stdout.write("x");
+  });
 
   return pipeline;
 }

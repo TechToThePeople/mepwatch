@@ -35,6 +35,11 @@
     "rollup-plugin-node-resolve": "^3.3.0"
   },
   "dependencies": {
-    "gulp-gzip": "^1.4.2"
+    "csv-write-stream": "^2.0.0",
+    "gulp-gzip": "^1.4.2",
+    "stream-chain": "^2.0.3",
+    "stream-json": "^1.1.1",
+    "stream-to-promise": "^2.2.0",
+    "xz": "^1.2.2"
   }
 }

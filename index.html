@@ -34,6 +34,7 @@
           <a href="#" class="navbar-brand d-flex align-items-center">
             <i class="material-icons">blur_on</i>Project
           </a>
+
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -46,7 +47,7 @@
       <section class="jumbotron text-center">
         <div class="container">
           <h1 class="jumbotron-heading">Select the votes you want to analyse</h1>
-          <p class="lead text-muted">Search bla</p>
+          <p class="lead text-muted"><form id="search"></form></p>
           <p>
             <a href="#" class="btn btn-primary">Need it?</a>
             <a href="#" class="btn btn-secondary">Do not</a>
@@ -107,14 +108,14 @@
   'use strict';
   var ndx=null;
   var graphs={};
-  var dateFormat = d3.timeParse("%Y-%m-%d %H:%M:%S");
+  var dateParse = d3.timeParse("%Y-%m-%dT%H:%M:%S");
+  var dateFormat = d3.timeFormat("%Y-%m-%d %H:%M:%S");
+  //d3.csv('data/ep_votes.csv',function(d){
   d3.csv('data/8term.csv',function(d){
-    console.log(d);
-    d.created=dateFormat(d.created);
-    d.modified=dateFormat(d.modified);
-    try {
-      d.tweet=JSON.parse(d.tweet);
-    } catch (e) {}
+    d.date=dateParse(d.date);
+    ["for","against","abstain","id"].forEach(function(i) {
+      d[i]= +d[i] || "";
+    });
     return d;
   })
   .then(function(d){
@@ -124,20 +125,36 @@
   });
    
   function draw(){
-    console.log("AAA");
-    graphs.table=drawTable('table .table');
+    graphs.table=drawTable('table.table');
+    graphs.search=drawSearch("form#search");
+
     dc.renderAll();
+  }
+
+  function drawSearch(dom){
+    var dim=ndx.dimension(function(d) {return d.report.toLowerCase()+" "+ d.title.toLowerCase()});
+    var filter = function (query) {
+//        query = _normalize(query);
+        return function (d) {
+            return d.indexOf(query) !== -1;
+        };
+    };
+    var chart=dc.textFilterWidget(dom)
+      .placeHolder("search by name")
+      .filterFunctionFactory(filter)
+      .dimension(dim);
+    return chart;
   }
 
   function drawTable(dom){
     var dim = ndx.dimension(function(d) {
-      return 1
+      return d.id
     });
     var graph = dc.dataTable(dom)
       .dimension(dim)
       .size(1000)
       .sortBy(function(d) {
-        return d.since;
+        return d.date;
       })
       .order (d3.descending)
       .showGroups(false)
@@ -145,16 +162,17 @@
         return null;
       })
       .columns([
-        function(d) {
-          //return "<a target='_blank' href='http://www.europarl.europa.eu/meps/en/" + d.epid + "/_home.html'>" + d.first_name + " " + d.last_name + "</a>";
-          return d.created;
-        },function(d){
-          return d.user_name;
-        },function(d){
-          return d.content;
+        function(d){ return d.id;}
+        ,function(d) {
+          return dateFormat(d.date);
         }
+        ,function(d){ return d.report;}
+        ,function(d){ return d.title;}
+        ,function(d){ return d.type;}
+        ,function(d){ return d.for;}
+        ,function(d){ return d.against;}
+        ,function(d){ return d.abstain;}
     ]);
-    console.log("BBB");
     return graph;
   }
 
