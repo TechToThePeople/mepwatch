@@ -1,5 +1,6 @@
 node_modules
 dist
 build
+data/ep_votes.json
 data/*.gz
 src/index.js
