@@ -8,6 +8,10 @@
     <!-- CSS -->
     <link href="dist/css/fonts.css" rel="stylesheet">
     <link href="dist/css/main.css" rel="stylesheet">
+
+<style>
+  .heatmap g.axis text {transform: translateX(0.7em)}
+</style>
   </head>
   <body>
     <header>
@@ -58,12 +62,14 @@
         <div class="container-fluid">
 
           <div class="row">
-            <div class="col-md-4">
-              <div class="card mb-4 box-shadow">
+            <div class="col-md-12">
+              <div class="card box-shadow" id="date">
                 <div class="card-body">
-                  <h5 class="card-title text-muted text-right">Card title</h5>
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  <div class="d-flex justify-content-between align-items-center">
+                  <h5 class="card-title text-muted text-right">Sitting days</h5>
+                  <p class="card-text d-none">
+                  All the plenary sessions with at least one rollcall</p>
+                  <div class="graph"></div>
+                  <div class="d-flex justify-content-between align-items-center d-none">
                     <div class="btn-group">
                       <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
                       <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
@@ -108,11 +114,19 @@
   'use strict';
   var ndx=null;
   var graphs={};
-  var dateParse = d3.timeParse("%Y-%m-%dT%H:%M:%S");
+  var dateParse = d3.timeParse("%Y-%m-%d");
+  var dateTimeParse = d3.timeParse("%Y-%m-%dT%H:%M:%S");
+  var dayFormat = d3.timeFormat("%Y-%m-%d");
   var dateFormat = d3.timeFormat("%Y-%m-%d %H:%M:%S");
+  var week = d3.timeFormat("%V");
   //d3.csv('data/ep_votes.csv',function(d){
   d3.csv('data/8term.csv',function(d){
-    d.date=dateParse(d.date);
+    d.date=dateParse(d.date.substring(0,10));
+    if (!d.date) {console.log(d)};
+    
+    d.day=d.date.getDay();
+    d.week=+week(d.date);
+    d.year=d.date.getYear();
     ["for","against","abstain","id"].forEach(function(i) {
       d[i]= +d[i] || "";
     });
@@ -125,10 +139,62 @@
   });
    
   function draw(){
+    graphs.date=drawDate('#date div.graph');
     graphs.table=drawTable('table.table');
     graphs.search=drawSearch("form#search");
 
     dc.renderAll();
+  }
+
+  function drawDate(dom){ // not working for now....
+    //var dim=ndx.dimension(function(d){return [d.year,d.week,d.day]});
+    var col=d3.timeFormat("%y-%m-%w");
+    var coltick=d3.timeFormat("%b");
+    var lasttick="";
+    var dim=ndx.dimension(function(d){return d.date});
+    var group=dim.group().reduceSum(function(d){return 1});
+    var day=["Sun","Mon","Tue","Wed","Thu","Fri"];
+    var color = d3.scaleLinear()
+            .domain([0,1, 300])
+            .range(["white","lightgrey","#7b2253"]);
+    var graph=dc.heatMap(dom)
+     .dimension(dim)
+     .group(group)
+     .width(0)
+     .height(150)
+      .rowsLabel(function(d){
+        return day[d];
+      })
+      .colsLabel(function(d){
+        var t=Math.floor(d /100000);
+        if(lasttick !==t){
+          lasttick=t;
+          return t;
+        }
+        return "";
+     })
+     .title(function(d){return dayFormat(d.key)+ " "+d.value+ " rollcalls"})
+     .label(function(d){return dayFormat(d.key) + " "+d.value+ " rollcalls"})
+     .keyAccessor(function(d) { 
+       return 1000*d.key.getFullYear()+week(d.key);
+       var r=d.key;
+       r.setDate(r.getDate() + d.key.getDay());
+       console.log(r);
+       return r;
+     })
+     .valueAccessor(function(d) { return +d.key.getDay(); })
+     .colorAccessor(function(d) { return +d.value; })
+     .colors(color)
+    .on ("renderlet.collabel",function (chart) {
+      return;
+   // rotate x-axis labels
+      chart.selectAll('g.cols text')
+      .attr("style","text-anchor:left;")
+     //.attr('transform', 'translate(-10,10) rotate(215)');
+    });
+
+
+    return graph;
   }
 
   function drawSearch(dom){
@@ -136,7 +202,7 @@
     var filter = function (query) {
 //        query = _normalize(query);
         return function (d) {
-            return d.indexOf(query) !== -1;
+            return d.indexOf(query.toLowerCase()) !== -1;
         };
     };
     var chart=dc.textFilterWidget(dom)
@@ -164,7 +230,7 @@
       .columns([
         function(d){ return d.id;}
         ,function(d) {
-          return dateFormat(d.date);
+          return dayFormat(d.date);
         }
         ,function(d){ return d.report;}
         ,function(d){ return d.title;}

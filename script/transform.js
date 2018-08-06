@@ -10,7 +10,7 @@ const util = require('util');
 const path = require('path');
 const {chain}  = require('stream-chain');
 
-//const streamToPromise = require('stream-to-promise');
+const streamToPromise = require('stream-to-promise');
 const {parser} = require('stream-json');
 const {pick}   = require('stream-json/filters/Pick');
 const {ignore} = require('stream-json/filters/Ignore');
@@ -155,7 +155,8 @@ function writeSummary(file){
     var data= {
       date: d.ts,
       report: d.report || "",
-      title: d.eptitle || d.title,
+      title: d.title,
+      eptitle: d.eptitle,
       type: d.issue_type || "",
       'for': d.For ? d.For.total : 0,
       against:d.Against ? d.Against.total :0,
@@ -163,11 +164,10 @@ function writeSummary(file){
       id:d.voteid,
       rapporteur:(r => r ? r.map(a=>a.ref).join("|") : "")(d.rapporteur)
     };
-    process.stdout.write("*");
     return data;
   };
 
-  const head = "date,report,title,type,for,against,abstain,id,rapporteur".split(",");
+  const head = "date,report,title,eptitle,type,for,against,abstain,id,rapporteur".split(",");
   const csvwriter = require('csv-write-stream')({separator:",",headers: head,sendHeaders:true});
 
   const pipeline = chain([

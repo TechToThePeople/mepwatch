@@ -32,7 +32,9 @@ gulp.task('html-copy',function(){
 gulp.task('css-copy',function(){
   return gulp
     .src([
-      'node_modules/daemonite-material/css/material.css'
+      'node_modules/dc/dc.css'
+      ,'src/dcfix.css'
+      ,'node_modules/daemonite-material/css/material.css'
     ], { base: 'node_modules' })
     .pipe(sourcemaps.init())
     .pipe(concat('main.css'))
