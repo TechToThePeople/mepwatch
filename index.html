@@ -51,13 +51,25 @@
       <section class="jumbotron text-center">
         <div class="container">
           <h1 class="jumbotron-heading">Select the votes you want to analyse</h1>
+        </div>
+      </section>
+     <div class="py-5 bg-info">
+        <div class="container-fluid">
+
+          <div class="row">
+            <div class="col-md-3">
           <p class="lead text-muted"><form id="search"></form></p>
           <p>
             <a href="#" class="btn btn-primary">Need it?</a>
             <a href="#" class="btn btn-secondary">Do not</a>
           </p>
+            </div>
+            <div class="col-md-3" id="report">
+                  <div class="graph"></div>
+            </div>
+          </div>
         </div>
-      </section>
+     </div>
      <div class="py-5 bg-light">
         <div class="container-fluid">
 
@@ -89,10 +101,8 @@
               <thead>
                 <tr>
                   <th>Date</th>
-                  <th>Name</th>
                   <th>Ref</th>
                   <th>Vote</th>
-                  <th>Name</th>
                   <th>For</th>
                   <th>Against</th>
                   <th>Abstain</th>
@@ -120,36 +130,108 @@
   'use strict';
   var ndx=null;
   var graphs={};
+  var q=d3.queue();
+  var docs = {};
+  docs.get=function(reference){
+    docs[reference] ? docs[reference] : "";
+  };
+
   var dateParse = d3.timeParse("%Y-%m-%d");
   var dateTimeParse = d3.timeParse("%Y-%m-%dT%H:%M:%S");
   var dayFormat = d3.timeFormat("%Y-%m-%d");
   var dateFormat = d3.timeFormat("%Y-%m-%d %H:%M:%S");
   var week = d3.timeFormat("%V");
   //d3.csv('data/ep_votes.csv',function(d){
-  d3.csv('data/8term.csv',function(d){
-    d.date=dateParse(d.date.substring(0,10));
-    if (!d.date) {console.log(d)};
-    
-    d.day=d.date.getDay();
-    d.week=+week(d.date);
-    d.year=d.date.getYear();
-    ["for","against","abstain","id"].forEach(function(i) {
-      d[i]= +d[i] || "";
-    });
-    return d;
-  })
-  .then(function(d){
-    console.log(d[0]);
-    ndx = crossfilter(d);
+  q
+  .defer(dl_votes)
+  .defer(dl_doc)
+  .awaitAll(function(error,results){
     draw();
   });
-   
+
+  function dl_doc (callback){
+    d3.csv('data/text_tabled.csv',function(d){
+      docs[d.reference]=d;
+    }).then(function(d){
+      callback();
+    });
+  };
+
+  function dl_votes (callback){
+    d3.csv('data/item_rollcall.csv',function(d){
+      d.date=dateParse(d.date.substring(0,10));
+      if (!d.date) {console.log(d)};
+      
+      d.day=d.date.getDay();
+      d.week=+week(d.date);
+      d.year=d.date.getYear();
+      ["for","against","abstention","identifier"].forEach(function(i) {
+        d[i]= +d[i] || "";
+      });
+      return d;
+    })
+    .then(function(d){
+      ndx = crossfilter(d);
+//      draw();
+      callback();
+    });
+  };
+
   function draw(){
     graphs.date=drawDate('#date div.graph');
+    graphs.report=drawReport('#report div.graph');
     graphs.table=drawTable('table.table');
     graphs.search=drawSearch("form#search");
 
     dc.renderAll();
+  }
+
+  function drawReport(dom){
+
+    var tip = d3.tip()
+      .attr('class', 'd3-tip')
+      .offset([0, 10])
+      .direction("e")
+      .html(function(d) {
+        console.log(docs[d.key]);
+        return docs[d.key]? "<h3>"+docs[d.key].rapporteur+"</h3>"+docs[d.key].title +":"+ d.value: d.value;
+//        return abbr(d.key) + "<br><b>" + d.value + " MEPs</b>&nbsp;<i>" + formatPercent(d.value/summary.total) +"</i>";
+      });
+
+    //var dim = ndx.dimension(function(d) {return d.report?d.report:"?";}, true);
+    var dim = ndx.dimension(function(d) {return d.report? d.report : "?";});
+    var group = dim.group().reduceSum(function(d) {
+      return 1;
+    });
+
+    var graph = dc.rowChart(dom)
+      .width(0)
+      .height(300)
+      //      .rowsCap(18)
+//      .ordering(function(d) {  return -d.key      })
+      .cap(10)
+      .label (function(d){return docs[d.key]? docs[d.key].rapporteur : d.key})
+      .renderTitle(false)
+      .margins({
+        top: 0,
+        right: 0,
+        bottom: 20,
+        left: 0
+      })
+//      .ordinalColors([committee_color])
+      .gap(0)
+      .elasticX(true)
+      .dimension(dim)
+      .group(group)
+      .on("renderlet.top", function(c) {
+          c.selectAll("g.row")
+            .call(tip)
+            .on("mouseover.tip", tip.show)
+            .on("mouseout.tip", tip.hide);
+      });
+    graph.xAxis().ticks(3);
+
+    return graph;
   }
 
   function drawDate(dom){ // not working for now....
@@ -204,7 +286,7 @@
   }
 
   function drawSearch(dom){
-    var dim=ndx.dimension(function(d) {return d.report.toLowerCase()+" "+ d.title.toLowerCase()});
+    var dim=ndx.dimension(function(d) {return d.report.toLowerCase()+" "+ d.desc.toLowerCase() });
     var filter = function (query) {
 //        query = _normalize(query);
         return function (d) {
@@ -220,11 +302,11 @@
 
   function drawTable(dom){
     var dim = ndx.dimension(function(d) {
-      return d.id
+      return d.identifier
     });
     var graph = dc.dataTable(dom)
       .dimension(dim)
-      .size(1000)
+      .size(100)
       .sortBy(function(d) {
         return d.date;
       })
@@ -234,16 +316,19 @@
         return null;
       })
       .columns([
-        function(d){ return d.id;}
-        ,function(d) {
-          return dayFormat(d.date);
+        function(d) {
+          return "<span title='"+d.identifier+"'>" +dayFormat(d.date) +"</span>";
         }
-        ,function(d){ return d.report;}
-        ,function(d){ return d.title;}
-        ,function(d){ return d.type;}
+        ,function(d){ 
+          if (docs[d.report])
+            return "<div class='rapporteur'>" +docs[d.report].rapporteur +"</div><a href='"+ docs[d.report].doc+"'>"+ d.report +"</a>";
+          return d.report;
+        }
+        ,function(d){ 
+          return docs[d.report]? "<a href='"+docs[d.report].oeil+"'>"+docs[d.report].title +"</a>"+d.desc : d.desc;}
         ,function(d){ return d.for;}
         ,function(d){ return d.against;}
-        ,function(d){ return d.abstain;}
+        ,function(d){ return d.abstention;}
     ]);
     return graph;
   }

@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta content="initial-scale=1, shrink-to-fit=no, width=device-width" name="viewport">
+
+    <!-- CSS -->
+    <link href="dist/css/fonts.css" rel="stylesheet">
+    <link href="dist/css/main.css" rel="stylesheet">
+
+<style>
+    .eugroup,
+    .country-flag {
+      display: inline-block;
+      width: 25px;
+      height: 20px;
+      text-indent: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      background-size: cover;
+    }
+
+    .ppe {
+      background-image: url("img/group/EPP.png");
+    }
+
+    .s-d {
+      background-image: url("img/group/S-D.png");
+    }
+
+    .alde {
+      background-image: url("img/group/ALDE.png");
+    }
+
+    .verts-ale {
+      background-image: url("img/group/VERT.png");
+    }
+
+    .efdd {
+      background-image: url("img/group/EFDD.png");
+    }
+
+    .gue-ngl {
+      background-image: url("img/group/GUE.png");
+    }
+
+    .enf {
+      background-image: url("img/group/ENF.png");
+    }
+
+    .ecr {
+      background-image: url("img/group/ECR.png");
+    }
+
+    .na-ni {
+      background-image: url("img/group/NA.png");
+    }
+
+    .austria {
+      background-image: url("img/country/at.svg");
+    }
+
+    .belgium {
+      background-image: url("img/country/be.svg");
+    }
+
+    .bulgaria {
+      background-image: url("img/country/bg.svg");
+    }
+
+    .croatia {
+      background-image: url("img/country/hr.svg");
+    }
+
+    .cyprus {
+      background-image: url("img/country/cy.svg");
+    }
+
+    .czech-republic {
+      background-image: url("img/country/cz.svg");
+    }
+
+    .denmark {
+      background-image: url("img/country/dk.svg");
+    }
+
+    .estonia {
+      background-image: url("img/country/ee.svg");
+    }
+
+    .finland {
+      background-image: url("img/country/fi.svg");
+    }
+
+    .france {
+      background-image: url("img/country/fr.svg");
+    }
+
+    .germany {
+      background-image: url("img/country/de.svg");
+    }
+
+    .greece {
+      background-image: url("img/country/el.svg");
+    }
+
+    .hungary {
+      background-image: url("img/country/hu.svg");
+    }
+
+    .ireland {
+      background-image: url("img/country/ie.svg");
+    }
+
+    .italy {
+      background-image: url("img/country/it.svg");
+    }
+
+    .latvia {
+      background-image: url("img/country/lv.svg");
+    }
+
+    .lithuania {
+      background-image: url("img/country/lt.svg");
+    }
+
+    .luxembourg {
+      background-image: url("img/country/lu.svg");
+    }
+
+    .malta {
+      background-image: url("img/country/mt.svg");
+    }
+
+    .netherlands {
+      background-image: url("img/country/nl.svg");
+    }
+
+    .poland {
+      background-image: url("img/country/pl.svg");
+    }
+
+    .portugal {
+      background-image: url("img/country/pt.svg");
+    }
+
+    .romania {
+      background-image: url("img/country/ro.svg");
+    }
+
+    .slovakia {
+      background-image: url("img/country/sk.svg");
+    }
+
+    .slovenia {
+      background-image: url("img/country/si.svg");
+    }
+
+    .spain {
+      background-image: url("img/country/es.svg");
+    }
+
+    .sweden {
+      background-image: url("img/country/se.svg");
+    }
+
+    .united-kingdom {
+      background-image: url("img/country/gb.svg");
+    }
+
+</style>
+  </head>
+  <body>
+    <header>
+      <div class="collapse bg-primary-light" id="navbarHeader">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-8 col-md-7 py-4">
+              <h4 class="">About</h4>
+              <p class="">
+              </p>
+            </div>
+            <div class="col-sm-4 offset-md-1 py-4">
+              <h4 class="">Contact</h4>
+              <ul class="list-unstyled">
+                <li><a href="https://twitter.com/eucampaign" class="">Follow on Twitter</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="navbar navbar-dark bg-primary box-shadow">
+        <div class="container d-flex justify-content-between">
+          <a href="#" class="navbar-brand d-flex align-items-center">
+            <i class="material-icons">blur_on</i>Votes
+          </a>
+
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main role="main">
+
+      <section class="jumbotron text-center">
+        <div class="container">
+          <h1 class="jumbotron-heading">Vote to analyse 92926</h1>
+        </div>
+      </section>
+     <div class="py-5 bg-info">
+        <div class="container-fluid">
+
+          <div class="row">
+            <div class="col-md-3">
+          <p class="lead text-muted"><form id="search"></form></p>
+          <ul class="list-group">
+            <li class="list-group-item nbmep"><a class="resetall"><span class="percent badge"></span><span class="nb"></span> MEPs</a></li> 
+          </ul>
+          <p>
+            <a href="#" class="btn btn-primary">Need it?</a>
+            <a href="#" class="btn btn-secondary">Do not</a>
+          </p>
+            </div>
+            <div class="col-md-3" id="result">
+                  <div class="graph"></div>
+            </div>
+            <div class="col-md-3" id="eugroup">
+                  <div class="graph"></div>
+            </div>
+          </div>
+        </div>
+     </div>
+     <div class="py-5 bg-light">
+        <div class="container-fluid">
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card box-shadow" id="date">
+                <div class="card-body">
+                  <h5 class="card-title text-muted text-right">Something</h5>
+                  <div class="graph"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+          <div class="row">
+            <div class="col-md-12">
+            <table class="table table-stripped">
+              <thead>
+                <tr>
+                  <th>Vote</th>
+                  <th>Name</th>
+                  <th>Country</th>
+                  <th>Party</th>
+                  <th>Group</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+            </div>
+          </div>
+    </main>
+
+    <footer class="text-muted">
+      <div class="container">
+        <p class="float-right">
+          <a href="#">Back to top</a>
+        </p>
+      </div>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <script src="dist/js/main.js"></script> 
+    <script src="dist/js/dcbundle.js"></script>
+<script>
+  'use strict';
+  var ndx=null;
+  var graphs={};
+  var q=d3.queue();
+  var meps= [];
+  var votes= [];
+  var config = {};
+
+  var dateParse = d3.timeParse("%Y-%m-%d");
+  var dateTimeParse = d3.timeParse("%Y-%m-%d %H:%M:%S");
+  var dayFormat = d3.timeFormat("%Y-%m-%d");
+  var dateFormat = d3.timeFormat("%Y-%m-%d %H:%M:%S");
+  var week = d3.timeFormat("%V");
+  //d3.csv('data/ep_votes.csv',function(d){
+  q
+  .defer(dl_details)
+  .defer(dl_votes)
+  .defer(dl_meps)
+  .awaitAll(function(meps){
+      
+    var length=votes.length;
+  for (var j=0; j < meps.length;j++) {
+//    meps.forEach(function(m,i){
+    var m=meps[j];
+    if (!m) console.log(j);
+      if (m.start > config.date) {
+//        console.log(m.lastname + " started after the vote");
+        meps.splice(j,1);
+        continue;
+      }
+      if (m.end && m.end < config.date) {
+//        console.log(m.voteid + " " +m.lastname + " left before the vote");
+        meps.splice(j,1);
+        j--;
+        continue;
+      }
+      for (var i=0; i < length;i++) {
+        if (votes[i].mepid == m.voteid){
+          meps[j].vote=votes[i].result;
+          votes[i].processed=true;
+//          votes.splice(i,1);
+          break;
+        }
+      };
+    if (!meps[j].vote) {
+      meps[j].vote = "??";
+//       console.log(meps[j]);
+    }
+    };
+
+    ndx = crossfilter(meps);
+    draw();
+  });
+
+  function dl_details(callback) {
+    d3.json('cards/92926.json').then(function(d) {
+      d.date = dateTimeParse(d.date);
+      config=d;
+      $('h1').html(config.desc);
+      callback();
+    });
+  }
+  function dl_votes (callback){
+    d3.csv('cards/92926.csv',function(d){
+      d.mepid= +d.mepid;
+      d.identifier= +d.identifier;
+      return d;
+    }).then(function(d){
+      votes=d;
+      callback();
+    });
+  };
+
+  function dl_meps (callback){
+    d3.csv('data/meps.csv',function(d){
+//      d.date=dateParse(d.date.substring(0,10));
+//      if (!d.date) {console.log(d)};
+      d.voteid= +d.voteid;
+      d.epid= +d.epid;
+      d.active= (d.active == "true");
+      d.birthdate=dateParse(d.birthdate);
+      d.start=dateParse(d.start);
+      d.end=d.end == ""? null:dateParse(d.end);
+      return d;
+    })
+    .then(function(d){
+//      draw();
+      callback(d);
+    });
+  };
+
+    d3.select(window).on('resize.updatedc', function() {
+      dc.events.trigger(function() {
+        dc.chartRegistry.list().forEach(function(chart) {
+          var container = chart.root().node();
+          if (!container) return; // some graphs don't have a node (?!)
+          container = container.parentNode.getBoundingClientRect();
+          chart.width(container.width);
+          chart.rescale && chart.rescale(); // some graphs don't have a rescale
+        });
+
+        dc.redrawAll();
+      }, 500);
+    });
+
+  dc.config.defaultColors(d3.schemeCategory10);
+
+  function draw(){
+//    graphs.date=drawDate('#date div.graph');
+//    graphs.report=drawReport('#report div.graph');
+    graphs.group=drawGroup('#eugroup div.graph');
+    graphs.table=drawTable('table.table');
+    drawNumbers(graphs);
+    graphs.result=drawResult('#result .graph');
+    graphs.search=drawSearch("form#search");
+
+    dc.renderAll();
+  }
+
+   function drawGroup(dom) {
+     var eu_groups = {
+      "GUE/NGL": "#800c00",
+      "S&D": "#c21200",
+      "Verts/ALE": "#05a61e",
+      "Greens/EFA": "#05a61e",
+      "ALDE": "#ffc200",
+      "EFDD": "#5eced6",
+      "PPE": "#0a3e63",
+      "EPP": "#0a3e63",
+      "ECR": "#3086c2",
+      "NA/NI": "#cccccc",
+      "NA,NI": "#cccccc",
+      "ENF": "#A1480D",
+      "Array": "pink"
+     };
+
+      var graph = dc.pieChart(dom).innerRadius(40) //.radius(70);
+      var dim = ndx.dimension(function(d) {
+        if (typeof d.eugroup == "undefined") return "";
+        return d.eugroup;
+      });
+      var group = dim.group().reduceSum(function(d) {return 1;});
+      graph
+        .width(0)
+        .height(0)
+        .colorCalculator(function(d, i) {
+          return eu_groups[d.key];
+          //return color(d.value.score/d.value.count);
+        })
+        .dimension(dim)
+        .group(group)
+        .externalLabels(-26)
+        .minAngleForLabel(0.2);
+//        .legend(dc.legend().horizontal(true).autoItemWidth(true).y(200));
+      return graph;
+    }
+
+  function drawResult(dom) {
+    var graph = dc.pieChart(dom).innerRadius(40) //.radius(70);
+    var dim = ndx.dimension(function(d) {
+      return d.vote || "?";
+    });
+    var group = dim.group().reduceSum(function(d) {
+      return 1;
+    });
+    graph
+      .width(0)
+      .height(0)
+/*      .colorCalculator(function(d, i) {
+        return eu_groups[d.key];
+        //return color(d.value.score/d.value.count);
+      })
+    */
+      .dimension(dim)
+      .group(group)
+      .externalLabels(-26)
+      .minAngleForLabel(0.2);
+//        .legend(dc.legend().horizontal(true).autoItemWidth(true).y(200));
+    return graph;
+  }
+
+  function drawNumbers(graphs) {
+    var dim = ndx.dimension(function(d) {
+      return true;
+    });
+
+    var reducer = reductio();
+    reducer.value("nb").count(true);
+    reducer.value("woman").count(true).filter(function(d) {
+      return d.Gender == "F"
+    });
+
+   var group = dim.group();
+   reducer(group);
+
+    graphs.total = dc.numberDisplay(".nbmep .nb")
+      .group(group)
+      .valueAccessor(function(d) {
+        return d.value.nb.count
+      })
+      .formatNumber(d3.format("d"))
+  }
+
+  function drawReport(dom){
+    var dim = ndx.dimension(function(d) {
+      return d.epid;
+    });
+
+
+    var tip = d3.tip()
+      .attr('class', 'd3-tip')
+      .offset([0, 10])
+      .direction("e")
+      .html(function(d) {
+        console.log(docs[d.key]);
+        return docs[d.key]? "<h3>"+docs[d.key].rapporteur+"</h3>"+docs[d.key].title +":"+ d.value: d.value;
+//        return abbr(d.key) + "<br><b>" + d.value + " MEPs</b>&nbsp;<i>" + formatPercent(d.value/summary.total) +"</i>";
+      });
+
+    //var dim = ndx.dimension(function(d) {return d.report?d.report:"?";}, true);
+    var dim = ndx.dimension(function(d) {return d.report? d.report : "?";});
+    var group = dim.group().reduceSum(function(d) {
+      return 1;
+    });
+
+    var graph = dc.rowChart(dom)
+      .width(0)
+      .height(300)
+      //      .rowsCap(18)
+//      .ordering(function(d) {  return -d.key      })
+      .cap(10)
+      .label (function(d){return docs[d.key]? docs[d.key].rapporteur : d.key})
+      .renderTitle(false)
+      .margins({
+        top: 0,
+        right: 0,
+        bottom: 20,
+        left: 0
+      })
+//      .ordinalColors([committee_color])
+      .gap(0)
+      .elasticX(true)
+      .dimension(dim)
+      .group(group)
+      .on("renderlet.top", function(c) {
+          c.selectAll("g.row")
+            .call(tip)
+            .on("mouseover.tip", tip.show)
+            .on("mouseout.tip", tip.hide);
+      });
+    graph.xAxis().ticks(3);
+
+    return graph;
+  }
+
+  function drawDate(dom){ // not working for now....
+    //var dim=ndx.dimension(function(d){return [d.year,d.week,d.day]});
+    var col=d3.timeFormat("%y-%m-%w");
+    var coltick=d3.timeFormat("%b");
+    var lasttick="";
+    var dim=ndx.dimension(function(d){return d.date});
+    var group=dim.group().reduceSum(function(d){return 1});
+    var day=["Sun","Mon","Tue","Wed","Thu","Fri"];
+    var color = d3.scaleLinear()
+            .domain([0,1, 300])
+            .range(["white","lightgrey","#7b2253"]);
+    var graph=dc.heatMap(dom)
+     .dimension(dim)
+     .group(group)
+     .width(0)
+     .height(150)
+      .rowsLabel(function(d){
+        return day[d];
+      })
+      .colsLabel(function(d){
+        var t=Math.floor(d /100000);
+        if(lasttick !==t){
+          lasttick=t;
+          return t;
+        }
+        return "";
+     })
+     .title(function(d){return dayFormat(d.key)+ " "+d.value+ " rollcalls"})
+     .label(function(d){return dayFormat(d.key) + " "+d.value+ " rollcalls"})
+     .keyAccessor(function(d) { 
+       return 1000*d.key.getFullYear()+week(d.key);
+       var r=d.key;
+       r.setDate(r.getDate() + d.key.getDay());
+       console.log(r);
+       return r;
+     })
+     .valueAccessor(function(d) { return +d.key.getDay(); })
+     .colorAccessor(function(d) { return +d.value; })
+     .colors(color)
+    .on ("renderlet.collabel",function (chart) {
+      return;
+   // rotate x-axis labels
+      chart.selectAll('g.cols text')
+      .attr("style","text-anchor:left;")
+     //.attr('transform', 'translate(-10,10) rotate(215)');
+    });
+
+
+    return graph;
+  }
+
+  function drawSearch(dom){
+    var dim=ndx.dimension(function(d) {
+      if (!d.firstname) console.log(d);
+      return d.firstname.toLowerCase()+" "+ d.lastname.toLowerCase() });
+    var filter = function (query) {
+//        query = _normalize(query);
+        return function (d) {
+            return d.indexOf(query.toLowerCase()) !== -1;
+        };
+    };
+    var chart=dc.textFilterWidget(dom)
+      .placeHolder("search by name")
+      .filterFunctionFactory(filter)
+      .dimension(dim);
+    return chart;
+  }
+
+  function drawTable(dom){
+    var dim = ndx.dimension(function(d) {
+      return d.lastname;
+    });
+    var graph = dc.dataTable(dom)
+      .dimension(dim)
+      .size(1000)
+      .sortBy(function(d) {
+        return d.date;
+      })
+      .order (d3.ascending)
+      .showGroups(false)
+      .group(function(d) {
+        return null;
+      })
+      .columns([
+        function(d){ return d.vote;}
+        ,function(d) {
+          return d.firstname + " " + d.lastname;
+        }
+        ,function(d) {
+            return "<span title='" + d.country + "' class='img-rounded text-filter country-flag " + d.country.replace(" ", "-").toLowerCase() + "'>" + d.country + "</span>";
+          }
+        ,function(d) {
+            return "<span title='" + d.eugroup + "' class='img-rounded text-filter eugroup " + d.eugroup.replace(/&|\/|car/g, "-").toLowerCase() + "'>" + d.eugroup + "</span>";
+          },
+        ,function(d){ return d.party;}
+    ]);
+    return graph;
+  }
+
+</script>
+  </body>
+</html>
