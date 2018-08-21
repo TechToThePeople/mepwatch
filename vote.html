@@ -239,7 +239,7 @@
 
           <div class="row">
             <div class="col-md-12">
-              <div class="card box-shadow" id="date">
+              <div class="card box-shadow" id="country">
                 <div class="card-body">
                   <h5 class="card-title text-muted text-right">Something</h5>
                   <div class="graph"></div>
@@ -392,6 +392,7 @@
   function draw(){
 //    graphs.date=drawDate('#date div.graph');
 //    graphs.report=drawReport('#report div.graph');
+    graphs.country=drawCountry('#country div.graph');
     graphs.group=drawGroup('#eugroup div.graph');
     graphs.table=drawTable('table.table');
     drawNumbers(graphs);
@@ -418,17 +419,16 @@
       "Array": "pink"
      };
 
-      var graph = dc.pieChart(dom).innerRadius(40) //.radius(70);
+      var graph = dc.sunburstChart(dom).innerRadius(10);//.radius(70);
       var dim = ndx.dimension(function(d) {
-        if (typeof d.eugroup == "undefined") return "";
-        return d.eugroup;
+        return [d.eugroup,d.party];
       });
       var group = dim.group().reduceSum(function(d) {return 1;});
       graph
         .width(0)
         .height(0)
         .colorCalculator(function(d, i) {
-          return eu_groups[d.key];
+          return eu_groups[d.path[0]];
           //return color(d.value.score/d.value.count);
         })
         .dimension(dim)
@@ -462,6 +462,47 @@
 //        .legend(dc.legend().horizontal(true).autoItemWidth(true).y(200));
     return graph;
   }
+
+    function drawCountry(dom) {
+      var graph = dc.barChart(dom);
+      var dim = ndx.dimension(function(d) {
+        console.log(d.country);
+        return d.country;
+      });
+      var group = dim.group().reduceSum(function(d) {return 1;});
+
+      graph
+        .width(0)
+        .height(186)
+        .outerPadding(0)
+        .gap(0)
+        .margins({
+          top: 0,
+          right: 10,
+          bottom: 20,
+          left: 30
+        })
+        .x(d3.scaleOrdinal())
+        .xUnits(dc.units.ordinal)
+        .brushOn(false)
+        .elasticY(true)
+        .yAxisLabel("#MEPs")
+        .dimension(dim)
+        .group(group)
+        .on("renderlet", function(c) {
+          rotateBarChartLabels();
+        });
+      graph.xAxis().ticks(3);
+      return graph;
+
+      function rotateBarChartLabels() {
+        d3.selectAll(dom + ' .axis.x text')
+          .style("text-anchor", "start")
+          .attr("transform", function(d) {
+            return "rotate(-90, -4, 9), translate(10,0) ";
+          });
+      }
+    }
 
   function drawNumbers(graphs) {
     var dim = ndx.dimension(function(d) {
