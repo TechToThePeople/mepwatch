@@ -194,8 +194,10 @@
       <div class="navbar navbar-dark bg-primary box-shadow">
         <div class="container d-flex justify-content-between">
           <a href="#" class="navbar-brand d-flex align-items-center">
-            <i class="material-icons">blur_on</i>Votes
+            <i class="material-icons">blur_on</i><span class="rapporteur">Vote</span>
           </a>
+          <span class="date">YYYY-mm-DD</span>
+          <span class="report">A8-XXXX/20YY</span>
 
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -208,7 +210,8 @@
 
       <section class="jumbotron text-center">
         <div class="container">
-          <h1 class="jumbotron-heading">Vote to analyse 92926</h1>
+          <h2 class="jumbotron-heading">Vote to analyse 92926</h2>
+          <h3 class="jumbotron-heading">Vote to analyse 92926</h3>
         </div>
       </section>
      <div class="py-5 bg-info">
@@ -327,7 +330,7 @@
         }
       };
     if (!meps[j].vote) {
-      meps[j].vote = "??";
+      meps[j].vote = "no show";
 //       console.log(meps[j]);
     }
     };
@@ -340,7 +343,11 @@
     d3.json('cards/92926.json').then(function(d) {
       d.date = dateTimeParse(d.date);
       config=d;
-      $('h1').html(config.desc);
+      $('h2').html(config.name);
+      $('.navbar .rapporteur').html(config.rapporteur);
+      $('.navbar .date').html(dateFormat(config.date));
+      $('.navbar .report').html(config.report);
+      $('h3').html(config.desc);
       callback();
     });
   }
@@ -429,12 +436,11 @@
         .height(0)
         .colorCalculator(function(d, i) {
           return eu_groups[d.path[0]];
-          //return color(d.value.score/d.value.count);
         })
         .dimension(dim)
         .group(group)
-        .externalLabels(-26)
-        .minAngleForLabel(0.2);
+//        .externalLabels(-26)
+        .minAngleForLabel(0.4);
 //        .legend(dc.legend().horizontal(true).autoItemWidth(true).y(200));
       return graph;
     }
@@ -464,14 +470,19 @@
   }
 
     function drawCountry(dom) {
-      var graph = dc.barChart(dom);
-      var dim = ndx.dimension(function(d) {
-        console.log(d.country);
-        return d.country;
+      var formatPercent = d3.format(".0%");
+      var dim = ndx.dimension(function(d) {return d.country;});
+      var reducer = reductio();
+      reducer.value("nb").count(true);
+      var results = "for,against,abstention,no show,excused,attended".split(",");
+      results.forEach(function(r){
+        reducer.value(r).count(true).filter(function(d){ return d.vote == r});
       });
-      var group = dim.group().reduceSum(function(d) {return 1;});
 
-      graph
+      var group = dim.group();
+      reducer(group);
+
+      var graph = dc.barChart(dom)
         .width(0)
         .height(186)
         .outerPadding(0)
@@ -485,14 +496,28 @@
         .x(d3.scaleOrdinal())
         .xUnits(dc.units.ordinal)
         .brushOn(false)
+        .title(function(d) {
+          if (this.layer == 0) return "";
+
+          return d.key +  " voting '"+ this.layer + "': " + d.value[this.layer].count +" ("+formatPercent(d.value[this.layer].count/d.value.nb.count)+")";
+        })
+
         .elasticY(true)
         .yAxisLabel("#MEPs")
         .dimension(dim)
-        .group(group)
+        .group(group, "for", function(d){return d.value["for"].count/d.value.nb.count*100; })
         .on("renderlet", function(c) {
           rotateBarChartLabels();
         });
       graph.xAxis().ticks(3);
+
+      results.shift();
+      results.forEach(function(r){
+        graph.stack(group, r, function(d){
+          return d.value[r].count/d.value.nb.count*100;
+        });
+      });
+
       return graph;
 
       function rotateBarChartLabels() {
@@ -578,61 +603,10 @@
     return graph;
   }
 
-  function drawDate(dom){ // not working for now....
-    //var dim=ndx.dimension(function(d){return [d.year,d.week,d.day]});
-    var col=d3.timeFormat("%y-%m-%w");
-    var coltick=d3.timeFormat("%b");
-    var lasttick="";
-    var dim=ndx.dimension(function(d){return d.date});
-    var group=dim.group().reduceSum(function(d){return 1});
-    var day=["Sun","Mon","Tue","Wed","Thu","Fri"];
-    var color = d3.scaleLinear()
-            .domain([0,1, 300])
-            .range(["white","lightgrey","#7b2253"]);
-    var graph=dc.heatMap(dom)
-     .dimension(dim)
-     .group(group)
-     .width(0)
-     .height(150)
-      .rowsLabel(function(d){
-        return day[d];
-      })
-      .colsLabel(function(d){
-        var t=Math.floor(d /100000);
-        if(lasttick !==t){
-          lasttick=t;
-          return t;
-        }
-        return "";
-     })
-     .title(function(d){return dayFormat(d.key)+ " "+d.value+ " rollcalls"})
-     .label(function(d){return dayFormat(d.key) + " "+d.value+ " rollcalls"})
-     .keyAccessor(function(d) { 
-       return 1000*d.key.getFullYear()+week(d.key);
-       var r=d.key;
-       r.setDate(r.getDate() + d.key.getDay());
-       console.log(r);
-       return r;
-     })
-     .valueAccessor(function(d) { return +d.key.getDay(); })
-     .colorAccessor(function(d) { return +d.value; })
-     .colors(color)
-    .on ("renderlet.collabel",function (chart) {
-      return;
-   // rotate x-axis labels
-      chart.selectAll('g.cols text')
-      .attr("style","text-anchor:left;")
-     //.attr('transform', 'translate(-10,10) rotate(215)');
-    });
-
-
-    return graph;
-  }
-
   function drawSearch(dom){
     var dim=ndx.dimension(function(d) {
       if (!d.firstname) console.log(d);
-      return d.firstname.toLowerCase()+" "+ d.lastname.toLowerCase() });
+      return d.firstname.toLowerCase()+" "+ d.lastname.toLowerCase() + " " +d.party.toLowerCase() });
     var filter = function (query) {
 //        query = _normalize(query);
         return function (d) {

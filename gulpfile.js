@@ -57,7 +57,7 @@ gulp.task('dc-copy',function(){
     ], { base: 'node_modules' })
     .pipe(sourcemaps.init())
     .pipe(concat('dcbundle.js'))
-    .pipe(uglify())
+//    .pipe(uglify())
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('./dist/js/'))
     .pipe(zip({gzipOptions: { level: 9 } }))
