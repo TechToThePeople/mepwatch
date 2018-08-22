@@ -286,6 +286,7 @@
   }
 
   function drawSearch(dom){
+
     var dim=ndx.dimension(function(d) {return d.report.toLowerCase()+" "+ d.desc.toLowerCase() });
     var filter = function (query) {
 //        query = _normalize(query);
@@ -296,6 +297,23 @@
     var chart=dc.textFilterWidget(dom)
       .placeHolder("search by name")
       .filterFunctionFactory(filter)
+      .on("filtered",function(){
+        console.log("filter");
+      })
+      .on("renderlet.urlparam",function(){
+        var q=urlParam("q");
+        var input=d3.select(this.anchor() +" input");
+        if (input.property("value")) {
+          if (q != input.property("value")) {
+            urlParam("q",input.property("value"));
+          }
+          return; // nothing else to do, already set
+        }
+        if (q) {
+          console.log("filtering for "+q);
+          input.property("value",q).dispatch("input");
+        }
+      })
       .dimension(dim);
     return chart;
   }
@@ -332,6 +350,34 @@
     ]);
     return graph;
   }
+
+    var urlParam = function(name,value) {
+      if (value) {
+        var uri=window.location.href;
+        var re = new RegExp("([?&])" + name + "=.*?(&|#|$)", "i");
+        if (uri.match(re)) {
+        uri=uri.replace(re, '$1' + name + "=" + value + '$2');
+        } else {
+          var hash =  '';
+          if( uri.indexOf('#') !== -1 ){
+            hash = uri.replace(/.*#/, '#');
+            uri = uri.replace(/#.*/, '');
+          }
+          var separator = uri.indexOf('?') !== -1 ? "&" : "?";
+          uri= uri + separator + name + "=" + value + hash;
+        }
+        history.pushState({q:value},"search for "+value,uri);
+        return uri;
+      } else {
+        var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+        if (results == null) {
+          return null;
+        } else {
+          return decodeURI(results[1]) || 0;
+        }
+      }
+    };
+
 
 </script>
   </body>
