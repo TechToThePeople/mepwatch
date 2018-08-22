@@ -52,7 +52,7 @@ gulp.task('dc-copy',function(){
       'node_modules/reductio/reductio.js',
       'node_modules/d3/dist/d3.js',
       'node_modules/d3-queue/build/d3-queue.js',
-      'node_modules/d3-tip/index.js',
+      'node_modules/d3-tip/dist/index.js',
       'node_modules/dc/dc.js'
     ], { base: 'node_modules' })
     .pipe(sourcemaps.init())
