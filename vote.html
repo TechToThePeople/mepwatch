@@ -298,7 +298,10 @@
 
   var voteid= Number(urlParam("v") || 92926);
   var results = "for,against,abstention,no show,excused,attended".split(",");
-
+  
+  var resultscolor= d3.scaleOrdinal()
+	.domain(results)
+	.range("#27ae60,#d35400,#2980b9,#95a5a6,#34495e,#bdc3c7".split(","));
   var dateParse = d3.timeParse("%Y-%m-%d");
   var dateTimeParse = d3.timeParse("%Y-%m-%d %H:%M:%S");
   var dayFormat = d3.timeFormat("%Y-%m-%d");
@@ -318,6 +321,7 @@
     if (!m) console.log(j);
       if (m.start > config.date) {
         meps.splice(j,1);
+        j--;
         continue;
       }
       if (m.end && m.end < config.date) {
@@ -462,6 +466,7 @@
       .width(0)
       .height(0)
       .ordering(function(d){ return results.indexOf(d.key) >=0 ?  results.indexOf(d.key) : 1984})
+      .colors(resultscolor)
 /*      .colorCalculator(function(d, i) {
         return eu_groups[d.key];
         //return color(d.value.score/d.value.count);
@@ -488,7 +493,16 @@
       var group = dim.group();
       reducer(group);
 
-      var graph = dc.barChart(dom)
+      var graph = dc.barChart(dom);
+      graph.relative=true;
+
+      function getValue(result){
+        if (graph.relative)
+          return function(d){return d.value[result].count/d.value.nb.count*100; }
+        return function(d){return d.value[result].count; }
+      }
+
+      graph
         .width(0)
         .height(186)
         .outerPadding(0)
@@ -500,8 +514,9 @@
           left: 30
         })
         .ordering(function(d){ return -d.value.for.count/d.value.nb.count})
-        .x(d3.scaleOrdinal())
+        .x(d3.scaleBand())
         .xUnits(dc.units.ordinal)
+        .colors(resultscolor)
         .brushOn(false)
         .title(function(d) {
           if (this.layer == 0) return "";
@@ -510,18 +525,25 @@
         })
 
         .elasticY(true)
-        .yAxisLabel("#MEPs")
+        .yAxisLabel("%MEPs")
         .dimension(dim)
-        .group(group, "for", function(d){return d.value["for"].count/d.value.nb.count*100; })
+        //.group(group, "for", function(d){return d.value["for"].count/d.value.nb.count*100; })
+        .group(group, "for", getValue("for"))
+      //function(d){return d.value["for"].count/d.value.nb.count*100; })
+        .on("preRedraw", function(c){
+          graph.relative=graphs.result.filters().length == 1;
+          console.log(graph.relative);
+          console.log(graphs.result.filters());
+        })
         .on("renderlet", function(c) {
           rotateBarChartLabels();
         });
       graph.xAxis().ticks(3);
-
       res.shift();
       res.forEach(function(r){
         graph.stack(group, r, function(d){
-          return d.value[r].count/d.value.nb.count*100;
+          return getValue(r)(d);
+//          return d.value[r].count/d.value.nb.count*100;
         });
       });
 
