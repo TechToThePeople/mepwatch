@@ -10,6 +10,9 @@
     <link href="dist/css/main.css" rel="stylesheet">
 
 <style>
+  .dc-chart rect.deselected {
+      fill-opacity:0.3;
+  }
     .eugroup,
     .country-flag {
       display: inline-block;
@@ -293,7 +296,9 @@
   var votes= [];
   var config = {};
 
-  var voteid=urlParam("v") || 92926;
+  var voteid= Number(urlParam("v") || 92926);
+  var results = "for,against,abstention,no show,excused,attended".split(",");
+
   var dateParse = d3.timeParse("%Y-%m-%d");
   var dateTimeParse = d3.timeParse("%Y-%m-%d %H:%M:%S");
   var dayFormat = d3.timeFormat("%Y-%m-%d");
@@ -456,6 +461,7 @@
     graph
       .width(0)
       .height(0)
+      .ordering(function(d){ return results.indexOf(d.key) >=0 ?  results.indexOf(d.key) : 1984})
 /*      .colorCalculator(function(d, i) {
         return eu_groups[d.key];
         //return color(d.value.score/d.value.count);
@@ -473,9 +479,9 @@
       var formatPercent = d3.format(".0%");
       var dim = ndx.dimension(function(d) {return d.country;});
       var reducer = reductio();
+      var res=results.slice();
       reducer.value("nb").count(true);
-      var results = "for,against,abstention,no show,excused,attended".split(",");
-      results.forEach(function(r){
+      res.forEach(function(r){
         reducer.value(r).count(true).filter(function(d){ return d.vote == r});
       });
 
@@ -493,6 +499,7 @@
           bottom: 20,
           left: 30
         })
+        .ordering(function(d){ return -d.value.for.count/d.value.nb.count})
         .x(d3.scaleOrdinal())
         .xUnits(dc.units.ordinal)
         .brushOn(false)
@@ -511,8 +518,8 @@
         });
       graph.xAxis().ticks(3);
 
-      results.shift();
-      results.forEach(function(r){
+      res.shift();
+      res.forEach(function(r){
         graph.stack(group, r, function(d){
           return d.value[r].count/d.value.nb.count*100;
         });
