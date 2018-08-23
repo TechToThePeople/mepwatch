@@ -351,32 +351,31 @@
     return graph;
   }
 
-    var urlParam = function(name,value) {
-      if (value) {
-        var uri=window.location.href;
-        var re = new RegExp("([?&])" + name + "=.*?(&|#|$)", "i");
-        if (uri.match(re)) {
-        uri=uri.replace(re, '$1' + name + "=" + value + '$2');
-        } else {
-          var hash =  '';
-          if( uri.indexOf('#') !== -1 ){
-            hash = uri.replace(/.*#/, '#');
-            uri = uri.replace(/#.*/, '');
-          }
-          var separator = uri.indexOf('?') !== -1 ? "&" : "?";
-          uri= uri + separator + name + "=" + value + hash;
-        }
-        history.pushState({q:value},"search for "+value,uri);
-        return uri;
-      } else {
-        var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-        if (results == null) {
-          return null;
-        } else {
-          return decodeURI(results[1]) || 0;
-        }
+var urlParam = function  if (value) {
+    var uri=window.location.href;
+    var re = new RegExp("([?&])" + name + "=.*?(&|#|$)", "i");
+    if (uri.match(re)) {
+    uri=uri.replace(re, '$1' + name + "=" + value + '$2');
+    } else {
+      var hash =  '';
+      if( uri.indexOf('#') !== -1 ){
+        hash = uri.replace(/.*#/, '#');
+        uri = uri.replace(/#.*/, '');
       }
-    };
+      var separator = uri.indexOf('?') !== -1 ? "&" : "?";
+      uri= uri + separator + name + "=" + value + hash;
+    }
+    history.pushState({q:value},"search for "+value,uri);
+    return uri;
+  } else {
+    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+    if (results == null) {
+      return null;
+    } else {
+      return decodeURI(results[1]) || 0;
+    }
+  }
+};
 
 
 </script>

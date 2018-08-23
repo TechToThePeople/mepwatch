@@ -293,6 +293,7 @@
   var votes= [];
   var config = {};
 
+  var voteid=urlParam("v") || 92926;
   var dateParse = d3.timeParse("%Y-%m-%d");
   var dateTimeParse = d3.timeParse("%Y-%m-%d %H:%M:%S");
   var dayFormat = d3.timeFormat("%Y-%m-%d");
@@ -311,12 +312,10 @@
     var m=meps[j];
     if (!m) console.log(j);
       if (m.start > config.date) {
-//        console.log(m.lastname + " started after the vote");
         meps.splice(j,1);
         continue;
       }
       if (m.end && m.end < config.date) {
-//        console.log(m.voteid + " " +m.lastname + " left before the vote");
         meps.splice(j,1);
         j--;
         continue;
@@ -334,13 +333,14 @@
 //       console.log(meps[j]);
     }
     };
-
+    //TODO: handle this properly, this is a big problem
+    votes.map(function(v){if (!v.processed) console.log(v)});
     ndx = crossfilter(meps);
     draw();
   });
 
   function dl_details(callback) {
-    d3.json('cards/92926.json').then(function(d) {
+    d3.json('cards/'+voteid+'.json').then(function(d) {
       d.date = dateTimeParse(d.date);
       config=d;
       $('h2').html(config.name);
@@ -352,7 +352,7 @@
     });
   }
   function dl_votes (callback){
-    d3.csv('cards/92926.csv',function(d){
+    d3.csv('cards/'+voteid+'.csv',function(d){
       d.mepid= +d.mepid;
       d.identifier= +d.identifier;
       return d;
@@ -650,6 +650,33 @@
     ]);
     return graph;
   }
+
+function urlParam(name,value) {
+  if (value) {
+    var uri=window.location.href;
+    var re = new RegExp("([?&])" + name + "=.*?(&|#|$)", "i");
+    if (uri.match(re)) {
+    uri=uri.replace(re, '$1' + name + "=" + value + '$2');
+    } else {
+      var hash =  '';
+      if( uri.indexOf('#') !== -1 ){
+        hash = uri.replace(/.*#/, '#');
+        uri = uri.replace(/#.*/, '');
+      }
+      var separator = uri.indexOf('?') !== -1 ? "&" : "?";
+      uri= uri + separator + name + "=" + value + hash;
+    }
+    history.pushState({q:value},"search for "+value,uri);
+    return uri;
+  } else {
+    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+    if (results == null) {
+      return null;
+    } else {
+      return decodeURI(results[1]) || 0;
+    }
+  }
+};
 
 </script>
   </body>
