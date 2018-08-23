@@ -497,9 +497,10 @@
       graph.relative=true;
 
       function getValue(result){
-        if (graph.relative)
+        console.log("getValue;"+relative)
+//        if (graph.relative)
           return function(d){return d.value[result].count/d.value.nb.count*100; }
-        return function(d){return d.value[result].count; }
+//        return function(d){return d.value[result].count; }
       }
 
       graph
