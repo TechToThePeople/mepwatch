@@ -257,7 +257,10 @@ th#country,th#eugroup {min-width:100px;
             <div class="col-md-12">
               <div class="card box-shadow" id="country">
                 <div class="card-body">
-                  <h5 class="card-title text-muted text-right">Something</h5>
+                  <h5 class="card-title text-muted text-right">
+                  <button type="button" class="btn-relative active btn btn-primary" title="percentage of votes">%</button>
+                  <button type="button" class="btn-absolute btn btn-primary" title="Number of votes">#</button>
+                  </h5>
                   <div class="graph"></div>
                   </div>
                 </div>
@@ -533,10 +536,9 @@ th#country,th#eugroup {min-width:100px;
       graph.relative=true;
 
       function getValue(result){
-        console.log("getValue;"+graph.relative)
-//        if (graph.relative)
+        if (graph.relative)
           return function(d){return d.value[result].count/d.value.nb.count*100; }
-//        return function(d){return d.value[result].count; }
+        return function(d){return d.value[result].count; }
       }
 
       graph
@@ -568,9 +570,7 @@ th#country,th#eugroup {min-width:100px;
         .group(group, "for", getValue("for"))
       //function(d){return d.value["for"].count/d.value.nb.count*100; })
         .on("preRedraw", function(c){
-          graph.relative=graphs.result.filters().length == 1;
-          console.log(graph.relative);
-          console.log(graphs.result.filters());
+//          graph.relative=graphs.result.filters().length == 1;
         })
         .on("renderlet", function(c) {
           rotateBarChartLabels();
@@ -584,6 +584,8 @@ th#country,th#eugroup {min-width:100px;
         });
       });
 
+      toggleRef ();
+
       return graph;
 
       function rotateBarChartLabels() {
@@ -592,6 +594,17 @@ th#country,th#eugroup {min-width:100px;
           .attr("transform", function(d) {
             return "rotate(-90, -4, 9), translate(10,0) ";
           });
+      }
+
+      function toggleRef (){
+        d3.selectAll("#country h5 button").on("click",function(){
+          var b=d3.select(this);
+          if (b.classed("active")) return;
+          graph.relative= b.classed("btn-relative");
+          b.classed("active",true);
+          d3.select("#country .btn-"+(graph.relative?"absolute":"relative")).classed("active",false);
+          graph.redraw();
+        });
       }
     }
 
