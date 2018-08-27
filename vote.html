@@ -316,6 +316,11 @@ th#country,th#eugroup {min-width:100px;
   var resultscolor= d3.scaleOrdinal()
 	.domain(results)
 	.range("#27ae60,#d35400,#2980b9,#95a5a6,#34495e,#bdc3c7".split(","));
+  var percentagecolor=d3.scaleLinear()
+    .domain([0,49,50,51,100])
+    .range(["#27ae60","#C8E6C9","#9E9E9E","#ffcdd2","#d35400"])
+    .interpolate(d3.interpolateHcl);
+
   var dateParse = d3.timeParse("%Y-%m-%d");
   var dateTimeParse = d3.timeParse("%Y-%m-%d %H:%M:%S");
   var dayFormat = d3.timeFormat("%Y-%m-%d");
@@ -637,6 +642,10 @@ th#country,th#eugroup {min-width:100px;
           var sum=d.value.for.count + d.value.against.count;
           if (sum == 0) return "";
           return formatPercent(Math.max(d.value.for.count,d.value.against.count) / sum);
+        })
+        .style("background-color",function(){
+          var sum=d.value.for.count + d.value.against.count;
+          return percentagecolor(100*d.value.against.count/sum);
         });
         d3.select(".nbvoted .badge").html(function(){
           var sum=d.value.for.count + d.value.against.count + d.value.abstention.count;
