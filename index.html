@@ -351,7 +351,8 @@
     return graph;
   }
 
-var urlParam = function  if (value) {
+var urlParam = function (name,value) {
+  if (value) {
     var uri=window.location.href;
     var re = new RegExp("([?&])" + name + "=.*?(&|#|$)", "i");
     if (uri.match(re)) {
