@@ -236,9 +236,9 @@ th#country,th#eugroup {min-width:100px;
             <div class="col-md-3">
           <form id="search"></form>
           <ul class="list-group">
-            <li class="list-group-item nbmep"><a class="resetall"><span class="nb"></span> MEPs<span class="float-right percent badge badge-primary badge-pill">aaa</span></a></li> 
-            <li class="list-group-item nbvoted"><span class="percent badge"></span><span class="nb"></span> voted</li> 
-            <li class="list-group-item result"><span class="percent badge"></span><span class="nb"></span> result</li> 
+            <li class="list-group-item nbmep"><a class="resetall"><span class="nb"></span> MEPs<button type="button" class="btn btn-warning float-right" title="reset the filters">↺</button></a></li> 
+            <li class="list-group-item nbvoted"><span class="percent badge badge-primary badge-pill float-right">%</span><span class="nb"></span> voted</li> 
+            <li class="list-group-item result"><span class="percent badge badge-primary badge-pill float-right"></span><span class="nb"></span> result</li> 
           </ul>
             </div>
             <div class="col-md-3" id="result">
@@ -320,19 +320,20 @@ th#country,th#eugroup {min-width:100px;
   var dateTimeParse = d3.timeParse("%Y-%m-%d %H:%M:%S");
   var dayFormat = d3.timeFormat("%Y-%m-%d");
   var dateFormat = d3.timeFormat("%Y-%m-%d %H:%M:%S");
+  var formatPercent = d3.format(".0%");
   var week = d3.timeFormat("%V");
   //d3.csv('data/ep_votes.csv',function(d){
   q
+  .defer(dl_meps)
   .defer(dl_details)
   .defer(dl_votes)
-  .defer(dl_meps)
-  .awaitAll(function(meps){
-      
+  .awaitAll(function(error,r){
+    if (error) throw error;
     var length=votes.length;
-  for (var j=0; j < meps.length;j++) {
-//    meps.forEach(function(m,i){
-    var m=meps[j];
-    if (!m) console.log(j);
+    var meps=r[0];//first deferred download
+    for (var j=0; j < meps.length;j++) {
+      var m=meps[j];
+      if (!m) console.log(j);
       if (m.start > config.date) {
         meps.splice(j,1);
         j--;
@@ -351,13 +352,20 @@ th#country,th#eugroup {min-width:100px;
           break;
         }
       };
-    if (!meps[j].vote) {
-      meps[j].vote = "no show";
-//       console.log(meps[j]);
-    }
+      if (!meps[j].vote) {
+        meps[j].vote = "no show";
+      }
     };
     //TODO: handle this properly, this is a big problem
-    votes.map(function(v){if (!v.processed) console.log(v)});
+    var errors = [];
+    votes.map(function(v){if (!v.processed) errors.push(v)});
+    if (errors.length){
+      d3.select("main").insert("div",":first-child").attr("class","alert alert-danger")
+        .html("<h1>They are votes that we couldn't process. Contact Xavier</h1>");
+      console.log (errors);
+    }
+    config.nb=meps.length;
+
     ndx = crossfilter(meps);
     draw();
   });
@@ -371,7 +379,7 @@ th#country,th#eugroup {min-width:100px;
       $('.navbar .date').html(dateFormat(config.date));
       $('.navbar .report').html(config.report);
       $('h3').html(config.desc);
-      callback();
+      callback(null);
     });
   }
   function dl_votes (callback){
@@ -381,7 +389,7 @@ th#country,th#eugroup {min-width:100px;
       return d;
     }).then(function(d){
       votes=d;
-      callback();
+      callback(null);
     });
   };
 
@@ -399,7 +407,7 @@ th#country,th#eugroup {min-width:100px;
     })
     .then(function(d){
 //      draw();
-      callback(d);
+      callback(null,d);
     });
   };
 
@@ -505,7 +513,6 @@ th#country,th#eugroup {min-width:100px;
   }
 
     function drawCountry(dom) {
-      var formatPercent = d3.format(".0%");
       var dim = ndx.dimension(function(d) {return d.country;});
       var reducer = reductio();
       var res=results.slice();
@@ -606,16 +613,35 @@ th#country,th#eugroup {min-width:100px;
       .group(group)
       .valueAccessor(function(d) {return d.value.nb.count})
       .formatNumber(d3.format("d"))
+      .on("renderlet.linked",function(){
+        var d=group.top(1)[0];
+        var c = (d.value.nb.count == config.nb) ? "d-none":"btn btn-warning float-right btn-sm"; 
+        d3.select(".nbmep button").attr("class",c);
+      });
+    d3.select(".resetall").on("click",function(){
+      dc.filterAll();
+      dc.renderAll();
+    });
 
     graphs.total = dc.numberDisplay(".nbvoted .nb")
       .group(group)
       .valueAccessor(function(d) {return d.value.for.count+d.value.against.count+d.value.abstention.count})
       .formatNumber(d3.format("d"))
       .on("renderlet.linked",function(){
+        var d=group.top(1)[0];
         d3.select(".result .nb").html(function(){
-          var d=group.top(1)[0];
           if (d.value.for.count + d.value.against.count == 0) return "?";
           return iconify(d.value.for.count > d.value.against.count ? "for" : "against");
+        });
+        d3.select(".result .badge").html(function(){
+          var sum=d.value.for.count + d.value.against.count;
+          if (sum == 0) return "";
+          return formatPercent(Math.max(d.value.for.count,d.value.against.count) / sum);
+        });
+        d3.select(".nbvoted .badge").html(function(){
+          var sum=d.value.for.count + d.value.against.count + d.value.abstention.count;
+          if (sum == 0 || sum == d.value.nb.count) return "";
+          return formatPercent(sum / d.value.nb.count);
         });
       });
   }
