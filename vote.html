@@ -9,6 +9,8 @@
     <link href="dist/css/fonts.css" rel="stylesheet">
     <link href="dist/css/main.css" rel="stylesheet">
 
+    <link rel="prefetch" href="data/meps.csv" as="fetch"/>
+
 <style>
 .glyphicon-sort:after{ content:'⇅';}
 .glyphicon-arrow-up:after{ content:'⤒';}
@@ -235,11 +237,9 @@ th#country,th#eugroup {min-width:100px;
           <p class="lead text-muted"><form id="search"></form></p>
           <ul class="list-group">
             <li class="list-group-item nbmep"><a class="resetall"><span class="percent badge"></span><span class="nb"></span> MEPs</a></li> 
+            <li class="list-group-item nbvoted"><span class="percent badge"></span><span class="nb"></span> voted</li> 
+            <li class="list-group-item result"><span class="percent badge"></span><span class="nb"></span> result</li> 
           </ul>
-          <p>
-            <a href="#" class="btn btn-primary">Need it?</a>
-            <a href="#" class="btn btn-secondary">Do not</a>
-          </p>
             </div>
             <div class="col-md-3" id="result">
                   <div class="graph"></div>
@@ -449,13 +449,23 @@ th#country,th#eugroup {min-width:100px;
       var dim = ndx.dimension(function(d) {
         return [d.eugroup,d.party];
       });
-      var group = dim.group().reduceSum(function(d) {return 1;});
+      var reducer = reductio();
+      var res=results.slice();
+      reducer.value("nb").count(true);
+      res.forEach(function(r){
+        reducer.value(r).count(true).filter(function(d){ return d.vote == r});
+      });
+
+      var group = dim.group();
+      reducer(group);
+      //var group = dim.group().reduceSum(function(d) {return 1;});
       graph
         .width(0)
         .height(0)
         .colorCalculator(function(d, i) {
-          return eu_groups[d.path[0]];
+          return eu_groups[d.data.path[0]];
         })
+        .valueAccessor(function(d){return d.value.nb.count})
         .dimension(dim)
         .group(group)
 //        .externalLabels(-26)
@@ -579,16 +589,29 @@ th#country,th#eugroup {min-width:100px;
     reducer.value("woman").count(true).filter(function(d) {
       return d.Gender == "F"
     });
+    var res=results.slice();
+      reducer.value("nb").count(true);
+    results.forEach(function(r){
+      reducer.value(r).count(true).filter(function(d){ return d.vote == r});
+    });
 
-   var group = dim.group();
-   reducer(group);
+    var group = dim.group();
+    reducer(group);
 
     graphs.total = dc.numberDisplay(".nbmep .nb")
       .group(group)
-      .valueAccessor(function(d) {
-        return d.value.nb.count
-      })
+      .valueAccessor(function(d) {return d.value.nb.count})
       .formatNumber(d3.format("d"))
+
+    graphs.total = dc.numberDisplay(".nbvoted .nb")
+      .group(group)
+      .valueAccessor(function(d) {return d.value.for.count+d.value.against.count+d.value.abstention.count})
+      .formatNumber(d3.format("d"))
+
+    d3.select(".result .nb").text(function(){
+      var d=group.top(1)[0];
+      return d.value.for.count > d.value.against.count ? "For" : "Against"
+    });
   }
 
   function drawReport(dom){

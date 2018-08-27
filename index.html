@@ -11,6 +11,16 @@
 
 <style>
   .heatmap g.axis text {transform: translateX(0.7em)}
+  tr.dc-table-row {
+    cursor:pointer;
+  }
+  tr.dc-table-row:hover {
+    transition: background-color 1s; 
+    transition: color 1s; 
+    background-color:#9c27b0;
+    color:white;
+  }
+
 </style>
   </head>
   <body>
@@ -347,7 +357,14 @@
         ,function(d){ return d.for;}
         ,function(d){ return d.against;}
         ,function(d){ return d.abstention;}
-    ]);
+    ])
+    .on("renderlet.govote", function(g) {
+      g.selectAll("tr.dc-table-row")
+        .on("click", function(d) {
+          window.open("vote.html?v="+d3.select(this).datum().identifier);
+          console.log(d3.select(this).datum());
+        });
+    });
     return graph;
   }
 

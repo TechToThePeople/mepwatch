@@ -5,6 +5,32 @@ var gulp = require('gulp'),
   sourcemaps = require('gulp-sourcemaps'),
   uglify = require('gulp-uglify'),
   zip=require('gulp-gzip');
+var svgstore = require('gulp-svgstore');
+var svgmin = require('gulp-svgmin');
+var path = require('path');
+
+gulp.task('svgstore', function () {
+  var country="Belgium,Bulgaria,Croatia,Cyprus,Czech Republic,Denmark,Estonia,Finland,France,Germany,Greece,Hungary,Ireland,Italy,Latvia,Lithuania,Luxembourg,Malta,Netherlands,Poland,Portugal,Romania,Slovakia,Slovenia,Spain,Sweden,United Kingdom,Austria";
+  var iso="ie,fr,de";
+  var files=[];
+  iso.split(",").map((c)=>{ files.push("img/country/"+c+".svg")});
+  console.log(files);
+    return gulp
+        .src(files)
+        .pipe(svgmin(function (file) {
+            var prefix = path.basename(file.relative, path.extname(file.relative));
+            return {
+                plugins: [{
+                    cleanupIDs: {
+                        prefix: prefix + '-',
+                        minify: true
+                    }
+                }]
+            }
+        }))
+        .pipe(svgstore())
+        .pipe(gulp.dest('dist'));
+});
 
 gulp.task('fonts', function () {
   var options = {
@@ -19,7 +45,7 @@ gulp.task('fonts', function () {
 		;
 	});
 
-gulp.task('html-copy',function(){
+gulp.task('html',function(){
   return gulp
     .src(['src/index.html'])
     .pipe(htmlmin({
@@ -29,10 +55,10 @@ gulp.task('html-copy',function(){
     .pipe(gulp.dest('./dist/'));
 });
 
-gulp.task('css-copy',function(){
+gulp.task('css',function(){
   return gulp
     .src([
-      'node_modules/dc/dc.css'
+      'css/dc.css'
       ,'src/dcfix.css'
       ,'node_modules/daemonite-material/css/material.css'
     ], { base: 'node_modules' })
