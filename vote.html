@@ -311,6 +311,7 @@ th#country,th#eugroup {min-width:100px;
 
   var voteid= Number(urlParam("v") || 92926);
   var results = "for,against,abstention,no show,excused,attended".split(",");
+  var countries = { "Belgium": "be", "Bulgaria": "bg", "Czech Republic": "cz", "Denmark": "dk", "Germany": "de", "Estonia": "ee", "Ireland": "ie", "Greece": "gr", "Spain": "es", "France": "fr", "Croatia": "hr", "Italy": "it", "Cyprus": "cy", "Latvia": "lv", "Lithuania": "lt", "Luxembourg": "lu", "Hungary": "hu", "Malta": "mt", "Netherlands": "nl", "Austria": "at", "Poland": "pl", "Portugal": "pt", "Romania": "ro", "Slovenia": "si", "Slovakia": "sk", "Finland": "fi", "Sweden": "se", "United Kingdom": "gb","Europe": "eu"};
  
   var iconify = function(name,prefix) {
     prefix = prefix || "icon";
@@ -377,6 +378,11 @@ th#country,th#eugroup {min-width:100px;
     ndx = crossfilter(meps);
     draw();
   });
+
+  d3.svg("img/eu-flags.svg").then(function(xml) {
+    document.body.appendChild(xml.documentElement);
+  });
+
 
   function dl_details(callback) {
     d3.json('cards/'+voteid+'.json').then(function(d) {
@@ -574,6 +580,9 @@ th#country,th#eugroup {min-width:100px;
         .group(group, "", 0)
         .on("renderlet", function(c) {
           rotateBarChartLabels();
+          d3.select("#country .axis.x").selectAll(".tick").append("use").attr( "href",function(d){
+            return '#flag-'+countries[d]}).attr("width",24).attr("height",16)
+            .attr("transform","translate(-10,2)");
         });
       graph.xAxis().ticks(3);
 //      res.shift();
@@ -588,6 +597,7 @@ th#country,th#eugroup {min-width:100px;
       return graph;
 
       function rotateBarChartLabels() {
+        d3.selectAll(dom + ' .axis.x line').remove();
         d3.selectAll(dom + ' .axis.x text')
           .style("text-anchor", "start")
           .attr("transform", function(d) {
