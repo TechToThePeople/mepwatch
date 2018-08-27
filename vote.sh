@@ -28,5 +28,4 @@ done
 # where they present or excused?
 
 q "select * from parlparse/data/mep_attendance.csv where date='$datev'" -d, -H -O > "cards/$1.attendance.csv"
-q "select voteid,name,status,'manual',$1 as result from cards/$1.attendance.csv left join data/meps.csv on id=epid left join cards/$1.csv on mepid=voteid where result is null" -d, -H >> "cards/$1.csv"
-
+q "select voteid,name,status,'manual',$1 from cards/$1.attendance.csv left join data/meps.csv on id=epid left join cards/$1.csv on mepid=voteid where result is null" -d, -H>> "cards/$1.csv"
