@@ -258,8 +258,8 @@ th#country,th#eugroup {min-width:100px;
               <div class="card box-shadow" id="country">
                 <div class="card-body">
                   <h5 class="card-title text-muted text-right">
-                  <button type="button" class="btn-relative active btn btn-primary" title="percentage of votes">%</button>
-                  <button type="button" class="btn-absolute btn btn-primary" title="Number of votes">#</button>
+                  <button type="button" class="btn-relative btn btn-primary" title="percentage of votes">Percentage</button>
+                  <button type="button" class="btn-absolute active btn btn-primary" title="Number of votes">Number</button>
                   </h5>
                   <div class="graph"></div>
                   </div>
@@ -512,6 +512,10 @@ th#country,th#eugroup {min-width:100px;
         //return color(d.value.score/d.value.count);
       })
     */
+      .on("filtered", function(c){
+          var mode=(graphs.result.filters().length == 1 ? "absolute":"relative");
+          d3.select("#country .btn-"+mode).dispatch("click");
+        })
       .dimension(dim)
       .group(group)
       .externalLabels(-26)
@@ -538,7 +542,8 @@ th#country,th#eugroup {min-width:100px;
       function getValue(result){
         if (graph.relative)
           return function(d){return d.value[result].count/d.value.nb.count*100; }
-        return function(d){return d.value[result].count; }
+        return function(d){
+          return d.value[result].count; }
       }
 
       graph
@@ -559,32 +564,26 @@ th#country,th#eugroup {min-width:100px;
         .brushOn(false)
         .title(function(d) {
           if (this.layer == 0) return "";
-
           return d.key +  " voting '"+ this.layer + "': " + d.value[this.layer].count +" ("+formatPercent(d.value[this.layer].count/d.value.nb.count)+")";
         })
 
         .elasticY(true)
         .yAxisLabel("%MEPs")
         .dimension(dim)
-        //.group(group, "for", function(d){return d.value["for"].count/d.value.nb.count*100; })
-        .group(group, "for", getValue("for"))
-      //function(d){return d.value["for"].count/d.value.nb.count*100; })
-        .on("preRedraw", function(c){
-//          graph.relative=graphs.result.filters().length == 1;
-        })
+//        .group(group, "for", getValue("for")) bug: doesn't switch properly between absolute and relative
+        .group(group, "", 0)
         .on("renderlet", function(c) {
           rotateBarChartLabels();
         });
       graph.xAxis().ticks(3);
-      res.shift();
+//      res.shift();
       res.forEach(function(r){
         graph.stack(group, r, function(d){
           return getValue(r)(d);
-//          return d.value[r].count/d.value.nb.count*100;
         });
       });
 
-      toggleRef ();
+      toggleMode ();
 
       return graph;
 
@@ -596,13 +595,14 @@ th#country,th#eugroup {min-width:100px;
           });
       }
 
-      function toggleRef (){
+      function toggleMode (){
         d3.selectAll("#country h5 button").on("click",function(){
           var b=d3.select(this);
-          if (b.classed("active")) return;
+          if (!b.classed("active")) return;
           graph.relative= b.classed("btn-relative");
-          b.classed("active",true);
-          d3.select("#country .btn-"+(graph.relative?"absolute":"relative")).classed("active",false);
+          b.classed("active",false);
+          d3.select("#country .btn-"+(graph.relative?"absolute":"relative")).classed("active",true);
+          graph.yAxisLabel((graph.relative?"%":"#")+"MEPs")
           graph.redraw();
         });
       }
