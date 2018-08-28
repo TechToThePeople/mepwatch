@@ -17,6 +17,7 @@
 .glyphicon-arrow-up:after{ content:'⤒';}
 .glyphicon-arrow-down:after{ content:'⤓';}
 
+.flag-icon {fill:pink; width:24px;height:16px;}
 th .glyphicon {margin-left:5px;color:black;
   font-size:1.3em;
   border:1px solid grey;text-align:center;width:1.3em;border-radius:2px;display:inline-block;}
@@ -581,7 +582,9 @@ th#country,th#eugroup {min-width:100px;
         .group(group, "", 0)
         .on("renderlet", function(c) {
           rotateBarChartLabels();
-          d3.select("#country .axis.x").selectAll(".tick").append("use").attr( "href",function(d){
+          if (!d3.select("#country .axis.x use").empty()) return;
+          d3.select("#country .axis.x").selectAll(".tick")
+            .append("use").attr( "href",function(d){
             return '#flag-'+countries[d]}).attr("width",24).attr("height",16)
             .attr("transform","translate(-10,2)");
         });
