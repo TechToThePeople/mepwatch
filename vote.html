@@ -22,7 +22,7 @@ background-image: linear-gradient(-20deg, #6e45e2 0%, #88d3ce 100%);
 .glyphicon-arrow-up:after{ content:'⤒';}
 .glyphicon-arrow-down:after{ content:'⤓';}
 
-.flag-icon {fill:pink; width:24px;height:16px;}
+.flag-icon {width:21px;height:16px;border:0.2px solid lightgrey}
 th .glyphicon {margin-left:5px;color:black;
   font-size:1.3em;
   border:1px solid grey;text-align:center;width:1.3em;border-radius:2px;display:inline-block;}
@@ -323,6 +323,7 @@ th#country,th#eugroup {min-width:100px;
   var iconify = function(name,prefix) {
     prefix = prefix || "icon";
     return '<svg class="icon" class="'+name+'"><title>'+name+'</title><use href="#'+prefix+'-'+name+'" /></svg>';
+    //return '<svg class="icon" class="'+name+'"><use href="#'+prefix+'-'+name+'" /></svg>';
   }
   var resultscolor= d3.scaleOrdinal()
 	.domain(results)
@@ -772,12 +773,18 @@ th#country,th#eugroup {min-width:100px;
         return null;
       })
       .columns([
-        function(d){ return d.vote;}
+        function(d){
+          return iconify(d.vote);
+
+          return d.vote;}
         ,function(d) {
           return d.firstname + " " + d.lastname;
         }
         ,function(d) {
             return "<span title='" + d.country + "' class='img-rounded text-filter country-flag " + d.country.replace(" ", "-").toLowerCase() + "'>" + d.country + "</span>";
+          //TOFIX for no reason, it's dog slow to use svg use here
+//          return iconify(countries[d.country],"flag");
+//          return "<svg class='img-rounded flag-icon'><use href='#flag-" + countries[d.country] + "'/><title>" + d.country + "</title></svg>";
           }
         ,function(d) {
             return "<span title='" + d.eugroup + "' class='img-rounded text-filter eugroup " + d.eugroup.replace(/&|\/|car/g, "-").toLowerCase() + "'>" + d.eugroup + "</span>";
