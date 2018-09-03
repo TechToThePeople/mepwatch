@@ -22,7 +22,9 @@ background-image: linear-gradient(-20deg, #6e45e2 0%, #88d3ce 100%);
 .glyphicon-arrow-up:after{ content:'⤒';}
 .glyphicon-arrow-down:after{ content:'⤓';}
 
-.flag-icon {width:21px;height:16px;border:0.2px solid lightgrey}
+aa.flag-icon,aa.country-flag {width:21px;height:16px;border:0.2px solid lightgrey}
+.country-flag img {width:20px;height:15px;border:0.2px solid lightgrey}
+
 th .glyphicon {margin-left:5px;color:black;
   font-size:1.3em;
   border:1px solid grey;text-align:center;width:1.3em;border-radius:2px;display:inline-block;}
@@ -31,8 +33,8 @@ th#country,th#eugroup {min-width:100px;
   padding-right:0.75rem;padding-left: 0.75rem;}
 
     .icon,
-    .eugroup,
-    .country-flag {
+    .eugroup
+    {
       display: inline-block;
       width: 25px;
       height: 20px;
@@ -77,118 +79,6 @@ th#country,th#eugroup {min-width:100px;
 
     .na-ni {
       background-image: url("img/group/NA.png");
-    }
-
-    .austria {
-      background-image: url("img/country/at.svg");
-    }
-
-    .belgium {
-      background-image: url("img/country/be.svg");
-    }
-
-    .bulgaria {
-      background-image: url("img/country/bg.svg");
-    }
-
-    .croatia {
-      background-image: url("img/country/hr.svg");
-    }
-
-    .cyprus {
-      background-image: url("img/country/cy.svg");
-    }
-
-    .czech-republic {
-      background-image: url("img/country/cz.svg");
-    }
-
-    .denmark {
-      background-image: url("img/country/dk.svg");
-    }
-
-    .estonia {
-      background-image: url("img/country/ee.svg");
-    }
-
-    .finland {
-      background-image: url("img/country/fi.svg");
-    }
-
-    .france {
-      background-image: url("img/country/fr.svg");
-    }
-
-    .germany {
-      background-image: url("img/country/de.svg");
-    }
-
-    .greece {
-      background-image: url("img/country/el.svg");
-    }
-
-    .hungary {
-      background-image: url("img/country/hu.svg");
-    }
-
-    .ireland {
-      background-image: url("img/country/ie.svg");
-    }
-
-    .italy {
-      background-image: url("img/country/it.svg");
-    }
-
-    .latvia {
-      background-image: url("img/country/lv.svg");
-    }
-
-    .lithuania {
-      background-image: url("img/country/lt.svg");
-    }
-
-    .luxembourg {
-      background-image: url("img/country/lu.svg");
-    }
-
-    .malta {
-      background-image: url("img/country/mt.svg");
-    }
-
-    .netherlands {
-      background-image: url("img/country/nl.svg");
-    }
-
-    .poland {
-      background-image: url("img/country/pl.svg");
-    }
-
-    .portugal {
-      background-image: url("img/country/pt.svg");
-    }
-
-    .romania {
-      background-image: url("img/country/ro.svg");
-    }
-
-    .slovakia {
-      background-image: url("img/country/sk.svg");
-    }
-
-    .slovenia {
-      background-image: url("img/country/si.svg");
-    }
-
-    .spain {
-      background-image: url("img/country/es.svg");
-    }
-
-    .sweden {
-      background-image: url("img/country/se.svg");
-    }
-
-    .united-kingdom {
-      background-image: url("img/country/gb.svg");
     }
 
 </style>
@@ -251,6 +141,9 @@ th#country,th#eugroup {min-width:100px;
             <div class="col-md-3" id="result">
                   <div class="graph"></div>
             </div>
+            <div class="col-md-3" id="party">
+                  <div class="graph"></div>
+            </div>
             <div class="col-md-3" id="eugroup">
                   <div class="graph"></div>
             </div>
@@ -283,6 +176,7 @@ th#country,th#eugroup {min-width:100px;
               <thead>
                 <tr>
                   <th>Vote</th>
+                  <th>Rebel</th>
                   <th>Name</th>
                   <th>Country</th>
                   <th>Party</th>
@@ -318,8 +212,11 @@ th#country,th#eugroup {min-width:100px;
 
   var voteid= Number(urlParam("v") || 92926);
   var results = "for,against,abstention,no show,excused,attended".split(",");
-  var countries = { "Belgium": "be", "Bulgaria": "bg", "Czech Republic": "cz", "Denmark": "dk", "Germany": "de", "Estonia": "ee", "Ireland": "ie", "Greece": "gr", "Spain": "es", "France": "fr", "Croatia": "hr", "Italy": "it", "Cyprus": "cy", "Latvia": "lv", "Lithuania": "lt", "Luxembourg": "lu", "Hungary": "hu", "Malta": "mt", "Netherlands": "nl", "Austria": "at", "Poland": "pl", "Portugal": "pt", "Romania": "ro", "Slovenia": "si", "Slovakia": "sk", "Finland": "fi", "Sweden": "se", "United Kingdom": "gb","Europe": "eu"};
- 
+  //var groups="PPE,S&D,ECR,ALDE,Verts/ALE,GUE/NGL,EFDD,ENF,NA/NI";
+  var groups="NA/NI,ENF,EFDD,ECR,PPE,ALDE,Verts/ALE,S&D,GUE/NGL".split(",");
+
+var countries = {  "be": "Belgium",  "bg": "Bulgaria",  "cz": "Czech Republic",  "dk": "Denmark",  "de": "Germany",  "ee": "Estonia",  "ie": "Ireland",  "gr": "Greece",  "es": "Spain",  "fr": "France",  "hr": "Croatia",  "it": "Italy",  "cy": "Cyprus",  "lv": "Latvia",  "lt": "Lithuania",  "lu": "Luxembourg",  "hu": "Hungary",  "mt": "Malta",  "nl": "Netherlands",  "at": "Austria",  "pl": "Poland",  "pt": "Portugal",  "ro": "Romania",  "si": "Slovenia",  "sk": "Slovakia",  "fi": "Finland",  "se": "Sweden",  "gb": "United Kingdom"};
+
   var iconify = function(name,prefix) {
     prefix = prefix || "icon";
     return '<svg class="icon" class="'+name+'"><title>'+name+'</title><use href="#'+prefix+'-'+name+'" /></svg>';
@@ -453,16 +350,17 @@ th#country,th#eugroup {min-width:100px;
 //    graphs.date=drawDate('#date div.graph');
 //    graphs.report=drawReport('#report div.graph');
     graphs.country=drawCountry('#country div.graph');
+    graphs.party=drawParty('#party div.graph');
     graphs.group=drawGroup('#eugroup div.graph');
-    graphs.table=drawTable('table.table');
     drawNumbers(graphs);
     graphs.result=drawResult('#result .graph');
     graphs.search=drawSearch("form#search");
+    graphs.table=drawTable('table.table');
 
     dc.renderAll();
   }
 
-   function drawGroup(dom) {
+   function drawParty(dom) {
      var eu_groups = {
       "GUE/NGL": "#800c00",
       "S&D": "#c21200",
@@ -503,11 +401,83 @@ th#country,th#eugroup {min-width:100px;
         .dimension(dim)
         .group(group)
 //        .externalLabels(-26)
-        .minAngleForLabel(0.4);
+        .minAngleForLabel(0.4)
+        .on("preRender", function(){
+          guessLine("partyline",group,function(d){return d.key[1]});
+       })
+       .ordering(function(d){
+          return 0+groups.indexOf(d.key[0]);
+       })
 //        .legend(dc.legend().horizontal(true).autoItemWidth(true).y(200));
       return graph;
     }
 
+  function drawGroup(dom) {
+    var graph = dc.pieChart(dom).innerRadius(20) //.radius(70);
+    var reducer = reductio();
+    var dim = ndx.dimension(function(d) {
+      return d.eugroup || "?";
+    });
+    results.forEach(function(r){
+      reducer.value(r).count(true).filter(function(d){ return d.vote == r});
+    });
+    //reducer.value("nb").count(true);
+    reducer.count(true);
+
+    var group = dim.group();
+    reducer(group);
+
+//    var group = dim.group().reduceSum(function(d) {return 1;});
+    graph
+      .width(0)
+      .height(0)
+      .ordering(function(d){ 
+        return 0+groups.indexOf(d.key);
+      })
+      .colorAccessor(function(d){
+        var sum=d.value.for.count + d.value.against.count;
+        return 100*d.value.against.count/sum;
+      })
+      .colors(function(d){
+        return percentagecolor(d);
+      })
+      .valueAccessor(function(d){
+        return d.value.count;
+      })
+      .dimension(dim)
+      .group(group)
+      .externalLabels(-26)
+      .minAngleForLabel(0.2)
+      .on("renderlet.summary", function(){
+        guessLine("groupline",group);
+      }); 
+
+//        .legend(dc.legend().horizontal(true).autoItemWidth(true).y(200));
+    return graph;
+  }
+
+  // try to guess what was the party/eu group line
+  function guessLine(store,group,key){
+    key=key || function (d) {return d.key};
+    if (config[store]) return; //already set
+    config[store] = {};
+    group.top(Number.POSITIVE_INFINITY).forEach(function(d){
+      var whip = 2/3;
+      config[store][key(d)]=null; //free vote, no instruction
+      ["for","against","abstention"].forEach(function(v){ 
+        var sum=d.value.for.count + d.value.against.count + d.value.abstention.count;
+        if (d.value[v].count/sum > whip)
+          config[store][key(d)]=v;
+      }); 
+    }); 
+  };
+
+  function isRebel (store,mep,key) {
+    key=key || function (d) {return d.eugroup};
+    if (["for","against","abstention"].indexOf(mep.vote) == -1)
+      return false; // you aren't a rebel when you are a noshow ;)
+    return store[key(mep)] !== mep.vote;
+  }
   function drawResult(dom) {
     var graph = dc.pieChart(dom).innerRadius(40) //.radius(70);
     var dim = ndx.dimension(function(d) {
@@ -572,13 +542,14 @@ th#country,th#eugroup {min-width:100px;
           left: 30
         })
         .ordering(function(d){ return -d.value.for.count/d.value.nb.count})
+        .label(function(d){return countries[d.country]})
         .x(d3.scaleBand())
         .xUnits(dc.units.ordinal)
         .colors(resultscolor)
         .brushOn(false)
         .title(function(d) {
           if (this.layer == 0) return "";
-          return d.key +  " voting '"+ this.layer + "': " + d.value[this.layer].count +" ("+formatPercent(d.value[this.layer].count/d.value.nb.count)+")";
+          return countries[d.key] +  " voting '"+ this.layer + "': " + d.value[this.layer].count +" ("+formatPercent(d.value[this.layer].count/d.value.nb.count)+")";
         })
 
         .elasticY(true)
@@ -591,7 +562,7 @@ th#country,th#eugroup {min-width:100px;
           if (!d3.select("#country .axis.x use").empty()) return;
           d3.select("#country .axis.x").selectAll(".tick")
             .append("use").attr( "href",function(d){
-            return '#flag-'+countries[d]}).attr("width",24).attr("height",16)
+            return '#flag-'+d}).attr("width",24).attr("height",16)
             .attr("transform","translate(-10,2)");
         });
       graph.xAxis().ticks(3);
@@ -609,6 +580,7 @@ th#country,th#eugroup {min-width:100px;
       function rotateBarChartLabels() {
         d3.selectAll(dom + ' .axis.x line').remove();
         d3.selectAll(dom + ' .axis.x text')
+          .text(function(d){return countries[d];})
           .style("text-anchor", "start")
           .attr("transform", function(d) {
             return "rotate(-90, -4, 9), translate(10,0) ";
@@ -699,7 +671,6 @@ th#country,th#eugroup {min-width:100px;
       .offset([0, 10])
       .direction("e")
       .html(function(d) {
-        console.log(docs[d.key]);
         return docs[d.key]? "<h3>"+docs[d.key].rapporteur+"</h3>"+docs[d.key].title +":"+ d.value: d.value;
 //        return abbr(d.key) + "<br><b>" + d.value + " MEPs</b>&nbsp;<i>" + formatPercent(d.value/summary.total) +"</i>";
       });
@@ -775,16 +746,19 @@ th#country,th#eugroup {min-width:100px;
       .columns([
         function(d){
           return iconify(d.vote);
-
-          return d.vote;}
+        }
+        , function(d){
+          if (isRebel(config.partyline,d,function(d){return d.party}))
+            return "Rebel";
+        }
         ,function(d) {
           return d.firstname + " " + d.lastname;
         }
         ,function(d) {
-            return "<span title='" + d.country + "' class='img-rounded text-filter country-flag " + d.country.replace(" ", "-").toLowerCase() + "'>" + d.country + "</span>";
+          return "<span title='" + d.country + "' class='img-rounded country-flag'><img src='img/country/" + d.country + ".svg' /></span>";
           //TOFIX for no reason, it's dog slow to use svg use here
-//          return iconify(countries[d.country],"flag");
-//          return "<svg class='img-rounded flag-icon'><use href='#flag-" + countries[d.country] + "'/><title>" + d.country + "</title></svg>";
+//          return iconify(d.country,"flag");
+//          return "<svg class='img-rounded flag-icon'><use href='#flag-" + d.country + "'/><title>" + d.country + "</title></svg>";
           }
         ,function(d) {
             return "<span title='" + d.eugroup + "' class='img-rounded text-filter eugroup " + d.eugroup.replace(/&|\/|car/g, "-").toLowerCase() + "'>" + d.eugroup + "</span>";
