@@ -17,6 +17,8 @@ html .bg-info {
 background-image: linear-gradient(-20deg, #6e45e2 0%, #88d3ce 100%);
 }
 
+.wide-tip {min-width:300px}
+
 .resetall button {padding:5px 0;min-width:3rem;font-size:0.9em}
 .glyphicon-sort:after{ content:'⇅';}
 .glyphicon-arrow-up:after{ content:'⤒';}
@@ -418,6 +420,20 @@ var countries = {  "be": "Belgium",  "bg": "Bulgaria",  "cz": "Czech Republic", 
     var dim = ndx.dimension(function(d) {
       return d.eugroup || "?";
     });
+
+    var tip = d3.tip()
+    .attr('class', 'd3-tip wide-tip')
+    .offset([-10, 0])
+    .html(function (d) { console.log(d);
+      var t= "<h3 class='d-flex flex-row justify-content-between' ><span>"+ d.data.key + "</span><span class='d-inline-flex p-2 badge badge-primary ml-2'>"+d.data.value.count+"</span></h3>";
+      results.forEach(function(r){
+        if (d.data.value[r].count > 0){
+          t += "<div class='d-flex flex-row justify-content-between'><div class='p-2 bd-highlight mr-auto w-50'>"+r+"</div><div class='p-1 w-25'>"+d.data.value[r].count+"</div><div class='p-1 w-25'>"+formatPercent(d.data.value[r].count/d.data.value.count)+"</div></div>";
+        }
+      });
+      return t+"";
+    });
+
     results.forEach(function(r){
       reducer.value(r).count(true).filter(function(d){ return d.vote == r});
     });
@@ -451,6 +467,13 @@ var countries = {  "be": "Belgium",  "bg": "Bulgaria",  "cz": "Czech Republic", 
       .on("renderlet.summary", function(){
         guessLine("groupline",group);
       }); 
+
+  graph.on('pretransition', function(chart) {
+    graph.selectAll('.pie-slice')
+    .call(tip)
+    .on('mouseover.tip', tip.show)
+    .on('mouseout.tip', tip.hide);
+  })
 
 //        .legend(dc.legend().horizontal(true).autoItemWidth(true).y(200));
     return graph;
