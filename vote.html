@@ -124,8 +124,8 @@ th#country,th#eugroup {min-width:100px;
 
       <section class="jumbotron text-center">
         <div class="container">
-          <h2 class="jumbotron-heading">Vote to analyse 92926</h2>
-          <h3 class="jumbotron-heading">Vote to analyse 92926</h3>
+          <h2 class="jumbotron-heading">Loading...</h2>
+          <h3 class="jumbotron-heading"></h3>
         </div>
       </section>
      <div class="py-5 bg-info">
@@ -143,10 +143,10 @@ th#country,th#eugroup {min-width:100px;
             <div class="col-md-3" id="result">
                   <div class="graph"></div>
             </div>
-            <div class="col-md-3" id="party">
+            <div class="col-md-3" id="eugroup">
                   <div class="graph"></div>
             </div>
-            <div class="col-md-3" id="eugroup">
+            <div class="col-md-3" id="party">
                   <div class="graph"></div>
             </div>
           </div>
@@ -172,6 +172,8 @@ th#country,th#eugroup {min-width:100px;
         </div>
       </div>
 
+<div class="container" id="grid">
+</div>
           <div class="row">
             <div class="col-md-12">
             <table class="table table-stripped">
@@ -358,6 +360,7 @@ var countries = {  "be": "Belgium",  "bg": "Bulgaria",  "cz": "Czech Republic", 
     graphs.result=drawResult('#result .graph');
     graphs.search=drawSearch("form#search");
     graphs.table=drawTable('table.table');
+//graphs.grid=drawGrid('#grid');
 
     dc.renderAll();
   }
@@ -424,7 +427,7 @@ var countries = {  "be": "Belgium",  "bg": "Bulgaria",  "cz": "Czech Republic", 
     var tip = d3.tip()
     .attr('class', 'd3-tip wide-tip')
     .offset([-10, 0])
-    .html(function (d) { console.log(d);
+    .html(function (d) {
       var t= "<h3 class='d-flex flex-row justify-content-between' ><span>"+ d.data.key + "</span><span class='d-inline-flex p-2 badge badge-primary ml-2'>"+d.data.value.count+"</span></h3>";
       results.forEach(function(r){
         if (d.data.value[r].count > 0){
@@ -751,6 +754,44 @@ var countries = {  "be": "Belgium",  "bg": "Bulgaria",  "cz": "Czech Republic", 
     return chart;
   }
 
+  function drawGrid(dom){
+    var dim = ndx.dimension(function(d) {
+      return d.epid;
+    });
+    var template=d3.selectAll(".mep").html();
+    var tpl = function(d){
+      var str=template;
+        for (var key in d) {
+            return str.replace(/({([^}]+)})/g, function(i) {
+                var key = i.replace(/{/, '').replace(/}/, '');
+                if (!d[key]) {
+                    return i;
+                }
+
+                return d[key];
+            });
+        }
+//      "firstname,lastname,country,eugroup,party,vote,id".split(",").forEach(function(f){});
+    };
+    var graph = dc.dataGrid(dom)
+      .dimension(dim)
+      .size(1000)
+      .sortBy(function(d) {
+        return d.date;
+      })
+      .order (d3.descending)
+      .html(tpl)
+      .group(function(d) {
+        return "";
+      })
+      .on("renderlet.t",function(){
+        console.log("render");
+        d3.selectAll(".dc-grid-item").attr("class","grid mep");
+        d3.selectAll(".dc-grid-top").attr("class","row");
+      })
+    ;
+    return graph;
+  }
   function drawTable(dom){
     var dim = ndx.dimension(function(d) {
       return d.lastname;
@@ -861,7 +902,7 @@ function urlParam(name,value) {
 
 </script>
 
-<svg>
+<svg class="d-none">
   <symbol id="icon-against" viewBox="0 0 24 24">
     <path fill="#000000" d="M19,15H23V3H19M15,3H6C5.17,3 4.46,3.5 4.16,4.22L1.14,11.27C1.05,11.5 1,11.74 1,12V14A2,2 0 0,0 3,16H9.31L8.36,20.57C8.34,20.67 8.33,20.77 8.33,20.88C8.33,21.3 8.5,21.67 8.77,21.94L9.83,23L16.41,16.41C16.78,16.05 17,15.55 17,15V5C17,3.89 16.1,3 15,3Z" />
   </symbol>
@@ -872,6 +913,27 @@ function urlParam(name,value) {
   <path id="up-down" fill="#000000" d="M22.5,10H15.75C15.13,10 14.6,10.38 14.37,10.91L12.11,16.2C12.04,16.37 12,16.56 12,16.75V18A1,1 0 0,0 13,19H18.18L17.5,22.18V22.42C17.5,22.73 17.63,23 17.83,23.22L18.62,24L23.56,19.06C23.83,18.79 24,18.41 24,18V11.5A1.5,1.5 0 0,0 22.5,10M12,6A1,1 0 0,0 11,5H5.82L6.5,1.82V1.59C6.5,1.28 6.37,1 6.17,0.79L5.38,0L0.44,4.94C0.17,5.21 0,5.59 0,6V12.5A1.5,1.5 0 0,0 1.5,14H8.25C8.87,14 9.4,13.62 9.63,13.09L11.89,7.8C11.96,7.63 12,7.44 12,7.25V6Z" />
   </symbol>
 </svg>
+
+<style>
+       
+.mep .card {width:200px}
+.card-img-top img {width:160px}
+</style>
+        <div class="mep col d-none">
+                <div class="card">
+                  <div class="d-flex">
+                    <div class="mr-auto card-img-top">
+                      <img src="img/person.svg" data-src="http://www.europarl.europa.eu/mepphoto/{epid}.jpg">
+                    </div>
+                    <div class="p-2 m-2">
+                      <svg class="icon"><use href="#icon-{vote}" /></svg>
+                      <svg class="icon"><use href="#flag-{country}" /></svg>
+                    </div>
+                  </div>
+                  <h5 class="card-title">{firstname} {lastname}</h5>
+                  <div class="card-text">{party}</div>
+                </div>
+        </div>
 
   </body>
 </html>
