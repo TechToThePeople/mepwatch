@@ -118,5 +118,28 @@ gulp.task('css-minify',['css-compile'], function() {
 });
 
 
+gulp.task('face', () => {
+
+  const csv = require('csv-parser');
+  const fs = require('fs');
+  const download = require("gulp-download");
+
+  var url=[];
+  fs.createReadStream('data/meps.csv')
+  .pipe(csv())
+  .on('data', (data) => {
+    console.log(data.epid);
+    url.push("http://www.europarl.europa.eu/mepphoto/"+data.epid+".jpg");
+  })
+  .on('end', function () {
+    download(url)
+  	.pipe(gulp.dest("tmp/mepphoto"));
+    // We are done
+  });
+
+
+});
+
+
 gulp.task('default', ['fonts','css-copy','js-copy']);
 
