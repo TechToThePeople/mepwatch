@@ -371,11 +371,11 @@
         }
         ,function(d){ 
           if (docs[d.report])
-            return "<div class='rapporteur'>" +docs[d.report].rapporteur +"</div><a href='"+ docs[d.report].doc+"'>"+ d.report +"</a>";
+            return "<div class='rapporteur'>" +docs[d.report].rapporteur +"</div>&nbsp;<a href='"+ docs[d.report].doc+"'>"+ d.report +"</a>";
           return d.report;
         }
         ,function(d){ 
-          return docs[d.report]? "<a href='"+docs[d.report].oeil+"'>"+docs[d.report].title +"</a>"+d.desc : d.desc;}
+          return docs[d.report]? "<a href='"+docs[d.report].oeil+"'>"+docs[d.report].title +"</a>&nbsp;"+d.desc : d.desc;}
         ,function(d){ return d.for;}
         ,function(d){ return d.against;}
         ,function(d){ return d.abstention;}
