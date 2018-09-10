@@ -93,17 +93,12 @@
           <h1 class="jumbotron-heading">Select the votes you want to analyse</h1>
         </div>
       </section>
-     <div class="py-5 bg-info">
+     <div class="bg-info">
         <div class="container-fluid">
 
           <div class="row">
             <div class="col-md-3">
           <p class="lead text-muted"><form id="search"></form></p>
-          <p>
-            <a href="#" class="btn btn-primary">Need it?</a>
-            <a href="#" class="btn btn-secondary">Do not</a>
-          </p>
-            </div>
             <div class="col-md-3" id="report">
                   <div class="graph"></div>
             </div>
@@ -121,13 +116,6 @@
                   <p class="card-text d-none">
                   All the plenary sessions with at least one rollcall</p>
                   <div class="graph"></div>
-                  <div class="d-flex justify-content-between align-items-center d-none">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                    </div>
-                    <small class="text-muted">Extra</small>
-                  </div>
                 </div>
               </div>
             </div>
@@ -219,7 +207,7 @@
 
   function draw(){
     graphs.date=drawDate('#date div.graph');
-    graphs.report=drawReport('#report div.graph');
+//    graphs.report=drawReport('#report div.graph');
     graphs.table=drawTable('table.table');
     graphs.search=drawSearch("form#search");
 
@@ -285,6 +273,15 @@
     var color = d3.scaleLinear()
             .domain([0,1, 300])
             .range(["white","lightgrey","#7b2253"]);
+    var tip = d3.tip()
+    .attr('class', 'd3-tip wide-tip')
+    .offset([-10, 0])
+    .html(function (d) {
+      return "<h5>"+dayFormat(d.key)+"</h5><div>Rollcalls"
+        + "<span class='p-2 badge badge-primary ml-2'>"
+        +d.value 
+        + "</span></div>";
+    });
     var graph=dc.heatMap(dom)
      .dimension(dim)
      .group(group)
@@ -301,26 +298,21 @@
         }
         return "";
      })
-     .title(function(d){return dayFormat(d.key)+ " "+d.value+ " rollcalls"})
-     .label(function(d){return dayFormat(d.key) + " "+d.value+ " rollcalls"})
+//     .title(function(d){return dayFormat(d.key)+ " "+d.value+ " rollcalls"})
+//     .label(function(d){return dayFormat(d.key) + " "+d.value+ " rollcalls"})
      .keyAccessor(function(d) { 
        return 1000*d.key.getFullYear()+week(d.key);
-       var r=d.key;
-       r.setDate(r.getDate() + d.key.getDay());
-       console.log(r);
-       return r;
      })
      .valueAccessor(function(d) { return +d.key.getDay(); })
      .colorAccessor(function(d) { return +d.value; })
      .colors(color)
-    .on ("renderlet.collabel",function (chart) {
-      return;
-   // rotate x-axis labels
-      chart.selectAll('g.cols text')
-      .attr("style","text-anchor:left;")
-     //.attr('transform', 'translate(-10,10) rotate(215)');
+    
+    graph.on('pretransition', function(chart) {
+      graph.selectAll('.heat-box')
+      .call(tip)
+      .on('mouseover.tip', tip.show)
+      .on('mouseout.tip', tip.hide);
     });
-
 
     return graph;
   }
