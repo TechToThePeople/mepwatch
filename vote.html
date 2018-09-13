@@ -181,7 +181,7 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
             <div class="col-md-3 rotated90" id="eugroup">
                   <div class="graph"></div>
             </div>
-            <div class="col-md-3 rotated90" id="party">
+            <div class="col-md-3 rotated90 d-none" id="party">
                   <div class="graph"></div>
             </div>
           </div>
@@ -403,6 +403,8 @@ var countries = {  "be": "Belgium",  "bg": "Bulgaria",  "cz": "Czech Republic", 
 
     graphs.eugroup=drawBarVotes('#eugroup div.graph','eugroup');
     graphs.eugroup.relative=false;
+    graphs.party=drawBarVotes('#party div.graph','party');
+    graphs.party.relative=false;
 
 //    graphs.group=drawGroup('#eugroup div.graph');
     drawNumbers(graphs);
@@ -416,6 +418,10 @@ var countries = {  "be": "Belgium",  "bg": "Bulgaria",  "cz": "Czech Republic", 
         d3.select(" .dc-text-filter-input").attr("value",filter).dispatch("input");
       });
     }
+    if (urlParam("country")) {
+      d3.select("#party").classed("d-none",false);
+    }
+
     ["eugroup","country"].forEach(function(d){
       graphs[d].on("filtered",function(graph){
         var f=graph.filters().join("|");
@@ -439,6 +445,18 @@ var countries = {  "be": "Belgium",  "bg": "Bulgaria",  "cz": "Czech Republic", 
 
   }
 
+  function remove_empty_bins(source_group,cap) {
+      return {
+          all:function () {
+            source_group.top(Infinity);
+              var g=source_group.all().filter(function(d) {
+                  //return Math.abs(d.value) > 0.00001; // if using floating-point numbers
+                  return d.value.nb.count !== 0; // if integers only
+              });
+              return g.slice(0,cap);
+          }
+      };
+  }
   function guessPartyLine (store) {
     var dim = ndx.dimension(function(d) {return d.party;});
 
@@ -684,7 +702,8 @@ var countries = {  "be": "Belgium",  "bg": "Bulgaria",  "cz": "Czech Republic", 
         //.yAxisLabel("MEPs")
         .dimension(dim)
 //        .group(group, "for", getValue("for")) bug: doesn't switch properly between absolute and relative
-        .group(group, "", 0)
+        .group(remove_empty_bins(group,12), "", 0)
+        //.group(group, "", 0)
         .on("renderlet", function(c) {
           rotateBarChartLabels();
 /*          if (!d3.select(dom +" .axis.x use").empty()) return;
@@ -697,7 +716,8 @@ var countries = {  "be": "Belgium",  "bg": "Bulgaria",  "cz": "Czech Republic", 
       graph.xAxis().ticks(3);
       graph.yAxis().ticks(3);
       res.forEach(function(r){
-        graph.stack(group, r, function(d){
+
+        graph.stack(remove_empty_bins(group,12), r, function(d){
           return getValue(r)(d);
         });
       });
@@ -1099,7 +1119,8 @@ var countries = {  "be": "Belgium",  "bg": "Bulgaria",  "cz": "Czech Republic", 
 }
 
 function urlParam(name,value) {
-  if (value) {
+  console.log(value);
+  if (typeof value == "string") {
     var uri=window.location.href;
     value=encodeURIComponent(value);
     var re = new RegExp("([?&])" + name + "=.*?(&|#|$)", "i");
