@@ -401,16 +401,40 @@ var countries = {  "be": "Belgium",  "bg": "Bulgaria",  "cz": "Czech Republic", 
 //    graphs.party=drawParty('#voidparty div.graph');
     guessPartyLine("partyline");
 
-    graphs.bargroup=drawBarVotes('#eugroup div.graph','eugroup');
-    graphs.bargroup.relative=false;
+    graphs.eugroup=drawBarVotes('#eugroup div.graph','eugroup');
+    graphs.eugroup.relative=false;
 
 //    graphs.group=drawGroup('#eugroup div.graph');
     drawNumbers(graphs);
     graphs.result=drawResult('#result .graph');
     graphs.search=drawSearch("form#search");
+    
+    var filter=urlParam("q");
+    if (filter) {
+      graphs.search.on("pretransition",function(){
+        graphs.search.on("pretransition",null);
+        d3.select(" .dc-text-filter-input").attr("value",filter).dispatch("input");
+      });
+    }
+    ["eugroup","country"].forEach(function(d){
+      graphs[d].on("filtered",function(graph){
+        var f=graph.filters().join("|");
+        urlParam(d,f);
+      });
+      filter=urlParam(d);
+      if (filter) {
+        (function (filter){
+          graphs[d].on("pretransition.url",function(){
+            graphs[d].on("pretransition.url",null);
+          graphs[d].filter([filter]);
+          })
+        })(filter.split("|"));
+      }
+    });
     dc.renderAll();
 
     graphs.table=drawTable('table.table');
+    setTimeout(function() { graphs.table.redraw(); }, 3000); //delay a bit the drawing of the table
 //graphs.grid=drawGrid('#grid');
 
   }
@@ -918,7 +942,12 @@ var countries = {  "be": "Belgium",  "bg": "Bulgaria",  "cz": "Czech Republic", 
     var chart=dc.textFilterWidget(dom)
       .placeHolder("search by name")
       .filterFunctionFactory(filter)
-      .dimension(dim);
+      .dimension(dim)
+      .on("renderlet",function(){
+        d3.select(dom+ " .dc-text-filter-input").on('input.seturl', function () {
+          urlParam("q",this.value);
+        });
+      });
     return chart;
   }
 
@@ -1022,8 +1051,8 @@ var countries = {  "be": "Belgium",  "bg": "Bulgaria",  "cz": "Czech Republic", 
 
     function tweet(d){
       if (d.twitter) {
-        var url="https://twitter.com/intent/tweet?text="+encodeURI(".#savetheinternet something something @"+d.twitter);
-        url = url.replace(/#/g, '%23');
+        var url="https://twitter.com/intent/tweet?text="+encodeURIComponent(".#savetheinternet something something @"+d.twitter);
+//        url = url.replace(/#/g, '%23');
         var win=window.open(url,'_blank');
       };
     };
@@ -1072,6 +1101,7 @@ var countries = {  "be": "Belgium",  "bg": "Bulgaria",  "cz": "Czech Republic", 
 function urlParam(name,value) {
   if (value) {
     var uri=window.location.href;
+    value=encodeURIComponent(value);
     var re = new RegExp("([?&])" + name + "=.*?(&|#|$)", "i");
     if (uri.match(re)) {
     uri=uri.replace(re, '$1' + name + "=" + value + '$2');
@@ -1091,7 +1121,7 @@ function urlParam(name,value) {
     if (results == null) {
       return null;
     } else {
-      return decodeURI(results[1]) || 0;
+      return decodeURIComponent(results[1]) || 0;
     }
   }
 };
