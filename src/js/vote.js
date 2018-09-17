@@ -124,12 +124,8 @@ function download(voteid, callback) {
         console.log(errors);
       }
       votes = null;
+
       config.nb = meps.length;
-      d3.select(".nbmep .total").html("/" + config.nb);
-      if (config.goal) {
-        d3.select(".goal").classed("d-none", false);
-        d3.select(".goal .nb").html(iconify(config.goal));
-      }
 
       ndx = crossfilter(meps);
       callback();
