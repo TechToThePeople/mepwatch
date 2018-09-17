@@ -8,8 +8,50 @@
     <!-- CSS -->
     <link href="dist/css/main.css" rel="stylesheet">
 
-    <style>
-</style>
+            <style>
+.nav-tabs .nav-link.active {
+  color:white;
+}
+
+option {font-size:1.3em}
+
+.embed > .row {height:440px;}
+.embed .row .card {height:100%}
+
+.list-group {height:440px;overflow-y:auto;}
+
+.embed {}
+.small {width:560px; height:340px}
+.medium {width:640px; height:385px}
+.large {width:853px; height:505px}
+
+.embed-r {
+  max-width:800px;
+  height:490px;
+  max-height:490px;
+}
+
+aa.embed-r {
+  display: block;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+  width: 100%;
+}
+
+aa.embed-r::after {
+  content: '';
+  display: block;
+  padding-bottom: 42.857143%;
+}
+
+aa.list-group{
+  max-height: 300px;
+  overflow:scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+            </style>
   </head>
   <body>
     <header>
@@ -49,7 +91,8 @@
 
     <section class="jumbotron">
       <div class="container">
-        <h1 class="jumbotron-heading">Select your country</h1>
+        <h1 class="jumbotron-heading">This is to be embeded in your site</h1>
+        Below you can find a preview of the widget you can embed on your campaign site
         <p>
         </p>
       </div>
@@ -59,63 +102,24 @@
 
         <div class="row">
           <div class="col-md-12">
-            560 x 340 pixels (small) but you can select other sizes (640 x 385 pixels, 853 x 505 pixels 
-            Trying size of widget:
-            <style>
-.embed > .row {height:440px;}
-.embed .row .card {height:100%}
-
-.list-group {height:440px;overflow-y:auto;}
-
-.embed {background:lightgrey;}
-.small {width:560px; height:340px}
-.medium {width:640px; height:385px}
-.large {width:853px; height:505px}
-
-.embed-r {
-  max-width:800px;
-  height:490px;
-  max-height:490px;
-}
-
-aa.embed-r {
-  display: block;
-  overflow: hidden;
-  padding: 0;
-  position: relative;
-  width: 100%;
-}
-
-aa.embed-r::after {
-  content: '';
-  display: block;
-  padding-bottom: 42.857143%;
-}
-
-aa.list-group{
-  max-height: 300px;
-  overflow:scroll;
-  -webkit-overflow-scrolling: touch;
-}
-
-            </style>
-            <h4>grid Embed</h4>
+            <h2>Widget</h2>
             <!-- 16:9 aspect ratio -->
-            <div class="embed-r embed">
+            <div class="embed-r embed gradient">
               <ul class="d-flex nav nav-tabs nonav-fill">
-                <li class="nav-item">
-                  <a class="nav-link active" href="#country">Country</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#party">Party</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#mep">Mep</a>
-                </li>
-                <li class="nav-item ml-auto mr-3">
-                  <div class="nbvoted nav-link"><span class="nb badge badge-primary"></span>MEPs</div>
-                </li>
               </ul>
+              <div class="row" id="intro">
+                <div class="col-12"><div class="card">
+                    <div class="card-body">
+                      <h1 class="text-center card-title">Score your MEP on the issues you care about: closing the knowledge gap and promoting fact-based campaigning for the European elections. </h1>
+                      <div class="card-text">
+                        finding out who is the person representing my interests in the EP, and how that person tends to vote on an issue that I care about, presents too many barriers and challenges for engagement. This leads to a feeling of disconnect - and most likely contributes to the low voter turnout across the EU for the European elections.
+                        <br>
+                        <graph />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <div class="row" id="country">
                 <div class="col-12"><div class="card">
                     <div class="card-body">
@@ -130,73 +134,57 @@ aa.list-group{
                 </div>
               </div>
               <div class="row" id="party">
-                <div class="col-12 col-md-6">
+                <div class="col-12">
                   <div class="card">
                     <div class="card-body">
-                      <h5 class="card-title">Narrow your selection</h5>
+                      <h5 class="card-title">Want to focus on a party?</h5>
                       <div class="card-text">
-                        Counter of how many meps?
-                        <br>
-                        Select a party only? Only those that voted for or against? only the rebel? only the big shot?
+                        <p>                        You have <span class="nb-meps-targeted"></span> MEPs targeted. Yor can <a href="#meps" class="tabcontrol">take action</a> or filter more by party</p>
+                        <graph>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="col-12 col-md-6">
-                  <div class="card">
-                      List of parties
-                      <ul class="list-group list-group-flush">
-                        <button type="button" class="list-group-item list-group-item-action">Dapibus ac facilisis in</button>
-                        <button type="button" class="list-group-item list-group-item-action">Morbi leo risus</button>
-                        <button type="button" class="list-group-item list-group-item-action">Porta ac consectetur ac</button>
-                        <button type="button" class="list-group-item list-group-item-action" disabled>Vestibulum at eros</button>
-                      </ul>
-                    </div></div>
               </div>
-              <div class="row" id="mep">
+              <div class="row" id="vote">
+              </div>
+              <div class="row" id="meps">
                 <div class="col">
                   <div class="card">
                     <div class="card-body">
-                      <h5 class="card-title">MEP</h5>
-                      <div class="row">
-                        <div class="col-2">
-                          <img src="http://localhost/mepwatch/img/mepphoto/96820.jpg">
-                        </div>
-                        <div class="col">
-                          <h5 class="card-title name">Cláudia MONTEIRO DE AGUIAR</h5>
-                          <div class="card-subtitle party">Partido Democrático Republicano</div>
+                      <h5 class="card-title">Randomly selected MEP among <span class="nb-meps-targeted"</span></h5>
+
+                      <div id="mep-card">Loading...</div>
+                      <div id="mep-template" class="d-none"><div class="row">
+                          <div class="col-2">
+                            <img src="http://localhost/mepwatch/img/mepphoto/{{=it.epid}}.jpg">
+                          </div>
+                          <div class="col">
+                            <h5 class="card-title name">{{=it.firstname}} {{=it.lastname}}</h5>
+                            <div class="card-subtitle party">{{=it.party}}</div>
                             Tweet or mail or do something
-                          <div class="d-flex bd-highlight">
-  <div class="p-2 flex-grow-1 bd-highlight">
-                            <button class="btn btn-primary">Tweet</button>
-                            <button class="btn btn-secondary">email</button>
-  
-  </div>
-  <div class="p-2 bd-highlight">
-                            <button class="btn btn-light">Get another MEP</button>
-  </div>
-</div>
+                            <div class="d-flex bd-highlight">
+                              <div class="p-2 flex-grow-1 bd-highlight">
+                                <button class="btn btn-primary">Tweet</button>
+                                <a class="btn btn-secondary" href="mailto:{{=it.email}}">email</a>
+
+                              </div>
+                              <div class="p-2 bd-highlight">
+                                <button class="btn btn-light next-mep">Get another MEP</button>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-            </div>
-          </div>
-
-                <h4>Small</h4>
-                <div class="embed small">
-                </div>
-                <h4>Medium</h4>
-                <div class="embed medium">
-                </div>
-                <h4>Large</h4>
-                <div class="embed large">
-                </div>
-
-
               </div>
             </div>
+
+
+          </div>
+        </div>
     </main>
 
     <footer class="text-muted">
@@ -212,26 +200,52 @@ aa.list-group{
     <script src="dist/js/dcbundle.js"></script>
     <script src="src/js/vote.js"></script>
     <script src="src/js/dc-template.js"></script>
-<script>
-  function selectTab(hash){
-    d3.selectAll(".embed > .row").attr("hidden","");
-    d3.select(".embed "+hash).attr("hidden",null);
-    d3.selectAll(".embed a.nav-link").classed("active",false);
- //   d3.select(this).classed("active",true);
-  }
+    <script>
+      function selectTab(hash){
+        d3.selectAll(".embed > .row").attr("hidden","");
+        d3.selectAll(".embed a.nav-link").classed("active",false);
+        d3.select(".embed #"+hash).attr("hidden",null);
+        d3.select(".nav-item."+hash+ " .nav-link").classed("active",true);
+      }
 
-  d3.selectAll(".embed a.nav-link").on("click",function(){
-    d3.event.preventDefault();
-    var hash = this.href.substring(this.href.indexOf('#'));
-    selectTab(hash);
-    d3.select(this).classed("active",true); //todo, move to selectTab
-  });
-  
+
 d3.selectAll(".embed > .row").attr("hidden","");
-d3.select(".embed #country").attr("hidden",null);
 //  d3.select(".embed #mep").attr("hidden",null);
 
-</script>
+var steps="Intro,Country,Party,Position,MEPs".split(",");
+d3.select(".nav")
+  .selectAll(".nav-item")
+  .data(steps)
+  .enter()
+  .append("li")
+  .attr("class",function (d){return "nav-item "+d.toLowerCase()})
+  .append("a")
+  .attr("class","nav-link")
+  .html(function(d){return d})
+  .attr("href",function(d){return "#"+d.toLowerCase()})
+//d3.selectAll(".embed a.nav-link")
+  .on("click",function(){
+    d3.event.preventDefault();
+    var hash = this.href.substring(this.href.indexOf('#')+1);
+    selectTab(hash);
+    d3.select(this).classed("active",true);
+  });
+
+d3.selectAll(".tabcontrol").on("click",function(){
+  d3.event.preventDefault();
+  var hash = this.href.substring(this.href.indexOf('#')+1);
+  selectTab(hash);
+  d3.select(this).classed("active",true);
+});
+
+d3.select(".nav-item.meps")
+  .classed("ml-auto mr-3",true)
+  .select(".nav-link")
+  .html('<span class="nb-meps-targeted nb badge badge-primary"></span>MEPs');
+
+//selectTab("country");
+
+    </script>
 
     <script>
       'use strict';
@@ -245,98 +259,140 @@ download(voteid,draw);
 function draw(){
   drawNumbers(graphs);
   graphs.country=drawCountry("#country graph");
+  graphs.party=drawParty("#party graph");
 
   dc.renderAll();
+  selectTab("meps");
+  drawMep();
 }
 
-  function drawNumbers(graphs) {
-    var dim = ndx.dimension(function(d) {
-      return true;
+function drawNumbers(graphs) {
+  var dim = ndx.dimension(function(d) {
+    return true;
+  });
+
+  var reducer = reductio();
+  reducer.value("nb").count(true);
+  results.forEach(function(r){
+    reducer.value(r).count(true).filter(function(d){ return d.vote == r});
+  });
+
+  var group = dim.group();
+  reducer(group);
+
+
+  graphs.total = dc.numberDisplay(".nbmep .nb")
+    .group(group)
+    .valueAccessor(function(d) {return d.value.nb.count})
+    .formatNumber(d3.format("d"))
+    .on("renderlet.linked",function(){
+      var d=group.top(1)[0].value.nb.count;
+      d3.select(".nbmep button").classed("disabled",d == config.nb);
+      d3.select(".nbmep .total").classed("d-none",d == config.nb);
+      drawMep();
     });
+  d3.select(".resetall").on("click",function(){
+    dc.filterAll();
+    dc.renderAll();
+  });
 
-    var reducer = reductio();
-    reducer.value("nb").count(true);
-    results.forEach(function(r){
-      reducer.value(r).count(true).filter(function(d){ return d.vote == r});
-    });
+  graphs.total = dc.numberDisplay(".meps .nb-meps-targeted")
+    .group(group)
+    .valueAccessor(function(d) {return d.value.for.count+d.value.against.count+d.value.abstention.count})
+    .formatNumber(d3.format("d"))
+    .on("renderlet",function(d){
+      d3.selectAll(".nb-meps-targeted").text(graphs.total.data());
+    })
+}
 
-    var group = dim.group();
-    reducer(group);
+function drawMep() {
+  var meps=ndx.allFiltered();
+  var i=Math.floor(Math.random() * meps.length);
+  console.log(meps[i]);
+  var meptpl = doT.template(d3.select("#mep-template").html());
+  var html=meptpl(meps[i]);
+  d3.select("#mep-card").html(html);
+  d3.selectAll(".next-mep")
+    .on("click",drawMep)
+}
+
+function drawParty (dom){
+  var dim = ndx.dimension(function(d){return d.party});
+  var group = dim.group().reduceSum(function(d) {return 1;});
 
 
-    graphs.total = dc.numberDisplay(".nbmep .nb")
-      .group(group)
-      .valueAccessor(function(d) {return d.value.nb.count})
-      .formatNumber(d3.format("d"))
-      .on("renderlet.linked",function(){
-        var d=group.top(1)[0].value.nb.count;
-        d3.select(".nbmep button").classed("disabled",d == config.nb);
-        d3.select(".nbmep .total").classed("d-none",d == config.nb);
-      });
-    d3.select(".resetall").on("click",function(){
-      dc.filterAll();
-      dc.renderAll();
-    });
-
-    graphs.total = dc.numberDisplay(".nbvoted .nb")
-      .group(group)
-      .valueAccessor(function(d) {return d.value.for.count+d.value.against.count+d.value.abstention.count})
-      .formatNumber(d3.format("d"))
-      .on("renderlet.linked",function(){
-        var d=group.top(1)[0];
-        d3.select(".result .nb").html(function(){
-          if (d.value.for.count + d.value.against.count == 0) return "?";
-          return iconify(d.value.for.count > d.value.against.count ? "for" : "against");
-        });
-        d3.select(".result .badge").html(function(){
-          var sum=d.value.for.count + d.value.against.count;
-          if (sum == 0) return "";
-          return formatPercent(Math.max(d.value.for.count,d.value.against.count) / sum);
+  var graph=dc.selectMenu(dom)
+    .dimension(dim)
+    .controlsUseVisibility(true)
+    .promptText('Select a party')
+    .group(remove_empty_bins(group))
+    .order(
+      function(a,b){
+        return a.value < b.value ? 1 : b.value < a.value ? -1 : 0;
+      })
+    .filterDisplayed(function () {return true;})
+    .on("renderlet",function(graph){
+      d3.select(graph.anchor() +" select")
+        .classed("form-control form-control-lg",true)
+      d3.selectAll(graph.anchor() +" option")
+        .on("click",function(d){
+          selectTab("meps"); 
         })
-        .style("background-color",function(){
-          var sum=d.value.for.count + d.value.against.count;
-          return percentagecolor(100*d.value.against.count/sum);
+    })
+
+  return graph;
+
+  function remove_empty_bins(source_group) {
+    return {
+      all:function () {
+        source_group.top(Infinity);
+        var g=source_group.all().filter(function(d) {
+          return d.value !== 0; 
         });
-      });
+        return g;
+      }
+    };
   }
+
+};
+
 function drawCountry (dom){
   var dim = ndx.dimension(function(d){return d.country});
   var group = dim.group().reduceSum(function(d) {return 1;});
 
-var graph=dc.selectMenu(dom)
-  .dimension(dim)
-  .group(group)
-  .title(function(d){return countries[d.key]})
-  .controlsUseVisibility(true)
-  .promptText('Your country?')
-  .filterDisplayed(function () {return true;})
-  .on("renderlet",function(graph){
-    d3.select(graph.anchor() +" select")
-      .classed("form-control form-control-lg",true)
-    d3.selectAll(graph.anchor() +" option")
-      .on("click",function(d){
-        console.log("aaa");
-        selectTab("#party"); 
-      })
-  })
+  var graph=dc.selectMenu(dom)
+    .dimension(dim)
+    .group(group)
+    .title(function(d){return countries[d.key]})
+    .controlsUseVisibility(true)
+    .promptText('Your country?')
+    .filterDisplayed(function () {return true;})
+    .on("renderlet",function(graph){
+      d3.select(graph.anchor() +" select")
+        .classed("form-control form-control-lg",true)
+      d3.selectAll(graph.anchor() +" option")
+        .on("click",function(d){
+          selectTab("party"); 
+        })
+    })
 
   return graph;
 
   var graph=dc.template(dom)
-  .width(0)
-  .height(0)
-  .dimension(dim)
-  .group(group)
-  .itemTag("button")
-  .callItem(function(selection){
-    selection
-      .classed("list-group-item list-group-item-action",true)
-  })
-  .html (function(d) { return countries[d.key]+"<span class='badge float-right'>"+d.value+" MEPs</span>"})
-  .on("renderlet",function(d){
-  })
+    .width(0)
+    .height(0)
+    .dimension(dim)
+    .group(group)
+    .itemTag("button")
+    .callItem(function(selection){
+      selection
+        .classed("list-group-item list-group-item-action",true)
+    })
+    .html (function(d) { return countries[d.key]+"<span class='badge float-right'>"+d.value+" MEPs</span>"})
+    .on("renderlet",function(d){
+    })
 
-  
+
   return graph;
 
 }
@@ -346,21 +402,21 @@ var graph=dc.selectMenu(dom)
 
     <svg class="d-none">
       <symbol id="logo" viewBox="0 0 24 24"><path d="M6 13c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0 4c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0-8c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm-3 .5c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zM6 5c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm15 5.5c.28 0 .5-.22.5-.5s-.22-.5-.5-.5-.5.22-.5.5.22.5.5.5zM14 7c.55 0 1-.45 1-1s-.45-1-1-1-1 .45-1 1 .45 1 1 1zm0-3.5c.28 0 .5-.22.5-.5s-.22-.5-.5-.5-.5.22-.5.5.22.5.5.5zm-11 10c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zm7 7c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zm0-17c.28 0 .5-.22.5-.5s-.22-.5-.5-.5-.5.22-.5.5.22.5.5.5zM10 7c.55 0 1-.45 1-1s-.45-1-1-1-1 .45-1 1 .45 1 1 1zm0 5.5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm8 .5c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0 4c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0-8c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0-4c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm3 8.5c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zM14 17c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0 3.5c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zm-4-12c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm0 8.5c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm4-4.5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm0-4c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5z"/></symbol>
-<symbol id="icon-twitter" viewBox="0 0 24 24">
-<path fill="#1DA1F2" d="M23.954 4.569c-.885.389-1.83.654-2.825.775 1.014-.611 1.794-1.574 2.163-2.723-.951.555-2.005.959-3.127 1.184-.896-.959-2.173-1.559-3.591-1.559-2.717 0-4.92 2.203-4.92 4.917 0 .39.045.765.127 1.124C7.691 8.094 4.066 6.13 1.64 3.161c-.427.722-.666 1.561-.666 2.475 0 1.71.87 3.213 2.188 4.096-.807-.026-1.566-.248-2.228-.616v.061c0 2.385 1.693 4.374 3.946 4.827-.413.111-.849.171-1.296.171-.314 0-.615-.03-.916-.086.631 1.953 2.445 3.377 4.604 3.417-1.68 1.319-3.809 2.105-6.102 2.105-.39 0-.779-.023-1.17-.067 2.189 1.394 4.768 2.209 7.557 2.209 9.054 0 13.999-7.496 13.999-13.986 0-.209 0-.42-.015-.63.961-.689 1.8-1.56 2.46-2.548l-.047-.02z"/>
+      <symbol id="icon-twitter" viewBox="0 0 24 24">
+      <path fill="#1DA1F2" d="M23.954 4.569c-.885.389-1.83.654-2.825.775 1.014-.611 1.794-1.574 2.163-2.723-.951.555-2.005.959-3.127 1.184-.896-.959-2.173-1.559-3.591-1.559-2.717 0-4.92 2.203-4.92 4.917 0 .39.045.765.127 1.124C7.691 8.094 4.066 6.13 1.64 3.161c-.427.722-.666 1.561-.666 2.475 0 1.71.87 3.213 2.188 4.096-.807-.026-1.566-.248-2.228-.616v.061c0 2.385 1.693 4.374 3.946 4.827-.413.111-.849.171-1.296.171-.314 0-.615-.03-.916-.086.631 1.953 2.445 3.377 4.604 3.417-1.68 1.319-3.809 2.105-6.102 2.105-.39 0-.779-.023-1.17-.067 2.189 1.394 4.768 2.209 7.557 2.209 9.054 0 13.999-7.496 13.999-13.986 0-.209 0-.42-.015-.63.961-.689 1.8-1.56 2.46-2.548l-.047-.02z"/>
 
-  <symbol id="icon-against" viewBox="0 0 24 24">
-    <path fill="#c0392b" d="M19,15H23V3H19M15,3H6C5.17,3 4.46,3.5 4.16,4.22L1.14,11.27C1.05,11.5 1,11.74 1,12V14A2,2 0 0,0 3,16H9.31L8.36,20.57C8.34,20.67 8.33,20.77 8.33,20.88C8.33,21.3 8.5,21.67 8.77,21.94L9.83,23L16.41,16.41C16.78,16.05 17,15.55 17,15V5C17,3.89 16.1,3 15,3Z" />
-  </symbol>
-  <symbol id="icon-for" viewBox="0 0 24 24">
-    <path fill="#27ae60" d="M23,10C23,8.89 22.1,8 21,8H14.68L15.64,3.43C15.66,3.33 15.67,3.22 15.67,3.11C15.67,2.7 15.5,2.32 15.23,2.05L14.17,1L7.59,7.58C7.22,7.95 7,8.45 7,9V19A2,2 0 0,0 9,21H18C18.83,21 19.54,20.5 19.84,19.78L22.86,12.73C22.95,12.5 23,12.26 23,12V10M1,21H5V9H1V21Z" />
-  </symbol>
-  <symbol id="icon-abstention" viewBox="0 0 24 24">
-    <path transform="rotate(240 12 12)" fill="#2980b9" d="M23,10C23,8.89 22.1,8 21,8H14.68L15.64,3.43C15.66,3.33 15.67,3.22 15.67,3.11C15.67,2.7 15.5,2.32 15.23,2.05L14.17,1L7.59,7.58C7.22,7.95 7,8.45 7,9V19A2,2 0 0,0 9,21H18C18.83,21 19.54,20.5 19.84,19.78L22.86,12.73C22.95,12.5 23,12.26 23,12V10M1,21H5V9H1V21Z" />
-  </symbol>
-<symbol id="icon-rebel" viewBox="0 0 24 24"><path d="M23 5.5V20c0 2.2-1.8 4-4 4h-7.3c-1.08 0-2.1-.43-2.85-1.19L1 14.83s1.26-1.23 1.3-1.25c.22-.19.49-.29.79-.29.22 0 .42.06.6.16.04.01 4.31 2.46 4.31 2.46V4c0-.83.67-1.5 1.5-1.5S11 3.17 11 4v7h1V1.5c0-.83.67-1.5 1.5-1.5S15 .67 15 1.5V11h1V2.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5V11h1V5.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5z"/></symbol> 
-  <symbol id="logo" viewBox="0 0 24 24"><path d="M6 13c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0 4c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0-8c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm-3 .5c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zM6 5c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm15 5.5c.28 0 .5-.22.5-.5s-.22-.5-.5-.5-.5.22-.5.5.22.5.5.5zM14 7c.55 0 1-.45 1-1s-.45-1-1-1-1 .45-1 1 .45 1 1 1zm0-3.5c.28 0 .5-.22.5-.5s-.22-.5-.5-.5-.5.22-.5.5.22.5.5.5zm-11 10c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zm7 7c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zm0-17c.28 0 .5-.22.5-.5s-.22-.5-.5-.5-.5.22-.5.5.22.5.5.5zM10 7c.55 0 1-.45 1-1s-.45-1-1-1-1 .45-1 1 .45 1 1 1zm0 5.5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm8 .5c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0 4c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0-8c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0-4c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm3 8.5c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zM14 17c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0 3.5c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zm-4-12c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm0 8.5c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm4-4.5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm0-4c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5z"/></symbol>
+      <symbol id="icon-against" viewBox="0 0 24 24">
+      <path fill="#c0392b" d="M19,15H23V3H19M15,3H6C5.17,3 4.46,3.5 4.16,4.22L1.14,11.27C1.05,11.5 1,11.74 1,12V14A2,2 0 0,0 3,16H9.31L8.36,20.57C8.34,20.67 8.33,20.77 8.33,20.88C8.33,21.3 8.5,21.67 8.77,21.94L9.83,23L16.41,16.41C16.78,16.05 17,15.55 17,15V5C17,3.89 16.1,3 15,3Z" />
+      </symbol>
+      <symbol id="icon-for" viewBox="0 0 24 24">
+      <path fill="#27ae60" d="M23,10C23,8.89 22.1,8 21,8H14.68L15.64,3.43C15.66,3.33 15.67,3.22 15.67,3.11C15.67,2.7 15.5,2.32 15.23,2.05L14.17,1L7.59,7.58C7.22,7.95 7,8.45 7,9V19A2,2 0 0,0 9,21H18C18.83,21 19.54,20.5 19.84,19.78L22.86,12.73C22.95,12.5 23,12.26 23,12V10M1,21H5V9H1V21Z" />
+      </symbol>
+      <symbol id="icon-abstention" viewBox="0 0 24 24">
+      <path transform="rotate(240 12 12)" fill="#2980b9" d="M23,10C23,8.89 22.1,8 21,8H14.68L15.64,3.43C15.66,3.33 15.67,3.22 15.67,3.11C15.67,2.7 15.5,2.32 15.23,2.05L14.17,1L7.59,7.58C7.22,7.95 7,8.45 7,9V19A2,2 0 0,0 9,21H18C18.83,21 19.54,20.5 19.84,19.78L22.86,12.73C22.95,12.5 23,12.26 23,12V10M1,21H5V9H1V21Z" />
+      </symbol>
+      <symbol id="icon-rebel" viewBox="0 0 24 24"><path d="M23 5.5V20c0 2.2-1.8 4-4 4h-7.3c-1.08 0-2.1-.43-2.85-1.19L1 14.83s1.26-1.23 1.3-1.25c.22-.19.49-.29.79-.29.22 0 .42.06.6.16.04.01 4.31 2.46 4.31 2.46V4c0-.83.67-1.5 1.5-1.5S11 3.17 11 4v7h1V1.5c0-.83.67-1.5 1.5-1.5S15 .67 15 1.5V11h1V2.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5V11h1V5.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5z"/></symbol> 
+      <symbol id="logo" viewBox="0 0 24 24"><path d="M6 13c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0 4c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0-8c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm-3 .5c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zM6 5c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm15 5.5c.28 0 .5-.22.5-.5s-.22-.5-.5-.5-.5.22-.5.5.22.5.5.5zM14 7c.55 0 1-.45 1-1s-.45-1-1-1-1 .45-1 1 .45 1 1 1zm0-3.5c.28 0 .5-.22.5-.5s-.22-.5-.5-.5-.5.22-.5.5.22.5.5.5zm-11 10c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zm7 7c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zm0-17c.28 0 .5-.22.5-.5s-.22-.5-.5-.5-.5.22-.5.5.22.5.5.5zM10 7c.55 0 1-.45 1-1s-.45-1-1-1-1 .45-1 1 .45 1 1 1zm0 5.5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm8 .5c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0 4c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0-8c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0-4c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm3 8.5c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zM14 17c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0 3.5c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zm-4-12c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm0 8.5c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm4-4.5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm0-4c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5z"/></symbol>
 
-  </svg>
+    </svg>
   </body>
 </html>
