@@ -170,7 +170,7 @@ aa.list-group{
                     <div class="card-body">
                       <h5 class="card-title">Want to focus on how the MEP voted?</h5>
                       <div class="card-text">
-                        <p>                        You have <span class="nb-meps-targeted"></span> MEPs targeted. Yor can <a href="#meps" class="tabcontrol">take action</a> or filter to target only those that voted for or against</p>
+                        <p>                        You have <span class="nb-meps-targeted"></span> MEPs targeted. Yor can <a href="#meps" class="tabcontrol">take action</a> or filter to target only those that voted <a class="select-vote for" href="#">for</a> or <a href="#" class="select-vote against">against</a></p>
                         <graph>
                       </div>
                     </div>
@@ -276,6 +276,14 @@ d3.select(".nav-item.about")
   .select(".nav-link")
   .html('<svg><use href="#logo" /></svg>');
 
+function filterResult(r){
+  graphs.results.filter(null);
+  graphs.results.filter(r);
+  dc.redrawAll()
+};
+
+d3.selectAll(".for").on("click",function(d){filterResult("for")});
+d3.selectAll(".against").on("click",function(d){filterResult("against")});
   selectTab("country");
 
     </script>
