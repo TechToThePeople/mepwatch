@@ -16,6 +16,10 @@
 .rotated90 .axis path {display:none;}
 .rotated90 .y {display:none;}
 
+#party rect.bar {
+  fill-opacity:0.3;
+}
+
 .stack .barLabel {
   display:none;
 }
@@ -38,23 +42,6 @@ background-image: linear-gradient(-20deg, #6e45e2 0%, #88d3ce 100%);
 .glyphicon-arrow-up:after{ content:'⤒';}
 .glyphicon-arrow-down:after{ content:'⤓';}
 
-.navbar-brand svg {
-  width:2em;
-  fill:white;
-  animation: pulse 3s 9s;
-}
-
-@keyframes pulse {
-  0% {
-    fill: #9c27b0;
-  }
-  50% {
-    fill: white;
-  }
-  100% {
-    fill: #9c27b0;
-  }
-}
 
 aa.flag-icon,aa.country-flag {width:21px;height:16px;border:0.2px solid lightgrey}
 .country-flag img {width:20px;height:15px;border:0.2px solid lightgrey}
@@ -242,27 +229,10 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
     <!-- Optional JavaScript -->
     <script src="dist/js/main.js"></script> 
     <script src="dist/js/dcbundle.js"></script>
+    <script src="src/js/vote.js"></script>
 <script>
-  'use strict';
-  var ndx=null;
-  var graphs={};
-  var q=d3.queue();
-  var meps= [];
-  var votes= [];
-  var config = {};
 
-  var voteid= Number(urlParam("v") || 92926);
-  var results = "for,against,abstention,no show,excused,attended".split(",");
-  //var groups="PPE,S&D,ECR,ALDE,Verts/ALE,GUE/NGL,EFDD,ENF,NA/NI";
-  var groups="NA/NI,ENF,EFDD,ECR,PPE,ALDE,Verts/ALE,S&D,GUE/NGL".split(",");
-
-var countries = {  "be": "Belgium",  "bg": "Bulgaria",  "cz": "Czech Republic",  "dk": "Denmark",  "de": "Germany",  "ee": "Estonia",  "ie": "Ireland",  "gr": "Greece",  "es": "Spain",  "fr": "France",  "hr": "Croatia",  "it": "Italy",  "cy": "Cyprus",  "lv": "Latvia",  "lt": "Lithuania",  "lu": "Luxembourg",  "hu": "Hungary",  "mt": "Malta",  "nl": "Netherlands",  "at": "Austria",  "pl": "Poland",  "pt": "Portugal",  "ro": "Romania",  "si": "Slovenia",  "sk": "Slovakia",  "fi": "Finland",  "se": "Sweden",  "gb": "United Kingdom"};
-
-  var iconify = function(name,prefix) {
-    prefix = prefix || "icon";
-    return '<svg class="icon" class="'+name+'"><title>'+name+'</title><use href="#'+prefix+'-'+name+'" /></svg>';
-    //return '<svg class="icon" class="'+name+'"><use href="#'+prefix+'-'+name+'" /></svg>';
-  }
+  var voteid= Number(urlParam("v") || 93602);
   var resultscolor= d3.scaleOrdinal()
 	.domain(results)
 	.range("#27ae60,#c0392b,#2980b9,#95a5a6,#34495e,#bdc3c7".split(","));
@@ -271,128 +241,8 @@ var countries = {  "be": "Belgium",  "bg": "Bulgaria",  "cz": "Czech Republic", 
     .range(["#27ae60","#C8E6C9","#9E9E9E","#ffcdd2","#d35400"])
     .interpolate(d3.interpolateHcl);
 
-  var dateParse = d3.timeParse("%Y-%m-%d");
-  var dateTimeParse = d3.timeParse("%Y-%m-%d %H:%M:%S");
-  var dayFormat = d3.timeFormat("%Y-%m-%d");
-  var dateFormat = d3.timeFormat("%Y-%m-%d %H:%M:%S");
-  var formatPercent = d3.format(".0%");
-  var week = d3.timeFormat("%V");
-  //d3.csv('data/ep_votes.csv',function(d){
-  q
-  .defer(dl_meps)
-  .defer(dl_details)
-  .defer(dl_votes)
-  .awaitAll(function(error,r){
-    if (error) throw error;
-    var length=votes.length;
-    var meps=r[0];//first deferred download
-    for (var j=0; j < meps.length;j++) {
-      var m=meps[j];
-      if (!m) console.log(j);
-      if (m.start > config.date) {
-        meps.splice(j,1);
-        j--;
-        continue;
-      }
-      if (m.end && m.end < config.date) {
-        meps.splice(j,1);
-        j--;
-        continue;
-      }
-      for (var i=0; i < length;i++) {
-        if (votes[i].mepid == m.voteid){
-          meps[j].vote=votes[i].result;
-          votes[i].processed=true;
-//          votes.splice(i,1);
-          break;
-        }
-      };
-      if (!meps[j].vote) {
-        meps[j].vote = "no show";
-      }
-    };
-    //TODO: handle this properly, this is a big problem
-    var errors = [];
-    votes.map(function(v){if (!v.processed) errors.push(v)});
-    if (errors.length){
-      d3.select("main").insert("div",":first-child").attr("class","alert alert-danger")
-        .html("<h1>They are votes that we couldn't process. Contact Xavier</h1>");
-      console.log (errors);
-    }
-    votes=null;
-    config.nb=meps.length;
-    d3.select(".nbmep .total").html("/"+config.nb);
-    if (config.goal) {
-      d3.select(".goal").classed("d-none",false);
-      d3.select(".goal .nb").html(iconify(config.goal));
-    }
 
-    ndx = crossfilter(meps);
-    draw();
-  });
-
-  d3.svg("img/eu-flags.svg").then(function(xml) {
-    document.body.appendChild(xml.documentElement);
-  });
-
-
-  function dl_details(callback) {
-    d3.json('cards/'+voteid+'.json').then(function(d) {
-      d.date = dateTimeParse(d.date);
-      config=d;
-      $('h2').html(config.name);
-      $('.navbar .rapporteur').html(config.rapporteur);
-      $('.navbar .date').html(dateFormat(config.date));
-      $('.navbar .report').html(config.report);
-      $('h3').html(config.desc);
-      callback(null);
-    });
-  }
-  function dl_votes (callback){
-    d3.csv('cards/'+voteid+'.csv',function(d){
-      d.mepid= +d.mepid;
-      d.identifier= +d.identifier;
-      return d;
-    }).then(function(d){
-      votes=d;
-      callback(null);
-    });
-  };
-
-  function dl_meps (callback){
-    d3.csv('data/meps.csv',function(d){
-//      d.date=dateParse(d.date.substring(0,10));
-//      if (!d.date) {console.log(d)};
-      d.voteid= +d.voteid;
-      d.epid= +d.epid;
-      d.active= (d.active == "true");
-      d.birthdate=dateParse(d.birthdate);
-      d.start=dateParse(d.start);
-      d.end=d.end == ""? null:dateParse(d.end);
-      return d;
-    })
-    .then(function(d){
-//      draw();
-      callback(null,d);
-    });
-  };
-
-    d3.select(window).on('resize.updatedc', function() {
-      dc.events.trigger(function() {
-        dc.chartRegistry.list().forEach(function(chart) {
-          if (chart.fixedSize) return;
-          var container = chart.root().node();
-          if (!container) return; // some graphs don't have a node (?!)
-          container = container.parentNode.getBoundingClientRect();
-          chart.width(container.width);
-          chart.rescale && chart.rescale(); // some graphs don't have a rescale
-        });
-
-        dc.redrawAll();
-      }, 500);
-    });
-
-  dc.config.defaultColors(d3.schemeCategory10);
+  download(voteid,draw);
 
   function draw(){
 //    graphs.date=drawDate('#date div.graph');
@@ -405,6 +255,14 @@ var countries = {  "be": "Belgium",  "bg": "Bulgaria",  "cz": "Czech Republic", 
     graphs.eugroup.relative=false;
     graphs.party=drawBarVotes('#party div.graph','party');
     graphs.party.relative=false;
+    
+    graphs.party.margins({
+          top: 5,
+          right: 10,
+          bottom: 5,
+          left: 5
+        })
+        
 
 //    graphs.group=drawGroup('#eugroup div.graph');
     drawNumbers(graphs);
@@ -426,6 +284,7 @@ var countries = {  "be": "Belgium",  "bg": "Bulgaria",  "cz": "Czech Republic", 
       graphs[d].on("filtered",function(graph){
         var f=graph.filters().join("|");
         urlParam(d,f);
+        d3.select("#party").classed("d-none",false);
       });
       filter=urlParam(d);
       if (filter) {
@@ -450,8 +309,7 @@ var countries = {  "be": "Belgium",  "bg": "Bulgaria",  "cz": "Czech Republic", 
           all:function () {
             source_group.top(Infinity);
               var g=source_group.all().filter(function(d) {
-                  //return Math.abs(d.value) > 0.00001; // if using floating-point numbers
-                  return d.value.nb.count !== 0; // if integers only
+                  return d.value.nb.count !== 0; 
               });
               return g.slice(0,cap);
           }
@@ -656,9 +514,8 @@ var countries = {  "be": "Belgium",  "bg": "Bulgaria",  "cz": "Czech Republic", 
     function drawBarVotes (dom,dimension) {
       var dim = ndx.dimension(function(d) {return d[dimension]});
       var reducer = reductio();
-      var res=results.slice();
       reducer.value("nb").count(true);
-      res.forEach(function(r){
+      results.forEach(function(r){
         reducer.value(r).count(true).filter(function(d){ return d.vote == r});
       });
 
@@ -699,6 +556,7 @@ var countries = {  "be": "Belgium",  "bg": "Bulgaria",  "cz": "Czech Republic", 
         })
 
         .elasticY(true)
+        .elasticX(true)
         //.yAxisLabel("MEPs")
         .dimension(dim)
 //        .group(group, "for", getValue("for")) bug: doesn't switch properly between absolute and relative
@@ -715,7 +573,7 @@ var countries = {  "be": "Belgium",  "bg": "Bulgaria",  "cz": "Czech Republic", 
         });
       graph.xAxis().ticks(3);
       graph.yAxis().ticks(3);
-      res.forEach(function(r){
+      results.forEach(function(r){
 
         graph.stack(remove_empty_bins(group,12), r, function(d){
           return getValue(r)(d);
@@ -730,7 +588,10 @@ var countries = {  "be": "Belgium",  "bg": "Bulgaria",  "cz": "Czech Republic", 
           .text(function(d){return d;})
           .style("text-anchor", "start")
           .attr("transform", function(d) {
-            return "rotate(-90, -4, 9), translate(-50,0) ";
+
+            var left = -1 * (graph.margins().bottom) + 10;
+            console.log(left);
+            return "rotate(-90, -4, 9), translate("+left+",0) ";
           });
       }
 
@@ -1119,7 +980,6 @@ var countries = {  "be": "Belgium",  "bg": "Bulgaria",  "cz": "Czech Republic", 
 }
 
 function urlParam(name,value) {
-  console.log(value);
   if (typeof value == "string") {
     var uri=window.location.href;
     value=encodeURIComponent(value);

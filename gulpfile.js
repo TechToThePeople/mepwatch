@@ -59,6 +59,7 @@ gulp.task('css',function(){
   return gulp
     .src([
       'css/dc.css'
+      ,'src/main.css'
       ,'src/dcfix.css'
       ,'node_modules/daemonite-material/css/material.css'
     ], { base: 'node_modules' })
@@ -79,7 +80,8 @@ gulp.task('dc-copy',function(){
       'node_modules/d3/dist/d3.js',
       'node_modules/d3-queue/build/d3-queue.js',
       'node_modules/d3-tip/dist/index.js',
-      'node_modules/dc/dc.js'
+      'node_modules/dc/dc.js',
+      'node_modules/dot/doT.js'
     ], { base: 'node_modules' })
     .pipe(sourcemaps.init())
     .pipe(concat('dcbundle.js'))

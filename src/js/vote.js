@@ -72,70 +72,69 @@ var dayFormat = d3.timeFormat("%Y-%m-%d");
 var dateFormat = d3.timeFormat("%Y-%m-%d %H:%M:%S");
 var formatPercent = d3.format(".0%");
 
-
-function download(voteid,callback){
-q
-  .defer(dl_meps)
-  .defer(dl_details)
-  .defer(dl_votes)
-  .awaitAll(function(error, r) {
-    if (error) throw error;
-    var length = votes.length;
-    var meps = r[0]; //first deferred download
-    for (var j = 0; j < meps.length; j++) {
-      var m = meps[j];
-      if (!m) console.log(j);
-      if (m.start > config.date) {
-        meps.splice(j, 1);
-        j--;
-        continue;
-      }
-      if (m.end && m.end < config.date) {
-        meps.splice(j, 1);
-        j--;
-        continue;
-      }
-      for (var i = 0; i < length; i++) {
-        if (votes[i].mepid == m.voteid) {
-          meps[j].vote = votes[i].result;
-          votes[i].processed = true;
-          //          votes.splice(i,1);
-          break;
+function download(voteid, callback) {
+  q
+    .defer(dl_meps)
+    .defer(dl_details)
+    .defer(dl_votes)
+    .awaitAll(function(error, r) {
+      if (error) throw error;
+      var length = votes.length;
+      var meps = r[0]; //first deferred download
+      for (var j = 0; j < meps.length; j++) {
+        var m = meps[j];
+        if (!m) console.log(j);
+        if (m.start > config.date) {
+          meps.splice(j, 1);
+          j--;
+          continue;
+        }
+        if (m.end && m.end < config.date) {
+          meps.splice(j, 1);
+          j--;
+          continue;
+        }
+        for (var i = 0; i < length; i++) {
+          if (votes[i].mepid == m.voteid) {
+            meps[j].vote = votes[i].result;
+            votes[i].processed = true;
+            //          votes.splice(i,1);
+            break;
+          }
+        }
+        if (!meps[j].vote) {
+          meps[j].vote = "no show";
         }
       }
-      if (!meps[j].vote) {
-        meps[j].vote = "no show";
+      //TODO: handle this properly, this is a big problem
+      var errors = [];
+      votes.map(function(v) {
+        if (!v.processed) errors.push(v);
+      });
+      if (errors.length) {
+        d3
+          .select("main")
+          .insert("div", ":first-child")
+          .attr("class", "alert alert-danger")
+          .html(
+            "<h1>They are " +
+              errors.length +
+              "votes that we couldn't process. Contact Xavier</h1>"
+          );
+        console.log(errors);
       }
-    }
-    //TODO: handle this properly, this is a big problem
-    var errors = [];
-    votes.map(function(v) {
-      if (!v.processed) errors.push(v);
+      votes = null;
+      config.nb = meps.length;
+      d3.select(".nbmep .total").html("/" + config.nb);
+      if (config.goal) {
+        d3.select(".goal").classed("d-none", false);
+        d3.select(".goal .nb").html(iconify(config.goal));
+      }
+
+      ndx = crossfilter(meps);
+      callback();
     });
-    if (errors.length) {
-      d3
-        .select("main")
-        .insert("div", ":first-child")
-        .attr("class", "alert alert-danger")
-        .html(
-          "<h1>They are "+errors.length + "votes that we couldn't process. Contact Xavier</h1>"
-        );
-      console.log(errors);
-    }
-    callback();
-  }
-
-    votes = null;
-    config.nb = meps.length;
-    d3.select(".nbmep .total").html("/" + config.nb);
-    if (config.goal) {
-      d3.select(".goal").classed("d-none", false);
-      d3.select(".goal .nb").html(iconify(config.goal));
-    }
-
-    ndx = crossfilter(meps);
-    draw();
-  });
+}
 
 d3.svg("img/eu-flags.svg").then(function(xml) {
   document.body.appendChild(xml.documentElement);
@@ -203,7 +202,6 @@ d3.select(window).on("resize.updatedc", function() {
 dc.config.defaultColors(d3.schemeCategory10);
 
 function urlParam(name, value) {
-  console.log(value);
   if (typeof value == "string") {
     var uri = window.location.href;
     value = encodeURIComponent(value);
