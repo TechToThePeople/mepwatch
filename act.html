@@ -242,7 +242,7 @@ d3.select(".nav-item.meps")
   .select(".nav-link")
   .html('<span class="nb-meps-targeted nb badge badge-primary"></span>MEPs');
 
-//selectTab("country");
+  selectTab("country");
 
     </script>
 
@@ -261,8 +261,6 @@ function draw(){
   graphs.party=drawParty("#party graph");
 
   dc.renderAll();
-  selectTab("meps");
-  drawMep();
 }
 
 function drawNumbers(graphs) {
