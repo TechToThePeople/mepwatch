@@ -9,6 +9,39 @@
     <link href="dist/css/main.css" rel="stylesheet">
 
             <style>
+.slide {
+  transition: all 0.75s ease;
+  height:440px;
+  aawidth:100%;
+  position:absolute;
+  left: -100%;
+  right: 100%;
+  visibility:hidden;
+}
+
+.slide.show{
+  visibility:visible;
+  left:0;
+  right:0;
+  animation: slide 0.5s forwards;
+  animation-delay: 2s;
+}
+
+.list-group {height:440px;overflow-y:auto;}
+
+.embed {}
+.small {width:560px; height:340px}
+.medium {width:640px; height:385px}
+.large {width:853px; height:505px}
+
+.embed-r {
+  max-width:800px;
+  height:490px;
+  max-height:490px;
+  position:relative;
+}
+
+
 svg.icon {width:1.2em;height:1.2em}
 .nav-tabs .nav-link.active {
   color:white;
@@ -115,7 +148,7 @@ aa.list-group{
             <div class="embed-r embed gradient">
               <ul class="d-flex nav nav-tabs nonav-fill">
               </ul>
-              <div class="row" id="intro">
+              <div class="row slide" id="intro">
                 <div class="col-12"><div class="card">
                     <div class="card-body">
                       <h1 class="text-center card-title">Score your MEP on the issues you care about: closing the knowledge gap and promoting fact-based campaigning for the European elections. </h1>
@@ -128,7 +161,7 @@ aa.list-group{
                   </div>
                 </div>
               </div>
-              <div class="row" id="about">
+              <div class="row slide" id="about">
                 <div class="col"><div class="p-3">
                   <p >finding out who is the person representing my interests in the EP, and how that person tends to vote on an issue that I care about, presents too many barriers and challenges for engagement. This leads to a feeling of disconnect - and most likely contributes to the low voter turnout across the EU for the European elections.
                   </p>
@@ -138,7 +171,7 @@ aa.list-group{
                 </div>
                 </div>
               </div>
-              <div class="row" id="country">
+              <div class="row slide" id="country">
                 <div class="col-12"><div class="card">
                     <div class="card-body">
                       <h1 class="text-center acard-title">Where do you vote?</h1>
@@ -151,7 +184,7 @@ aa.list-group{
                   </div>
                 </div>
               </div>
-              <div class="row" id="party">
+              <div class="row slide" id="party">
                 <div class="col-12">
                   <div class="card">
                     <div class="card-body">
@@ -164,7 +197,7 @@ aa.list-group{
                   </div>
                 </div>
               </div>
-              <div class="row" id="position">
+              <div class="row slide" id="position">
                 <div class="col-12">
                   <div class="card">
                     <div class="card-body">
@@ -177,7 +210,7 @@ aa.list-group{
                   </div>
                 </div>
                </div>
-              <div class="row" id="meps">
+              <div class="row slide" id="meps">
                 <div class="col">
                   <div class="card">
                     <div class="card-body">
@@ -231,14 +264,16 @@ aa.list-group{
     <script src="src/js/vote.js"></script>
     <script>
       function selectTab(hash){
-        d3.selectAll(".embed > .row").attr("hidden","");
+//        d3.selectAll(".embed > .row").attr("hidden","");
+        d3.selectAll(".embed .slide").classed("show",false);
         d3.selectAll(".embed a.nav-link").classed("active",false);
-        d3.select(".embed #"+hash).attr("hidden",null);
+//        d3.select(".embed #"+hash).attr("hidden",null);
+        d3.select(".embed #"+hash).classed("show",true);
         d3.select(".nav-item."+hash+ " .nav-link").classed("active",true);
       }
 
 
-d3.selectAll(".embed > .row").attr("hidden","");
+//d3.selectAll(".embed > .row").attr("hidden","");
 //  d3.select(".embed #mep").attr("hidden",null);
 
 var steps="About,Intro,Country,Party,Position,MEPs".split(",");
