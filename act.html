@@ -429,7 +429,9 @@ function drawMep() {
   var html=meptpl(meps[i]);
   d3.select("#mep-card").html(html);
   d3.selectAll(".next-mep")
-    .on("click",drawMep)
+    .on("click",function(){drawMep();
+      selectTab("meps");
+    })
 }
 
 function drawParty (dom){
@@ -447,13 +449,12 @@ function drawParty (dom){
         return a.value < b.value ? 1 : b.value < a.value ? -1 : 0;
       })
     .filterDisplayed(function () {return true;})
+    .on("filtered",function(d){
+      selectTab("meps"); 
+    })
     .on("renderlet",function(graph){
       d3.select(graph.anchor() +" select")
         .classed("form-control form-control-lg",true)
-      d3.selectAll(graph.anchor() +" option")
-        .on("click",function(d){
-          selectTab("meps"); 
-        })
     })
 
   return graph;
@@ -483,13 +484,12 @@ function drawCountry (dom){
     .controlsUseVisibility(true)
     .promptText('Your country?')
     .filterDisplayed(function () {return true;})
+    .on("filtered",function(d){
+      selectTab("party"); 
+    })
     .on("renderlet",function(graph){
       d3.select(graph.anchor() +" select")
         .classed("form-control form-control-lg",true)
-      d3.selectAll(graph.anchor() +" option")
-        .on("click",function(d){
-          selectTab("party"); 
-        })
     })
 
   return graph;
