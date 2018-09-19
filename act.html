@@ -353,6 +353,7 @@ function draw(){
 
   drawNumbers(graphs);
   graphs.country=drawCountry("#country graph");
+  graphs.barcountry=drawGraphCountry("#country footer");
   graphs.party=drawParty("#party graph");
   graphs.results=drawResult("#position graph");
   graphs.results.filter([["for","against","abstention"]])
@@ -494,6 +495,103 @@ function drawParty (dom){
   }
 
 };
+    function drawGraphCountry(dom) {
+      var dim = ndx.dimension(function(d) {return d.country;});
+      var reducer = reductio();
+      var res=results.slice();
+      reducer.value("nb").count(true);
+      res.forEach(function(r){
+        reducer.value(r).count(true).filter(function(d){ return d.vote == r});
+      });
+
+      var group = dim.group();
+      reducer(group);
+
+      var graph = dc.barChart(dom);
+      graph.relative=true;
+
+      function getValue(result){
+        if (graph.relative)
+          return function(d){return d.value[result].count/d.value.nb.count*100; }
+        return function(d){
+          return d.value[result].count; }
+      }
+
+      graph
+        .width(0)
+        .height(186)
+        .outerPadding(0)
+        .gap(0)
+        .margins({
+          top: 0,
+          right: 10,
+          bottom: 20,
+          left: 30
+        })
+        .ordering(function(d){ 
+          if (config.goal && config.goal == "against")
+            return -d.value.against.count/d.value.nb.count;
+
+          return -d.value.for.count/d.value.nb.count
+        })
+        .label(function(d){return countries[d.country]})
+        .x(d3.scaleBand())
+        .xUnits(dc.units.ordinal)
+        .colors(resultscolor)
+        .brushOn(false)
+        .title(function(d) {
+          if (this.layer == 0) return "";
+          return countries[d.key] +  " voting '"+ this.layer + "': " + d.value[this.layer].count +" ("+formatPercent(d.value[this.layer].count/d.value.nb.count)+")";
+        })
+
+        .elasticY(true)
+        .yAxisLabel("%MEPs")
+        .dimension(dim)
+//        .group(group, "for", getValue("for")) bug: doesn't switch properly between absolute and relative
+        .group(group, "", 0)
+        .on("renderlet", function(c) {
+          rotateBarChartLabels();
+          if (!d3.select("#country .axis.x use").empty()) return;
+          d3.select("#country .axis.x").selectAll(".tick")
+            .append("use").attr( "href",function(d){
+            return '#flag-'+d}).attr("width",24).attr("height",16)
+            .attr("transform","translate(-10,2)");
+        });
+      graph.xAxis().ticks(3);
+//      res.shift();
+      res.forEach(function(r){
+        graph.stack(group, r, function(d){
+          return getValue(r)(d);
+        });
+      });
+
+      toggleMode ();
+
+      return graph;
+
+      function rotateBarChartLabels() {
+        d3.selectAll(dom + ' .axis.x line').remove();
+        d3.selectAll(dom + ' .axis.x text')
+          .text(function(d){return countries[d];})
+          .style("text-anchor", "start")
+          .attr("transform", function(d) {
+            return "rotate(-90, -4, 9), translate(10,0) ";
+          });
+      }
+
+      function toggleMode (){
+        d3.selectAll("#country h5 button").on("click",function(){
+          var b=d3.select(this);
+          if (!b.classed("active")) return;
+          graph.relative= b.classed("btn-relative");
+          b.classed("active",false);
+          d3.select("#country .btn-"+(graph.relative?"absolute":"relative")).classed("active",true);
+          graph.yAxisLabel((graph.relative?"%":"#")+"MEPs")
+          graph.redraw();
+        });
+      }
+    }
+
 
 function drawCountry (dom){
   var dim = ndx.dimension(function(d){return d.country});
