@@ -140,11 +140,7 @@ function dl_details(callback) {
   d3.json("cards/" + voteid + ".json").then(function(d) {
     d.date = dateTimeParse(d.date);
     config = d;
-    $("h2").html(config.name);
-    $(".navbar .rapporteur").html(config.rapporteur);
-    $(".navbar .date").html(dateFormat(config.date));
-    $(".navbar .report").html(config.report);
-    $("h3").html(config.desc);
+    config.win = config.for > config.against ? "for" : "against";
     callback(null);
   });
 }

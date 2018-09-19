@@ -240,6 +240,12 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
   download(voteid,draw);
 
   function draw(){
+
+    $("h2").html(config.name);
+    $(".navbar .rapporteur").html(config.rapporteur);
+    $(".navbar .date").html(dateFormat(config.date));
+    $(".navbar .report").html(config.report);
+    $("h3").html(config.desc);
     var percentColors=["#27ae60","#C8E6C9","#9E9E9E","#ffcdd2","#d35400"];
     if (config.goal && config.goal == "against") {
       results[1] = results[0];

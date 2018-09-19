@@ -9,6 +9,21 @@
     <link href="dist/css/main.css" rel="stylesheet">
 
             <style>
+.flip {
+	animation: flip-in-hor-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+@keyframes flip-in-hor-top {
+  0% {
+    transform: rotateX(-80deg);
+    opacity: 0;
+  }
+  100% {
+    transform: rotateX(0);
+    opacity: 1;
+  }
+}
+
 .slide {
   transition: all 0.75s ease;
   height:440px;
@@ -27,13 +42,6 @@
   animation-delay: 2s;
 }
 
-.list-group {height:440px;overflow-y:auto;}
-
-.embed {}
-.small {width:560px; height:340px}
-.medium {width:640px; height:385px}
-.large {width:853px; height:505px}
-
 .embed-r {
   max-width:800px;
   height:490px;
@@ -50,7 +58,7 @@ svg.icon {width:1.2em;height:1.2em}
 .nav-item.about .nav-link {
   padding:8px;
 }
-.nav-link svg {
+.about svg {
   width:2em;
   height:2em;
   fill:white;animation-name:rubberBand;animation-duration: 1s;animation-fill-mode:both;
@@ -61,36 +69,6 @@ svg.icon {width:1.2em;height:1.2em}
 
 .list-group {height:440px;overflow-y:auto;}
 
-.embed {}
-.small {width:560px; height:340px}
-.medium {width:640px; height:385px}
-.large {width:853px; height:505px}
-
-.embed-r {
-  max-width:800px;
-  height:490px;
-  max-height:490px;
-}
-
-aa.embed-r {
-  display: block;
-  overflow: hidden;
-  padding: 0;
-  position: relative;
-  width: 100%;
-}
-
-aa.embed-r::after {
-  content: '';
-  display: block;
-  padding-bottom: 42.857143%;
-}
-
-aa.list-group{
-  max-height: 300px;
-  overflow:scroll;
-  -webkit-overflow-scrolling: touch;
-}
 
             </style>
   </head>
@@ -151,11 +129,17 @@ aa.list-group{
               <div class="row slide" id="intro">
                 <div class="col-12"><div class="card">
                     <div class="card-body">
-                      <h1 class="text-center card-title">Score your MEP on the issues you care about: closing the knowledge gap and promoting fact-based campaigning for the European elections. </h1>
-                      <div class="card-text">
-                        finding out who is the person representing my interests in the EP, and how that person tends to vote on an issue that I care about, presents too many barriers and challenges for engagement. This leads to a feeling of disconnect - and most likely contributes to the low voter turnout across the EU for the European elections.
-                        <br>
-                        <graph />
+                      <h1 class="text-center card-title name">
+                      </h1>
+                      <div>We campaigned Members of the European parliament(MEPs) to vote <span class="goal">?</span>.
+                        On the <span class="date">YYYY-mm-dd</span> In the European Parliament, <a href="#position" class="tabcontrol"><span class="nb">y</span> MEPs voted</a>. <span class="percentwin">x%</span> voted <span class="result">?</span>.</div>
+                      <h3>Why is this important?</h3>
+                      <div class="card-text desc">
+                      </div>
+                      <h3>What can you do now?</h3>
+                      <div class="card-text desc next-lost">
+                        We lost that battle, but we will have more opportunties! <br>Right now, you can help keeping the pressure and tweet, call or emails them. This site makes it easy! We randomly pick <a href="#meps" class="tabcontrol">one MEP</a> out of <span class="nb-meps-targeted"></span> so you can send him or her a message.
+                        You will have more impact if you only contact the meps from <a href="#country" class="tabcontrol">your country</a> or <a href="#party" class="tabcontrol">party</a>
                       </div>
                     </div>
                   </div>
@@ -263,7 +247,15 @@ aa.list-group{
     <script src="dist/js/dcbundle.js"></script>
     <script src="src/js/vote.js"></script>
     <script>
+      function rublogo(){
+      d3.select(".nav-tabs .about")
+      .classed("about",false)
+      .each(function(){this.offsetWidth})
+      .classed("about",true)
+      };
+
       function selectTab(hash){
+         rublogo();
 //        d3.selectAll(".embed > .row").attr("hidden","");
         d3.selectAll(".embed .slide").classed("show",false);
         d3.selectAll(".embed a.nav-link").classed("active",false);
@@ -319,7 +311,8 @@ function filterResult(r){
 
 d3.selectAll(".for").on("click",function(d){filterResult("for")});
 d3.selectAll(".against").on("click",function(d){filterResult("against")});
-  selectTab("country");
+  //selectTab("country");
+  selectTab("intro");
 
     </script>
 
@@ -344,6 +337,7 @@ function draw(){
     .domain(results)
     .range("#27ae60,#c0392b,#2980b9,#95a5a6,#34495e,#bdc3c7".split(","));
 
+  drawIntro();
 
   drawNumbers(graphs);
   graphs.country=drawCountry("#country graph");
@@ -422,12 +416,28 @@ function drawNumbers(graphs) {
   }
 
 
+function drawIntro(){
+  var voted=config.for+config.against+config.abstention;
+  d3.select("#intro .date").text(d3.timeFormat("%e %B %Y at %H:%M")(config.date));
+  d3.select("#intro .name").text(config.name);
+  d3.select("#intro .desc").text(config.desc);
+  d3.select("#intro .nb").text(voted);
+  d3.select("#intro .percentwin").text(d3.format(".0%")(config[config.win]/voted));
+  d3.select("#intro .result").html(iconify(config.win));
+  d3.select("#intro .goal").html(iconify(config.goal));
+
+}
+
 function drawMep() {
   var meps=ndx.allFiltered();
   var i=Math.floor(Math.random() * meps.length);
   var meptpl = doT.template(d3.select("#mep-template").html());
   var html=meptpl(meps[i]);
-  d3.select("#mep-card").html(html);
+  d3.select("#mep-card")
+    .classed("flip",false)
+    .each(function(){this.offsetWidth})
+    .html(html)
+    .classed("flip",true);
   d3.selectAll(".next-mep")
     .on("click",function(){drawMep();
       selectTab("meps");
