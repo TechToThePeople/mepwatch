@@ -13,6 +13,7 @@
 	animation: flip-in-hor-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
 
+
 @keyframes flip-in-hor-top {
   0% {
     transform: rotateX(-80deg);
@@ -32,6 +33,15 @@
   left: -100%;
   right: 100%;
   visibility:hidden;
+}
+
+.slide footer {
+  position:absolute;
+  bottom:0;
+}
+
+.align-right {
+  right:0;
 }
 
 .slide.show{
@@ -142,6 +152,7 @@ svg.icon {width:1.2em;height:1.2em}
                         You will have more impact if you only contact the meps from <a href="#country" class="tabcontrol">your country</a> or <a href="#party" class="tabcontrol">party</a>
                       </div>
                     </div>
+                  <footer class="align-right"><a href="#country" class="btn tabcontrol">Next</a></footer>
                   </div>
                 </div>
               </div>
@@ -165,6 +176,7 @@ svg.icon {width:1.2em;height:1.2em}
                         <graph />
                       </div>
                     </div>
+                    <footer></footer>
                   </div>
                 </div>
               </div>
