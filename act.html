@@ -171,7 +171,7 @@ svg.icon {width:1.2em;height:1.2em}
                     <div class="card-body">
                       <h1 class="text-center acard-title">Where do you vote?</h1>
                       <div class="card-text">
-                        Communicate directly with the MEPs that represent you increase your impact
+                        Communicate directly with the MEPs that represent you increases your impact!
                         <br>
                         <graph />
                       </div>
@@ -539,6 +539,8 @@ function drawParty (dom){
         .xUnits(dc.units.ordinal)
         .colors(resultscolor)
         .brushOn(false)
+        .addFilterHandler(function(filters, filter) {return [filter];})
+        .controlsUseVisibility(true)
         .title(function(d) {
           if (this.layer == 0) return "";
           return countries[d.key] +  " voting '"+ this.layer + "': " + d.value[this.layer].count +" ("+formatPercent(d.value[this.layer].count/d.value.nb.count)+")";
@@ -549,6 +551,9 @@ function drawParty (dom){
         .dimension(dim)
 //        .group(group, "for", getValue("for")) bug: doesn't switch properly between absolute and relative
         .group(group, "", 0)
+        .on("filtered",function(){
+          selectTab("party");
+        })
         .on("renderlet", function(c) {
           rotateBarChartLabels();
           if (!d3.select("#country .axis.x use").empty()) return;
