@@ -150,7 +150,10 @@ background:rgba(255,255,255,0.5);
                       <div class="card-text desc">
                       </div>
                       <h3>What can you do now?</h3>
-                      <div class="card-text desc next-lost">
+                      <div class="card-text desc next-win d-none">
+                        We won! Let's celebrate and message the MEPs that voted the right thing, and put pressure on the ones that didn't. It's important to keep the ball rolling, it's a good step in the right direction, but the journey will be long! <br>You can <a href="#meps" class="tabcontrol">find the MEPs from your country</a> and tweet or email them. This site makes it easy!
+                      </div>
+                      <div class="card-text desc next-lost d-none">
                         We lost that battle, but we will have more opportunties! <br>Right now, you can help keeping the pressure and tweet, call or emails them. This site makes it easy! We randomly pick <a href="#meps" class="tabcontrol">one MEP</a> out of <span class="nb-meps-targeted"></span> so you can send him or her a message.
                         You will have more impact if you only contact the meps from <a href="#country" class="tabcontrol">your country</a> or <a href="#party" class="tabcontrol">party</a>
                       </div>
@@ -443,6 +446,11 @@ function drawIntro(){
   d3.select("#intro .percentwin").text(d3.format(".0%")(config[config.win]/voted));
   d3.select("#intro .result").html(iconify(config.win));
   d3.select("#intro .goal").html(iconify(config.goal));
+  if (config.win == config.goal) {
+    d3.select("#intro .next-win").classed("d-none",null)
+  } else {
+    d3.select("#intro .next-lost").classed("d-none",null)
+  }
 
 }
 
