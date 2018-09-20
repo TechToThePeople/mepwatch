@@ -72,7 +72,7 @@ gulp.task('css',function(){
     .pipe(gulp.dest('./dist/css/'));
 });
 
-gulp.task('dc-copy',function(){
+gulp.task('js',['js-copy'],function(){
   return gulp
     .src([
       'node_modules/crossfilter2/crossfilter.js',

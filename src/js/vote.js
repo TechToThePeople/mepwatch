@@ -138,6 +138,7 @@ d3.svg("img/eu-flags.svg").then(function(xml) {
 
 function dl_details(callback) {
   d3.json("cards/" + voteid + ".json").then(function(d) {
+    document.title = d.name + " "+ d.report+" "+d.date;
     d.date = dateTimeParse(d.date);
     config = d;
     config.win = config.for > config.against ? "for" : "against";

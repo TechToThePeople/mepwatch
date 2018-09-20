@@ -218,17 +218,18 @@ background:rgba(255,255,255,0.5);
                       <div id="mep-card">Loading...</div>
                       <div id="mep-template" class="d-none"><div class="row">
                           <div class="col-2">
-                            <img src="img/mepphoto/{{=it.epid}}.jpg">
+                            <img src="img/mepphoto/{{=d.epid}}.jpg">
                           </div>
                           <div class="col">
-                            <h5 class="card-title name">{{=it.firstname}} {{=it.lastname}}</h5>
-                            <div class="card-subtitle party"><svg class="icon"><use href="#flag-{{=it.country}}" /></svg> {{=it.party}}</div>
+                            <h5 class="card-title name">{{=d.firstname}} {{=d.lastname}}</h5>
+                            <div class="card-subtitle party"><svg class="icon"><use href="#flag-{{=d.country}}" /></svg> {{=d.party}}</div>
                           
-                            Voted <svg class="icon"><use href="#icon-{{=it.vote}}" /></svg>, we wanted <svg class="icon"><use href="#icon-{{=config.goal}}" /></svg>
+                            Voted <svg class="icon" title="{{=d.vote}}"><use href="#icon-{{=d.vote}}" /></svg>, we wanted <svg class="icon"><use href="#icon-{{=config.goal}}" /><title>{{==d.vote}}</title></svg>
                             <div class="d-flex bd-highlight">
                               <div class="p-2 flex-grow-1 bd-highlight">
-                                <button class="btn btn-primary"><svg class="icon"><use href="#icon-twitter"/></svg> Tweet</button>
-                                <a class="btn btn-secondary" href="mailto:{{=it.email}}">email</a>
+                                {{? d.twitter }}
+                                <button class="btn btn-primary tweet"><svg class="icon"><use href="#icon-twitter"/></svg> Tweet</button>{{?}}
+                                {{? d.email }}<a class="btn btn-secondary email" href="mailto:{{=d.email}}">email</a>{{?}}
 
                               </div>
                               <div class="p-2 bd-highlight">
@@ -448,6 +449,7 @@ function drawIntro(){
 function drawMep() {
   var meps=ndx.allFiltered();
   var i=Math.floor(Math.random() * meps.length);
+  doT.templateSettings.varname = "d";
   var meptpl = doT.template(d3.select("#mep-template").html());
   var html=meptpl(meps[i]);
   d3.select("#mep-card")
@@ -459,6 +461,27 @@ function drawMep() {
     .on("click",function(){drawMep();
       selectTab("meps");
     })
+
+  d3.selectAll(".tweet")
+    .on("click",function(){
+      var d=meps[i];
+      var url= "https://mepwatch.eu/act.html?epid="+d.epid;
+      var tpl = ".@mep , this is what you voted {url}, do you want to comment? #mepwatch";
+      if (config.tweets && config.tweets[d.vote]) 
+        tpl=config.tweets[d.vote];
+      tpl=tpl.replace("@mep","@"+d.twitter).replace("{url}",url);
+
+      console.log(tpl);
+return;
+      tweet(tpl);
+    })
+
+    function tweet(text){
+        var url="https://twitter.com/intent/tweet?text="+encodeURIComponent(text);
+//        url = url.replace(/#/g, '%23');
+        var win=window.open(url,'_blank');
+    };
+
 }
 
 function drawParty (dom){
