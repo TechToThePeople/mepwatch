@@ -227,7 +227,7 @@ background:rgba(255,255,255,0.5);
                             <h5 class="card-title name">{{=d.firstname}} {{=d.lastname}}</h5>
                             <div class="card-subtitle party"><svg class="icon"><use href="#flag-{{=d.country}}" /></svg> {{=d.party}}</div>
                           
-                            Voted <svg class="icon" title="{{=d.vote}}"><use href="#icon-{{=d.vote}}" /></svg>, we wanted <svg class="icon"><use href="#icon-{{=config.goal}}" /><title>{{==d.vote}}</title></svg>
+                            Voted <svg class="icon" title="{{=d.vote}}"><use href="#icon-{{=d.vote}}" /><title>{{=d.vote}}</title></svg>, we wanted <svg class="icon"><use href="#icon-{{=config.goal}}" /><title>{{=config.goal}}</title></svg>
                             <div class="d-flex bd-highlight">
                               <div class="p-2 flex-grow-1 bd-highlight">
                                 {{? d.twitter }}
@@ -479,8 +479,6 @@ function drawMep() {
         tpl=config.tweets[d.vote];
       tpl=tpl.replace("@mep","@"+d.twitter).replace("{url}",url);
 
-      console.log(tpl);
-return;
       tweet(tpl);
     })
 
