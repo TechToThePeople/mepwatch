@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta content="initial-scale=1, shrink-to-fit=no, width=device-width" name="viewport">
+    <link href="dist/css/main.css" rel="stylesheet">
+    <link rel="prefetch" href="data/meps.csv" as="fetch"/>
+
+ <title>MEPWatch. Fact based campaigning for a better European Parliament</title>
+  <meta property="og:title" content="MEPWatch. Fact based campaigning for a better European Parliament" />
+  <meta name="description" property="og:description" content="You won't believe what the member of the European Parliament representing you voted" />
+  <meta property="og:image" content="https://mepwatch.eu/og.jpg" itemprop="image" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="MEPWatch. Fact based campaigning for a better European Parliament! " />
+  <meta name="twitter:description" content="You won't believe what the member of the European Parliament representing you voted." />
+  <meta name="twitter:image" content="https://mepwatch.eu/og.jpg">
+
+         <script src="node_modules/post-robot/dist/post-robot.min.js"></script>
+
+
+    <style>
+#bottom {height:1px;}
+.flip {
+  animation: flip-in-hor-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+
+  @keyframes flip-in-hor-top {
+    0% {
+      transform: rotateX(-80deg);
+      opacity: 0;
+    }
+    100% {
+      transform: rotateX(0);
+      opacity: 1;
+    }
+  }
+
+  .slide {
+    transition: all 0.75s ease;
+    height:440px;
+    aawidth:100%;
+    position:absolute;
+    left: -100%;
+    right: 100%;
+    visibility:hidden;
+    padding-left:1px;
+  }
+
+  .slide footer {
+    position:absolute;
+    bottom:0;
+  }
+
+  .align-right {
+    right:0;
+  }
+
+  .slide.show{
+    visibility:visible;
+    left:0;
+    right:0;
+    animation: slide 0.5s forwards;
+    animation-delay: 2s;
+  }
+
+  .embed-r {
+    max-width:768px;
+    min-height:490px;
+    position:relative;
+  }
+
+
+  svg.icon {width:1.2em;height:1.2em}
+  .nav-tabs .nav-link.active {
+    color:white;
+  }
+
+  .nav-item.about .nav-link {
+    padding:8px;
+  }
+  .about svg {
+    width:2em;
+    height:2em;
+    fill:white;animation-name:rubberBand;animation-duration: 1s;animation-fill-mode:both;
+  }
+
+  .transparent{
+    background:rgba(255,255,255,0.5);
+  }
+
+  .embed > .row {height:440px;}
+  .embed .row .card {height:100%}
+
+  .list-group {height:440px;overflow-y:auto;}
+
+
+    </style>
+  </head>
+  <body>
+    <div class="embed-r embed gradient">
+      <ul class="d-flex nav nav-tabs nonav-fill">
+      </ul>
+      <div class="row slide" id="intro">
+        <div class="col-12"><div class="card">
+            <div class="card-body">
+              <h1 class="card-title name">Loading...</h1>
+              <div>We campaigned Members of the European parliament(MEPs) to vote <span class="goal">?</span>.
+                <br>On the <span class="date">YYYY-mm-dd</span>, <a href="#position" class="tabcontrol"><span class="nb">y</span> MEPs voted</a>. <span class="percentwin">x%</span> voted <span class="result">?</span>.</div>
+              <h3>Why is this important?</h3>
+              <div class="card-text desc">
+              </div>
+              <h3>What can you do now?</h3>
+              <div class="card-text desc next-win d-none">
+                We won! Let's celebrate and message the MEPs that voted the right thing, and put pressure on the ones that didn't. It's important to keep the ball rolling, it's a good step in the right direction, but the journey will be long! <br>You can <a href="#meps" class="tabcontrol">find the MEPs from your country</a> and tweet or email them. This site makes it easy!
+              </div>
+              <div class="card-text desc next-lost d-none">
+                We lost that battle, but we will have more opportunties! <br>Right now, you can help keeping the pressure and tweet, call or emails them. This site makes it easy! We randomly pick <a href="#meps" class="tabcontrol">one MEP</a> out of <span class="nb-meps-targeted"></span> so you can send him or her a message.
+                You will have more impact if you only contact the meps from <a href="#country" class="tabcontrol">your country</a> or <a href="#party" class="tabcontrol">party</a>
+              </div>
+            </div>
+            <footer data-iframe-height="true" class="align-right"><a href="#country" class="btn tabcontrol">Next</a></footer>
+
+          </div>
+        </div>
+    <div data-iframe-height="true"></div>
+      </div>
+      <div class="row slide" id="about">
+        <div class="col"><div class="p-3 transparent">
+            <p >finding out who is the person representing my interests in the EP, and how that person tends to vote on an issue that I care about, presents too many barriers and challenges for engagement. This leads to a feeling of disconnect - and most likely contributes to the low voter turnout across the EU for the European elections.
+            </p>
+            <p>
+            Do you have a site? You can embed this app into your website by copying these two lines:
+            <pre><code>
+&lt;div class="mepwatch-act" data-vote="{{id}}"&gt; &lt;/div&gt;
+&lt;script src="https://mepwatch.eu/dist/js/widget.js" charset="utf-8"&gt;&lt;/script&gt;
+
+            </code></pre>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="row slide" id="country">
+        <div class="col-12"><div class="card">
+            <div class="card-body">
+              <h1 class="text-center acard-title">Where do you vote?</h1>
+              <div class="card-text">
+                Communicate directly with the MEPs that represent you increases your impact!
+                <br>
+                <graph />
+              </div>
+            </div>
+            <footer></footer>
+          </div>
+        </div>
+      </div>
+      <div class="row slide" id="party">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Want to focus on a party?</h5>
+              <div class="card-text">
+                <p>                        You have <span class="nb-meps-targeted"></span> MEPs targeted. Yor can <a href="#meps" class="tabcontrol">take action</a> or filter more by party</p>
+                <graph>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row slide" id="position">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Want to focus on how the MEP voted?</h5>
+              <div class="card-text">
+                <p>                        You have <span class="nb-meps-targeted"></span> MEPs targeted. Yor can <a href="#meps" class="tabcontrol">take action</a> or filter to target only those that voted <a class="select-vote for" href="#">for</a> or <a href="#" class="select-vote against">against</a></p>
+                <graph>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row slide" id="meps">
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Randomly selected MEP among <span class="nb-meps-targeted"</span></h5>
+
+              <div id="mep-card">Loading...</div>
+              <div id="mep-template" class="d-none"><div class="row">
+                  <div class="col-2">
+                    <img src="img/mepphoto/{{=d.epid}}.jpg">
+                  </div>
+                  <div class="col">
+                    <h5 class="card-title name">{{=d.firstname}} {{=d.lastname}}</h5>
+                    <div class="card-subtitle party"><svg class="icon"><use href="#flag-{{=d.country}}" /></svg> {{=d.party}}</div>
+
+                    Voted <svg class="icon" title="{{=d.vote}}"><use href="#icon-{{=d.vote}}" /><title>{{=d.vote}}</title></svg>, we wanted <svg class="icon"><use href="#icon-{{=config.goal}}" /><title>{{=config.goal}}</title></svg>
+                    <div class="d-flex bd-highlight">
+                      <div class="p-2 flex-grow-1 bd-highlight">
+                        {{? d.twitter }}
+                        <button class="btn btn-primary tweet"><svg class="icon"><use href="#icon-twitter"/></svg> Tweet</button>{{?}}
+                        {{? d.email }}<a class="btn btn-secondary email" href="mailto:{{=d.email}}">email</a>{{?}}
+
+                      </div>
+                      <div class="p-2 bd-highlight">
+                        <button class="btn btn-light next-mep">Get another MEP</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <footer data-iframe-height="true">class="text-muted"><small>We don't endorse or condemn an MEP based on this single vote. Tip: personalise your tweets & emails to be more relevant</small></footer>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="dist/js/dcbundle.js"></script>
+    <script src="dist/js/widget.js"></script>
+    <script src="src/js/vote.js"></script>
+    <script>
+
+
+      function rublogo(){
+        d3.select(".nav-tabs .about")
+          .classed("about",false)
+          .each(function(){this.offsetWidth})
+          .classed("about",true)
+      };
+
+function selectTab(hash){
+  rublogo();
+  //        d3.selectAll(".embed > .row").attr("hidden","");
+  d3.selectAll(".embed .slide").classed("show",false);
+  d3.selectAll(".embed a.nav-link").classed("active",false);
+  //        d3.select(".embed #"+hash).attr("hidden",null);
+  d3.select(".embed #"+hash).classed("show",true);
+  d3.select(".nav-item."+hash+ " .nav-link").classed("active",true);
+}
+
+
+//d3.selectAll(".embed > .row").attr("hidden","");
+//  d3.select(".embed #mep").attr("hidden",null);
+
+var steps="About,Intro,Country,Party,Position,MEPs".split(",");
+d3.select(".nav")
+  .selectAll(".nav-item")
+  .data(steps)
+  .enter()
+  .append("li")
+  .attr("class",function (d){return "nav-item "+d.toLowerCase()})
+  .append("a")
+  .attr("class","nav-link")
+  .html(function(d){return d})
+  .attr("href",function(d){return "#"+d.toLowerCase()})
+//d3.selectAll(".embed a.nav-link")
+  .on("click",function(){
+    d3.event.preventDefault();
+    var hash = this.href.substring(this.href.indexOf('#')+1);
+    selectTab(hash);
+    d3.select(this).classed("active",true);
+  });
+
+d3.selectAll(".tabcontrol").on("click",function(){
+  d3.event.preventDefault();
+  var hash = this.href.substring(this.href.indexOf('#')+1);
+  selectTab(hash);
+  d3.select(this).classed("active",true);
+});
+
+d3.select(".nav-item.meps")
+  .classed("ml-auto mr-3",true)
+  .select(".nav-link")
+  .html('<span class="nb-meps-targeted nb badge badge-primary"></span>MEPs');
+
+d3.select(".nav-item.about")
+  .select(".nav-link")
+  .html('<svg><use href="#logo" /></svg>');
+
+function filterResult(r){
+  graphs.results.filter(null);
+  graphs.results.filter(r);
+  dc.redrawAll()
+};
+
+d3.selectAll(".for").on("click",function(d){filterResult("for")});
+d3.selectAll(".against").on("click",function(d){filterResult("against")});
+//selectTab("country");
+selectTab("intro");
+
+    </script>
+
+    <script>
+      'use strict';
+
+var graphs = {};
+
+var voteid= Number(urlParam("v") || 93602);
+
+download(voteid,draw);
+
+function draw(){
+  if ('parentIFrame' in window) window.parentIFrame.sendMessage(config);
+  if (config.goal && config.goal == "against") {
+    results[1] = results[0];
+    results[0] = config.goal;
+    d3.select("#icon-against path").attr("fill","#27ae60");
+    d3.select("#icon-for path").attr("fill","#c0392b");
+  }
+
+  resultscolor= d3.scaleOrdinal()
+    .domain(results)
+    .range("#27ae60,#c0392b,#2980b9,#95a5a6,#34495e,#bdc3c7".split(","));
+
+  drawIntro();
+
+  drawNumbers(graphs);
+  graphs.country=drawCountry("#country graph");
+  graphs.barcountry=drawGraphCountry("#country footer");
+  graphs.party=drawParty("#party graph");
+  graphs.results=drawResult("#position graph");
+  graphs.results.filter([["for","against","abstention"]])
+
+  dc.renderAll();
+}
+
+function drawNumbers(graphs) {
+  var dim = ndx.dimension(function(d) {
+    return true;
+  });
+
+  var reducer = reductio();
+  reducer.value("nb").count(true);
+  results.forEach(function(r){
+    reducer.value(r).count(true).filter(function(d){ return d.vote == r});
+  });
+
+  var group = dim.group();
+  reducer(group);
+
+
+  graphs.total = dc.numberDisplay(".nbmep .nb")
+    .group(group)
+    .valueAccessor(function(d) {return d.value.nb.count})
+    .formatNumber(d3.format("d"))
+    .on("renderlet.linked",function(){
+      var d=group.top(1)[0].value.nb.count;
+      d3.select(".nbmep button").classed("disabled",d == config.nb);
+      d3.select(".nbmep .total").classed("d-none",d == config.nb);
+      drawMep();
+    });
+  d3.select(".resetall").on("click",function(){
+    dc.filterAll();
+    dc.renderAll();
+  });
+
+  graphs.total = dc.numberDisplay(".meps .nb-meps-targeted")
+    .group(group)
+    .valueAccessor(function(d) {return d.value.for.count+d.value.against.count+d.value.abstention.count})
+    .formatNumber(d3.format("d"))
+    .on("renderlet",function(d){
+      d3.selectAll(".nb-meps-targeted").text(graphs.total.data());
+    })
+}
+
+function drawResult(dom) {
+  var graph = dc.pieChart(dom).innerRadius(40) //.radius(70);
+  var dim = ndx.dimension(function(d) {
+    return d.vote || "?";
+  });
+  var group = dim.group().reduceSum(function(d) {
+    return 1;
+  });
+  graph
+    .width(0)
+    .height(0)
+    .ordering(function(d){ return results.indexOf(d.key) >=0 ?  results.indexOf(d.key) : 1984})
+    .colors(resultscolor)
+  /*      .colorCalculator(function(d, i) {
+        return eu_groups[d.key];
+    //return color(d.value.score/d.value.count);
+      })
+   */
+      .on("filtered", function(c){
+      })
+    .dimension(dim)
+    .group(group)
+    .externalLabels(-26)
+    .minAngleForLabel(0.2);
+  //        .legend(dc.legend().horizontal(true).autoItemWidth(true).y(200));
+  return graph;
+}
+
+
+function drawIntro(){
+  var voted=config.for+config.against+config.abstention;
+  d3.select("#intro .date").text(d3.timeFormat("%e %B %Y at %H:%M")(config.date));
+  d3.select("#intro .name").text(config.name);
+  d3.select("#intro .desc").text(config.desc);
+  d3.select("#intro .nb").text(voted);
+  d3.select("#intro .percentwin").text(d3.format(".0%")(config[config.win]/voted));
+  d3.select("#intro .result").html(iconify(config.win));
+  d3.select("#intro .goal").html(iconify(config.goal));
+  if (config.win == config.goal) {
+    d3.select("#intro .next-win").classed("d-none",null)
+  } else {
+    d3.select("#intro .next-lost").classed("d-none",null)
+  }
+
+  d3.select("#about").html(d3.select("#about").html().replace("{{id}}",config.id));
+
+}
+
+function drawMep() {
+  var meps=ndx.allFiltered();
+  var i=Math.floor(Math.random() * meps.length);
+  doT.templateSettings.varname = "d";
+  var meptpl = doT.template(d3.select("#mep-template").html());
+  var html=meptpl(meps[i]);
+  d3.select("#mep-card")
+    .classed("flip",false)
+    .each(function(){this.offsetWidth})
+    .html(html)
+    .classed("flip",true);
+  d3.selectAll(".next-mep")
+    .on("click",function(){drawMep();
+      selectTab("meps");
+    })
+
+  d3.selectAll(".tweet")
+    .on("click",function(){
+      var d=meps[i];
+      var url= "https://mepwatch.eu/widget.html?epid="+d.epid;
+      var tpl = ".@mep , this is what you voted {url}, do you want to comment? #mepwatch";
+      if (config.tweets && config.tweets[d.vote]) 
+        tpl=config.tweets[d.vote];
+      tpl=tpl.replace("@mep","@"+d.twitter).replace("{url}",url);
+
+      tweet(tpl);
+    })
+
+  function tweet(text){
+    var url="https://twitter.com/intent/tweet?text="+encodeURIComponent(text);
+    //        url = url.replace(/#/g, '%23');
+    var win=window.open(url,'_blank');
+  };
+
+}
+
+function drawParty (dom){
+  var dim = ndx.dimension(function(d){return d.party});
+  var group = dim.group().reduceSum(function(d) {return 1;});
+
+
+  var graph=dc.selectMenu(dom)
+    .dimension(dim)
+    .controlsUseVisibility(true)
+    .promptText('Select a party')
+    .group(remove_empty_bins(group))
+    .order(
+      function(a,b){
+        return a.value < b.value ? 1 : b.value < a.value ? -1 : 0;
+      })
+    .filterDisplayed(function () {return true;})
+    .on("filtered",function(d){
+      selectTab("meps"); 
+    })
+    .on("renderlet",function(graph){
+      d3.select(graph.anchor() +" select")
+        .classed("form-control form-control-lg",true)
+    })
+
+  return graph;
+
+  function remove_empty_bins(source_group) {
+    return {
+      all:function () {
+        source_group.top(Infinity);
+        var g=source_group.all().filter(function(d) {
+          return d.value !== 0; 
+        });
+        return g;
+      }
+    };
+  }
+
+};
+function drawGraphCountry(dom) {
+  var dim = ndx.dimension(function(d) {return d.country;});
+  var reducer = reductio();
+  var res=results.slice();
+  reducer.value("nb").count(true);
+  res.forEach(function(r){
+    reducer.value(r).count(true).filter(function(d){ return d.vote == r});
+  });
+
+  var group = dim.group();
+  reducer(group);
+
+  var graph = dc.barChart(dom);
+  graph.relative=true;
+
+  function getValue(result){
+    if (graph.relative)
+      return function(d){return d.value[result].count/d.value.nb.count*100; }
+    return function(d){
+      return d.value[result].count; }
+  }
+
+  graph
+    .width(0)
+    .height(186)
+    .outerPadding(0)
+    .gap(0)
+    .margins({
+      top: 0,
+      right: 10,
+      bottom: 20,
+      left: 30
+    })
+    .ordering(function(d){ 
+      if (config.goal && config.goal == "against")
+        return -d.value.against.count/d.value.nb.count;
+
+      return -d.value.for.count/d.value.nb.count
+    })
+    .label(function(d){return countries[d.country]})
+    .x(d3.scaleBand())
+    .xUnits(dc.units.ordinal)
+    .colors(resultscolor)
+    .brushOn(false)
+    .addFilterHandler(function(filters, filter) {return [filter];})
+    .controlsUseVisibility(true)
+    .title(function(d) {
+      if (this.layer == 0) return "";
+      return countries[d.key] +  " voting '"+ this.layer + "': " + d.value[this.layer].count +" ("+formatPercent(d.value[this.layer].count/d.value.nb.count)+")";
+    })
+
+    .elasticY(true)
+    .yAxisLabel("%MEPs")
+    .dimension(dim)
+  //        .group(group, "for", getValue("for")) bug: doesn't switch properly between absolute and relative
+    .group(group, "", 0)
+    .on("filtered",function(){
+      selectTab("party");
+    })
+    .on("renderlet", function(c) {
+      rotateBarChartLabels();
+      if (!d3.select("#country .axis.x use").empty()) return;
+      d3.select("#country .axis.x").selectAll(".tick")
+        .append("use").attr( "href",function(d){
+          return '#flag-'+d}).attr("width",24).attr("height",16)
+        .attr("transform","translate(-10,2)");
+    });
+  graph.xAxis().ticks(3);
+  //      res.shift();
+  res.forEach(function(r){
+    graph.stack(group, r, function(d){
+      return getValue(r)(d);
+    });
+  });
+
+  toggleMode ();
+
+  return graph;
+
+  function rotateBarChartLabels() {
+    d3.selectAll(dom + ' .axis.x line').remove();
+    d3.selectAll(dom + ' .axis.x text')
+      .text(function(d){return countries[d];})
+      .style("text-anchor", "start")
+      .attr("transform", function(d) {
+        return "rotate(-90, -4, 9), translate(10,0) ";
+      });
+  }
+
+  function toggleMode (){
+    d3.selectAll("#country h5 button").on("click",function(){
+      var b=d3.select(this);
+      if (!b.classed("active")) return;
+      graph.relative= b.classed("btn-relative");
+      b.classed("active",false);
+      d3.select("#country .btn-"+(graph.relative?"absolute":"relative")).classed("active",true);
+      graph.yAxisLabel((graph.relative?"%":"#")+"MEPs")
+      graph.redraw();
+    });
+  }
+}
+
+
+function drawCountry (dom){
+  var dim = ndx.dimension(function(d){return d.country});
+  var group = dim.group().reduceSum(function(d) {return 1;});
+
+  var graph=dc.selectMenu(dom)
+    .dimension(dim)
+    .group(group)
+    .title(function(d){return countries[d.key]})
+    .controlsUseVisibility(true)
+    .promptText('Your country?')
+    .filterDisplayed(function () {return true;})
+    .on("filtered",function(d){
+      selectTab("party"); 
+    })
+    .on("renderlet",function(graph){
+      d3.select(graph.anchor() +" select")
+        .classed("form-control form-control-lg",true)
+    })
+
+  return graph;
+
+  var graph=dc.template(dom)
+    .width(0)
+    .height(0)
+    .dimension(dim)
+    .group(group)
+    .itemTag("button")
+    .callItem(function(selection){
+      selection
+        .classed("list-group-item list-group-item-action",true)
+    })
+    .html (function(d) { return countries[d.key]+"<span class='badge float-right'>"+d.value+" MEPs</span>"})
+    .on("renderlet",function(d){
+    })
+
+
+  return graph;
+
+}
+
+    </script>
+
+
+    <svg class="d-none">
+      <symbol id="logo" viewBox="0 0 24 24"><path d="M6 13c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0 4c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0-8c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm-3 .5c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zM6 5c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm15 5.5c.28 0 .5-.22.5-.5s-.22-.5-.5-.5-.5.22-.5.5.22.5.5.5zM14 7c.55 0 1-.45 1-1s-.45-1-1-1-1 .45-1 1 .45 1 1 1zm0-3.5c.28 0 .5-.22.5-.5s-.22-.5-.5-.5-.5.22-.5.5.22.5.5.5zm-11 10c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zm7 7c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zm0-17c.28 0 .5-.22.5-.5s-.22-.5-.5-.5-.5.22-.5.5.22.5.5.5zM10 7c.55 0 1-.45 1-1s-.45-1-1-1-1 .45-1 1 .45 1 1 1zm0 5.5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm8 .5c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0 4c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0-8c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0-4c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm3 8.5c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zM14 17c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0 3.5c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zm-4-12c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm0 8.5c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm4-4.5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm0-4c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5z"/></symbol>
+      <symbol id="icon-twitter" viewBox="0 0 24 24">
+      <path fill="#fff" bfill="#1DA1F2" d="M23.954 4.569c-.885.389-1.83.654-2.825.775 1.014-.611 1.794-1.574 2.163-2.723-.951.555-2.005.959-3.127 1.184-.896-.959-2.173-1.559-3.591-1.559-2.717 0-4.92 2.203-4.92 4.917 0 .39.045.765.127 1.124C7.691 8.094 4.066 6.13 1.64 3.161c-.427.722-.666 1.561-.666 2.475 0 1.71.87 3.213 2.188 4.096-.807-.026-1.566-.248-2.228-.616v.061c0 2.385 1.693 4.374 3.946 4.827-.413.111-.849.171-1.296.171-.314 0-.615-.03-.916-.086.631 1.953 2.445 3.377 4.604 3.417-1.68 1.319-3.809 2.105-6.102 2.105-.39 0-.779-.023-1.17-.067 2.189 1.394 4.768 2.209 7.557 2.209 9.054 0 13.999-7.496 13.999-13.986 0-.209 0-.42-.015-.63.961-.689 1.8-1.56 2.46-2.548l-.047-.02z"/>
+
+      <symbol id="icon-against" viewBox="0 0 24 24">
+      <path fill="#c0392b" d="M19,15H23V3H19M15,3H6C5.17,3 4.46,3.5 4.16,4.22L1.14,11.27C1.05,11.5 1,11.74 1,12V14A2,2 0 0,0 3,16H9.31L8.36,20.57C8.34,20.67 8.33,20.77 8.33,20.88C8.33,21.3 8.5,21.67 8.77,21.94L9.83,23L16.41,16.41C16.78,16.05 17,15.55 17,15V5C17,3.89 16.1,3 15,3Z" />
+      </symbol>
+      <symbol id="icon-for" viewBox="0 0 24 24">
+      <path fill="#27ae60" d="M23,10C23,8.89 22.1,8 21,8H14.68L15.64,3.43C15.66,3.33 15.67,3.22 15.67,3.11C15.67,2.7 15.5,2.32 15.23,2.05L14.17,1L7.59,7.58C7.22,7.95 7,8.45 7,9V19A2,2 0 0,0 9,21H18C18.83,21 19.54,20.5 19.84,19.78L22.86,12.73C22.95,12.5 23,12.26 23,12V10M1,21H5V9H1V21Z" />
+      </symbol>
+      <symbol id="icon-abstention" viewBox="0 0 24 24">
+      <path transform="rotate(240 12 12)" fill="#2980b9" d="M23,10C23,8.89 22.1,8 21,8H14.68L15.64,3.43C15.66,3.33 15.67,3.22 15.67,3.11C15.67,2.7 15.5,2.32 15.23,2.05L14.17,1L7.59,7.58C7.22,7.95 7,8.45 7,9V19A2,2 0 0,0 9,21H18C18.83,21 19.54,20.5 19.84,19.78L22.86,12.73C22.95,12.5 23,12.26 23,12V10M1,21H5V9H1V21Z" />
+      </symbol>
+      <symbol id="icon-rebel" viewBox="0 0 24 24"><path d="M23 5.5V20c0 2.2-1.8 4-4 4h-7.3c-1.08 0-2.1-.43-2.85-1.19L1 14.83s1.26-1.23 1.3-1.25c.22-.19.49-.29.79-.29.22 0 .42.06.6.16.04.01 4.31 2.46 4.31 2.46V4c0-.83.67-1.5 1.5-1.5S11 3.17 11 4v7h1V1.5c0-.83.67-1.5 1.5-1.5S15 .67 15 1.5V11h1V2.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5V11h1V5.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5z"/></symbol> 
+      <symbol id="logo" viewBox="0 0 24 24"><path d="M6 13c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0 4c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0-8c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm-3 .5c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zM6 5c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm15 5.5c.28 0 .5-.22.5-.5s-.22-.5-.5-.5-.5.22-.5.5.22.5.5.5zM14 7c.55 0 1-.45 1-1s-.45-1-1-1-1 .45-1 1 .45 1 1 1zm0-3.5c.28 0 .5-.22.5-.5s-.22-.5-.5-.5-.5.22-.5.5.22.5.5.5zm-11 10c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zm7 7c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zm0-17c.28 0 .5-.22.5-.5s-.22-.5-.5-.5-.5.22-.5.5.22.5.5.5zM10 7c.55 0 1-.45 1-1s-.45-1-1-1-1 .45-1 1 .45 1 1 1zm0 5.5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm8 .5c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0 4c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0-8c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0-4c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm3 8.5c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zM14 17c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0 3.5c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zm-4-12c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm0 8.5c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm4-4.5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm0-4c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5z"/></symbol>
+
+    </svg>
+  </body>
+</html>

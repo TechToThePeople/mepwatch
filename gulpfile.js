@@ -72,9 +72,10 @@ gulp.task('css',function(){
     .pipe(gulp.dest('./dist/css/'));
 });
 
-gulp.task('js',['js-copy'],function(){
+gulp.task('js',['js-copy','widget'],function(){
   return gulp
     .src([
+      'node_modules/iframe-resizer/js/iframeResizer.contentWindow.js',
       'node_modules/crossfilter2/crossfilter.js',
       'node_modules/reductio/reductio.js',
       'node_modules/d3/dist/d3.js',
@@ -85,7 +86,22 @@ gulp.task('js',['js-copy'],function(){
     ], { base: 'node_modules' })
     .pipe(sourcemaps.init())
     .pipe(concat('dcbundle.js'))
-//    .pipe(uglify())
+    .pipe(uglify())
+    .pipe(sourcemaps.write('.'))
+    .pipe(gulp.dest('./dist/js/'))
+    .pipe(zip({gzipOptions: { level: 9 } }))
+    .pipe(gulp.dest('./dist/js/'));
+});
+
+gulp.task('widget',function(){
+  return gulp
+    .src([
+      'node_modules/iframe-resizer/js/iframeResizer.js'
+      ,'src/js/widget.js'
+    ], { base: 'node_modules' })
+    .pipe(sourcemaps.init())
+    .pipe(concat('widget.js'))
+    .pipe(uglify())
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('./dist/js/'))
     .pipe(zip({gzipOptions: { level: 9 } }))

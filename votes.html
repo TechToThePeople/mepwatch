@@ -9,6 +9,46 @@
     <link href="dist/css/main.css" rel="stylesheet">
 
 <style>
+    .icon
+    {
+      display: inline-block;
+      width: 25px;
+      height: 20px;
+      text-indent: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      background-size: cover;
+      background-position:center;
+    }
+
+.navbar-brand svg {
+  width:2em;
+  fill:white;
+  animation: pulse 3s 9s;
+}
+
+@keyframes pulse {
+  0% {
+    fill: #9c27b0;
+  }
+  50% {
+    fill: white;
+  }
+  100% {
+    fill: #9c27b0;
+  }
+}
+  .heatmap g.axis text {transform: translateX(0.7em)}
+  tr.dc-table-row {
+    cursor:pointer;
+  }
+  tr.dc-table-row:hover {
+    transition: background-color 1s; 
+    transition: color 1s; 
+    background-color:#9c27b0;
+    color:white;
+  }
+
 </style>
   </head>
   <body>
@@ -40,6 +80,7 @@
 
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
             <svg class="icon"><use href="#menu" /></svg>
+
           </button>
         </div>
       </div>
@@ -49,33 +90,55 @@
 
       <section class="jumbotron text-center">
         <div class="container">
-          <h1 class="jumbotron-heading">About</h1>
-          <p>
-          Score your MEP on the issues you care about: closing the knowledge gap and promoting fact-based CSO campaigning for the European elections.
-          </p>
+          <h1 class="jumbotron-heading">Select the votes you want to analyse</h1>
         </div>
       </section>
-     <div class="py-5">
+     <div class="bg-info">
+        <div class="container-fluid">
+
+          <div class="row">
+            <div class="col-md-3">
+          <p class="lead text-muted"><form id="search"></form></p>
+            <div class="col-md-3" id="report">
+                  <div class="graph"></div>
+            </div>
+          </div>
+        </div>
+     </div>
+     <div class="py-5 bg-light">
         <div class="container-fluid">
 
           <div class="row">
             <div class="col-md-12">
-              PlaceHolder
-              <p>With the European elections approaching fast, CSOs across Europe are preparing their campaigns to encourage Europeans to vote.</p>
-<p>However, many CSOs have struggles with finding the right data to support fact-based political campaigning. Gathering the roll calls and presenting the voting patterns of MEPs requires more capacity and know-how than that routinely held by NGOs across Europe. </p>
-<p>That&rsquo;s even more true for regular citizens -- finding out who is the person representing my interests in the EP, and how that person tends to vote on an issue that I care about, presents too many barriers and challenges for engagement. This leads to a feeling of disconnect - and most likely contributes to the low voter turnout across the EU for the European elections. </p>
-<p><strong>The MEPwatch.eu tool is going to close that knowledge gap, and build a solid foundation for fact-based campaigning for CSOs around the upcoming European elections. </strong></p>
-<p>By engaging with a simple user interface, and choosing a small number of relevant votes with roll calls, CSOs will be able to generate &ldquo;scorecards&rdquo; to assess the voting behaviour of the politicians currently sitting in the European Parliament, many of whom will be running for reelection in the 2019 voting.</p>
-<p>The tool will make it possible for CSOs to present to citizens in any EU country the information most relevant in their area, based on a voter&rsquo;s postal code. It will help bridge the gap between citizens and their representatives in the European Parliament, and ultimately help improve the quality of the European democracy. The app will address and remove the barriers using opendata:</p>
-<ul>
-<li>Finding the relevant votes and aggregating them to build the scorecards is time consuming and needed expert resources, unaccessible for most CSOs. We will provide all the roll calls and let the CSOs easily compose the relevant scorecards. </li>
-<li>Citizens often have difficulty finding out who is their representative in the EP. By using national geographic opendata and data on postal codes, we will make it much simpler to find your MEP, how they voted on an issue you care about, and how their voting behaviour compares to the other representatives at the Parliament.</li>
-<li>By using data about the MEPs&rsquo; social media accounts, we will provide a simple way for EU citizens to directly engage with their representatives on issues they care about.</li>
-</ul>
-<p>Some European NGOs have already expressed their interest in beta-testing the MEPwatch.eu tool for the purpose of launching election-related campaigns: on the issue of the copyright reform, and on the revision of the ECI regulation. </p>
-<p>To make sure that solid data is available to support fact-based campaigning, we are going to provide the software under an open source license.</p>
-<p>According to the Eurobarometer 373, EU citizen think that NGOs can influence EU-level decision making less than that at the national or local level. We think that this is partly because of the difficulty faced by CSOs in the EP elections. We want to change that.</p>
-<p>Beside providing a simple to use tool for both citizen and NGOs, the challenge of this project is to aggregate the 28 national datasets on postcodes and geodata/constituencies. We might have to supplement the data available at the European data portal, e.g. with openstreetmap.</p>
+              <div class="card box-shadow" id="date">
+                <div class="card-body">
+                  <h5 class="card-title text-muted text-right">Sitting days</h5>
+                  <p class="card-text d-none">
+                  All the plenary sessions with at least one rollcall</p>
+                  <div class="graph"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+          <div class="row">
+            <div class="col-md-12">
+            <table class="table table-stripped">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Ref</th>
+                  <th>Vote</th>
+                  <th>For</th>
+                  <th>Against</th>
+                  <th>Abstain</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
             </div>
           </div>
     </main>
@@ -144,7 +207,7 @@
 
   function draw(){
     graphs.date=drawDate('#date div.graph');
-    graphs.report=drawReport('#report div.graph');
+//    graphs.report=drawReport('#report div.graph');
     graphs.table=drawTable('table.table');
     graphs.search=drawSearch("form#search");
 
@@ -210,6 +273,15 @@
     var color = d3.scaleLinear()
             .domain([0,1, 300])
             .range(["white","lightgrey","#7b2253"]);
+    var tip = d3.tip()
+    .attr('class', 'd3-tip wide-tip')
+    .offset([-10, 0])
+    .html(function (d) {
+      return "<h5>"+dayFormat(d.key)+"</h5><div>Rollcalls"
+        + "<span class='p-2 badge badge-primary ml-2'>"
+        +d.value 
+        + "</span></div>";
+    });
     var graph=dc.heatMap(dom)
      .dimension(dim)
      .group(group)
@@ -226,26 +298,21 @@
         }
         return "";
      })
-     .title(function(d){return dayFormat(d.key)+ " "+d.value+ " rollcalls"})
-     .label(function(d){return dayFormat(d.key) + " "+d.value+ " rollcalls"})
+//     .title(function(d){return dayFormat(d.key)+ " "+d.value+ " rollcalls"})
+//     .label(function(d){return dayFormat(d.key) + " "+d.value+ " rollcalls"})
      .keyAccessor(function(d) { 
        return 1000*d.key.getFullYear()+week(d.key);
-       var r=d.key;
-       r.setDate(r.getDate() + d.key.getDay());
-       console.log(r);
-       return r;
      })
      .valueAccessor(function(d) { return +d.key.getDay(); })
      .colorAccessor(function(d) { return +d.value; })
      .colors(color)
-    .on ("renderlet.collabel",function (chart) {
-      return;
-   // rotate x-axis labels
-      chart.selectAll('g.cols text')
-      .attr("style","text-anchor:left;")
-     //.attr('transform', 'translate(-10,10) rotate(215)');
+    
+    graph.on('pretransition', function(chart) {
+      graph.selectAll('.heat-box')
+      .call(tip)
+      .on('mouseover.tip', tip.show)
+      .on('mouseout.tip', tip.hide);
     });
-
 
     return graph;
   }
@@ -304,11 +371,11 @@
         }
         ,function(d){ 
           if (docs[d.report])
-            return "<div class='rapporteur'>" +docs[d.report].rapporteur +"</div><a href='"+ docs[d.report].doc+"'>"+ d.report +"</a>";
+            return "<div class='rapporteur'>" +docs[d.report].rapporteur +"</div>&nbsp;<a href='"+ docs[d.report].doc+"'>"+ d.report +"</a>";
           return d.report;
         }
         ,function(d){ 
-          return docs[d.report]? "<a href='"+docs[d.report].oeil+"'>"+docs[d.report].title +"</a>"+d.desc : d.desc;}
+          return docs[d.report]? "<a href='"+docs[d.report].oeil+"'>"+docs[d.report].title +"</a>&nbsp;"+d.desc : d.desc;}
         ,function(d){ return d.for;}
         ,function(d){ return d.against;}
         ,function(d){ return d.abstention;}

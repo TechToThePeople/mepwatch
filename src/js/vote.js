@@ -132,8 +132,9 @@ function download(voteid, callback) {
     });
 }
 
-d3.svg("img/eu-flags.svg").then(function(xml) {
-  document.body.appendChild(xml.documentElement);
+d3.text("img/eu-flags.svg").then(function(xml) {
+  d3.select("body").append("svg").html(xml).classed("d-none",true);
+//  document.body.appendChild(xml.documentElement);
 });
 
 function dl_details(callback) {

@@ -24,8 +24,10 @@
     "gulp-svgmin": "^1.2.4",
     "gulp-svgstore": "^6.1.1",
     "gulp-uglify": "^3.0.0",
+    "iframe-resizer": "^3.6.2",
     "jquery": "^3.3.1",
     "popper.js": "^1.14.3",
+    "postmate": "^1.4.2",
     "reductio": "^0.6.3"
   },
   "dependencies": {
@@ -39,6 +41,7 @@
     "gulp-google-webfonts": "^2.0.0",
     "gulp-gzip": "^1.4.2",
     "lozad": "^1.6.0",
+    "post-robot": "^8.0.29",
     "stream-chain": "^2.0.3",
     "stream-json": "^1.1.1",
     "stream-to-promise": "^2.2.0",
