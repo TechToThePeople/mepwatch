@@ -5,6 +5,8 @@
     <meta charset="utf-8">
     <meta content="initial-scale=1, shrink-to-fit=no, width=device-width" name="viewport">
 
+    <script src="node_modules/d3-geo/dist/d3-geo.min.js"></script>
+    <script src="node_modules/topojson/dist/topojson.js"></script>
     <!-- CSS -->
     <link href="dist/css/main.css" rel="stylesheet">
 
@@ -143,10 +145,15 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
 
     <main role="main">
 
-      <section class="jumbotron text-center">
+      <section class="jumbotron">
         <div class="container">
+          <div class="col">
           <h2 class="jumbotron-heading">Loading...</h2>
           <h3 class="jumbotron-heading"></h3>
+          </div>
+          <div class="col" id="map">
+            <div class="graph">AAA</div>
+          </div>
         </div>
       </section>
      <div class="py-5 bg-info">
@@ -280,6 +287,7 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
 
 //    graphs.date=drawDate('#date div.graph');
 //    graphs.report=drawReport('#report div.graph');
+    graphs.map=drawMap('#map div.graph');
     graphs.country=drawCountry('#country div.graph');
 //    graphs.party=drawParty('#voidparty div.graph');
     guessPartyLine("partyline");
@@ -289,7 +297,7 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
     graphs.party=drawBarVotes('#party div.graph',function(d){ return [d.country,d.party]});
     graphs.party
       .elasticX(true)
-      .keyAccessor(function(d){console.log(d.key);return d.key[1]})
+      .keyAccessor(function(d){return d.key[1]})
     graphs.party.relative=false;
     
     graphs.party.margins({
@@ -642,6 +650,87 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
       }
     }
 
+function drawMap(dom){
+  var europe = null;
+
+  function drawMap (dom) {
+    var width=450;
+    var dim = ndx.dimension(function(d) {return d.country.toUpperCase();});
+    var reducer = reductio();
+    reducer.value("nb").count(true);
+    results.forEach(function(r){
+      reducer.value(r).count(true).filter(function(d){ return d.vote == r});
+    });
+
+    var group = dim.group();
+    reducer(group);
+     var _colors = function (value) {
+         return "#F3F3F3";
+     }
+       
+
+    var projection = d3.geoEquirectangular()
+      .center([37,47]) //theorically, 50°7′2.23″N 9°14′51.97″E but this works
+      .scale(width*1.3);
+    var geojson=topojson.feature(europe,europe.objects.countries);
+    //fix iso countries
+    geojson.features.forEach(function (d) {
+      if (d.id == "GB")
+        d.id = "UK";
+      if (d.id == "GR")
+        d.id = "EL";
+    });
+   
+    var map = dc.geoChoroplethChart(dom)
+    .height(width)
+    .width(width)
+    .dimension(dim)
+    .projection(projection)
+    .colorAccessor(function(d){
+      console.log(d);
+      return d;
+    })
+    .group(group)
+    .colors(_colors)
+    .overlayGeoJson(geojson.features,"countries",function(d){
+      console.log(d);
+       return d.id;
+    })
+    .title(function (v) {
+      console.log(d);
+      var d=v.value;
+      return "aaa"+v.key;
+      if (!d || !d.threshold) {
+        return v.key;// + " (not in the EU)";
+      }
+      return d.iso + " "+formatPercent(d.total / d.threshold)+ "\n- signatures: " + d.total + "\n- threshold: " + d.threshold;
+    });
+      
+      
+    map.on("renderlet.a",function (chart){
+      return;
+      chart.selectAll(".countries").on("mouseover", function (d) {
+        //console.log(d3.select(this));
+        $("#explanation").html ("<h3>"+d.properties.name+"</h3>");
+      });
+    
+      chart.selectAll(".countries").on("click", function (d) {
+                      //$('.bar.'+'1').addClass('selectedbar');
+                      //barchart.filterAll();
+                      //barchart.redraw();
+      })
+         }); 
+
+  };
+
+  console.log("start map");
+  d3.json("data/europe50b.json").
+    then(function(json) {
+    europe=json;
+    drawMap(dom);
+  });
+}
+
     function drawCountry(dom) {
       var dim = ndx.dimension(function(d) {return d.country;});
       var reducer = reductio();
@@ -913,7 +1002,6 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
         return "";
       })
       .on("renderlet.t",function(){
-        console.log("render");
         d3.selectAll(".dc-grid-item").attr("class","grid mep");
         d3.selectAll(".dc-grid-top").attr("class","row");
       })

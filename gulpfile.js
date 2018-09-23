@@ -72,6 +72,24 @@ gulp.task('css',function(){
     .pipe(gulp.dest('./dist/css/'));
 });
 
+gulp.task('reveal', function() {
+  // in node_modules git clone https://github.com/hakimel/reveal.js.git to be tested with npm
+  //
+  return gulp
+  .src(["node_modules/reveal.js/lib/js/head.min.js",
+    "node_modules/reveal.js/js/reveal.js",
+    "node_modules/reveal.js/plugin/markdown/marked.js",
+    "node_modules/reveal.js/plugin/markdown/markdown.js"
+  ], { base: 'node_modules' })
+    .pipe(sourcemaps.init())
+    .pipe(concat('reveal.js'))
+    .pipe(uglify())
+    .pipe(sourcemaps.write('.'))
+    .pipe(gulp.dest('./src/js/'))
+    .pipe(zip({gzipOptions: { level: 9 } }))
+    .pipe(gulp.dest('./src/js/'));
+});
+
 gulp.task('js',['js-copy','widget'],function(){
   return gulp
     .src([

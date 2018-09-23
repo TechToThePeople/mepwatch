@@ -21,7 +21,7 @@ if (!String.prototype.startsWith) {
 
 
   var defaults = {
-    url: "http://localhost/mepwatch",
+    url: "https://mepwatch.eu/",
     cssClass: "mepwatch",
     params: "v,action".split(",")
   };
@@ -41,7 +41,7 @@ if (!String.prototype.startsWith) {
     var iframe = document.createElement('iframe');
     iframe.id = 'mepwatch-iframe';
     var vote=target.dataset.vote || urlParam("v");
-    iframe.src = 'widget-act.html?v='+vote;
+    iframe.src = defaults.url + 'widget-act.html?v='+vote;
     iframe.scrolling= 'no';
     target.appendChild(iframe);
 
