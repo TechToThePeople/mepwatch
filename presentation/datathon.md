@@ -26,12 +26,12 @@ analyse votes and generate MEP scorecards -> inform and engage voters -> improve
 <div class="row">
 <div class="col">
 <h3>I'm a campaigner</h3>
-We help you find reliable and legible voting data to support your campaign, generate simple of complex scorecards for MEPs, and engage the citizens in your campaign.
+We help you find reliable and legible voting data to support your campaign, generate simple or complex scorecards for MEPs, and engage citizens in your campaign.
 </div>
 <div class="col">
 
 <h3>I'm a citizen</h3>
-We make it easy to find who represents you in the European Parliament, score them based on solid voting data instead of their electoral promises, and connect with your MEP ahead of the elections.
+We make it easy to find who represents you, score the MEP based on solid voting data instead of electoral promises, and connect with your MEP ahead of the election.
 </div>
 </div>
 
@@ -51,7 +51,7 @@ select votes --> analyse votes and generate the app --> customise information, c
 ---
 # The app generator
 [embed iframe]
-[clicky click through the steps to generating the widget]
+
 
 ---
 # The scorecard app
@@ -67,13 +67,13 @@ be inspired --> select the country where you vote --> filter further --> contact
 ---
 # The stages
 First: single vote campaigns build engagement and pressure
+<br>
 Second: learning and tweaking
+<br>
 Third: complex multi-vote scorecards inform and engage citizens in pre-election campaigning
-
-[blah blah we consulted with stakeholders and users, judged appetite and needs now and in the future, adopted a testing approach]
 
 ---
 # Thank you!
 ### Questions?
-get in touch: xavier@ etc
+get in touch: xavier@tttp.eu
 
