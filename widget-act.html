@@ -407,8 +407,9 @@ function drawResult(dom) {
     //return color(d.value.score/d.value.count);
       })
    */
-      .on("filtered", function(c){
-      })
+    .on("filtered",function(d){
+      selectTab("meps"); 
+    })
     .dimension(dim)
     .group(group)
     .externalLabels(-26)
