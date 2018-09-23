@@ -116,7 +116,12 @@
               </div>
               <h3>What can you do now?</h3>
               <div class="card-text desc next-win d-none">
-                We won! Let's celebrate and message the MEPs that voted the right thing, and put pressure on the ones that didn't. It's important to keep the ball rolling, it's a good step in the right direction, but the journey will be long! <br>You can <a href="#meps" class="tabcontrol">find the MEPs from your country</a> and tweet or email them. This site makes it easy!
+                <b>We won!</b> The majority of the MEPs voted in line with our position. 
+Take action - <a href="#meps" class="tabcontrol">find your representatives</a> and: 
+<ul>
+<li> thank those who voted right and encourage them to keep standing up for democracy.</li>
+<li> put pressure on those who voted against the measures to let them know they are being watched.</li>
+</ul>
               </div>
               <div class="card-text desc next-lost d-none">
                 We lost that battle, but we will have more opportunties! <br>Right now, you can help keeping the pressure and tweet, call or emails them. This site makes it easy! We randomly pick <a href="#meps" class="tabcontrol">one MEP</a> out of <span class="nb-meps-targeted"></span> so you can send him or her a message.
@@ -131,7 +136,13 @@
       </div>
       <div class="row slide" id="about">
         <div class="col"><div class="p-3 transparent">
-            <p >finding out who is the person representing my interests in the EP, and how that person tends to vote on an issue that I care about, presents too many barriers and challenges for engagement. This leads to a feeling of disconnect - and most likely contributes to the low voter turnout across the EU for the European elections.
+            <h5>Are you a campaigner?</h5>
+            <p >
+            We help you find reliable and legible voting data to support your campaign, generate simple of complex scorecards for MEPs, and engage the citizens in your campaign. <a href="votes.html">Here's how</a>
+            </p>
+            <h5>Are you a voter?</h5>
+            <p >
+            We make it easy to find who represents you in the European Parliament, score them based on solid voting data for issues that you care about (instead of their electoral promises), and connect with your MEP ahead of the elections.
             </p>
             <p>
             Do you have a site? You can embed this app into your website by copying these two lines:
@@ -149,7 +160,7 @@
             <div class="card-body">
               <h1 class="text-center acard-title">Where do you vote?</h1>
               <div class="card-text">
-                Communicate directly with the MEPs that represent you increases your impact!
+                Communicating directly with the MEPs who represent you increases your impact.
                 <br>
                 <graph />
               </div>
@@ -162,9 +173,9 @@
         <div class="col-12">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Want to focus on a party?</h5>
+              <h5 class="card-title">Focus on their political party.</h5>
               <div class="card-text">
-                <p>                        You have <span class="nb-meps-targeted"></span> MEPs targeted. Yor can <a href="#meps" class="tabcontrol">take action</a> or filter more by party</p>
+                <p>You can target <span class="nb-meps-targeted"></span> MEPs and <a href="#meps" class="tabcontrol">take action</a>, our you can filter more by political party</p>
                 <graph>
               </div>
             </div>
@@ -188,7 +199,10 @@
         <div class="col">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Randomly selected MEP among <span class="nb-meps-targeted"</span></h5>
+              <h5 class="card-title">
+                Here's one of the <span class="nb-meps-targeted"></span> MEPs selected. <h5>
+                  <p>Contact them directly on twitter (if they have an account) or email. <br>Click "Next MEP" to get another person to contact.
+              </p>
 
               <div id="mep-card">Loading...</div>
               <div id="mep-template" class="d-none"><div class="row">
@@ -208,13 +222,15 @@
 
                       </div>
                       <div class="p-2 bd-highlight">
-                        <button class="btn btn-light next-mep">Get another MEP</button>
+                        <button class="btn btn-light next-mep">Next MEP</button>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <footer data-iframe-height="true" class="text-muted"><small>We don't endorse or condemn an MEP based on this single vote. Tip: personalise your tweets & emails to be more relevant</small></footer>
+              <footer data-iframe-height="true" class="text-muted"><small><i>Tip: you can personalise your message to make it more relevant to you and the MEP you're contacting.</i>
+                  <br>Disclaimer: We don't endorse or condemn the politics of any MEP based on this single vote.
+</small></footer>
             </div>
           </div>
         </div>
@@ -324,7 +340,7 @@ function draw(){
   graphs.barcountry=drawGraphCountry("#country footer");
   graphs.party=drawParty("#party graph");
   graphs.results=drawResult("#position graph");
-  graphs.results.filter([["for","against","abstention"]])
+//  graphs.results.filter([["for","against","abstention"]])
 
   dc.renderAll();
 }
@@ -460,7 +476,7 @@ function drawParty (dom){
   var graph=dc.selectMenu(dom)
     .dimension(dim)
     .controlsUseVisibility(true)
-    .promptText('Select a party')
+    .promptText('Select the party')
     .group(remove_empty_bins(group))
     .order(
       function(a,b){
@@ -602,7 +618,7 @@ function drawCountry (dom){
     .group(group)
     .title(function(d){return countries[d.key]})
     .controlsUseVisibility(true)
-    .promptText('Your country?')
+    .promptText('Choose your country')
     .filterDisplayed(function () {return true;})
     .on("filtered",function(d){
       selectTab("party"); 
