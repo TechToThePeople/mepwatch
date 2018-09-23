@@ -109,7 +109,7 @@
         <div class="col-12"><div class="card">
             <div class="card-body">
               <h1 class="card-title name">Loading...</h1>
-              <div>We campaigned Members of the European parliament(MEPs) to vote <span class="goal">?</span>.
+              <div>We campaigned for the Members of the European Parliament (MEPs) to vote <span class="goal">?</span>.
                 <br>On the <span class="date">YYYY-mm-dd</span>, <a href="#position" class="tabcontrol"><span class="nb">y</span> MEPs voted</a>. <span class="percentwin">x%</span> voted <span class="result">?</span>.</div>
               <h3>Why is this important?</h3>
               <div class="card-text desc">
@@ -138,14 +138,14 @@ Take action - <a href="#meps" class="tabcontrol">find your representatives</a> a
         <div class="col"><div class="p-3 transparent">
             <h5>Are you a campaigner?</h5>
             <p >
-            We help you find reliable and legible voting data to support your campaign, generate simple of complex scorecards for MEPs, and engage the citizens in your campaign. <a href="votes.html">Here's how</a>
+            We help you find reliable and legible voting data to support your campaign, generate simple or complex scorecards for MEPs, and engage citizens in your campaign. <a href="votes.html">Here's how</a>
             </p>
             <h5>Are you a voter?</h5>
             <p >
             We make it easy to find who represents you in the European Parliament, score them based on solid voting data for issues that you care about (instead of their electoral promises), and connect with your MEP ahead of the elections.
             </p>
             <p>
-            Do you have a site? You can embed this app into your website by copying these two lines:
+            Do you have a website? You can embed this app into your website by copying these two lines:
             <pre><code>
 &lt;div class="mepwatch-act" data-vote="{{id}}"&gt; &lt;/div&gt;
 &lt;script src="https://mepwatch.eu/dist/js/widget.js" charset="utf-8"&gt;&lt;/script&gt;
@@ -179,6 +179,7 @@ Take action - <a href="#meps" class="tabcontrol">find your representatives</a> a
                 <graph>
               </div>
             </div>
+            <footer data-iframe-height="true" class="align-right"><a href="#position" class="btn tabcontrol">Skip</a></footer>
           </div>
         </div>
       </div>
@@ -186,11 +187,15 @@ Take action - <a href="#meps" class="tabcontrol">find your representatives</a> a
         <div class="col-12">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Want to focus on how the MEP voted?</h5>
+              <h5 class="card-title">Focus on how they voted</h5>
               <div class="card-text">
-                <p>                        You have <span class="nb-meps-targeted"></span> MEPs targeted. Yor can <a href="#meps" class="tabcontrol">take action</a> or filter to target only those that voted <a class="select-vote for" href="#">for</a> or <a href="#" class="select-vote against">against</a></p>
+                <p>                        You can target <span class="nb-meps-targeted"></span> MEPs or filter further based on the position the MEP took.
+                <span class="d-none">Yor can <a href="#meps" class="tabcontrol">take action</a> or filter to target only those that voted <a class="select-vote for" href="#">for</a> or <a href="#" class="select-vote against">against</a>
+                </span>
+                </p>
                 <graph>
               </div>
+            <footer data-iframe-height="true" class="align-right"><a href="#meps" class="btn tabcontrol">Skip</a></footer>
             </div>
           </div>
         </div>
@@ -385,7 +390,7 @@ function drawNumbers(graphs) {
 }
 
 function drawResult(dom) {
-  var graph = dc.pieChart(dom).innerRadius(40) //.radius(70);
+  var graph = dc.pieChart(dom);//.innerRadius(40) //.radius(70);
   var dim = ndx.dimension(function(d) {
     return d.vote || "?";
   });
@@ -415,7 +420,8 @@ function drawResult(dom) {
 
 function drawIntro(){
   var voted=config.for+config.against+config.abstention;
-  d3.select("#intro .date").text(d3.timeFormat("%e %B %Y at %H:%M")(config.date));
+  //d3.select("#intro .date").text(d3.timeFormat("%e %B %Y at %H:%M")(config.date));
+  d3.select("#intro .date").text(d3.timeFormat("%e %B %Y")(config.date));
   d3.select("#intro .name").text(config.name);
   d3.select("#intro .desc").text(config.desc);
   d3.select("#intro .nb").text(voted);
@@ -484,7 +490,7 @@ function drawParty (dom){
       })
     .filterDisplayed(function () {return true;})
     .on("filtered",function(d){
-      selectTab("meps"); 
+      selectTab("position"); 
     })
     .on("renderlet",function(graph){
       d3.select(graph.anchor() +" select")
