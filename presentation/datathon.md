@@ -66,11 +66,9 @@ be inspired --> select the country where you vote --> filter further --> contact
 </textarea>
 ---
 # The stages
-First: single vote campaigns build engagement and pressure
-<br>
-Second: learning and tweaking
-<br>
-Third: complex multi-vote scorecards inform and engage citizens in pre-election campaigning
+- First: single vote campaigns build engagement and pressure
+- Second: learning and tweaking
+- Third: complex multi-vote scorecards inform and engage citizens in pre-election campaigning
 
 ---
 # Thank you!
