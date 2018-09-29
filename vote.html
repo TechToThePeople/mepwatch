@@ -267,6 +267,7 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
       d3.select("#icon-against path").attr("fill","#27ae60");
       d3.select("#icon-for path").attr("fill","#c0392b");
       percentColors=[
+        "#e3e3e3",
         "#d35400",
         "#ffcdd2",
         "#9E9E9E",
@@ -279,7 +280,7 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
 	    .range("#27ae60,#c0392b,#2980b9,#95a5a6,#34495e,#bdc3c7".split(","));
 
     percentagecolor=d3.scaleLinear()
-    .domain([0,49,50,51,100])
+    .domain([-1,0,49,50,51,100])
     .range(percentColors)
     .interpolate(d3.interpolateHcl);
 
@@ -291,7 +292,7 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
 
 //    graphs.date=drawDate('#date div.graph');
 //    graphs.report=drawReport('#report div.graph');
-//    graphs.map=drawMap('#map div.graph');
+    graphs.map=drawMap('#map div.graph',graphs);
     graphs.country=drawCountry('#country div.graph');
 //    graphs.party=drawParty('#voidparty div.graph');
     guessPartyLine("partyline");
@@ -654,64 +655,87 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
       }
     }
 
-function drawMap(dom){
+function drawMap(dom,graphs){
   var europe = null;
+    var tip = d3.tip()
+    .attr('class', 'd3-tip wide-tip')
+    .offset([-10, 0])
+    .html(function (d) {
+      console.log(d);
+      return "AAA";
+      var t= "<h3 class='d-flex flex-row justify-content-between' ><span>"+ d.data.key + "</span><span class='d-inline-flex p-2 badge badge-primary ml-2'>"+d.data.value.count+"</span></h3>";
+      results.forEach(function(r){
+        if (d.data.value[r].count > 0){
+          t += "<div class='d-flex flex-row justify-content-between'><div class='p-2 bd-highlight mr-auto w-50'>"+r+"</div><div class='p-1 w-25'>"+d.data.value[r].count+"</div><div class='p-1 w-25'>"+formatPercent(d.data.value[r].count/d.data.value.count)+"</div></div>";
+        }
+      });
+      return t+"";
+    });
+
 
   function drawMap (dom) {
     var width=450;
     var dim = ndx.dimension(function(d) {return d.country.toUpperCase();});
     var reducer = reductio();
-    reducer.value("nb").count(true);
+    reducer.count(true);
     results.forEach(function(r){
       reducer.value(r).count(true).filter(function(d){ return d.vote == r});
     });
 
     var group = dim.group();
     reducer(group);
+
      var _colors = function (value) {
-         return "#F3F3F3";
-     }
+       console.log(value);
+       if (value.count) {
+          var sum=value.for.count + value.against.count;
+
+          return 100*value.against.count/sum;
+        };
+        return -1;
+     };
        
 
     var projection = d3.geoEquirectangular()
       .center([37,47]) //theorically, 50°7′2.23″N 9°14′51.97″E but this works
       .scale(width*1.3);
     var geojson=topojson.feature(europe,europe.objects.countries);
-    //fix iso countries
-    geojson.features.forEach(function (d) {
-      if (d.id == "GB")
-        d.id = "UK";
-      if (d.id == "GR")
-        d.id = "EL";
-    });
+    //var geojson=topojson.feature(europe,europe.objects.europe.geometries);
    
-    var map = dc.geoChoroplethChart(dom)
+    var graph = dc.geoChoroplethChart(dom)
     .height(width)
     .width(width)
     .dimension(dim)
     .projection(projection)
-    .colorAccessor(function(d){
-      console.log(d);
-      return d;
+    .colorAccessor(function(value){
+       if (value && value.count) {
+          var sum=value.for.count + value.against.count;
+
+          return 100*value.against.count/sum;
+        };
+      return -1;
     })
     .group(group)
-    .colors(_colors)
+      .colors(function(d){console.log(d);return percentagecolor(d)})
     .overlayGeoJson(geojson.features,"countries",function(d){
-      console.log(d);
        return d.id;
     })
     .title(function (v) {
-      console.log(d);
-      var d=v.value;
-      return "aaa"+v.key;
-      if (!d || !d.threshold) {
-        return v.key;// + " (not in the EU)";
+      if (!v.value) {
+        return v.key + " (not in the EU)";
       }
-      return d.iso + " "+formatPercent(d.total / d.threshold)+ "\n- signatures: " + d.total + "\n- threshold: " + d.threshold;
+      return countries[v.key.toLowerCase()] +" " + v.value.count + " MEPs";
     });
+
+    graph.on("renderlet.top", function(c) {
+          c.selectAll(".countries")
+            .call(tip)
+            .on("mouseover.tip", tip.show)
+            .on("mouseout.tip", tip.hide);
+      });
       
       
-    map.on("renderlet.a",function (chart){
+    graph.on("renderlet.a",function (chart){
       return;
       chart.selectAll(".countries").on("mouseover", function (d) {
         //console.log(d3.select(this));
@@ -723,15 +747,17 @@ function drawMap(dom){
                       //barchart.filterAll();
                       //barchart.redraw();
       })
-         }); 
+         });
+    return graph;
 
   };
 
-  console.log("start map");
   d3.json("data/europe50b.json").
+  //d3.json("data/europe.json").
     then(function(json) {
     europe=json;
-    drawMap(dom);
+    graphs.map=drawMap(dom);
+    graphs.map.render();
   });
 }
 
