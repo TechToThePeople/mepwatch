@@ -13,6 +13,7 @@
 <style>
 
 span.form-control {border-bottom:0px;}
+
 #map svg {background: #bbdeea4d;border-radius:10px;}
 
 .rotated90 svg {background-color: rgba(255, 255, 255, 0.7);}
@@ -39,6 +40,8 @@ background-image: linear-gradient(-20deg, #6e45e2 0%, #88d3ce 100%);
   padding-top:0.3em;padding-bottom:0.3em; //column name
 }
 .wide-tip {min-width:270px}
+
+.wide-tip .icon {width:1.2em;height:1em;}
 
 .resetall button {padding:5px 0;min-width:3rem;font-size:0.9em}
 .glyphicon-sort:after{ content:'⇅';}
@@ -268,7 +271,7 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
     d3.select(".navbar .app").attr("href","presentation/demo.html?v="+config.id);
     d3.select(".navbar .edit").attr("href","edit.html?v="+config.id);
     d3.select("h3").html(config.desc);
-    var percentColors=["#e3e3e3","#27ae60","#C8E6C9","#9E9E9E","#ffcdd2","#d35400"];
+    var percentColors=["#e3e3e3","#27ae60","#C8E6C9","#d3a751","#ffcdd2","#d35400"];
     if (config.goal && config.goal == "against") {
       results[1] = results[0];
       results[0] = config.goal;
@@ -278,7 +281,7 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
         "#e3e3e3",
         "#d35400",
         "#ffcdd2",
-        "#9E9E9E",
+        "#d3a751",
         "#C8E6C9",
         "#27ae60"
       ];
@@ -681,7 +684,9 @@ function drawMap(dom,graphs){
       var t= "<h3 class='d-flex flex-row justify-content-between' >"+iconify(d.key.toLowerCase(),"flag")+"<span>"+ countries[d.key.toLowerCase()] + "</span><span class='d-inline-flex p-2 badge badge-primary ml-2'>"+d.value.count+"</span></h3>";
       results.forEach(function(r){
         if (d.value[r].count > 0){
-          t += "<div class='d-flex flex-row justify-content-between'><div class='p-2 bd-highlight mr-auto w-50'>"+r+"</div><div class='p-1 w-25'>"+d.value[r].count+"</div><div class='p-1 w-25'>"+formatPercent(d.value[r].count/d.value.count)+"</div></div>";
+          t += "<div class='d-flex flex-row justify-content-between'><div class='p-1 bd-highlight mr-auto w-50'>"
+            +iconify(r)
+            +r+"</div><div class='p-1 w-25'>"+d.value[r].count+"</div><div class='p-1 w-25'>"+formatPercent(d.value[r].count/d.value.count)+"</div></div>";
         }
       });
       return t+"";
@@ -1144,7 +1149,7 @@ function drawMap(dom,graphs){
       })
      .append("i").attr('class','glyphicon glyphicon-sort');
 
-     d3.select("th#col_1 i").attr("class","glyphicon glyphicon-arrow-down");
+     d3.select("th#col_0 i").attr("class","glyphicon glyphicon-arrow-down");
    }
 }
 
