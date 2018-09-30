@@ -4,6 +4,8 @@
 ---
 # The crisis
 #### European democracy at a crossroads
+![alt text](crisis.png)
+notes:
 - citizens increasingly disconnected from EU policy making. 
 - election turnout low. 
 - fake news and voter manipulations on social media.
