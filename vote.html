@@ -38,7 +38,7 @@ background-image: linear-gradient(-20deg, #6e45e2 0%, #88d3ce 100%);
 .table td._3 {
   padding-top:0.3em;padding-bottom:0.3em; //column name
 }
-.wide-tip {min-width:280px}
+.wide-tip {min-width:270px}
 
 .resetall button {padding:5px 0;min-width:3rem;font-size:0.9em}
 .glyphicon-sort:after{ content:'⇅';}
@@ -678,7 +678,7 @@ function drawMap(dom,graphs){
           d = c;
       });
       if (d.id) return d.id + " is not in EU";
-      var t= "<h3 class='d-flex flex-row justify-content-between' ><span>"+ countries[d.key.toLowerCase()] + "</span><span class='d-inline-flex p-2 badge badge-primary ml-2'>"+d.value.count+"</span></h3>";
+      var t= "<h3 class='d-flex flex-row justify-content-between' >"+iconify(d.key.toLowerCase(),"flag")+"<span>"+ countries[d.key.toLowerCase()] + "</span><span class='d-inline-flex p-2 badge badge-primary ml-2'>"+d.value.count+"</span></h3>";
       results.forEach(function(r){
         if (d.value[r].count > 0){
           t += "<div class='d-flex flex-row justify-content-between'><div class='p-2 bd-highlight mr-auto w-50'>"+r+"</div><div class='p-1 w-25'>"+d.value[r].count+"</div><div class='p-1 w-25'>"+formatPercent(d.value[r].count/d.value.count)+"</div></div>";
@@ -725,6 +725,8 @@ function drawMap(dom,graphs){
     })
     .title(function (v) {return null;})
     ;
+
+    graph.fixedSize=true;
 
     graph.on("renderlet.top", function(c) {
           c.selectAll(".countries")
