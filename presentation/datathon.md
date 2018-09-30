@@ -4,7 +4,7 @@
 ---
 # The crisis
 #### European democracy at a crossroads
-![alt text](crisis.png)
+![crisis](crisis.png)
 notes:
 - citizens increasingly disconnected from EU policy making. 
 - election turnout low. 
@@ -15,7 +15,7 @@ notes:
 ---
 # The solution
 Democracy works if citizens are informed and engaged.
-![alt text](solution.png)
+![solution](solution.png)
 notes:
 Technology can lower the barrier to engaging meaningfully in European politics, make information accessible, improve transparency and make it easy for citizens to feed back and hold their representatives accountable for their promises - and their votes.
 
@@ -23,7 +23,7 @@ Technology can lower the barrier to engaging meaningfully in European politics, 
 
 # The tool
 mepwatch.eu is bringing facts back into European politics (just in time for the 2019 European election)
-![alt text](tool.png)
+![tool](tool.png)
 notes:
 analyse votes and generate MEP scorecards -> inform and engage voters -> improve election turnout -> fix the European Union :)
 
@@ -44,7 +44,7 @@ We make it easy to find who represents you, score the MEP based on solid voting 
 ---
 # The data
 We analysed data for all MEPs in the 8th European Parliament's term 2014-2019.
-![alt text](data.png)
+![data](data.png)
 notes:
 - 7723 rollcalls 
 - 5109993 individual votes
@@ -54,7 +54,7 @@ notes:
 ---
 # The app generator
 ### how it goes:
-![alt text](generator.png)
+![app generator](generator.png)
 notes:
 select votes --> analyse votes and generate the app --> customise information, call to action & template messages --> set it free --> learn
 
@@ -66,7 +66,7 @@ select votes --> analyse votes and generate the app --> customise information, c
 ---
 # The scorecard app
 ### how it goes:
-![alt text](scorecard.png)
+![scorecard](scorecard.png)
 notes:
 be inspired --> select the country where you vote --> filter further --> contact the MEP
 
@@ -85,6 +85,6 @@ be inspired --> select the country where you vote --> filter further --> contact
 ---
 # Thank you!
 ### Questions?
-![alt text](https://media.giphy.com/media/heIX5HfWgEYlW/giphy.gif)
+![cat](question.gif)
 get in touch: xavier@tttp.eu
 
