@@ -303,8 +303,8 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
 
 //    graphs.date=drawDate('#date div.graph');
 //    graphs.report=drawReport('#report div.graph');
-    graphs.map=drawMap('#map div.graph',graphs);
     graphs.country=drawCountry('#country div.graph');
+    graphs.map=drawMap('#map div.graph',graphs);
 //    graphs.party=drawParty('#voidparty div.graph');
     guessPartyLine("partyline");
 
@@ -695,17 +695,11 @@ function drawMap(dom,graphs){
 
   function drawMap (dom) {
     var width=450;
-    var dim = ndx.dimension(function(d) {return d.country.toUpperCase();});
-    var reducer = reductio();
-    reducer.count(true);
-    results.forEach(function(r){
-      reducer.value(r).count(true).filter(function(d){ return d.vote == r});
+    europe.objects.countries.geometries.forEach(function(d){
+      d.id = d.id.toLowerCase();
     });
-
-    var group = dim.group();
-    reducer(group);
-
     var geojson=topojson.feature(europe,europe.objects.countries);
+    
     var projection = d3.geoEquirectangular()
 //      .center([37,47]) //theorically, 50°7′2.23″N 9°14′51.97″E but this works
       .scale(width*1.3)
@@ -714,7 +708,8 @@ function drawMap(dom,graphs){
     var graph = dc.geoChoroplethChart(dom)
     .height(width*.8)
     .width(width)
-    .dimension(dim)
+    .dimension(graphs.country.dimension())
+    .group(graphs.country.group())
     .projection(projection)
     .colorAccessor(function(value){
       if (value && value.count) {
@@ -723,7 +718,6 @@ function drawMap(dom,graphs){
       };
       return -1; // non EU
     })
-    .group(group)
     .colors(percentagecolor)
     .overlayGeoJson(geojson.features,"countries",function(d){
        return d.id;
@@ -737,23 +731,14 @@ function drawMap(dom,graphs){
           c.selectAll(".countries")
             .call(tip)
             .on("mouseover.tip", tip.show)
-            .on("mouseout.tip", tip.hide);
+            .on("mouseout.tip", tip.hide)
+            .on("click",function(d){
+              console.log(d.id);
+              graphs.country.filter(d.id);
+            });
       });
       
       
-    graph.on("renderlet.a",function (chart){
-      return;
-      chart.selectAll(".countries").on("mouseover", function (d) {
-        //console.log(d3.select(this));
-        $("#explanation").html ("<h3>"+d.properties.name+"</h3>");
-      });
-    
-      chart.selectAll(".countries").on("click", function (d) {
-                      //$('.bar.'+'1').addClass('selectedbar');
-                      //barchart.filterAll();
-                      //barchart.redraw();
-      })
-         });
     return graph;
 
   };
@@ -771,7 +756,8 @@ function drawMap(dom,graphs){
       var dim = ndx.dimension(function(d) {return d.country;});
       var reducer = reductio();
       var res=results.slice();
-      reducer.value("nb").count(true);
+      reducer.count(true);
+     // reducer.value("nb").count(true);
       res.forEach(function(r){
         reducer.value(r).count(true).filter(function(d){ return d.vote == r});
       });
@@ -784,7 +770,7 @@ function drawMap(dom,graphs){
 
       function getValue(result){
         if (graph.relative)
-          return function(d){return d.value[result].count/d.value.nb.count*100; }
+          return function(d){return d.value[result].count/d.value.count*100; }
         return function(d){
           return d.value[result].count; }
       }
@@ -802,9 +788,9 @@ function drawMap(dom,graphs){
         })
         .ordering(function(d){ 
           if (config.goal && config.goal == "against")
-            return -d.value.against.count/d.value.nb.count;
+            return -d.value.against.count/d.value.count;
 
-          return -d.value.for.count/d.value.nb.count
+          return -d.value.for.count/d.value.count
         })
         .label(function(d){return countries[d.country]})
         .x(d3.scaleBand())
@@ -813,7 +799,7 @@ function drawMap(dom,graphs){
         .brushOn(false)
         .title(function(d) {
           if (this.layer == 0) return "";
-          return countries[d.key] +  " voting '"+ this.layer + "': " + d.value[this.layer].count +" ("+formatPercent(d.value[this.layer].count/d.value.nb.count)+")";
+          return countries[d.key] +  " voting '"+ this.layer + "': " + d.value[this.layer].count +" ("+formatPercent(d.value[this.layer].count/d.value.count)+")";
         })
 
         .elasticY(true)
