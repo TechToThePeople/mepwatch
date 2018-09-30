@@ -133,7 +133,8 @@ function download(voteid, callback) {
 }
 
 d3.text("img/eu-flags.svg").then(function(xml) {
-  d3.select("body").append("svg").html(xml).classed("d-none",true);
+  d3.select("body").append("svg").attr("id","flags").html(xml).classed("d-none",true);
+  d3.selectAll("#flags symbol").attr("fill","#000");
 //  document.body.appendChild(xml.documentElement);
 });
 
