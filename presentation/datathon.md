@@ -83,8 +83,7 @@ be inspired --> select the country where you vote --> filter further --> contact
 - Third: complex multi-vote scorecards inform and engage citizens in pre-election campaigning
 
 ---
-# Thank you!
-### Questions?
+# Thank you! Questions?
 ![cat](question.gif)
 get in touch: xavier@tttp.eu
 
