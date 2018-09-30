@@ -44,7 +44,17 @@ We make it easy to find who represents you, score the MEP based on solid voting 
 ---
 # The data
 We analysed data for all MEPs in the 8th European Parliament's term 2014-2019.
-![data](data.png)
+
+<div class="container">
+  <div class="row">
+    <div class="col p-4 bd-highlight" style="background:#d9d9d9">7723 rollcalls</div>
+    <div class="col p-4 bd-highlight" style="background:#a8a8a8">5109993 individual votes</div>
+  </div>
+  <div class="row">
+    <div class="col p-4 bd-highlight" style="background:#666666">158453 attendance records over 237 plenary sessions</div>
+    <div class="col p-4 bd-highlight" style="background:#444444">28 sets of national geodata & postal codes</div>
+  </div>
+</div>
 notes:
 - 7723 rollcalls 
 - 5109993 individual votes
@@ -58,11 +68,22 @@ notes:
 notes:
 select votes --> analyse votes and generate the app --> customise information, call to action & template messages --> set it free --> learn
 
----
-# The app generator
-[embed iframe]
+-- 
+<h3>All rollcalls <a href="../votes.html" class="btn btn-primary" target="_blank">DEMO</h3>
+[![rollcalls selection](votes.png)](../votes.html)
+--
+# Article 7 Hungary
+## overview, map & groups
+![vote article 7 Hungary 1](vote-hungary-top.png)
 
-
+--
+# Article 7 Hungary -2
+## summary, groups and parties
+![vote article 7 Hungary 2](vote-hungary-middle.png)
+--
+# Article 7 Hungary -3
+## countries and MEPs
+![vote article 7 Hungary 2](vote-hungary-bottom.png)
 ---
 # The scorecard app
 ### how it goes:
@@ -70,20 +91,40 @@ select votes --> analyse votes and generate the app --> customise information, c
 notes:
 be inspired --> select the country where you vote --> filter further --> contact the MEP
 
----
-# The scorecard app
-<textarea>
-<div class="mepwatch-act" data-vote="93294"> </div>
-<script src="https://mepwatch.eu/dist/js/widget.js" charset="utf-8"></script>
-</textarea>
+--
+# Overview
+![Intro](widget-intro.png)
+
+--
+# Country
+![Country](widget-country.png)
+
+--
+# Party 
+![Party](widget-party.png)
+
+--
+# Position
+![Position](widget-position.png)
+
+--
+# MEPs
+![MEPs](widget-meps.png)
+
+--
+# Tweet
+![twitter](widget-twitter.png)
+
+
 ---
 # The stages
-- First: single vote campaigns build engagement and pressure
-- Second: learning and tweaking
-- Third: complex multi-vote scorecards inform and engage citizens in pre-election campaigning
+1. single vote campaigns build engagement and pressure
+2. learning and tweaking
+3. complex multi-vote scorecards inform and engage citizens in pre-election campaigning
 
 ---
 # Thank you! Questions?
 ![cat](question.gif)
+
 get in touch: xavier@tttp.eu
 
