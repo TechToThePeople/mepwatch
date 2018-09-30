@@ -83,7 +83,10 @@ select votes --> analyse votes and generate the app --> customise information, c
 --
 # Article 7 Hungary -3
 ## countries and MEPs
-![vote article 7 Hungary 2](vote-hungary-bottom.png)
+![vote article 7 Hungary 3](vote-hungary-bottom.png)
+
+# edit
+![vote article 7 Hungary edit](vote-hungary-edit.png)
 ---
 # The scorecard app
 ### how it goes:
