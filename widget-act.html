@@ -19,9 +19,6 @@
   <meta name="twitter:description" content="You won't believe what the member of the European Parliament representing you voted." />
   <meta name="twitter:image" content="https://mepwatch.eu/og.jpg">
 
-         <script src="node_modules/post-robot/dist/post-robot.min.js"></script>
-
-
     <style>
 #bottom {height:1px;}
 .flip {
@@ -223,7 +220,7 @@ Take action - <a href="#meps" class="tabcontrol">find your representatives</a> a
                       <div class="p-2 flex-grow-1 bd-highlight">
                         {{? d.twitter }}
                         <button class="btn btn-primary tweet"><svg class="icon"><use href="#icon-twitter"/></svg> Tweet</button>{{?}}
-                        {{? d.email }}<a class="btn btn-secondary email" href="mailto:{{=d.email}}">email</a>{{?}}
+                        {{? d.email }}<a class="btn btn-secondary email" href="mailto:{{=d.mailhref}}">email</a>{{?}}
 
                       </div>
                       <div class="p-2 bd-highlight">
@@ -444,12 +441,24 @@ function drawMep() {
   var i=Math.floor(Math.random() * meps.length);
   doT.templateSettings.varname = "d";
   var meptpl = doT.template(d3.select("#mep-template").html());
+  meps[i].mailhref = (function (d){
+    var href="mailto:"+d.email;
+    if (config.subject && config.subject[d.vote]) {
+        href += "?subject="+encodeURIComponent(config.subject[d.vote]);
+        href += "&body="+encodeURIComponent(config.body[d.vote]);
+    }
+    return href;
+  })(meps[i]);
+  console.log(meps[i].mailhref);
   var html=meptpl(meps[i]);
   d3.select("#mep-card")
     .classed("flip",false)
     .each(function(){this.offsetWidth})
     .html(html)
-    .classed("flip",true);
+    .classed("flip",true)
+    .select(".email")
+    .on("click",function(){
+    });
   d3.selectAll(".next-mep")
     .on("click",function(){drawMep();
       selectTab("meps");
@@ -463,7 +472,6 @@ function drawMep() {
       if (config.tweets && config.tweets[d.vote]) 
         tpl=config.tweets[d.vote];
       tpl=tpl.replace("@mep","@"+d.twitter).replace("{url}",url);
-
       tweet(tpl);
     })
 

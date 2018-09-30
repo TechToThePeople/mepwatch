@@ -76,7 +76,7 @@
               </div>
               <div class="form-group">
                 <label>Why is this important?</label>
-                <textarea class="form-control" col="3" id="desc" name="desc"></textarea>
+                <textarea class="form-control" rows="4" id="desc" name="desc"></textarea>
               </div>
               <div class="form-group">
                 <label>What was your vote recommendation?</label>
@@ -85,7 +85,7 @@
                   <label class="form-check-label">For</label>
                 </div>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="goal" id="goal-against" value="for">
+                  <input class="form-check-input" type="radio" name="goal" id="goal-against" value="against">
                   <label class="form-check-label">Against</label>
                 </div>
                 <div class="form-check form-check-inline">
@@ -195,7 +195,7 @@ function draw(){
               div.append("label").text("Twitter template");
               div.append("input").attr("class","form-control").attr("id",function(d){return "twitter['"+d+"']"})
                 .attr("name",function(d){return "tweets-"+d})
-                .attr("value", function(d){return config.tweets && config.tweets[d] ? config.tweets[d] : "empty"});
+                .attr("value", function(d){return config.tweets && config.tweets[d] ? config.tweets[d] : ""});
               div.append("label").text("email subject");
               div.append("input").attr("class","form-control")
                 .attr("name",function(d){return "subject-"+ d})
@@ -205,12 +205,13 @@ function draw(){
               div.append("textarea").attr("class","form-control")
                 .attr("name",function(d){return "body-"+ d})
                 .attr("id",function(d){return "body['"+ d +"']"})
-                .each(function(d){ this.value= config.body && config.body[d] ? config.body[d] : "empty"})
+                .each(function(d){ this.value= config.body && config.body[d] ? config.body[d] : ""})
             });
         });
     });
   $("form").submit(function( event ) {
-    var d=config;
+    var d={};
+    //    var d=config;
     $.map($(this).serializeArray(), function (n){
       var key = n.name.split("-");
       if (key.length == 1) {

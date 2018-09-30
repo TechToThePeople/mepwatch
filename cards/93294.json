@@ -11,4 +11,16 @@
 "abstention": ".@mep you didn't vote on #Article7 against Orban's Hungary. Why?",
 "no show": ".@mep you didn't vote on #Article7 against Orban's Hungary. Why?"
 },
+"body":{
+"for": "body for",
+"against": "",
+"abstention": "",
+"no show": ""
+},
+"subject":{
+"for": "subject for",
+"against": "",
+"abstention": "",
+"no show": ""
+},
 "for":448,"against":197,"abstention":48}

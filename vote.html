@@ -14,6 +14,9 @@
 
 <style>
 
+span.form-control {border-bottom:0px;}
+#map svg {background: #bbdeea4d;border-radius:10px;}
+
 .rotated90 svg {background-color: rgba(255, 255, 255, 0.7);}
 .rotated90 .axis path {display:none;}
 .rotated90 .y {display:none;}
@@ -37,7 +40,7 @@ background-image: linear-gradient(-20deg, #6e45e2 0%, #88d3ce 100%);
 .table td._3 {
   padding-top:0.3em;padding-bottom:0.3em; //column name
 }
-.wide-tip {min-width:300px}
+.wide-tip {min-width:280px}
 
 .resetall button {padding:5px 0;min-width:3rem;font-size:0.9em}
 .glyphicon-sort:after{ content:'⇅';}
@@ -148,7 +151,7 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
     <main role="main">
 
       <section class="jumbotron">
-        <div class="container">
+        <div class="container"><div class="row">
           <div class="col">
           <h2 class="jumbotron-heading">Loading...</h2>
           <h3 class="jumbotron-heading"></h3>
@@ -156,14 +159,21 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
           <div class="col" id="map">
             <div class="graph"></div>
           </div>
-        </div>
+          </div></div>
       </section>
      <div class="py-5 bg-info">
-        <div class="container-fluid">
+        <div class="container">
 
           <div class="row">
             <div class="col-md-3">
-          <form id="search"></form>
+          <form id="search">
+            <div class="input-group mb-3">
+  <span class="graph form-control"></span>
+              <div class="input-group-append">
+    <a href="#meps" class="btn btn-info">MEP</a>
+  </div>
+            </div>
+          </form>
           <ul class="list-group">
             <li class="list-group-item nbmep"><a class="resetall"><span class="nb"></span><span class="total d-none">/</span> MEPs<button type="button" class="btn btn-warning float-right" title="reset the filters">↺</button></a></li> 
             <li class="list-group-item nbvoted"><span class="percent badge badge-primary badge-pill float-right">%</span><span class="nb"></span> voted</li> 
@@ -203,7 +213,7 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
         </div>
       </div>
 
-<div class="container" id="grid">
+<div class="container" id="meps">
 </div>
           <div class="row">
             <div class="col-md-12">
@@ -316,7 +326,7 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
 //    graphs.group=drawGroup('#eugroup div.graph');
     drawNumbers(graphs);
     graphs.result=drawResult('#result .graph');
-    graphs.search=drawSearch("form#search");
+    graphs.search=drawSearch("form#search .graph");
     
     var filter=urlParam("q");
     if (filter) {
@@ -657,16 +667,23 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
 
 function drawMap(dom,graphs){
   var europe = null;
+
     var tip = d3.tip()
     .attr('class', 'd3-tip wide-tip')
-    .offset([-10, 0])
+    .offset(function(){
+      return [0,this.getBBox().x < 10 ? 60: 0]}
+    )
     .html(function (d) {
-      console.log(d);
-      return "AAA";
-      var t= "<h3 class='d-flex flex-row justify-content-between' ><span>"+ d.data.key + "</span><span class='d-inline-flex p-2 badge badge-primary ml-2'>"+d.data.value.count+"</span></h3>";
+      var iso=d.id;
+      graphs.map.data().forEach(function(c){
+        if (c.key == iso)
+          d = c;
+      });
+      if (d.id) return d.id + " is not in EU";
+      var t= "<h3 class='d-flex flex-row justify-content-between' ><span>"+ countries[d.key.toLowerCase()] + "</span><span class='d-inline-flex p-2 badge badge-primary ml-2'>"+d.value.count+"</span></h3>";
       results.forEach(function(r){
-        if (d.data.value[r].count > 0){
-          t += "<div class='d-flex flex-row justify-content-between'><div class='p-2 bd-highlight mr-auto w-50'>"+r+"</div><div class='p-1 w-25'>"+d.data.value[r].count+"</div><div class='p-1 w-25'>"+formatPercent(d.data.value[r].count/d.data.value.count)+"</div></div>";
+        if (d.value[r].count > 0){
+          t += "<div class='d-flex flex-row justify-content-between'><div class='p-2 bd-highlight mr-auto w-50'>"+r+"</div><div class='p-1 w-25'>"+d.value[r].count+"</div><div class='p-1 w-25'>"+formatPercent(d.value[r].count/d.value.count)+"</div></div>";
         }
       });
       return t+"";
@@ -685,47 +702,31 @@ function drawMap(dom,graphs){
     var group = dim.group();
     reducer(group);
 
-     var _colors = function (value) {
-       console.log(value);
-       if (value.count) {
-          var sum=value.for.count + value.against.count;
-
-          return 100*value.against.count/sum;
-        };
-        return -1;
-     };
-       
-
-    var projection = d3.geoEquirectangular()
-      .center([37,47]) //theorically, 50°7′2.23″N 9°14′51.97″E but this works
-      .scale(width*1.3);
     var geojson=topojson.feature(europe,europe.objects.countries);
-    //var geojson=topojson.feature(europe,europe.objects.europe.geometries);
-   
+    var projection = d3.geoEquirectangular()
+//      .center([37,47]) //theorically, 50°7′2.23″N 9°14′51.97″E but this works
+      .scale(width*1.3)
+    .fitExtent([[0, 0], [width*1.3,width/1.3]], geojson);
+
     var graph = dc.geoChoroplethChart(dom)
-    .height(width)
+    .height(width*.8)
     .width(width)
     .dimension(dim)
     .projection(projection)
     .colorAccessor(function(value){
-       if (value && value.count) {
-          var sum=value.for.count + value.against.count;
-
-          return 100*value.against.count/sum;
-        };
-      return -1;
+      if (value && value.count) {
+        var sum=value.for.count + value.against.count;
+        return 100*value.against.count/sum;
+      };
+      return -1; // non EU
     })
     .group(group)
-      .colors(function(d){console.log(d);return percentagecolor(d)})
+    .colors(percentagecolor)
     .overlayGeoJson(geojson.features,"countries",function(d){
        return d.id;
     })
-    .title(function (v) {
-      if (!v.value) {
-        return v.key + " (not in the EU)";
-      }
-      return countries[v.key.toLowerCase()] +" " + v.value.count + " MEPs";
-    });
+    .title(function (v) {return null;})
+    ;
 
     graph.on("renderlet.top", function(c) {
           c.selectAll(".countries")
@@ -752,8 +753,8 @@ function drawMap(dom,graphs){
 
   };
 
-  d3.json("data/europe50b.json").
-  //d3.json("data/europe.json").
+  //d3.json("data/europe-simple.json").
+  d3.json("data/europe.json").
     then(function(json) {
     europe=json;
     graphs.map=drawMap(dom);
@@ -994,7 +995,7 @@ function drawMap(dom,graphs){
       .filterFunctionFactory(filter)
       .dimension(dim)
       .on("renderlet",function(){
-        d3.select(dom+ " .dc-text-filter-input").on('input.seturl', function () {
+        d3.select(dom+ " .dc-text-filter-input").classed("form-control",true).on('input.seturl', function () {
           urlParam("q",this.value);
         });
       });
@@ -1046,7 +1047,7 @@ function drawMap(dom,graphs){
       .dimension(dim)
       .size(1000)
       .sortBy(function(d) {
-        return d.date;
+        return results.indexOf(d.vote);
       })
       .order (d3.ascending)
       .showGroups(false)
@@ -1143,7 +1144,7 @@ function drawMap(dom,graphs){
       })
      .append("i").attr('class','glyphicon glyphicon-sort');
 
-     d3.select("th#last_name i").attr("class","glyphicon glyphicon-arrow-down");
+     d3.select("th#col_1 i").attr("class","glyphicon glyphicon-arrow-down");
    }
 }
 
