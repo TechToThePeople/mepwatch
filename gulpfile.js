@@ -98,6 +98,7 @@ gulp.task('js',['js-copy','widget'],function(){
       'node_modules/reductio/reductio.js',
       'node_modules/d3/dist/d3.js',
       'node_modules/d3-queue/build/d3-queue.js',
+      'node_modules/topojson/dist/topojson.js',
       'node_modules/d3-tip/dist/index.js',
       'node_modules/dc/dc.js',
       'node_modules/dot/doT.js'
