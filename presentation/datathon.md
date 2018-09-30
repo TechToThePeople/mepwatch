@@ -3,11 +3,14 @@
 
 ---
 # The crisis
-### European democracy is at a crossroads
-Citizens are increasingly disconnected from EU-level policy making. Election turnout is low. 
-Fake news and voter manipulations thrive on social media.
-Euroscepticism is on the rise. 
-Corporate capture obscures democratic processes.
+#### European democracy at a crossroads
+![alt text](crisis.png)
+notes:
+- citizens increasingly disconnected from EU policy making. 
+- election turnout low. 
+- fake news and voter manipulations on social media.
+- euroscepticism on the rise. 
+- corporate capture obscuring democratic processes.
 
 ---
 # The solution
@@ -17,7 +20,7 @@ Technology can lower the barrier to engaging meaningfully in European politics, 
 ---
 
 # The tool
-mepwatch.eu is bringing facts back into European politics - just in time for the 2019 European election.
+mepwatch.eu is bringing facts back into European politics - just in time for the 2019 European election.a
 
 analyse votes and generate MEP scorecards -> inform and engage voters -> improve election turnout -> fix the European Union :)
 
@@ -37,7 +40,7 @@ We make it easy to find who represents you, score the MEP based on solid voting 
 
 ---
 # The data
-- all MEPs in the 8th European Parliament term 2014-2019
+We analysed data for all MEPs in the 8th European Parliament term 2014-2019
 - 7723 rollcalls 
 - 5109993 individual votes
 - 158453 attendance records over 237 plenary sessions
