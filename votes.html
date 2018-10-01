@@ -365,7 +365,9 @@
 
   function drawSearch(dom){
 
-    var dim=ndx.dimension(function(d) {return d.report.toLowerCase()+" "+ d.desc.toLowerCase() });
+    var dim=ndx.dimension(function(d) {return d.report.toLowerCase()+" "+ d.desc.toLowerCase()
+      +" "+d.for + " " + d.against;
+    });
     var filter = function (query) {
 //        query = _normalize(query);
         return function (d) {
