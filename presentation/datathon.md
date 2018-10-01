@@ -77,7 +77,7 @@ notes:
 select votes --> analyse votes and generate the app --> customise information, call to action & template messages --> set it free --> learn
 
 -- 
-<h3>All rollcalls <a href="../votes.html" class="btn btn-primary" target="_blank">DEMO</h3>
+<h3>All rollcalls <a href="../votes.html" class="btn btn-primary" target="_blank">DEMO</a></h3>
 [![rollcalls selection](votes.png)](../votes.html)
 
 Note:
