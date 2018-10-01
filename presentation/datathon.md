@@ -1,5 +1,6 @@
 # mepwatch.eu
 ### informed citizens = better democracy
+![tool](tool.png)
 notes:
 MEPwatch is about bringing data and facts back into European policits, and briging the gaps between citizens, campaigning organisations and politicians who represent all of us in the European Parliament.
 What’s in this presentation:
@@ -22,7 +23,7 @@ Democracy works if citizens are informed and engaged.
 notes:
 Technology and can **lower the barrier** to engaging meaningfully in European politics, make **information accessible** and easier to digest in a world where we’re overwhelmed with it at all times, **improve transparency** and make it easy for citizens to feed back and hold their representatives **accountable** for their promises  and their votes.
 
----
+--
 
 # The tool
 mepwatch.eu is bringing facts back into European politics (just in time for the 2019 European election)
@@ -134,6 +135,12 @@ be inspired --> select the country where you vote --> filter further --> contact
 
 
 ---
+# Thank you! Questions?
+![cat](question.gif)
+
+get in touch: xavier@tttp.eu
+
+--
 # The stages
 1. single vote campaigns build engagement and pressure
 2. learning and tweaking
@@ -141,9 +148,4 @@ be inspired --> select the country where you vote --> filter further --> contact
 
 notes:
 We are still a few months away from the elections and now is the time to activate citizens across the EU on some key topics, without waiting until the last moment. This is why we’ve developed the app in a way that is the most useful right now and we are collecting information and contacting potential users to get their experiences, needs and crowdsource vote information.
----
-# Thank you! Questions?
-![cat](question.gif)
-
-get in touch: xavier@tttp.eu
 
