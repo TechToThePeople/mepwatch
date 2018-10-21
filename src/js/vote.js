@@ -80,7 +80,7 @@ function download(voteid, callback) {
     .awaitAll(function(error, r) {
       if (error) throw error;
       var length = votes.length;
-      var meps = r[0]; //first deferred download
+      meps = r[0]; //first deferred download
       for (var j = 0; j < meps.length; j++) {
         var m = meps[j];
         if (!m) console.log(j);
@@ -119,11 +119,11 @@ function download(voteid, callback) {
           .html(
             "<h1>They are " +
               errors.length +
-              "votes that we couldn't process. Contact Xavier</h1>"
+              " votes that we couldn't process. Contact Xavier</h1>"
           );
         console.log(errors);
       }
-      votes = null;
+//      votes = null;
 
       config.nb = meps.length;
 
@@ -150,6 +150,7 @@ function dl_details(callback) {
 function dl_votes(callback) {
   d3
     .csv("cards/" + voteid + ".csv", function(d) {
+      if (!d.mepid) return null;
       d.mepid = +d.mepid;
       d.identifier = +d.identifier;
       return d;
