@@ -365,8 +365,9 @@
 
   function drawSearch(dom){
 
-    var dim=ndx.dimension(function(d) {return d.report.toLowerCase()+" "+ d.desc.toLowerCase()
-      +" "+d.for + " " + d.against;
+    var dim=ndx.dimension(function(d) {
+      var t= docs[d.report]? docs[d.report].name.toLowerCase() : "";
+      return t + d.report.toLowerCase()+" "+ d.desc.toLowerCase()+" "+d.for + " " + d.against;
     });
     var filter = function (query) {
 //        query = _normalize(query);
@@ -420,11 +421,11 @@
         }
         ,function(d){ 
           if (docs[d.report])
-            return "<div class='rapporteur'>" +docs[d.report].rapporteur +"</div>&nbsp;<a href='"+ docs[d.report].doc+"'>"+ d.report +"</a>";
+            return "<div class='rapporteur'>" +docs[d.report].rapporteur +"</div>&nbsp;<a href='http:/www.europarl.europa.eu"+ docs[d.report].oeil+"'>"+ d.report +"</a>";
           return d.report;
         }
         ,function(d){ 
-          return docs[d.report]? "<a href='"+docs[d.report].oeil+"'>"+docs[d.report].title +"</a>&nbsp;"+d.desc : d.desc;}
+          return docs[d.report]? "<a href='http:/www.europarl.europa.eu"+docs[d.report].oeil+"'>"+docs[d.report].name +"</a>&nbsp;"+d.desc : d.desc;}
         ,function(d){ return d.for;}
         ,function(d){ return d.against;}
         ,function(d){ return d.abstention;}
