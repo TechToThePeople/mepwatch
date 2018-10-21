@@ -9,6 +9,8 @@
     <link href="dist/css/main.css" rel="stylesheet">
 
 <style>
+td a {color:rgb(33, 150, 243);}
+
     .icon
     {
       display: inline-block;
@@ -215,6 +217,7 @@
 //    graphs.report=drawReport('#report div.graph');
     graphs.table=drawTable('table.table');
     graphs.search=drawSearch("form#search");
+
     drawNumbers(graphs);
 
     dc.renderAll();
@@ -375,6 +378,9 @@
             return d.indexOf(query.toLowerCase()) !== -1;
         };
     };
+
+    var q=urlParam("q");
+
     var chart=dc.textFilterWidget(dom)
       .placeHolder("search by name")
       .filterFunctionFactory(filter)
@@ -383,7 +389,6 @@
       })
       .on("renderlet.urlparam",function(){
         d3.select(dom + " input").classed("form-control",true);
-        var q=urlParam("q");
         var input=d3.select(this.anchor() +" input");
         if (input.property("value")) {
           if (q != input.property("value")) {
@@ -392,8 +397,8 @@
           return; // nothing else to do, already set
         }
         if (q) {
-          console.log("filtering for "+q);
           input.property("value",q).dispatch("input");
+          q = null;
         }
       })
       .dimension(dim);
@@ -426,8 +431,8 @@
         }
         ,function(d){ 
           return docs[d.report]? "<a href='http:/www.europarl.europa.eu"+docs[d.report].oeil+"'>"+docs[d.report].name +"</a>&nbsp;"+d.desc : d.desc;}
-        ,function(d){ return d.for;}
-        ,function(d){ return d.against;}
+        ,function(d){ return d.for > d.against ? "<b>"+d.for+"</b>":d.for;}
+        ,function(d){ return d.against > d.for ? "<b>"+d.against+"</b>":d.against;}
         ,function(d){ return d.abstention;}
     ])
     .on("renderlet.govote", function(g) {
