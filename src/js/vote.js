@@ -123,11 +123,11 @@ function download(voteid, callback) {
           );
         console.log(errors);
       }
-//      votes = null;
+      votes = null;
 
       config.nb = meps.length;
-
       ndx = crossfilter(meps);
+      meps = null;
       callback();
     });
 }
