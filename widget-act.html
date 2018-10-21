@@ -82,6 +82,8 @@ span.form-control {border-bottom:0}
   .nav-item.about .nav-link {
     padding:8px;
   }
+  .nav-item .icon {height:1em;padding-right:5px;}
+
   .about svg {
     width:2em;
     height:2em;
@@ -308,6 +310,8 @@ d3.select(".nav-item.meps")
   .select(".nav-link")
   .html('<span class="nb-meps-targeted nb badge badge-primary"></span>MEPs');
 
+d3.select(".nav-item.country .nav-link").html('<svg class="icon"><use class="flag" href="" /></svg>Country');
+
 d3.select(".nav-item.about")
   .select(".nav-link")
   .html('<svg><use href="#logo" /></svg>');
@@ -321,7 +325,8 @@ function filterResult(r){
 d3.selectAll(".for").on("click",function(d){filterResult("for")});
 d3.selectAll(".against").on("click",function(d){filterResult("against")});
 //selectTab("country");
-selectTab("intro");
+
+selectTab(urlParam("action")|| "intro");
 
     </script>
 
@@ -461,7 +466,6 @@ function drawMep() {
     }
     return href;
   })(meps[i]);
-  console.log(meps[i].mailhref);
   var html=meptpl(meps[i]);
   d3.select("#mep-card")
     .classed("flip",false)
@@ -608,6 +612,13 @@ function drawGraphCountry(dom) {
     .on("renderlet", function(c) {
       rotateBarChartLabels();
       if (!d3.select("#country .axis.x use").empty()) return;
+      d3.select(dom).selectAll("rect").on("click.flag",function(){
+        var b=d3.select(this);
+        var country=b.datum().data.key;
+        graphs.country.filter(null).filter(country).redraw();
+        d3.select(".nav-link .flag").attr("href","#flag-"+country);
+
+      });
       d3.select("#country .axis.x").selectAll(".tick")
         .append("use").attr( "href",function(d){
           return '#flag-'+d}).attr("width",24).attr("height",16)

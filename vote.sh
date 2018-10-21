@@ -2,14 +2,14 @@
 # eg vote.sh 92926
 if [ -z "$1" ]; then
   echo "missing vote id";
-  echo "usage: vote.sh {voteid} {YYYY-MM-DD}"
+  echo "usage: vote.sh {voteid}"
   exit 1
 fi
 datev=$(q "select substr(date,1,10) from parlparse/data/item_rollcall.csv where identifier=$1" -d, -H)
 if [ -z "$datev" ]; then
   echo "missing vote date $datev";
   q "select * from parlparse/data/item_rollcall.csv where identifier=$1" -d, -O -H
-  echo "usage: vote.sh {voteid} {YYYY-MM-DD}"
+  echo "usage: vote.sh {voteid}"
   exit 1
 fi
 echo "generating vote card for $1 voted on $datev"
