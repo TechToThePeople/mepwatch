@@ -26,6 +26,7 @@ epid,firstname,lastname,active,start,end,birthdate,country,gender,eugroup,party,
 190519,Caroline,NAGTEGAAL,true,2017-11-14,,1980-06-01,nl,F,ALDE,Volkspartij voor Vrijheid en Democratie,caroline.nagtegaal@europarl.europa.eu,,6760
 124902,Stanisław,ŻÓŁTEK,true,2014-07-01,,1956-05-07,pl,M,ENF,Kongres Nowej Prawicy,stanislawjozef.zoltek@europarl.europa.eu,,6541
 72754,Innocenzo,LEONTINI,true,2008-06-23,,1959-05-25,it,M,PPE,Forza Italia,innocenzo.leontini@europarl.europa.eu,,5809
+194658,Anders,SELLSTRÖM,true,2018-10-03,,1964-03-19,se,,PPE,Kristdemokraterna,,,6781
 124940,Patrick,O'FLYNN,true,2014-07-01,,1965-08-29,gb,M,EFDD,United Kingdom Independence Party,patrick.oflynn@europarl.europa.eu,oflynnmep,6557
 125108,Louis,IDE,false,2014-07-01,2014-12-18,1973-07-03,be,,ECR,Nieuw-Vlaamse Alliantie,,,6685
 1849,Sylvia-Yvonne,KAUFMANN,true,1999-07-20,,1955-01-23,de,F,S&D,Sozialdemokratische Partei Deutschlands,sylvia-yvonne.kaufmann@europarl.europa.eu,kaufmannsylvia,3756
@@ -112,7 +113,6 @@ epid,firstname,lastname,active,start,end,birthdate,country,gender,eugroup,party,
 185628,John,PROCTER,true,2016-11-17,,,gb,M,ECR,Conservative Party,john.procter@europarl.europa.eu,,6736
 90110,Carolina,PUNSET,true,2016-02-03,,1971-01-05,es,F,ALDE,Ciudadanos – Partido de la Ciudadanía,carolina.punset@europarl.europa.eu,carolinapunset,6728
 28331,Jaromír,KOHLÍČEK,true,2004-07-20,,1953-02-23,cz,M,GUE/NGL,Komunistická strana Čech a Moravy,jaromir.kohlicek@ep.europa.eu,,5450
-188721,Marie-Pierre,VIEU,true,2017-06-19,,1967-02-01,fr,F,GUE/NGL,Front de Gauche,marie-pierre.vieu@europarl.europa.eu,,6747
 185340,Ivica,TOLIĆ,true,2016-10-24,,1968-09-01,hr,M,PPE,Hrvatska demokratska zajednica,ivica.tolic@europarl.europa.eu,,6733
 133316,Karoline,GRASWANDER-HAINZ,true,2015-07-09,,1974-02-02,at,F,S&D,Sozialdemokratische Partei Österreichs,karoline.graswander-hainz@europarl.europa.eu ,,6720
 124963,Julie,WARD,true,2014-07-01,,1957-03-07,gb,F,S&D,Labour Party,julie.ward@europarl.europa.eu,julie4nw,6582
@@ -443,6 +443,7 @@ epid,firstname,lastname,active,start,end,birthdate,country,gender,eugroup,party,
 193273,Romeo,FRANZ,true,2018-07-03,,1966-10-28,de,,Verts/ALE,Bündnis 90/Die Grünen,romeo.franz@europarl.europa.eu,,6775
 192634,Giuseppe,FERRANDINO,true,2018-04-17,,1963-03-21,it,,S&D,Partito Democratico,giuseppe.ferrandino@europarl.europa.eu,,6770
 4338,Thierry,CORNILLET,true,1999-07-20,,1951-07-23,fr,M,ALDE,Mouvement Radical,thierry.cornillet@europarl.europa.eu,,4761
+188721,Marie-Pierre,VIEU,true,2017-06-19,,1967-02-01,fr,F,GUE/NGL,Front de Gauche,marie-pierre.vieu@europarl.europa.eu,,6747
 124856,Ignazio,CORRAO,true,2014-07-01,,1984-01-14,it,M,EFDD,Movimento 5 Stelle,ignazio.corrao@europarl.europa.eu,,6494
 124731,Jérôme,LAVRILLEUX,true,2014-07-01,,1969-09-19,fr,M,PPE,-,jerome.lavrilleux@europarl.europa.eu,jlavrilleux,6363
 96956,Julie,GIRLING,true,2009-07-14,,1956-12-21,gb,F,PPE,Conservative Party,julie.girling@europarl.europa.eu,juliegirling,6111
@@ -575,7 +576,7 @@ epid,firstname,lastname,active,start,end,birthdate,country,gender,eugroup,party,
 96825,Norica,NICOLAI,true,2009-07-14,,1958-01-27,ro,F,ALDE,ALDE Romania,norica.nicolai@europarl.europa.eu,norica_nicolai,5997
 124740,Joëlle,BERGERON,true,2014-07-01,,1949-06-28,fr,F,EFDD,Sans étiquette,joelle.bergeron@europarl.europa.eu,,6374
 124773,Jean,ARTHUIS,true,2014-07-01,,1944-10-07,fr,M,ALDE,Union des Démocrates et Indépendants,jean.arthuis@europarl.europa.eu,jeanarthuis ,6407
-21331,Sylvie,GODDYN,true,2014-07-01,,1964-06-24,fr,F,ENF,Rassemblement national,sylvie.goddyn@europarl.europa.eu,,6450
+21331,Sylvie,GODDYN,true,2014-07-01,,1964-06-24,fr,F,EFDD,Rassemblement national,sylvie.goddyn@europarl.europa.eu,,6450
 96857,Cătălin Sorin,IVAN,true,2009-07-14,,1978-12-23,ro,M,NA/NI,Independent,catalin-sorin.ivan@europarl.europa.eu,catalin_ivan,6029
 28226,Christian,EHLER,true,2004-07-20,,1963-08-17,de,M,PPE,Christlich Demokratische Union Deutschlands,christian.ehler@europarl.europa.eu,,5348
 129407,Enrique,CALVET CHAMBON,true,2014-11-20,,1950-10-28,es,M,ALDE,Independiente,enrique.calvetchambon@europarl.europa.eu,enriquecalvet,6708
