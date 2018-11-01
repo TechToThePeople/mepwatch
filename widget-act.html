@@ -355,8 +355,8 @@ function draw(){
   drawIntro();
 
   drawNumbers(graphs);
-  graphs.country=drawCountry("#country .graph");
   graphs.barcountry=drawGraphCountry("#country footer");
+  graphs.country=drawCountry("#country .graph");
   graphs.party=drawParty("#party .graph");
   graphs.results=drawResult("#position graph");
 //  graphs.results.filter([["for","against","abstention"]])
@@ -427,8 +427,9 @@ function drawResult(dom) {
     .dimension(dim)
     .group(group)
     .externalLabels(-26)
-    .minAngleForLabel(0.2);
-  //        .legend(dc.legend().horizontal(true).autoItemWidth(true).y(200));
+    .minAngleForLabel(0.2)
+    .legend(dc.legend().x(260).y(20).itemHeight(13).gap(5));
+//          .legend(dc.legend().horizontal(true).autoItemWidth(true).y(200));
   return graph;
 }
 
@@ -532,7 +533,7 @@ function drawParty (dom){
     })
     .on("renderlet",function(graph){
       d3.select(graph.anchor() +" select")
-        .classed("form-control form-control-lg",true)
+        .classed("form-control ",true)
     })
 
   return graph;
@@ -661,7 +662,9 @@ function drawGraphCountry(dom) {
 
 
 function drawCountry (dom){
-  var dim = ndx.dimension(function(d){return d.country});
+
+  //var dim = ndx.dimension(function(d){return d.country});
+  var dim = graphs.barcountry.dimension();
   var group = dim.group().reduceSum(function(d) {return 1;});
 
   var graph=dc.selectMenu(dom)
@@ -672,11 +675,13 @@ function drawCountry (dom){
     .promptText('Choose your country')
     .filterDisplayed(function () {return true;})
     .on("filtered",function(d){
-      selectTab("party"); 
+      console.log(d);
+      graphs.barcountry.filter(d.filters());
+//      selectTab("party"); 
     })
     .on("renderlet",function(graph){
       d3.select(graph.anchor() +" select")
-        .classed("form-control form-control-lg",true)
+        .classed("form-control",true)
     })
 
   return graph;
@@ -690,7 +695,7 @@ function drawCountry (dom){
       <symbol id="logo" viewBox="0 0 24 24"><path d="M6 13c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0 4c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0-8c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm-3 .5c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zM6 5c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm15 5.5c.28 0 .5-.22.5-.5s-.22-.5-.5-.5-.5.22-.5.5.22.5.5.5zM14 7c.55 0 1-.45 1-1s-.45-1-1-1-1 .45-1 1 .45 1 1 1zm0-3.5c.28 0 .5-.22.5-.5s-.22-.5-.5-.5-.5.22-.5.5.22.5.5.5zm-11 10c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zm7 7c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zm0-17c.28 0 .5-.22.5-.5s-.22-.5-.5-.5-.5.22-.5.5.22.5.5.5zM10 7c.55 0 1-.45 1-1s-.45-1-1-1-1 .45-1 1 .45 1 1 1zm0 5.5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm8 .5c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0 4c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0-8c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0-4c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm3 8.5c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zM14 17c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0 3.5c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zm-4-12c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm0 8.5c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm4-4.5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm0-4c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5z"/></symbol>
       <symbol id="icon-twitter" viewBox="0 0 24 24">
       <path fill="#fff" bfill="#1DA1F2" d="M23.954 4.569c-.885.389-1.83.654-2.825.775 1.014-.611 1.794-1.574 2.163-2.723-.951.555-2.005.959-3.127 1.184-.896-.959-2.173-1.559-3.591-1.559-2.717 0-4.92 2.203-4.92 4.917 0 .39.045.765.127 1.124C7.691 8.094 4.066 6.13 1.64 3.161c-.427.722-.666 1.561-.666 2.475 0 1.71.87 3.213 2.188 4.096-.807-.026-1.566-.248-2.228-.616v.061c0 2.385 1.693 4.374 3.946 4.827-.413.111-.849.171-1.296.171-.314 0-.615-.03-.916-.086.631 1.953 2.445 3.377 4.604 3.417-1.68 1.319-3.809 2.105-6.102 2.105-.39 0-.779-.023-1.17-.067 2.189 1.394 4.768 2.209 7.557 2.209 9.054 0 13.999-7.496 13.999-13.986 0-.209 0-.42-.015-.63.961-.689 1.8-1.56 2.46-2.548l-.047-.02z"/>
-
+      </symbol>
       <symbol id="icon-against" viewBox="0 0 24 24">
       <path fill="#c0392b" d="M19,15H23V3H19M15,3H6C5.17,3 4.46,3.5 4.16,4.22L1.14,11.27C1.05,11.5 1,11.74 1,12V14A2,2 0 0,0 3,16H9.31L8.36,20.57C8.34,20.67 8.33,20.77 8.33,20.88C8.33,21.3 8.5,21.67 8.77,21.94L9.83,23L16.41,16.41C16.78,16.05 17,15.55 17,15V5C17,3.89 16.1,3 15,3Z" />
       </symbol>
