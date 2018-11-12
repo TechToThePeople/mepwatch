@@ -40,7 +40,7 @@ span.form-control {border-bottom:0}
 
   .slide {
     transition: all 0.75s ease;
-    height:440px;
+    min-height:440px;
     aawidth:100%;
     position:absolute;
     left: -100%;
@@ -94,7 +94,7 @@ span.form-control {border-bottom:0}
     background:rgba(255,255,255,0.5);
   }
 
-  .embed > .row {height:440px;}
+  .embed > .row {min-height:440px;}
   .embed .row .card {height:100%}
 
   .list-group {height:440px;overflow-y:auto;}
@@ -220,7 +220,21 @@ Take action - <a href="#meps" class="tabcontrol">find your representatives</a> a
                   <p>Contact them directly on twitter (if they have an account) or email. <br>Click <a class="next-mep" href="#">"Next MEP"</a> to get another person to contact.
               </p>
 
-              <div id="mep-card">Loading...</div>
+              <div id="mep-card">Loading...
+              
+                <div class="row d-none">
+                  <div class="col-2"><img src="img/mepphoto/96675.jpg" /></div>
+                  <div class="col"><svg class="icon"><use href="#flag-se" /></svg>Name<br><div class="small">Party</div></div>
+                      <div class="col-4">
+                        <button class="btn btn-info tweet"><svg class="icon"><use href="#icon-twitter"/></svg> Tweet</button>
+                        <a class="btn btn-smbtn-sm  btn-secondary email" href="mailto:{{=d.mailhref}}">email</a>
+
+                      </div>
+
+                      </div>
+                </div>
+              
+              </div>
               <div id="mep-template" class="d-none"><div class="row">
                   <div class="col-2">
                     <img src="img/mepphoto/{{=d.epid}}.jpg">
@@ -428,7 +442,7 @@ function drawResult(dom) {
     .group(group)
     .externalLabels(-26)
     .minAngleForLabel(0.2)
-    .legend(dc.legend().x(260).y(20).itemHeight(13).gap(5));
+//    .legend(dc.legend().x(260).y(20).itemHeight(13).gap(5));
 //          .legend(dc.legend().horizontal(true).autoItemWidth(true).y(200));
   return graph;
 }
