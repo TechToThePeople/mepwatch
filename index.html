@@ -9,6 +9,43 @@
     <link href="dist/css/main.css" rel="stylesheet">
 
 <style>
+
+html,body {
+    height:100%;
+}
+.flex-fill {
+    flex:1;
+}
+
+.router {
+  position:relative;
+}
+
+.router::before {
+  --size: 0;
+  content: '';
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: var(--size);
+  height: var(--size);
+  background: radial-gradient(circle closest-side, #9c27b0, transparent);
+  transform: translate(-50%, -50%);
+  transition: width 0.2s ease, height 0.2s ease;
+}
+.router:hover::before {
+  --size: 123px;
+}
+
+
+
+html, body {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+
 .router a {color:white;}
 .router a:hover {text-decoration:none;}
 
@@ -68,7 +105,7 @@
       </div>
     </header>
 
-    <main role="main">
+    <main role="main" class="d-flex flex-column">
 
       <section class="jumbotron text-center">
         <div class="container">
@@ -79,9 +116,9 @@
         </div>
       </section>
      <div class="">
-        <div class="container-fluid">
+        <div class="container-fluid d-flex flex-column">
 
-        <div class="row gradient router">
+        <div class="row gradient router flex-fill d-flex">
         <div class="col-md-4 p-4" class="text-center">
           <a href="/presentation" >
             <h3 class="text-center">How this works</h3>
@@ -118,268 +155,16 @@
     <!-- Optional JavaScript -->
     <script src="dist/js/main.js"></script> 
     <script src="dist/js/dcbundle.js"></script>
-<script>
-  'use strict';
-  var ndx=null;
-  var graphs={};
-  var q=d3.queue();
-  var docs = {};
-  docs.get=function(reference){
-    docs[reference] ? docs[reference] : "";
-  };
+  <script>
+var btn=document.querySelector('.router')
+btn.onmousemove = function(e) {
+  var x = e.pageX - btn.offsetLeft - btn.offsetParent.offsetLeft
+  var y = e.pageY - btn.offsetTop - btn.offsetParent.offsetTop
+  btn.style.setProperty('--x', x + 'px')
+  btn.style.setProperty('--y', y + 'px')
+}
 
-  var dateParse = d3.timeParse("%Y-%m-%d");
-  var dateTimeParse = d3.timeParse("%Y-%m-%dT%H:%M:%S");
-  var dayFormat = d3.timeFormat("%Y-%m-%d");
-  var dateFormat = d3.timeFormat("%Y-%m-%d %H:%M:%S");
-  var week = d3.timeFormat("%V");
-  //d3.csv('data/ep_votes.csv',function(d){
-  q
-  .defer(dl_votes)
-  .defer(dl_doc)
-  .awaitAll(function(error,results){
-    draw();
-  });
-
-  function dl_doc (callback){
-    d3.csv('data/text_tabled.csv',function(d){
-      docs[d.reference]=d;
-    }).then(function(d){
-      callback();
-    });
-  };
-
-  function dl_votes (callback){
-    d3.csv('data/item_rollcall.csv',function(d){
-      d.date=dateParse(d.date.substring(0,10));
-      if (!d.date) {console.log(d)};
-      
-      d.day=d.date.getDay();
-      d.week=+week(d.date);
-      d.year=d.date.getYear();
-      ["for","against","abstention","identifier"].forEach(function(i) {
-        d[i]= +d[i] || "";
-      });
-      return d;
-    })
-    .then(function(d){
-      ndx = crossfilter(d);
-//      draw();
-      callback();
-    });
-  };
-
-  function draw(){
-    graphs.date=drawDate('#date div.graph');
-    graphs.report=drawReport('#report div.graph');
-    graphs.table=drawTable('table.table');
-    graphs.search=drawSearch("form#search");
-
-    dc.renderAll();
-  }
-
-  function drawReport(dom){
-
-    var tip = d3.tip()
-      .attr('class', 'd3-tip')
-      .offset([0, 10])
-      .direction("e")
-      .html(function(d) {
-        console.log(docs[d.key]);
-        return docs[d.key]? "<h3>"+docs[d.key].rapporteur+"</h3>"+docs[d.key].title +":"+ d.value: d.value;
-//        return abbr(d.key) + "<br><b>" + d.value + " MEPs</b>&nbsp;<i>" + formatPercent(d.value/summary.total) +"</i>";
-      });
-
-    //var dim = ndx.dimension(function(d) {return d.report?d.report:"?";}, true);
-    var dim = ndx.dimension(function(d) {return d.report? d.report : "?";});
-    var group = dim.group().reduceSum(function(d) {
-      return 1;
-    });
-
-    var graph = dc.rowChart(dom)
-      .width(0)
-      .height(300)
-      //      .rowsCap(18)
-//      .ordering(function(d) {  return -d.key      })
-      .cap(10)
-      .label (function(d){return docs[d.key]? docs[d.key].rapporteur : d.key})
-      .renderTitle(false)
-      .margins({
-        top: 0,
-        right: 0,
-        bottom: 20,
-        left: 0
-      })
-//      .ordinalColors([committee_color])
-      .gap(0)
-      .elasticX(true)
-      .dimension(dim)
-      .group(group)
-      .on("renderlet.top", function(c) {
-          c.selectAll("g.row")
-            .call(tip)
-            .on("mouseover.tip", tip.show)
-            .on("mouseout.tip", tip.hide);
-      });
-    graph.xAxis().ticks(3);
-
-    return graph;
-  }
-
-  function drawDate(dom){ // not working for now....
-    //var dim=ndx.dimension(function(d){return [d.year,d.week,d.day]});
-    var col=d3.timeFormat("%y-%m-%w");
-    var coltick=d3.timeFormat("%b");
-    var lasttick="";
-    var dim=ndx.dimension(function(d){return d.date});
-    var group=dim.group().reduceSum(function(d){return 1});
-    var day=["Sun","Mon","Tue","Wed","Thu","Fri"];
-    var color = d3.scaleLinear()
-            .domain([0,1, 300])
-            .range(["white","lightgrey","#7b2253"]);
-    var graph=dc.heatMap(dom)
-     .dimension(dim)
-     .group(group)
-     .width(0)
-     .height(150)
-      .rowsLabel(function(d){
-        return day[d];
-      })
-      .colsLabel(function(d){
-        var t=Math.floor(d /100000);
-        if(lasttick !==t){
-          lasttick=t;
-          return t;
-        }
-        return "";
-     })
-     .title(function(d){return dayFormat(d.key)+ " "+d.value+ " rollcalls"})
-     .label(function(d){return dayFormat(d.key) + " "+d.value+ " rollcalls"})
-     .keyAccessor(function(d) { 
-       return 1000*d.key.getFullYear()+week(d.key);
-       var r=d.key;
-       r.setDate(r.getDate() + d.key.getDay());
-       console.log(r);
-       return r;
-     })
-     .valueAccessor(function(d) { return +d.key.getDay(); })
-     .colorAccessor(function(d) { return +d.value; })
-     .colors(color)
-    .on ("renderlet.collabel",function (chart) {
-      return;
-   // rotate x-axis labels
-      chart.selectAll('g.cols text')
-      .attr("style","text-anchor:left;")
-     //.attr('transform', 'translate(-10,10) rotate(215)');
-    });
-
-
-    return graph;
-  }
-
-  function drawSearch(dom){
-
-    var dim=ndx.dimension(function(d) {return d.report.toLowerCase()+" "+ d.desc.toLowerCase() });
-    var filter = function (query) {
-//        query = _normalize(query);
-        return function (d) {
-            return d.indexOf(query.toLowerCase()) !== -1;
-        };
-    };
-    var chart=dc.textFilterWidget(dom)
-      .placeHolder("search by name")
-      .filterFunctionFactory(filter)
-      .on("filtered",function(){
-        console.log("filter");
-      })
-      .on("renderlet.urlparam",function(){
-        var q=urlParam("q");
-        var input=d3.select(this.anchor() +" input");
-        if (input.property("value")) {
-          if (q != input.property("value")) {
-            urlParam("q",input.property("value"));
-          }
-          return; // nothing else to do, already set
-        }
-        if (q) {
-          console.log("filtering for "+q);
-          input.property("value",q).dispatch("input");
-        }
-      })
-      .dimension(dim);
-    return chart;
-  }
-
-  function drawTable(dom){
-    var dim = ndx.dimension(function(d) {
-      return d.identifier
-    });
-    var graph = dc.dataTable(dom)
-      .dimension(dim)
-      .size(100)
-      .sortBy(function(d) {
-        return d.date;
-      })
-      .order (d3.descending)
-      .showGroups(false)
-      .group(function(d) {
-        return null;
-      })
-      .columns([
-        function(d) {
-          return "<span title='"+d.identifier+"'>" +dayFormat(d.date) +"</span>";
-        }
-        ,function(d){ 
-          if (docs[d.report])
-            return "<div class='rapporteur'>" +docs[d.report].rapporteur +"</div><a href='"+ docs[d.report].doc+"'>"+ d.report +"</a>";
-          return d.report;
-        }
-        ,function(d){ 
-          return docs[d.report]? "<a href='"+docs[d.report].oeil+"'>"+docs[d.report].title +"</a>"+d.desc : d.desc;}
-        ,function(d){ return d.for;}
-        ,function(d){ return d.against;}
-        ,function(d){ return d.abstention;}
-    ])
-    .on("renderlet.govote", function(g) {
-      g.selectAll("tr.dc-table-row")
-        .on("click", function(d) {
-          window.open("vote.html?v="+d3.select(this).datum().identifier);
-          console.log(d3.select(this).datum());
-        });
-    });
-    return graph;
-  }
-
-var urlParam = function (name,value) {
-  if (value) {
-    var uri=window.location.href;
-    var re = new RegExp("([?&])" + name + "=.*?(&|#|$)", "i");
-    if (uri.match(re)) {
-    uri=uri.replace(re, '$1' + name + "=" + value + '$2');
-    } else {
-      var hash =  '';
-      if( uri.indexOf('#') !== -1 ){
-        hash = uri.replace(/.*#/, '#');
-        uri = uri.replace(/#.*/, '');
-      }
-      var separator = uri.indexOf('?') !== -1 ? "&" : "?";
-      uri= uri + separator + name + "=" + value + hash;
-    }
-    history.pushState({q:value},"search for "+value,uri);
-    return uri;
-  } else {
-    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-    if (results == null) {
-      return null;
-    } else {
-      return decodeURI(results[1]) || 0;
-    }
-  }
-};
-
-
-</script>
-
+  </script>
 <svg class="d-none">
   <symbol id="menu" viewBox="0 0 24 24">
     <path d="M0 0h24v24H0z" fill="none"/>
