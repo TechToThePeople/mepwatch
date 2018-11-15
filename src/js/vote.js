@@ -127,7 +127,7 @@ function download(voteid, callback) {
 
       config.nb = meps.length;
       ndx = crossfilter(meps);
-      meps = null;
+//      meps = null;
       callback();
     });
 }
@@ -141,7 +141,7 @@ d3.text("img/eu-flags.svg").then(function(xml) {
 function dl_details(callback) {
   d3.json("cards/" + voteid + ".json").then(function(d) {
     document.title = d.name + " "+ d.report+" "+d.date;
-    d.day = dateParse(d.date);
+    d.day = dateParse(d.date.slice(0,10));
     d.date = dateTimeParse(d.date);
     config = d;
     config.win = config.for > config.against ? "for" : "against";
