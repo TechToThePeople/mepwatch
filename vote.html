@@ -637,6 +637,7 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
         });
       graph.xAxis().ticks(3);
       graph.yAxis().ticks(3);
+      //graph.xAxis().tickFormat(function(d) { return d[1]; });
       results.forEach(function(r){
 
         graph.stack(remove_empty_bins(group,12), r, function(d){
