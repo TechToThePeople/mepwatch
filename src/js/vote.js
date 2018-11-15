@@ -141,11 +141,33 @@ d3.text("img/eu-flags.svg").then(function(xml) {
 function dl_details(callback) {
   d3.json("cards/" + voteid + ".json").then(function(d) {
     document.title = d.name + " "+ d.report+" "+d.date;
-    d.day = dateParse(d.date.slice(0,10));
+    d.day = dateParse(d.date.substring(0,10));
     d.date = dateTimeParse(d.date);
     config = d;
     config.win = config.for > config.against ? "for" : "against";
     callback(null);
+  }).catch(function(d){//we have a problem with the json
+    d3.csv('data/item_rollcall.csv',function(d){
+      if (d.identifier != voteid) return;
+      d.day=dateParse(d.date.substring(0,10));
+      d.date = dateTimeParse(d.date);
+      config = d;
+      config.win = config.for > config.against ? "for" : "against";
+      return d;
+    })
+    .then(function(d){
+//      draw();
+      callback(null);
+    });
+    d3
+      .select("main")
+      .insert("div", ":first-child")
+      .attr("class", "alert alert-danger")
+      .html(
+          "<h1>There is an error in the file that we couldn't process. Contact Xavier</h1>"
+          );
+    console.log(d);
+//    callback(null);
   });
 }
 function dl_votes(callback) {
