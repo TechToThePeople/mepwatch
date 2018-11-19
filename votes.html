@@ -369,7 +369,8 @@ td a {color:rgb(33, 150, 243);}
   function drawSearch(dom){
 
     var dim=ndx.dimension(function(d) {
-      var t= docs[d.report]? docs[d.report].name.toLowerCase() : "";
+      //var t= docs[d.report] && docs[d.report].name ? docs[d.report].name.toLowerCase() : "";
+      var t= docs[d.report] && docs[d.report].title ? docs[d.report].title.toLowerCase() : "";
       return t + d.report.toLowerCase()+" "+ d.desc.toLowerCase()+" "+d.for + " " + d.against;
     });
     var filter = function (query) {
@@ -430,7 +431,7 @@ td a {color:rgb(33, 150, 243);}
           return d.report;
         }
         ,function(d){ 
-          return docs[d.report]? "<a href='http:/www.europarl.europa.eu"+docs[d.report].oeil+"'>"+docs[d.report].name +"</a>&nbsp;"+d.desc : d.desc;}
+          return docs[d.report]? "<a href='http:/www.europarl.europa.eu"+docs[d.report].oeil+"'>"+docs[d.report].title +"</a>&nbsp;"+d.desc : d.desc;}
         ,function(d){ return d.for > d.against ? "<b>"+d.for+"</b>":d.for;}
         ,function(d){ return d.against > d.for ? "<b>"+d.against+"</b>":d.against;}
         ,function(d){ return d.abstention;}
