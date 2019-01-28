@@ -178,5 +178,5 @@ gulp.task('face', () => {
 });
 
 
-gulp.task('default', ['fonts','css-copy','js-copy']);
+gulp.task('default', ['fonts','css','js-copy']);
 
