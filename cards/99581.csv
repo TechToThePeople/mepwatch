@@ -576,6 +576,10 @@ mepid,mep,result,group,identifier
 6430,Borrelli,attended,manual,99581
 6446,Castaldo,attended,manual,99581
 4761,Cornillet,attended,manual,99581
+<<<<<<< HEAD
+=======
+,Miriam Dalli,attended,manual,99581
+>>>>>>> master
 6291,Demesmaeker,attended,manual,99581
 5998,Deutsch,attended,manual,99581
 4960,Deva,attended,manual,99581
@@ -590,10 +594,18 @@ mepid,mep,result,group,identifier
 6777,Christophe Hansen,attended,manual,99581
 6460,Henkel,attended,manual,99581
 6751,Jamet,attended,manual,99581
+<<<<<<< HEAD
 6326,Jan Keller,attended,manual,99581
 6508,Kofod,attended,manual,99581
 5450,Kohlíček,attended,manual,99581
 6203,Béla Kovács,attended,manual,99581
+=======
+,Elsi Katainen,attended,manual,99581
+6326,Jan Keller,attended,manual,99581
+6508,Kofod,attended,manual,99581
+5450,Kohlíček,attended,manual,99581
+,Béla Kovács,attended,manual,99581
+>>>>>>> master
 3761,Krehl,attended,manual,99581
 5809,Leontini,attended,manual,99581
 6355,Manscour,attended,manual,99581
@@ -612,6 +624,10 @@ mepid,mep,result,group,identifier
 5974,Poręba,attended,manual,99581
 6526,Preuß,attended,manual,99581
 1487,Quisthoudt-Rowohl,attended,manual,99581
+<<<<<<< HEAD
+=======
+,Maria João Rodrigues,attended,manual,99581
+>>>>>>> master
 6694,Ropė,attended,manual,99581
 6655,Senra Rodríguez,attended,manual,99581
 5111,Siekierski,attended,manual,99581

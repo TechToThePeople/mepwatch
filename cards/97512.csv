@@ -620,6 +620,10 @@ mepid,mep,result,group,identifier
 4628,Corbett,attended,manual,97512
 5358,Cramer,attended,manual,97512
 6548,Csáky,attended,manual,97512
+<<<<<<< HEAD
+=======
+,Miriam Dalli,attended,manual,97512
+>>>>>>> master
 6062,De Castro,attended,manual,97512
 4960,Deva,attended,manual,97512
 5515,Díaz de Mera García Consuegra,attended,manual,97512
@@ -639,8 +643,14 @@ mepid,mep,result,group,identifier
 5433,Jäätteenmäki,attended,manual,97512
 6350,Jávor,attended,manual,97512
 6686,Kaili,attended,manual,97512
+<<<<<<< HEAD
 6666,Kefalogiannis,attended,manual,97512
 6203,Béla Kovács,attended,manual,97512
+=======
+,Elsi Katainen,attended,manual,97512
+6666,Kefalogiannis,attended,manual,97512
+,Béla Kovács,attended,manual,97512
+>>>>>>> master
 5403,Kudrycka,attended,manual,97512
 6367,Kumpula-Natri,attended,manual,97512
 5964,Łukacijewska,attended,manual,97512

@@ -625,6 +625,10 @@ mepid,mep,result,group,identifier
 6583,Bours,attended,manual,97140
 5918,Bové,attended,manual,97140
 5284,Christensen,attended,manual,97140
+<<<<<<< HEAD
+=======
+,Miriam Dalli,attended,manual,97140
+>>>>>>> master
 6712,Dalton,attended,manual,97140
 6062,De Castro,attended,manual,97140
 6024,Ernst,attended,manual,97140
@@ -649,7 +653,11 @@ mepid,mep,result,group,identifier
 6266,Radoš,attended,manual,97140
 6072,Rangel,attended,manual,97140
 5917,Rivasi,attended,manual,97140
+<<<<<<< HEAD
 6371,Maria João Rodrigues,attended,manual,97140
+=======
+,Maria João Rodrigues,attended,manual,97140
+>>>>>>> master
 5890,Rohde,attended,manual,97140
 6357,Rozière,attended,manual,97140
 6246,Šadurskis,attended,manual,97140

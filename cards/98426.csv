@@ -647,6 +647,10 @@ mepid,mep,result,group,identifier
 1278,Brok,attended,manual,98426
 5554,Cesa,attended,manual,98426
 6406,Cirio,attended,manual,98426
+<<<<<<< HEAD
+=======
+,Miriam Dalli,attended,manual,98426
+>>>>>>> master
 5350,Deß,attended,manual,98426
 6420,Drăghici,attended,manual,98426
 6112,Fox,attended,manual,98426
@@ -656,9 +660,16 @@ mepid,mep,result,group,identifier
 5922,de Jong,attended,manual,98426
 6055,Juvin,attended,manual,98426
 5944,Kalinowski,attended,manual,98426
+<<<<<<< HEAD
 6666,Kefalogiannis,attended,manual,98426
 6739,Arndt Kohn,attended,manual,98426
 6203,Béla Kovács,attended,manual,98426
+=======
+,Elsi Katainen,attended,manual,98426
+6666,Kefalogiannis,attended,manual,98426
+6739,Arndt Kohn,attended,manual,98426
+,Béla Kovács,attended,manual,98426
+>>>>>>> master
 6435,Kyenge,attended,manual,98426
 6662,Kyrtsos,attended,manual,98426
 5909,Le Hyaric,attended,manual,98426
@@ -675,6 +686,10 @@ mepid,mep,result,group,identifier
 6727,Pimenta Lopes,attended,manual,98426
 6625,Piri,attended,manual,98426
 6753,Popa,attended,manual,98426
+<<<<<<< HEAD
+=======
+,Maria João Rodrigues,attended,manual,98426
+>>>>>>> master
 5890,Rohde,attended,manual,98426
 4596,Rübig,attended,manual,98426
 5416,Saryusz-Wolski,attended,manual,98426

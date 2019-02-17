@@ -658,6 +658,10 @@ mepid,mep,result,group,identifier
 5388,Buzek,attended,manual,97501
 4761,Cornillet,attended,manual,97501
 6548,Csáky,attended,manual,97501
+<<<<<<< HEAD
+=======
+,Miriam Dalli,attended,manual,97501
+>>>>>>> master
 5515,Díaz de Mera García Consuegra,attended,manual,97501
 6703,Engström,attended,manual,97501
 5256,Fjellner,attended,manual,97501
@@ -669,7 +673,13 @@ mepid,mep,result,group,identifier
 6686,Kaili,attended,manual,97501
 5944,Kalinowski,attended,manual,97501
 6009,Kammerevert,attended,manual,97501
+<<<<<<< HEAD
 3756,Kaufmann,attended,manual,97501
+=======
+,Elsi Katainen,attended,manual,97501
+3756,Kaufmann,attended,manual,97501
+,Béla Kovács,attended,manual,97501
+>>>>>>> master
 4646,McAvan,attended,manual,97501
 6349,Meszerics,attended,manual,97501
 5857,Michel,attended,manual,97501

@@ -635,6 +635,10 @@ mepid,mep,result,group,identifier
 6660,Chrysogonos,attended,manual,99246
 6731,Ciocca,attended,manual,99246
 5981,van Dalen,attended,manual,99246
+<<<<<<< HEAD
+=======
+,Miriam Dalli,attended,manual,99246
+>>>>>>> master
 6194,Dantin,attended,manual,99246
 6172,Dati,attended,manual,99246
 6106,Dodds,attended,manual,99246
@@ -647,9 +651,16 @@ mepid,mep,result,group,identifier
 6358,Halla-aho,attended,manual,99246
 4959,Hannan,attended,manual,99246
 6514,Karlsson,attended,manual,99246
+<<<<<<< HEAD
 5364,Klinz,attended,manual,99246
 6495,Kouroumbashev,attended,manual,99246
 6203,Béla Kovács,attended,manual,99246
+=======
+,Elsi Katainen,attended,manual,99246
+5364,Klinz,attended,manual,99246
+6495,Kouroumbashev,attended,manual,99246
+,Béla Kovács,attended,manual,99246
+>>>>>>> master
 6435,Kyenge,attended,manual,99246
 6477,Lietz,attended,manual,99246
 6521,Łybacka,attended,manual,99246
@@ -670,6 +681,10 @@ mepid,mep,result,group,identifier
 5702,Patriciello,attended,manual,99246
 6727,Pimenta Lopes,attended,manual,99246
 6625,Piri,attended,manual,99246
+<<<<<<< HEAD
+=======
+,Maria João Rodrigues,attended,manual,99246
+>>>>>>> master
 5890,Rohde,attended,manual,99246
 6415,Sant,attended,manual,99246
 5653,Sârbu,attended,manual,99246

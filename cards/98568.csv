@@ -630,6 +630,10 @@ mepid,mep,result,group,identifier
 5554,Cesa,attended,manual,98568
 6406,Cirio,attended,manual,98568
 6273,Collin-Langen,attended,manual,98568
+<<<<<<< HEAD
+=======
+,Miriam Dalli,attended,manual,98568
+>>>>>>> master
 6194,Dantin,attended,manual,98568
 6172,Dati,attended,manual,98568
 6420,Drăghici,attended,manual,98568
@@ -650,9 +654,16 @@ mepid,mep,result,group,identifier
 5954,Jazłowiecka,attended,manual,98568
 5922,de Jong,attended,manual,98568
 5944,Kalinowski,attended,manual,98568
+<<<<<<< HEAD
 3756,Kaufmann,attended,manual,98568
 6495,Kouroumbashev,attended,manual,98568
 6203,Béla Kovács,attended,manual,98568
+=======
+,Elsi Katainen,attended,manual,98568
+3756,Kaufmann,attended,manual,98568
+6495,Kouroumbashev,attended,manual,98568
+,Béla Kovács,attended,manual,98568
+>>>>>>> master
 6435,Kyenge,attended,manual,98568
 6662,Kyrtsos,attended,manual,98568
 5105,Lewandowski,attended,manual,98568
@@ -679,6 +690,10 @@ mepid,mep,result,group,identifier
 6266,Radoš,attended,manual,98568
 6552,Reimon,attended,manual,98568
 6529,Reintke,attended,manual,98568
+<<<<<<< HEAD
+=======
+,Maria João Rodrigues,attended,manual,98568
+>>>>>>> master
 6036,Sassoli,attended,manual,98568
 4705,Sommer,attended,manual,98568
 6490,Stanishev,attended,manual,98568

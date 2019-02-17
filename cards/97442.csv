@@ -606,6 +606,10 @@ mepid,mep,result,group,identifier
 5010,Borghezio,attended,manual,97442
 6583,Bours,attended,manual,97442
 5284,Christensen,attended,manual,97442
+<<<<<<< HEAD
+=======
+,Miriam Dalli,attended,manual,97442
+>>>>>>> master
 6712,Dalton,attended,manual,97442
 6113,(The Earl of) Dartmouth,attended,manual,97442
 6062,De Castro,attended,manual,97442
@@ -646,7 +650,11 @@ mepid,mep,result,group,identifier
 4676,Ries,attended,manual,97442
 5917,Rivasi,attended,manual,97442
 6154,Rochefort,attended,manual,97442
+<<<<<<< HEAD
 6371,Maria João Rodrigues,attended,manual,97442
+=======
+,Maria João Rodrigues,attended,manual,97442
+>>>>>>> master
 6357,Rozière,attended,manual,97442
 6246,Šadurskis,attended,manual,97442
 6389,Schaffhauser,attended,manual,97442

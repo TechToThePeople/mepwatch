@@ -576,6 +576,10 @@ mepid,mep,result,group,identifier
 6430,Borrelli,attended,manual,99323
 1278,Brok,attended,manual,99323
 4761,Cornillet,attended,manual,99323
+<<<<<<< HEAD
+=======
+,Miriam Dalli,attended,manual,99323
+>>>>>>> master
 5998,Deutsch,attended,manual,99323
 4960,Deva,attended,manual,99323
 6669,Epitideios,attended,manual,99323
@@ -591,10 +595,18 @@ mepid,mep,result,group,identifier
 1793,Goerens,attended,manual,99323
 6688,Grammatikakis,attended,manual,99323
 6460,Henkel,attended,manual,99323
+<<<<<<< HEAD
 6326,Jan Keller,attended,manual,99323
 6508,Kofod,attended,manual,99323
 5450,Kohlíček,attended,manual,99323
 6203,Béla Kovács,attended,manual,99323
+=======
+,Elsi Katainen,attended,manual,99323
+6326,Jan Keller,attended,manual,99323
+6508,Kofod,attended,manual,99323
+5450,Kohlíček,attended,manual,99323
+,Béla Kovács,attended,manual,99323
+>>>>>>> master
 3761,Krehl,attended,manual,99323
 6689,Kyrkos,attended,manual,99323
 5809,Leontini,attended,manual,99323
@@ -615,6 +627,10 @@ mepid,mep,result,group,identifier
 5974,Poręba,attended,manual,99323
 6526,Preuß,attended,manual,99323
 1487,Quisthoudt-Rowohl,attended,manual,99323
+<<<<<<< HEAD
+=======
+,Maria João Rodrigues,attended,manual,99323
+>>>>>>> master
 6694,Ropė,attended,manual,99323
 6246,Šadurskis,attended,manual,99323
 5877,Saudargas,attended,manual,99323

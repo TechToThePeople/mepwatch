@@ -675,9 +675,18 @@ mepid,mep,result,group,identifier
 3972,Berès,attended,manual,98384
 5554,Cesa,attended,manual,98384
 6406,Cirio,attended,manual,98384
+<<<<<<< HEAD
 6420,Drăghici,attended,manual,98384
 6454,Gasbarra,attended,manual,98384
 5922,de Jong,attended,manual,98384
+=======
+,Miriam Dalli,attended,manual,98384
+6420,Drăghici,attended,manual,98384
+6454,Gasbarra,attended,manual,98384
+5922,de Jong,attended,manual,98384
+,Elsi Katainen,attended,manual,98384
+,Béla Kovács,attended,manual,98384
+>>>>>>> master
 6435,Kyenge,attended,manual,98384
 6521,Łybacka,attended,manual,98384
 6721,Maullu,attended,manual,98384
@@ -686,6 +695,10 @@ mepid,mep,result,group,identifier
 ,Packet,attended,manual,98384
 5702,Patriciello,attended,manual,98384
 6727,Pimenta Lopes,attended,manual,98384
+<<<<<<< HEAD
+=======
+,Maria João Rodrigues,attended,manual,98384
+>>>>>>> master
 5890,Rohde,attended,manual,98384
 6674,Sakorafa,attended,manual,98384
 4482,Tajani,attended,manual,98384

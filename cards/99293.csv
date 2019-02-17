@@ -622,6 +622,10 @@ mepid,mep,result,group,identifier
 6660,Chrysogonos,attended,manual,99293
 6731,Ciocca,attended,manual,99293
 5981,van Dalen,attended,manual,99293
+<<<<<<< HEAD
+=======
+,Miriam Dalli,attended,manual,99293
+>>>>>>> master
 6194,Dantin,attended,manual,99293
 6172,Dati,attended,manual,99293
 6106,Dodds,attended,manual,99293
@@ -639,9 +643,15 @@ mepid,mep,result,group,identifier
 6556,James,attended,manual,99293
 6313,Kari,attended,manual,99293
 6514,Karlsson,attended,manual,99293
+<<<<<<< HEAD
 6766,Elsi Katainen,attended,manual,99293
 5364,Klinz,attended,manual,99293
 6203,Béla Kovács,attended,manual,99293
+=======
+,Elsi Katainen,attended,manual,99293
+5364,Klinz,attended,manual,99293
+,Béla Kovács,attended,manual,99293
+>>>>>>> master
 6435,Kyenge,attended,manual,99293
 6662,Kyrtsos,attended,manual,99293
 6477,Lietz,attended,manual,99293
@@ -669,6 +679,10 @@ mepid,mep,result,group,identifier
 6625,Piri,attended,manual,99293
 1487,Quisthoudt-Rowohl,attended,manual,99293
 6266,Radoš,attended,manual,99293
+<<<<<<< HEAD
+=======
+,Maria João Rodrigues,attended,manual,99293
+>>>>>>> master
 5890,Rohde,attended,manual,99293
 5653,Sârbu,attended,manual,99293
 6663,Spyraki,attended,manual,99293

@@ -195,7 +195,7 @@ td a {color:rgb(33, 150, 243);}
   function dl_votes (callback){
     d3.csv('data/item_rollcall.csv',function(d){
       d.date=dateParse(d.date.substring(0,10));
-      if (!d.date) {console.log(d)};
+      if (!d.date) {console.log(d)}
       
       d.day=d.date.getDay();
       d.week=+week(d.date);

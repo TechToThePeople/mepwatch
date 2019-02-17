@@ -664,6 +664,10 @@ mepid,mep,result,group,identifier
 5554,Cesa,attended,manual,99042
 6406,Cirio,attended,manual,99042
 6273,Collin-Langen,attended,manual,99042
+<<<<<<< HEAD
+=======
+,Miriam Dalli,attended,manual,99042
+>>>>>>> master
 6730,Dalunde,attended,manual,99042
 6420,Drăghici,attended,manual,99042
 4929,Farage,attended,manual,99042
@@ -671,7 +675,13 @@ mepid,mep,result,group,identifier
 6452,Gericke,attended,manual,99042
 6358,Halla-aho,attended,manual,99042
 5922,de Jong,attended,manual,99042
+<<<<<<< HEAD
 3756,Kaufmann,attended,manual,99042
+=======
+,Elsi Katainen,attended,manual,99042
+3756,Kaufmann,attended,manual,99042
+,Béla Kovács,attended,manual,99042
+>>>>>>> master
 6435,Kyenge,attended,manual,99042
 6521,Łybacka,attended,manual,99042
 6399,Mélin,attended,manual,99042
@@ -681,6 +691,10 @@ mepid,mep,result,group,identifier
 5702,Patriciello,attended,manual,99042
 6727,Pimenta Lopes,attended,manual,99042
 6625,Piri,attended,manual,99042
+<<<<<<< HEAD
+=======
+,Maria João Rodrigues,attended,manual,99042
+>>>>>>> master
 6663,Spyraki,attended,manual,99042
 6490,Stanishev,attended,manual,99042
 6333,Štětina,attended,manual,99042

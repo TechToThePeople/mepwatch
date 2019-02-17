@@ -657,6 +657,10 @@ mepid,mep,result,group,identifier
 6600,Clune,attended,manual,98326
 5358,Cramer,attended,manual,98326
 6548,Csáky,attended,manual,98326
+<<<<<<< HEAD
+=======
+,Miriam Dalli,attended,manual,98326
+>>>>>>> master
 5515,Díaz de Mera García Consuegra,attended,manual,98326
 5983,Estaràs Ferragut,attended,manual,98326
 4954,Jill Evans,attended,manual,98326
@@ -665,7 +669,13 @@ mepid,mep,result,group,identifier
 4535,Hautala,attended,manual,98326
 6043,Hirsch,attended,manual,98326
 6686,Kaili,attended,manual,98326
+<<<<<<< HEAD
 5908,Ska Keller,attended,manual,98326
+=======
+,Elsi Katainen,attended,manual,98326
+5908,Ska Keller,attended,manual,98326
+,Béla Kovács,attended,manual,98326
+>>>>>>> master
 5909,Le Hyaric,attended,manual,98326
 4646,McAvan,attended,manual,98326
 6399,Mélin,attended,manual,98326
