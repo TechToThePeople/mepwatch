@@ -3,6 +3,7 @@ epid,firstname,lastname,active,start,end,birthdate,country,gender,eugroup,party,
 96675,Isabella,LÖVIN,false,2009-07-14,2014-10-02,1963-02-03,se,F,Verts/ALE,Miljöpartiet de gröna,isabella.lovin@telia.com,,5862
 192635,Danilo Oscar,LANCINI,true,2018-04-17,,1965-10-15,it,,ENF,Lega Nord,danilooscar.lancini@europarl.europa.eu,,6771
 28299,Bogusław,SONIK,false,2004-07-20,2014-06-30,1953-12-03,pl,M,PPE,Platforma Obywatelska,,,5418
+1351,Miguel,ARIAS CAÑETE,false,1986-01-01,2014-10-31,1950-02-24,es,M,PPE,Partido Popular,miguel.ariascanete@europarl.europa.eu,,1178
 28618,Valdis,DOMBROVSKIS,false,2004-07-20,2014-10-31,1971-08-05,lv,M,PPE,"Partija ""VIENOTĪBA""",valdis.dombrovskis@europarl.europa.eu,,5601
 125106,Johan,VAN OVERTVELDT,false,2014-07-01,2014-10-10,1955-08-24,be,M,ECR,Nieuw-Vlaamse Alliantie,,,6683
 124696,Andrus,ANSIP,false,2014-07-01,2014-10-31,1956-10-01,ee,M,ALDE,Eesti Reformierakond,andrus.ansip@europarl.europa.eu,,6327
@@ -198,6 +199,7 @@ epid,firstname,lastname,active,start,end,birthdate,country,gender,eugroup,party,
 96729,Santiago,FISAS AYXELÀ,true,2009-07-14,,1948-08-29,es,M,PPE,Partido Popular,santiago.fisasayxela@europarl.europa.eu,santiagofisas,5903
 124792,Laurenţiu,REBEGA,true,2014-07-01,,1976-02-20,ro,M,ECR,Independent,laurentiu.rebega@europarl.europa.eu,,6426
 1023,Jean-Marie,LE PEN,true,1984-07-24,,1928-06-20,fr,M,NA/NI,Front national,jean-marie.lepen@europarl.europa.eu,,1529
+1023,Jean-Marie,LE PEN,true,1984-07-24,,1928-06-20,fr,M,NA/NI,Front national,jean-marie.lepen@europarl.europa.eu,,DUPLICATE
 23768,Bogusław,LIBERADZKI,true,2004-05-01,,1948-09-12,pl,M,S&D,Sojusz Lewicy Demokratycznej,boguslaw.liberadzki@europarl.europa.eu,bliberadzki,5094
 1179,Michèle,ALLIOT-MARIE,true,1989-07-25,,1946-09-10,fr,F,PPE,Les Républicains,michele.alliot-marie@europarl.europa.eu,malliotmarie,1340
 96918,Derek,VAUGHAN,true,2009-07-14,,1961-05-02,gb,M,S&D,Labour Party,derek.vaughan@europarl.europa.eu,derekvaughan,6086
@@ -511,6 +513,7 @@ epid,firstname,lastname,active,start,end,birthdate,country,gender,eugroup,party,
 1911,Martin,SCHULZ,false,1994-07-19,2017-02-10,1955-12-20,de,M,S&D,Sozialdemokratische Partei Deutschlands,,,3825
 124864,Michela,GIUFFRIDA,true,2014-07-01,,1964-01-12,it,F,S&D,Partito Democratico,michela.giuffrida@europarl.europa.eu,m_giuffrida,6502
 28210,Marine,LE PEN,false,2004-07-20,2017-06-18,1968-08-05,fr,F,ENF,Front national,,,5332
+28210,Marine,LE PEN,false,2004-07-20,2017-06-18,1968-08-05,fr,F,ENF,Front national,,,DUPLICATE
 124772,Alberto,CIRIO,true,2014-07-01,,1972-12-06,it,M,PPE,Forza Italia,alberto.cirio@europarl.europa.eu,alberto_cirio,6406
 124844,Piernicola,PEDICINI,true,2014-07-01,,1969-05-22,it,M,EFDD,Movimento 5 Stelle,piernicola.pedicini@europarl.europa.eu,pedicinim5s,6482
 124958,Jonathan,ARNOTT,true,2014-07-01,,1981-01-12,gb,M,EFDD,United Kingdom Independence Party,jonathan.arnott@europarl.europa.eu,jonathanarnott,6577
@@ -635,6 +638,7 @@ epid,firstname,lastname,active,start,end,birthdate,country,gender,eugroup,party,
 96718,Olga,SEHNALOVÁ,true,2009-07-14,,1968-10-25,cz,F,S&D,Česká strana sociálně demokratická,olga.sehnalova@europarl.europa.eu,olgasehnalova,5897
 124692,Demetris,PAPADAKIS,true,2014-07-01,,1966-08-22,cy,M,S&D,Movement for Social Democracy EDEK,demetris.papadakis@europarl.europa.eu,dempapadakis,6323
 96951,Diane,DODDS,true,2009-07-14,,1958-08-16,gb,F,NA/NI,Democratic Unionist Party,diane.dodds@europarl.europa.eu,,6106
+96951,Diane,DODDS,true,2009-07-14,,1958-08-16,gb,F,NA/NI,Democratic Unionist Party,diane.dodds@europarl.europa.eu,,DUPLICATE
 124825,Beatrix,von STORCH,false,2014-07-01,2017-10-23,1971-05-27,de,F,EFDD,Alternative für Deutschland,,,6462
 96915,Sergio Gaetano,COFFERATI,true,2009-07-14,,1948-01-30,it,M,S&D,Sinistra Italiana,sergio.cofferati@europarl.europa.eu,cofferati,6083
 124996,Peter,LUNDGREN,true,2014-07-01,,1963-02-02,se,M,ECR,Sverigedemokraterna,peter.lundgren@europarl.europa.eu,,6608
@@ -771,6 +775,7 @@ epid,firstname,lastname,active,start,end,birthdate,country,gender,eugroup,party,
 96883,Eva,JOLY,true,2009-07-14,,1943-12-05,fr,F,Verts/ALE,Europe Écologie,eva.joly@europarl.europa.eu,evajoly,6054
 124866,Ilhan,KYUCHYUK,true,2014-07-01,,1985-09-16,bg,M,ALDE,Movement for Rights and Freedoms,ilhan.kyuchyuk@europarl.europa.eu,ilhankyuchyuk,6504
 124969,Anneliese,DODDS,false,2014-07-01,2017-06-08,1978-03-16,gb,F,S&D,Labour Party,,,6588
+124969,Anneliese,DODDS,false,2014-07-01,2017-06-08,1978-03-16,gb,F,S&D,Labour Party,,,DUPLICATE
 113892,Eric,ANDRIEU,true,2012-05-16,,1960-04-14,fr,M,S&D,Parti socialiste,eric.andrieu@europarl.europa.eu,eric_andrieu,6279
 125004,Franc,BOGOVIČ,true,2014-07-01,,1963-02-02,si,M,PPE,Slovenska ljudska stranka,franc.bogovic@europarl.europa.eu,franc_bogovic,6613
 128588,Linnéa,ENGSTRÖM,true,2014-10-08,,1981-04-02,se,F,Verts/ALE,Miljöpartiet de gröna,linnea.engstrom@europarl.europa.eu,linneaengstrom,6703
