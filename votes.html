@@ -316,7 +316,8 @@ td a {color:rgb(33, 150, 243);}
     var lasttick="";
     var dim=ndx.dimension(function(d){return d.date});
     var group=dim.group().reduceSum(function(d){return 1});
-    var day=["Sun","Mon","Tue","Wed","Thu","Fri"];
+//    var day=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+    var day=["Sat","Fri","Thu","Wed","Tue","Mon","Sun"];
     var color = d3.scaleLinear()
             .domain([0,1, 300])
             .range(["white","lightgrey","#7b2253"]);
@@ -350,7 +351,7 @@ td a {color:rgb(33, 150, 243);}
      .keyAccessor(function(d) { 
        return 1000*d.key.getFullYear()+week(d.key);
      })
-     .valueAccessor(function(d) { return +d.key.getDay(); })
+     .valueAccessor(function(d) { return 6-d.key.getDay(); })
      .colorAccessor(function(d) { return +d.value; })
      .colors(color)
     
