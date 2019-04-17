@@ -31,6 +31,7 @@ if (!String.prototype.startsWith) {
     style.type = 'text/css';
     style.id = 'mepwatch-style';
     style.appendChild(document.createTextNode(".mepwatch-act iframe {width:100%;min-width:100%;border:0px;overflow:hidden;}"));
+    style.appendChild(document.createTextNode(".mepwatch-graph iframe {width:100%;min-width:100%;border:0px;overflow:hidden;}"));
     document.head.appendChild(style);
   }
 
@@ -42,6 +43,19 @@ if (!String.prototype.startsWith) {
     iframe.id = 'mepwatch-iframe';
     var vote=target.dataset.vote || urlParam("v");
     iframe.src = defaults.url + 'widget-act.html?v='+vote;
+    iframe.scrolling= 'no';
+    target.appendChild(iframe);
+
+  }
+
+  var iframeGraph = function () {
+    var target = document.querySelector(".mepwatch-graph");
+    if (!target) return;
+//    var me = document.querySelector('script[src="//mepwatch.eu/widget.js"]');
+    var iframe = document.createElement('iframe');
+    iframe.id = 'mepwatch-iframe';
+    var vote=target.dataset.vote || urlParam("v");
+    iframe.src = defaults.url + 'embed.html?v='+vote;
     iframe.scrolling= 'no';
     target.appendChild(iframe);
 
@@ -73,5 +87,6 @@ if (!String.prototype.startsWith) {
 
   style();
   iframe();
+  iframeGraph();
   iframeresizer();
 })();
