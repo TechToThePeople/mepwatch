@@ -11,8 +11,8 @@
     <link rel="prefetch" href="data/meps.csv" as="fetch"/>
 
 <style>
-footer a {color:#9c27b0;}
-footer {text-align:right}
+.footer a {color:#9c27b0;width:100%;padding-right:10px}
+.footer {text-align:right}
 
 svg.logo {
   width:2em;
@@ -125,10 +125,10 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
   </head>
   <body>
 
-    <main role="main" class="card box-info">
+    <main role="main" class="py-2 px-2">
 
      <div class="nobg-info">
-        <div class="container">
+        <div class="container card box-info pt-2">
 
           <div class="row">
             <div class="col-md-3">
@@ -149,10 +149,6 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
                   <div class="graph"></div>
             </div>
           </div>
-        </div>
-     </div>
-     <div class="py-5 nobg-light">
-        <div class="container-fluid">
 
           <div class="row">
             <div class="col-md-12">
@@ -167,17 +163,16 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
                 </div>
               </div>
             </div>
+    <div class="row footer">
+          <a href="https://mepwatch.eu/">
+            <svg class="logo"><use href="#logo" /></svg>Powered by MEP watch
+          </a>
+    </div>
+
           </div>
         </div>
       </div>
 
-<div class="container" id="meps">
-</div>
-    <footer>
-          <a href="https://mepwatch.eu/">
-            <svg class="logo"><use href="#logo" /></svg>Powered by MEP watch</span>
-          </a>
-    </footer>
     </main>
 
 
