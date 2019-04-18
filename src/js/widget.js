@@ -49,15 +49,17 @@ if (!String.prototype.startsWith) {
   }
 
   var iframeGraph = function () {
-    var target = document.querySelector(".mepwatch-graph");
-    if (!target) return;
+    var targets = document.querySelectorAll(".mepwatch-graph");
+    if (targets.length == 0) return;
 //    var me = document.querySelector('script[src="//mepwatch.eu/widget.js"]');
-    var iframe = document.createElement('iframe');
-    iframe.id = 'mepwatch-iframe';
-    var vote=target.dataset.vote || urlParam("v");
-    iframe.src = defaults.url + 'embed.html?v='+vote;
-    iframe.scrolling= 'no';
-    target.appendChild(iframe);
+    targets.forEach(function(target){
+      var iframe = document.createElement('iframe');
+      iframe.id = 'mepwatch-iframe';
+      iframe.scrolling= 'no';
+      var vote=target.dataset.vote || urlParam("v");
+      iframe.src = defaults.url + 'embed.html?v='+vote;
+      target.appendChild(iframe);
+    });
 
   }
 
