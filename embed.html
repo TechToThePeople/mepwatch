@@ -136,7 +136,6 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
             <li class="list-group-item nbmep"><a class="resetall"><span class="nb"></span><span class="total d-none">/</span> MEPs<button type="button" class="btn btn-warning float-right" title="reset the filters">↺</button></a></li> 
             <li class="list-group-item nbvoted"><span class="percent badge badge-primary badge-pill float-right">%</span><span class="nb"></span> voted</li> 
             <li class="list-group-item result"><span class="percent badge badge-primary badge-pill float-right"></span><span class="nb"></span> result</li> 
-            <li class="list-group-item goal d-none"><span class="win badge badge-pill float-right">AA</span><span class="nb"></span>We wanted</li> 
           </ul>
             </div>
             <div class="col-md-3" id="result">
@@ -831,11 +830,6 @@ function drawMap(dom,graphs){
             return "filtered ";
           }
 
-          if (config.goal == "for") {
-            return d.value.for.count > d.value.against.count  ? "😊" : "😞";
-          } else {
-            return d.value.for.count < d.value.against.count  ? "😊" : "😞";
-          };
         });
         d3.select(".result .badge").html(function(){
           var sum=d.value.for.count + d.value.against.count;
