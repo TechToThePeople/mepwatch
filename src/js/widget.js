@@ -31,7 +31,7 @@ if (!String.prototype.startsWith) {
     style.type = 'text/css';
     style.id = 'mepwatch-style';
     style.appendChild(document.createTextNode(".mepwatch-act iframe {width:100%;min-width:100%;border:0px;overflow:hidden;}"));
-    style.appendChild(document.createTextNode(".mepwatch-graph iframe {width:100%;min-width:100%;border:0px;overflow:hidden;}"));
+    style.appendChild(document.createTextNode(".mepwatch-graph iframe {width:100%;min-width:1000px;border:0px;overflow:hidden;}"));
     document.head.appendChild(style);
   }
 
