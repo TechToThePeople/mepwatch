@@ -66,9 +66,10 @@ if (!String.prototype.startsWith) {
 
     iFrameResize({
     log:false,
-    minHeight:489,
+    checkOrigin:false,
+    minHeight:500,
     //heightCalculationMethod:'documentElementOffset',
-    heightCalculationMethod:'taggedElement',
+    //heightCalculationMethod:'taggedElement',
     messageCallback : function(d){
       if (d.message.name) {
         document.title=d.message.name;
