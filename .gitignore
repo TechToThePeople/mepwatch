@@ -1,6 +1,7 @@
 parlparse
 node_modules
 build
+cards/*.attendance.csv
 data/ep_votes.json
 data/*.gz
 src/index.js
