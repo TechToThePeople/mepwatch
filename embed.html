@@ -162,7 +162,7 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
 
           <div class="row">
             <div class="col-md-12">
-              <div class="" id="country">
+              <div class="mb-3" id="country">
                 <div class="">
                   <h5 class="card-title text-muted text-right">
                     <div class="btn-group">
@@ -177,6 +177,8 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
             </div>
           <div class="row">
             <div class="col-md-12">
+
+            <div id="pagination" class="small mt-2"></div>
             <table id="table-mep" class="table table-striped d-none">
               <thead>
                 <tr>
@@ -1065,7 +1067,7 @@ function drawMap(dom,graphs){
         ,function(d){ return d.party;}
     ]);
 
-//    drawPagination();
+    drawPagination(graph);
     sortable(graph);
 
     
@@ -1123,6 +1125,58 @@ function drawMap(dom,graphs){
 
      d3.select("th#col_0 i").attr("class","glyphicon glyphicon-arrow-down");
    }
+
+  function drawPagination(chart){
+
+  var ofs = 0, pag = 10;
+  chart.on('preRedraw.pagination', display);
+
+  function display() {
+      d3.select('#begin')
+          .text(1+ofs);
+      d3.select('#end')
+          .text(ofs+pag);
+      d3.selectAll('#next,#last')
+          .attr('disabled', ofs+pag>=graphs.total.data() ? 'true' : null);
+      d3.selectAll('#first,#prev')
+          .attr('disabled', ofs<=0 ? 'true' : null);
+      d3.select('#size').text(graphs.total.data());
+  }
+
+  function update() {
+      chart.beginSlice(ofs);
+      chart.endSlice(ofs+pag);
+      chart.redraw();
+  }
+
+  function next() {
+      ofs += pag;update();
+  }
+  function prev() {
+      ofs -= pag;
+      if (ofs <=0) {
+        d3.selectAll("#prev,#first").attr("disabled",true);
+        ofs=0;
+      }
+      update();
+  }
+  d3.selectAll("#pagination")
+    .html (`
+        Showing <span id="begin"></span>-<span id="end"></span> of <span id="size"></span><span class="btn-group float-right">
+        <button id="first" disabled="disabled" class="btn btn-primary"><i class="glyphicon glyphicon-fast-backward"></i>First</button>
+        <button id="prev" disabled="disabled" class="btn btn-primary"><i class="glyphicon glyphicon-step-backward"></i>Prev</button>
+        <button id="next" class="btn btn-primary">Next<i class="glyphicon glyphicon-step-forward"></i></button>
+        <button id="last" class="btn btn-primary">Last<i class="glyphicon glyphicon-fast-forward"></i></button>
+        </span>
+    `);
+  d3.select("#first").on("click",function(){ofs=0;update()});
+  d3.select("#last").on("click",function(){ofs=graphs.total.data()-pag;update()});
+  d3.select("#prev").on("click",prev);
+  d3.select("#next").on("click",function(){ofs +=pag;update()});
+
+  update();
+}
+
 }
 
 function urlParam(name,value) {
