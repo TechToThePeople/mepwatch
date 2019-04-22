@@ -127,7 +127,7 @@ function download(voteid, callback) {
 
       config.nb = meps.length;
       ndx = crossfilter(meps);
-//      meps = null;
+      meps = null;
       callback();
     });
 }

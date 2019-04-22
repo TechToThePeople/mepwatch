@@ -130,8 +130,8 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
      <div class="nobg-info">
         <div class="container card box-info pt-2">
 
-          <div class="row card-body">
-            <div class="col-md-3 col-6">
+          <div class="row card-body" id="main-row">
+            <div class="col-md-4 col-6">
           <ul class="list-group">
             <li class="list-group-item nbmep"><a class="resetall"><span class="nb"></span><span class="total d-none">/</span> MEPs<button type="button" class="btn btn-warning float-right" title="reset the filters">↺</button></a></li> 
             <li class="list-group-item nbvoted"><span class="percent badge badge-primary badge-pill float-right">%</span><span class="nb"></span> voted</li> 
@@ -149,14 +149,14 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
 
           </ul>
             </div>
-            <div class="col-md-3 col-6" id="result">
+            <div class="col-md-4 col-6" id="result">
                   <div class="graph"></div>
             </div>
-            <div class="col-md-3 col-6 rotated90" id="eugroup">
-                  <div class="graph"></div>
+            <div class="col-md-4 col-6 rotated90" id="eugroup">
+                  <div class="graph float-right"></div>
             </div>
-            <div class="col-md-3 col-6 rotated90 d-none" id="party">
-                  <div class="graph"></div>
+            <div class="col-md-4 col-6 rotated90 d-none" id="party">
+                  <div class="graph float-right"></div>
             </div>
           </div>
 
@@ -266,7 +266,7 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
       }
 
     graphs.country=drawCountry('#country div.graph');
-    graphs.map=drawMap('#map div.graph',graphs);
+//    graphs.map=drawMap('#map div.graph',graphs);
     guessPartyLine("partyline");
 
 	  graphs.eugroup=drawBarVotes('#eugroup div.graph',function(d){ return d.eugroup});
@@ -311,7 +311,10 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
       graphs[d].on("filtered",function(graph){
         var f=graph.filters().join("|");
         urlParam(d,f);
-        d3.select("#party").classed("d-none",false);
+        d3.select("#party").classed("d-none",!f.length);
+        d3.selectAll("#main-row .col-6").classed("col-md-4",!f.length);
+        d3.selectAll("#main-row .col-6").classed("col-md-3",f.length);
+//        d3.select("#eugroup").classed("d-none",f.length);
       });
       filter=urlParam(d);
       if (filter) {
@@ -621,17 +624,6 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
           });
       }
 
-      function toggleMode (){
-        d3.selectAll("#country h5 button").on("click",function(){
-          var b=d3.select(this);
-          if (!b.classed("active")) return;
-          graph.relative= b.classed("btn-relative");
-          b.classed("active",false);
-          d3.select("#country .btn-"+(graph.relative?"absolute":"relative")).classed("active",true);
-          graph.yAxisLabel((graph.relative?"%":"#")+"MEPs")
-          graph.redraw();
-        });
-      }
     }
 
 function drawMap(dom,graphs){
@@ -823,7 +815,6 @@ function drawMap(dom,graphs){
     d3.select(".btn-country input").on("change",function(){
       var btn=d3.select(this.parentNode);
       var display=!btn.classed("active");
-      console.log("checked "+display);
       btn.classed("active",display);
       d3.select('#country').classed("d-none",display);
     });
