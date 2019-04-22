@@ -784,6 +784,7 @@ function drawMap(dom,graphs){
             .attr("transform","translate(-10,2)");
         });
       graph.xAxis().ticks(3);
+      graph.yAxis().ticks(3);
 //      res.shift();
       res.forEach(function(r){
         graph.stack(group, r, function(d){
@@ -829,9 +830,8 @@ function drawMap(dom,graphs){
     d3.select(".btn-table input").on("change",function(){
       var btn=d3.select(this.parentNode);
       var display=!btn.classed("active");
-      console.log("checked "+display);
       btn.classed("active",display);
-      d3.select('#table-mep').classed("d-none",display);
+      d3.selectAll('#table-mep,#pagination').classed("d-none",display);
       if(!graphs.table){
         graphs.table=drawTable("#table-mep");
         graphs.table.redraw();
