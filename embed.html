@@ -136,6 +136,17 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
             <li class="list-group-item nbmep"><a class="resetall"><span class="nb"></span><span class="total d-none">/</span> MEPs<button type="button" class="btn btn-warning float-right" title="reset the filters">↺</button></a></li> 
             <li class="list-group-item nbvoted"><span class="percent badge badge-primary badge-pill float-right">%</span><span class="nb"></span> voted</li> 
             <li class="list-group-item result"><span class="percent badge badge-primary badge-pill float-right"></span><span class="nb"></span> result</li> 
+            <li class="list-group-item">
+              <div class="btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-primary btn-country btn-sm">
+                <input type="checkbox" checked autocomplete="off">Countries
+                </label>
+                <label class="btn btn-table btn-primary active btn-sm">
+                <input type="checkbox" autocomplete="off">MEPs
+                </label>
+              </div>
+            </li>
+
           </ul>
             </div>
             <div class="col-md-3 col-6" id="result">
@@ -154,14 +165,37 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
               <div class="" id="country">
                 <div class="">
                   <h5 class="card-title text-muted text-right">
-                  <button type="button" class="btn-relative btn btn-primary" title="percentage of votes">Percentage</button>
-                  <button type="button" class="btn-absolute active btn btn-primary" title="Number of votes">Number</button>
+                    <div class="btn-group">
+                  <button type="button" class="btn-sm btn-relative btn btn-primary" title="Vote results as a % of the number of MEPs in the country">%</button>
+                  <button type="button" class="btm-sm btn-absolute active btn btn-primary" title="Vote results as the number of MEPs">#</button>
+                    </div>
                   </h5>
                   <div class="graph"></div>
                   </div>
                 </div>
               </div>
             </div>
+          <div class="row">
+            <div class="col-md-12">
+            <table id="table-mep" class="table table-striped d-none">
+              <thead>
+                <tr>
+                  <th>Vote</th>
+                  <th>Rebel</th>
+                  <th>Act</th>
+                  <th>Name</th>
+                  <th>Country</th>
+                  <th>Group</th>
+                  <th>Party</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td colspan="6" class="alert alert-info">Click on a graph to filter and display the list of MEPs, or <a href="#" onclick="graphs.table.redraw();return false;">display them all</a></td>
+              </tbody>
+            </table>
+            </div>
+          </div>
+
     <div class="row footer text-right">
           <a href="https://mepwatch.eu/">
             <svg class="logo"><use href="#logo" /></svg>Powered by MEP watch
@@ -176,7 +210,6 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
 
 
     <!-- Optional JavaScript -->
-    <script src="dist/js/main.js"></script> 
     <script src="dist/js/dcbundle.js"></script>
     <script src="src/js/vote.js"></script>
 <script>
@@ -293,8 +326,9 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
     });
     dc.renderAll();
 
-    graphs.table=drawTable('table.table');
-    setTimeout(function() { graphs.table.redraw(); }, 3000); //delay a bit the drawing of the table
+    graphs.table=drawTable('.table-mep');
+    drawToggle();
+//    setTimeout(function() { graphs.table.redraw(); }, 3000); //delay a bit the drawing of the table
 //graphs.grid=drawGrid('#grid');
 
   }
@@ -785,6 +819,27 @@ function drawMap(dom,graphs){
       }
     }
 
+  function drawToggle(){
+    d3.select(".btn-country input").on("change",function(){
+      var btn=d3.select(this.parentNode);
+      var display=!btn.classed("active");
+      console.log("checked "+display);
+      btn.classed("active",display);
+      d3.select('#country').classed("d-none",display);
+    });
+    d3.select(".btn-table input").on("change",function(){
+      var btn=d3.select(this.parentNode);
+      var display=!btn.classed("active");
+      console.log("checked "+display);
+      btn.classed("active",display);
+      d3.select('#table-mep').classed("d-none",display);
+      if(!graphs.table){
+        graphs.table=drawTable("#table-mep");
+        graphs.table.redraw();
+      }
+    });
+  }
+
   function drawNumbers(graphs) {
     var dim = ndx.dimension(function(d) {
       return true;
@@ -961,6 +1016,8 @@ function drawMap(dom,graphs){
     return graph;
   }
   function drawTable(dom){
+    if(! document.querySelector(dom)) return null;
+
     var dim = ndx.dimension(function(d) {
       return d.lastname;
     });
@@ -1022,8 +1079,7 @@ function drawMap(dom,graphs){
 
     function tweet(d){
       if (d.twitter) {
-        var url="https://twitter.com/intent/tweet?text="+encodeURIComponent(".#savetheinternet something something @"+d.twitter);
-//        url = url.replace(/#/g, '%23');
+        var url="https://twitter.com/intent/tweet?text="+encodeURIComponent(".@"+d.twitter+", why did you vote that way?"+d.vote);
         var win=window.open(url,'_blank');
       };
     };
