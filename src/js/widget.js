@@ -38,9 +38,8 @@ if (!String.prototype.startsWith) {
   var iframe = function () {
     var target = document.querySelector(".mepwatch-act");
     if (!target) return;
-//    var me = document.querySelector('script[src="//mepwatch.eu/widget.js"]');
     var iframe = document.createElement('iframe');
-    iframe.id = 'mepwatch-iframe';
+    iframe.className = 'mepwatch-iframe';
     var vote=target.dataset.vote || urlParam("v");
     iframe.src = defaults.url + 'widget-act.html?v='+vote;
     iframe.scrolling= 'no';
@@ -51,10 +50,9 @@ if (!String.prototype.startsWith) {
   var iframeGraph = function () {
     var targets = document.querySelectorAll(".mepwatch-graph");
     if (targets.length == 0) return;
-//    var me = document.querySelector('script[src="//mepwatch.eu/widget.js"]');
     targets.forEach(function(target){
       var iframe = document.createElement('iframe');
-      iframe.id = 'mepwatch-iframe';
+      iframe.className = 'mepwatch-iframe';
       iframe.scrolling= 'no';
       var vote=target.dataset.vote || urlParam("v");
       iframe.src = defaults.url + 'embed.html?v='+vote;
@@ -67,18 +65,17 @@ if (!String.prototype.startsWith) {
   var iframeresizer = function(){
 
     iFrameResize({
-    log:false,
-    checkOrigin:false,
-    minHeight:500,
-    //heightCalculationMethod:'documentElementOffset',
-    //heightCalculationMethod:'taggedElement',
-    messageCallback : function(d){
-      if (d.message.name) {
-        document.title=d.message.name;
+      log:true,
+      checkOrigin:false,
+      minHeight:500,
+      //heightCalculationMethod:'documentElementOffset',
+      //heightCalculationMethod:'taggedElement',
+      messageCallback : function(d){
+        if (d.message.name) {
+          document.title=d.message.name;
+        }
       }
-		}
-  }, '#mepwatch-iframe');
-
+    });
   };
 
   var urlParams = function(opts) {
