@@ -65,7 +65,7 @@ if (!String.prototype.startsWith) {
   var iframeresizer = function(){
 
     iFrameResize({
-      log:true,
+      log:false,
       checkOrigin:false,
       minHeight:500,
       //heightCalculationMethod:'documentElementOffset',

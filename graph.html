@@ -6,7 +6,7 @@
     <meta content="initial-scale=1, shrink-to-fit=no, width=device-width" name="viewport">
 
     <!-- CSS -->
-    <link href="dist/css/main.css" rel="stylesheet">
+    <link href="./dist/css/main.css" rel="stylesheet">
 
 <style>
 </style>
@@ -35,7 +35,6 @@
         <div class="container d-flex justify-content-between">
           <a href="#" class="navbar-brand d-flex align-items-center">
             <svg><use href="#logo" /></svg>MEP Watch
-            
           </a>
 
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,19 +50,38 @@
         <div class="container">
           <h1 class="jumbotron-heading">Imagine this is your website...</h1>
           <p>
-          On this page, you will present the vote, why it was important and your analysis. And then, in a few minutes, you are able to add the app like we did:
+          On this page, you will present the vote, why it was important and your analysis. <br>And then, in a few minutes, you are able to add the app like we did:
           </p>
+          <div class="row">
+          <div class="col-6">
+          Just add these two lines of code and it's done!
+          </div><div class="col-6">
+          <textarea id="code" style="min-width:100%"></textarea>
+          </div>
+          </div>
         </div>
       </section>
-     <div>
-        <div class="container-fluid">
+     <div class="py-5">
+        <div class="container">
 
           <div class="row">
             <div class="col-md-12">
-        <div class="mepwatch-graph" data-vote="97673"> </div>
-        <h2> Another graph</h2>
-        <div class="mepwatch-graph" data-vote="97664"> </div>
-         <script src="dist/js/widget.js" charset="utf-8"></script> 
+        <div class="mepwatch-graph" > </div>
+         <script src="./dist/js/widget.js" charset="utf-8"></script> 
+  <script>
+    var urlParam = function (name){
+      var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+      if (results==null){
+        return null;
+      } else{
+        return decodeURI(results[1]) || 0;
+      }
+    };
+    
+    var vote=urlParam('v') || "xxx";
+    var code='<div class="mepwatch-graph" data-vote="'+vote+'"></div>\n<script src="https://mepwatch.eu/dist/js/widget.js"></'+'script>';
+    document.getElementById("code").textContent=code;
+  </script>
 <svg class="d-none">
   <symbol id="menu" viewBox="0 0 24 24">
     <path d="M0 0h24v24H0z" fill="none"/>
