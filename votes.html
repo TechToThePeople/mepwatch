@@ -93,6 +93,7 @@ td a {color:rgb(33, 150, 243);}
       <section class="jumbotron text-center">
         <div class="container">
           <h3 class="jumbotron-heading">Select the votes you want to analyse</h3>
+          Tip: the vote is often reported <i>on (date), the EP voted and (xxx) MEPs supported...</i>. select the date on the heatmap, and type the number of votes in the search box, you should have the vote on the list under
         </div>
       </section>
      <div class="bg-info">
@@ -106,7 +107,7 @@ td a {color:rgb(33, 150, 243);}
               <span class="nb"></span> rollcalls
             </div>
             <div class="p-2 nbvotes">
-              <span class="nb"></span>  MEPs votes
+              <span class="nb"></span>  MEPs' votes
             </div>
           </div>
         </div>
@@ -174,6 +175,7 @@ td a {color:rgb(33, 150, 243);}
   var dateParse = d3.timeParse("%Y-%m-%d");
   var dateTimeParse = d3.timeParse("%Y-%m-%dT%H:%M:%S");
   var dayFormat = d3.timeFormat("%Y-%m-%d");
+  var yymmdd =d3.timeFormat("%Y%m%d");
   var dateFormat = d3.timeFormat("%Y-%m-%d %H:%M:%S");
   var week = d3.timeFormat("%V");
   //d3.csv('data/ep_votes.csv',function(d){
@@ -384,7 +386,7 @@ td a {color:rgb(33, 150, 243);}
     var q=urlParam("q");
 
     var chart=dc.textFilterWidget(dom)
-      .placeHolder("search by name")
+      .placeHolder("search")
       .filterFunctionFactory(filter)
       .on("filtered",function(){
         console.log("filter");
@@ -424,11 +426,16 @@ td a {color:rgb(33, 150, 243);}
       })
       .columns([
         function(d) {
-          return "<span title='"+d.identifier+"'>" +dayFormat(d.date) +"</span>";
+          return "<a title='"+d.identifier+"' target='agenda' href='http://www.europarl.europa.eu/sides/getDoc.do?type=AGENDA&reference="+yymmdd(d.date)+"&secondRef=SIT&language=EN#TF2'>"+ dayFormat(d.date) +"</a>";
         }
         ,function(d){ 
           if (docs[d.report])
             return "<div class='rapporteur'>" +docs[d.report].rapporteur +"</div>&nbsp;<a href='http:/www.europarl.europa.eu"+ docs[d.report].oeil+"'>"+ d.report +"</a>";
+          // http://www.europarl.europa.eu/doceo/document/A-8-2018-0412_EN.html?redirect
+          var s=d.report.match(/^A(\d)-(\d+)\/(\d+)$/); // A8-1234/2018
+          if (s && s.length == 4)
+            return "<a href='http://www.europarl.europa.eu/doceo/document/A-"+s[1]+"-"+s[3]+"-"+s[2]+"_EN.html?redirect'>"+ d.report+"</a>";
+
           return d.report;
         }
         ,function(d){ 
@@ -441,7 +448,6 @@ td a {color:rgb(33, 150, 243);}
       g.selectAll("tr.dc-table-row")
         .on("click", function(d) {
           window.open("vote.html?v="+d3.select(this).datum().identifier);
-          console.log(d3.select(this).datum());
         });
     });
     return graph;
