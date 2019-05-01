@@ -252,7 +252,7 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
     <script src="src/js/vote.js"></script>
 <script>
 
-  var voteid= Number(urlParam("v") || 93602);
+  var voteid= Number(urlParam("v"));
   var resultscolor= null;
   var percentagecolor=null;
 
@@ -264,7 +264,7 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
     d3.select(".navbar-toggler").on("click",function(){
       d3.select("#navbarHeader").classed("show",d3.select("#navbarHeader").classed("show"));
     });
-    d3.select("h2").html(config.name);
+    d3.select("h2").html(config.name == "CHANGE ME"? "":config.name);
     d3.select(".navbar .rapporteur").html(config.rapporteur);
     d3.select(".navbar .date").html(dateFormat(config.date));
     d3.select(".navbar .report").html(config.report);

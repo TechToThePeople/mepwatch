@@ -140,7 +140,7 @@ d3.text("img/eu-flags.svg").then(function(xml) {
 
 function dl_details(callback) {
   d3.json("cards/" + voteid + ".json").then(function(d) {
-    document.title = d.name + " "+ d.report+" "+d.date;
+    document.title = (d.name=="CHANGE ME"? "":d.name) + " "+ d.report+" "+d.date;
     d.day = dateParse(d.date.substring(0,10));
     d.date = dateTimeParse(d.date);
     config = d;
