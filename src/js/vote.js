@@ -73,32 +73,26 @@ var dateFormat = d3.timeFormat("%Y-%m-%d %H:%M:%S");
 var formatPercent = d3.format(".0%");
 
 function download(voteid, callback) {
+
+  function isActive(d){//relies on global config.date, the date of the vote
+    return d.start8 <= config.date && (d.end == null || d.end >= config.date);
+  };
+
   q
     .defer(dl_meps)
     .defer(dl_details)
     .defer(dl_votes)
     .awaitAll(function(error, r) {
+      
       if (error) throw error;
       var length = votes.length;
-      meps = r[0]; //first deferred download
+      meps = r[0].filter(isActive); //first deferred download is the list of all meps, only keep the active during the vote
       for (var j = 0; j < meps.length; j++) {
         var m = meps[j];
-        if (!m) console.log(j);
-        if (m.start > config.date) {
-          meps.splice(j, 1);
-          j--;
-          continue;
-        }
-        if (m.end && m.end < config.day) {
-          meps.splice(j, 1);
-          j--;
-          continue;
-        }
         for (var i = 0; i < length; i++) {
           if (votes[i].mepid == m.voteid) {
             meps[j].vote = votes[i].result;
             votes[i].processed = true;
-            //          votes.splice(i,1);
             break;
           }
         }
@@ -194,6 +188,7 @@ function dl_meps(callback) {
       d.active = d.active == "true";
       d.birthdate = dateParse(d.birthdate);
       d.start = dateParse(d.start);
+      d.start8 = dateParse(d.start8);
       d.end = d.end == "" ? null : dateParse(d.end);
       return d;
     })
