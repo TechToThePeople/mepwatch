@@ -1097,7 +1097,7 @@ function drawMap(dom,graphs){
 
     function tweet(d){
       if (d.twitter) {
-        var url="https://twitter.com/intent/tweet?text="+encodeURIComponent(".#savetheinternet something something @"+d.twitter);
+        var url="https://twitter.com/intent/tweet?text="+encodeURIComponent("Why did you vote that way? @"+d.twitter)+"&via=@mepwatch";
 //        url = url.replace(/#/g, '%23');
         var win=window.open(url,'_blank');
       };
