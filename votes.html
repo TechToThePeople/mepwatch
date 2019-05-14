@@ -187,7 +187,14 @@ td a {color:rgb(33, 150, 243);}
   });
 
   function dl_doc (callback){
+    var map = {
+      "REPORT on the proposal for a regulation of the European Parliament and of the Council": "Report",
+      "JOINT MOTION FOR A RESOLUTION":"Motion",
+      "MOTION FOR A RESOLUTION":"Motion",
+    };
+    var needle = Object.keys(map);
     d3.csv('data/text_tabled.csv',function(d){
+      needle.forEach(n =>{d.title = d.title.replace(n,map[n])});
       docs[d.reference]=d;
     }).then(function(d){
       callback();
