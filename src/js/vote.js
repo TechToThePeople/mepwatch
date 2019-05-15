@@ -6,7 +6,7 @@ var meps = [];
 var votes = [];
 var config = {};
 
-var voteid = Number(urlParam("v") || 92926);
+var voteid = urlParam("v");
 var results = "for,against,abstention,no show,excused,attended".split(",");
 var groups = "NA/NI,ENF,EFDD,ECR,PPE,ALDE,Verts/ALE,S&D,GUE/NGL".split(",");
 
@@ -133,10 +133,11 @@ d3.text("img/eu-flags.svg").then(function(xml) {
 });
 
 function dl_details(callback) {
+  console.log(voteid);
   d3.json("cards/" + voteid + ".json").then(function(d) {
     document.title = (d.name=="CHANGE ME"? "":d.name) + " "+ d.report+" "+d.date;
     d.day = dateParse(d.date.substring(0,10));
-    d.date = dateTimeParse(d.date);
+    d.date = dateTimeParse(d.date) || d.day; //bug, on some rollcalls, the date isn't the voting timestamp but the day
     config = d;
     config.win = config.for > config.against ? "for" : "against";
     callback(null);

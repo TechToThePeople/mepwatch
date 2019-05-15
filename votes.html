@@ -209,7 +209,7 @@ td a {color:rgb(33, 150, 243);}
       d.day=d.date.getDay();
       d.week=+week(d.date);
       d.year=d.date.getYear();
-      ["for","against","abstention","identifier"].forEach(function(i) {
+      ["for","against","abstention"].forEach(function(i) {
         d[i]= +d[i] || "";
       });
       return d;
