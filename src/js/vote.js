@@ -66,8 +66,8 @@ var percentagecolor = d3
   .range(["#27ae60", "#C8E6C9", "#9E9E9E", "#ffcdd2", "#d35400"])
   .interpolate(d3.interpolateHcl);
 
-var dateParse = d3.timeParse("%Y-%m-%d");
-var dateTimeParse = d3.timeParse("%Y-%m-%d %H:%M:%S");
+var dateParse = d3.utcParse("%Y-%m-%d");
+var dateTimeParse = d3.utcParse("%Y-%m-%d %H:%M:%S");
 var dayFormat = d3.timeFormat("%Y-%m-%d");
 var dateFormat = d3.timeFormat("%Y-%m-%d %H:%M:%S");
 var formatPercent = d3.format(".0%");
@@ -75,6 +75,11 @@ var formatPercent = d3.format(".0%");
 function download(voteid, callback) {
 
   function isActive(d){//relies on global config.date, the date of the vote
+    if (d.voteid==4646) {
+      console.log(d);
+    console.log (config.date);
+      console.log(d.end >= config.date);
+    }
     return d.start8 <= config.date && (d.end == null || d.end >= config.date);
   };
 
@@ -190,7 +195,13 @@ function dl_meps(callback) {
       d.birthdate = dateParse(d.birthdate);
       d.start = dateParse(d.start);
       d.start8 = dateParse(d.start8);
-      d.end = d.end == "" ? null : dateParse(d.end);
+//      d.end = d.end == "" ? null : dateParse(d.end);
+      if (d.end !== "") {
+        d.end=dateParse(d.end);
+        d.end.setDate(d.end.getDate() + 1);
+      } else {
+        d.end = null;
+      }
       return d;
     })
     .then(function(d) {
