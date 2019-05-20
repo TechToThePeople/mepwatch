@@ -394,13 +394,14 @@ td a {color:rgb(33, 150, 243);}
     var q=urlParam("q");
 
     var chart=dc.textFilterWidget(dom)
-      .placeHolder("search")
+      .placeHolder("Search")
       .filterFunctionFactory(filter)
       .on("filtered",function(){
         console.log("filter");
       })
       .on("renderlet.urlparam",function(){
         d3.select(dom + " input").classed("form-control",true);
+        d3.select(dom).classed("input-group",true).append("div").classed("input-group-append",true).append("span").classed("input-group-text",true).text("🔎");
         var input=d3.select(this.anchor() +" input");
         if (input.property("value")) {
           if (q != input.property("value")) {
@@ -428,10 +429,7 @@ td a {color:rgb(33, 150, 243);}
         return d.date;
       })
       .order (d3.descending)
-      .showGroups(false)
-      .group(function(d) {
-        return null;
-      })
+      .showSections(false)
       .columns([
         function(d) {
           return "<a title='"+d.identifier+"' target='agenda' href='http://www.europarl.europa.eu/sides/getDoc.do?type=AGENDA&reference="+yymmdd(d.date)+"&secondRef=SIT&language=EN#TF2'>"+ dayFormat(d.date) +"</a>"+ (docs[d.report] ? "<span class='committee'>"+docs[d.report].committee+"</span>" :"");
