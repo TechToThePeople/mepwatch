@@ -252,12 +252,6 @@ td a {color:rgb(33, 150, 243);}
       .group(group)
       .valueAccessor(function(d) {return d.value.count})
       .formatNumber(d3.format("d"))
-      .on("renderlet.linked",function(){
-        return;
-        var d=group.top(1)[0].value.nb.count;
-        d3.select(".nbmep button").classed("disabled",d == config.nb);
-        d3.select(".nbmep .total").classed("d-none",d == config.nb);
-      });
 
     graphs.rollcalls = dc.numberDisplay(".nbvotes .nb")
       .group(group)
@@ -401,7 +395,8 @@ td a {color:rgb(33, 150, 243);}
       })
       .on("renderlet.urlparam",function(){
         d3.select(dom + " input").classed("form-control",true);
-        d3.select(dom).classed("input-group",true).append("div").classed("input-group-append",true).append("span").classed("input-group-text",true).text("🔎");
+        if (d3.select(dom + ".input-group").empty())
+          d3.select(dom).classed("input-group",true).append("div").classed("input-group-append",true).append("span").classed("input-group-text",true).text("🔎");
         var input=d3.select(this.anchor() +" input");
         if (input.property("value")) {
           if (q != input.property("value")) {
@@ -436,7 +431,7 @@ td a {color:rgb(33, 150, 243);}
         }
         ,function(d){ 
           if (docs[d.report])
-            return "<div class='rapporteur'>" +docs[d.report].rapporteur +"</div>&nbsp;<a href='http:/www.europarl.europa.eu"+ docs[d.report].oeil+"'>"+ d.report +"</a>";
+            return "<div class='rapporteur'>" +docs[d.report].rapporteur +"</div><a href='http:/www.europarl.europa.eu"+ docs[d.report].oeil+"'>"+ d.report +"</a>";
           // http://www.europarl.europa.eu/doceo/document/A-8-2018-0412_EN.html?redirect
           var s=d.report.match(/^A(\d)-(\d+)\/(\d+)$/); // A8-1234/2018
           if (s && s.length == 4)
