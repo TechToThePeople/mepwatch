@@ -75,11 +75,6 @@ var formatPercent = d3.format(".0%");
 function download(voteid, callback) {
 
   function isActive(d){//relies on global config.date, the date of the vote
-    if (d.voteid==4646) {
-      console.log(d);
-    console.log (config.date);
-      console.log(d.end >= config.date);
-    }
     return d.start8 <= config.date && (d.end == null || d.end >= config.date);
   };
 
@@ -138,7 +133,6 @@ d3.text("img/eu-flags.svg").then(function(xml) {
 });
 
 function dl_details(callback) {
-  console.log(voteid);
   d3.json("cards/" + voteid + ".json").then(function(d) {
     document.title = (d.name=="CHANGE ME"? "":d.name) + " "+ d.report+" "+d.date;
     d.day = dateParse(d.date.substring(0,10));

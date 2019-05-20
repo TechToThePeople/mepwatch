@@ -204,7 +204,7 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
                 <div class="card-body">
                   <h5 class="card-title text-muted text-right">
                   <button type="button" class="btn-relative btn btn-primary" title="percentage of votes">Percentage</button>
-                  <button type="button" class="btn-absolute active btn btn-primary" title="Number of votes">Number</button>
+                  <button type="button" class="btn-absolute active btn btn-primary" title="Number of votes">Seats</button>
                   </h5>
                   <div class="graph"></div>
                   </div>
@@ -335,7 +335,27 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
     drawNumbers(graphs);
     graphs.result=drawResult('#result .graph');
     graphs.search=drawSearch("form#search .graph");
-    
+
+    var glow = function(graph){
+      //add a glow, doesn't work great IMO
+      var defs = graph.svg().append("defs");
+
+      //Filter for the outside glow
+      var filter = defs.append("filter")
+          .attr("id","glow");
+      filter.append("feGaussianBlur")
+          .attr("stdDeviation","2.5")
+          .attr("result","coloredBlur");
+      var feMerge = filter.append("feMerge");
+      feMerge.append("feMergeNode")
+          .attr("in","coloredBlur");
+      feMerge.append("feMergeNode")
+          .attr("in","SourceGraphic");
+
+      graph.svg().selectAll("path")
+          .style("filter", "url(#glow)");
+    };
+  
     var filter=urlParam("q");
     if (filter) {
       graphs.search.on("pretransition",function(){
@@ -740,7 +760,6 @@ function drawMap(dom,graphs){
             .on("mouseover.tip", tip.show)
             .on("mouseout.tip", tip.hide)
             .on("click",function(d){
-              console.log(d.id);
               graphs.country.filter(d.id);
             });
       });
@@ -1048,12 +1067,9 @@ function drawMap(dom,graphs){
         return results.indexOf(d.vote);
       })
       .order (d3.ascending)
-      .showGroups(false)
+      .showSections(false)
       .on("preRedraw", function(){
         graph.compact = graphs.total.data() > 400;
-      })
-      .group(function(d) {
-        return null;
       })
       .columns([
         function(d){
@@ -1177,6 +1193,16 @@ function urlParam(name,value) {
 </script>
 
 <svg class="d-none" id="icons">
+    <defs>
+      <filter id="glow">
+        <feGaussianBlur stdDeviation="3.5" result="coloredBlur">
+          <feMerge in="SourceGraphic">
+            <feMergeNode in="coloredBlur">
+            </feMergeNode>
+          </feMerge>
+        </feGaussianBlur>
+      </filter>
+    </defs>
   <symbol id="menu" viewBox="0 0 24 24">
     <path d="M0 0h24v24H0z" fill="none"/>
     <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
@@ -1196,9 +1222,7 @@ function urlParam(name,value) {
 <symbol id="icon-rebel" viewBox="0 0 24 24"><path d="M23 5.5V20c0 2.2-1.8 4-4 4h-7.3c-1.08 0-2.1-.43-2.85-1.19L1 14.83s1.26-1.23 1.3-1.25c.22-.19.49-.29.79-.29.22 0 .42.06.6.16.04.01 4.31 2.46 4.31 2.46V4c0-.83.67-1.5 1.5-1.5S11 3.17 11 4v7h1V1.5c0-.83.67-1.5 1.5-1.5S15 .67 15 1.5V11h1V2.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5V11h1V5.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5z"/></symbol> 
   <symbol id="logo" viewBox="0 0 24 24"><path d="M6 13c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0 4c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0-8c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm-3 .5c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zM6 5c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm15 5.5c.28 0 .5-.22.5-.5s-.22-.5-.5-.5-.5.22-.5.5.22.5.5.5zM14 7c.55 0 1-.45 1-1s-.45-1-1-1-1 .45-1 1 .45 1 1 1zm0-3.5c.28 0 .5-.22.5-.5s-.22-.5-.5-.5-.5.22-.5.5.22.5.5.5zm-11 10c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zm7 7c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zm0-17c.28 0 .5-.22.5-.5s-.22-.5-.5-.5-.5.22-.5.5.22.5.5.5zM10 7c.55 0 1-.45 1-1s-.45-1-1-1-1 .45-1 1 .45 1 1 1zm0 5.5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm8 .5c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0 4c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0-8c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0-4c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm3 8.5c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zM14 17c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0 3.5c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zm-4-12c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm0 8.5c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm4-4.5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm0-4c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5z"/></symbol>
 </svg>
-
 <style>
-       
 .mep .card {width:200px}
 .card-img-top img {width:160px}
 </style>
