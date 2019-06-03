@@ -195,7 +195,7 @@ td a {color:rgb(33, 150, 243);}
     };
     var needle = Object.keys(map);
     d3.csv('data/text_tabled.csv',function(d){
-      needle.forEach(n =>{d.title = d.title.replace(n,map[n])});
+      needle.forEach(function(n){d.title = d.title.replace(n,map[n])});
       docs[d.reference]=d;
     }).then(function(d){
       callback();
@@ -430,17 +430,22 @@ td a {color:rgb(33, 150, 243);}
           return "<a title='"+d.identifier+"' target='agenda' href='http://www.europarl.europa.eu/sides/getDoc.do?type=AGENDA&reference="+yymmdd(d.date)+"&secondRef=SIT&language=EN#TF2'>"+ dayFormat(d.date) +"</a>"+ (docs[d.report] ? "<span class='committee'>"+docs[d.report].committee+"</span>" :"");
         }
         ,function(d){ 
-          if (docs[d.report])
-            return "<div class='rapporteur'>" +docs[d.report].rapporteur +"</div><a href='http:/www.europarl.europa.eu"+ docs[d.report].oeil+"'>"+ d.report +"</a>";
-          // http://www.europarl.europa.eu/doceo/document/A-8-2018-0412_EN.html?redirect
+          var r="";
+          var f="";
+          var url=null;
           var s=d.report.match(/^A(\d)-(\d+)\/(\d+)$/); // A8-1234/2018
           if (s && s.length == 4)
-            return "<a href='http://www.europarl.europa.eu/doceo/document/A-"+s[1]+"-"+s[3]+"-"+s[2]+"_EN.html?redirect'>"+ d.report+"</a>";
+            url="http://www.europarl.europa.eu/doceo/document/A-"+s[1]+"-"+s[3]+"-"+s[2]+"_EN.html?redirect";
+          if (docs[d.report]){
+            f="<div class='rapporteur'>" +docs[d.report].rapporteur +"</div>"; 
+            if (!url)
+              url = "http://www.europarl.europa.eu"+ docs[d.report].oeil;
+          }
 
-          return d.report;
+          return f + (url ? "<a href='"+url+"'>"+d.report + "</a>" : d.report);
         }
         ,function(d){ 
-          return docs[d.report]? "<a href='http:/www.europarl.europa.eu"+docs[d.report].oeil+"'>"+docs[d.report].title +"</a>&nbsp;"+d.desc : d.desc;}
+          return docs[d.report]? "<a href='"+docs[d.report].oeil+"'>"+docs[d.report].title +"</a>&nbsp;"+d.desc : d.desc;}
         ,function(d){ return d.for > d.against ? "<b>"+d.for+"</b>":d.for;}
         ,function(d){ return d.against > d.for ? "<b>"+d.against+"</b>":d.against;}
         ,function(d){ return d.abstention;}
