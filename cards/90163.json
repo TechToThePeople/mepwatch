@@ -1,7 +1,62 @@
-{"id":90163,
+{
+
+  "report": "A8-0105/2018",
+
+  "name": "Who voted for transparency in how they spent your cash?",
+
+"rapporteur":"Derek VAUGHAN",
+  "desc": "Because it's your money and they already earn enough. They don't need to steal General Expenditure Allowances to pay for duck houses and the like.",
+
+  "goal": "for",
+
+  "tweets": {
+
+    "for": "",
+
+    "against": "",
+
+    "abstention": "",
+
+    "no show": "",
+
+    "excused": "",
+
+    "attended": ""
+
+  },
+
+  "subject": {
+
+    "for": "Thanks for supporting {vote}",
+
+    "against": "Your opposition to {vote}",
+
+    "abstention": "Your lack of vote on {vote}",
+
+    "no show": "Your lack of vote on {vote}",
+
+    "excused": "I hope you will be voting next time",
+
+    "attended": "Your lack of vote on {vote}"
+
+  },
+
+  "body": {
+
+    "for": "",
+
+    "against": "",
+
+    "abstention": "",
+
+    "no show": "",
+
+    "excused": "",
+
+    "attended": ""
+
+  }
+
+,"id":90163,
 "date":"2018-04-18 12:40:36",
-"report":"A8-0105/2018",
-"name":"CHANGE ME",
-"rapporteur":"RAPPORTEUR",
-"desc":"Derek Vaughan - am 33",
 "for":231,"against":437,"abstention":10}
