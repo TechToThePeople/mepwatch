@@ -427,9 +427,10 @@ td a {color:rgb(33, 150, 243);}
       .showSections(false)
       .columns([
         function(d) {
-          return "<a title='"+d.identifier+"' target='agenda' href='http://www.europarl.europa.eu/sides/getDoc.do?type=AGENDA&reference="+yymmdd(d.date)+"&secondRef=SIT&language=EN#TF2'>"+ dayFormat(d.date) +"</a>"+ (docs[d.report] ? "<span class='committee'>"+docs[d.report].committee+"</span>" :"");
+          return "<a title='"+d.identifier+"' target='agenda' href='https://www.europarl.europa.eu/sides/getDoc.do?type=AGENDA&reference="+yymmdd(d.date)+"&secondRef=SIT&language=EN#TF2'>"+ dayFormat(d.date) +"</a>"+ (docs[d.report] ? "<span class='committee'>"+docs[d.report].committee+"</span>" :"");
         }
-        ,function(d){ 
+        ,function(d){
+          console.log(d);
           var r="";
           var f="";
           var url=null;
@@ -437,15 +438,16 @@ td a {color:rgb(33, 150, 243);}
           if (s && s.length == 4)
             url="http://www.europarl.europa.eu/doceo/document/A-"+s[1]+"-"+s[3]+"-"+s[2]+"_EN.html?redirect";
           if (docs[d.report]){
+            
             f="<div class='rapporteur'>" +docs[d.report].rapporteur +"</div>"; 
             if (!url)
-              url = "http://www.europarl.europa.eu"+ docs[d.report].oeil;
+              url = docs[d.report].oeil;
           }
 
           return f + (url ? "<a href='"+url+"'>"+d.report + "</a>" : d.report);
         }
         ,function(d){ 
-          return docs[d.report]? "<a href='"+docs[d.report].oeil+"'>"+docs[d.report].title +"</a>&nbsp;"+d.desc : d.desc;}
+          return docs[d.report]? "<a href='"+docs[d.report].oeil+"'>"+docs[d.report].title +"</a>&nbsp;"+d.title : d.title;}
         ,function(d){ return d.for > d.against ? "<b>"+d.for+"</b>":d.for;}
         ,function(d){ return d.against > d.for ? "<b>"+d.against+"</b>":d.against;}
         ,function(d){ return d.abstention;}

@@ -52,7 +52,7 @@ background-image: linear-gradient(-20deg, #6e45e2 0%, #88d3ce 100%);
 aa.flag-icon,aa.country-flag {width:21px;height:16px;border:0.2px solid lightgrey}
 .country-flag img {width:20px;height:15px;border:0.2px solid lightgrey}
 
-img.face {width:50px;height:50px;border-radius:25px;position:relative;margin-left:-10px;margin-right:10px;}
+img.face {width:40px;height:50px;border-radius:25px;position:relative;margin-left:-10px;margin-right:10px;}
 
 th .glyphicon {margin-left:5px;color:black;
   font-size:1.3em;
@@ -1086,7 +1086,7 @@ function drawMap(dom,graphs){
         ,function(d) {
           var t=d.firstname + " " + d.lastname;
           if (!graph.compact) 
-            t = "<img class='face' src='img/mepphoto/"+d.epid+".jpg' />" +t;
+            t = "<img class='face' src='https://www.europarl.europa.eu/mepphoto/"+d.epid+".jpg' />" +t;
           return t;
         }
         ,function(d) {

@@ -10,7 +10,7 @@ cachedRequest.setCacheDirectory(cacheDirectory);
 
 cachedRequest.setValue('ttl', 100000);
 cachedRequest({
-  url: 'http://www.europarl.europa.eu/delegations/en/home.html'
+  url: 'https://www.europarl.europa.eu/delegations/en/list/byname'
 }, function(error, response, html) {
   if (error) {
     console.log("error:" + error);
@@ -18,10 +18,13 @@ cachedRequest({
   }
   const $ = cheerio.load(html);
   var r = {};
-  $("#navigation-selectmenu-field option").each(function(i, d) {
-    var id = $(this).attr("data-additionaltext");
-    if (!id) return;
-    r[id] = $(this).text();
+  $(".erpl_delegations-list-item a").each(function(i, d) {
+    console.log(i,d.children);
+    var id = $(this).attr("href");
+//    var name = $(this).text();
+    console.log(id,name);
+//    if (!id) return;
+//    r[id] = $(this).text();
   });
   if (Object.keys(r).length < 10) {
     console.log("can't parse europarl");

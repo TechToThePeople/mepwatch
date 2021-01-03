@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "@mdi/svg": "^2.6.95",
+    "cached-request": "^3.0.0",
     "csv-parser": "^1.12.1",
     "csv-write-stream": "^2.0.0",
     "d3-queue": "^3.0.7",

@@ -30,7 +30,7 @@ const decompression = new xz.Decompressor();
 function write(options = {
   from: "data/ep_votes.json",
   ddfrom: "data/vote1.json",
-  since:Date.parse("2014-07-01"),
+  since:Date.parse("2019-07-01"),
   summary: "data/ep_votes.csv",
   rollcalls: "data/rollcalls.csv"
 }, callback) {
