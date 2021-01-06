@@ -75,7 +75,7 @@ var formatPercent = d3.format(".0%");
 function download(voteid, callback) {
 
   function isActive(d){//relies on global config.date, the date of the vote
-    return d.start8 <= config.date && (d.end == null || d.end >= config.date);
+    return d.start9 <= config.date && (d.end == null || d.end >= config.date);
   };
 
   q
@@ -87,6 +87,7 @@ function download(voteid, callback) {
       if (error) throw error;
       var length = votes.length;
       meps = r[0].filter(isActive); //first deferred download is the list of all meps, only keep the active during the vote
+      console.log(meps);
       for (var j = 0; j < meps.length; j++) {
         var m = meps[j];
         for (var i = 0; i < length; i++) {
@@ -103,7 +104,9 @@ function download(voteid, callback) {
       //TODO: handle this properly, this is a big problem
       var errors = [];
       votes.map(function(v) {
-        if (!v.processed) errors.push(v);
+        if (!v.processed) { errors.push(v);
+//          meps.push({firstname:"aaa",lastname:v.name,eugroup:"?",country:"?",vote:v.result});
+        }
       });
       if (errors.length) {
         d3
@@ -188,7 +191,7 @@ function dl_meps(callback) {
       d.active = d.active == "true";
       d.birthdate = dateParse(d.birthdate);
       d.start = dateParse(d.start);
-      d.start8 = dateParse(d.start8);
+      d.start9 = d.start;
 //      d.end = d.end == "" ? null : dateParse(d.end);
       if (d.end !== "") {
         d.end=dateParse(d.end);
