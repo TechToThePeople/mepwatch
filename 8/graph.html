@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta content="initial-scale=1, shrink-to-fit=no, width=device-width" name="viewport">
+
+    <!-- CSS -->
+    <link href="./dist/css/main.css" rel="stylesheet">
+
+<style>
+</style>
+  </head>
+  <body>
+    <header>
+      <div class="collapse bg-primary-light" id="navbarHeader">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-8 col-md-7 py-4">
+              <h4 class="">Imagine this is your website</h4>
+              <p class="">
+              </p>
+            </div>
+            <div class="col-sm-4 offset-md-1 py-4">
+              <h4 class="">Contact</h4>
+              <ul class="list-unstyled">
+                <li><a href="https://twitter.com/eucampaign" class="">Follow on Twitter</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="navbar navbar-dark bg-primary box-shadow">
+        <div class="container d-flex justify-content-between">
+          <a href="#" class="navbar-brand d-flex align-items-center">
+            <svg><use href="#logo" /></svg>MEP Watch
+          </a>
+
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+            <svg class="icon"><use href="#menu" /></svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main role="main">
+
+      <section class="jumbotron text-center">
+        <div class="container">
+          <h1 class="jumbotron-heading">Imagine this is your website...</h1>
+          <p>
+          On this page, you will present the vote, why it was important and your analysis. <br>And then, in a few minutes, you are able to add the app like we did:
+          </p>
+          <div class="row">
+          <div class="col-6">
+          Just add these two lines of code and it's done!
+          </div><div class="col-6">
+          <textarea id="code" style="min-width:100%"></textarea>
+          </div>
+          </div>
+        </div>
+      </section>
+     <div class="py-5">
+        <div class="container">
+
+          <div class="row">
+            <div class="col-md-12">
+        <div class="mepwatch-graph" > </div>
+         <script src="./dist/js/widget.js" charset="utf-8"></script> 
+  <script>
+    var urlParam = function (name){
+      var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+      if (results==null){
+        return null;
+      } else{
+        return decodeURI(results[1]) || 0;
+      }
+    };
+    
+    var vote=urlParam('v') || "xxx";
+    var code='<div class="mepwatch-graph" data-vote="'+vote+'"></div>\n<script src="https://mepwatch.eu/dist/js/widget.js"></'+'script>';
+    document.getElementById("code").textContent=code;
+  </script>
+<svg class="d-none">
+  <symbol id="menu" viewBox="0 0 24 24">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+</symbol>
+<symbol id="logo" viewBox="0 0 24 24"><path d="M6 13c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0 4c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0-8c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm-3 .5c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zM6 5c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm15 5.5c.28 0 .5-.22.5-.5s-.22-.5-.5-.5-.5.22-.5.5.22.5.5.5zM14 7c.55 0 1-.45 1-1s-.45-1-1-1-1 .45-1 1 .45 1 1 1zm0-3.5c.28 0 .5-.22.5-.5s-.22-.5-.5-.5-.5.22-.5.5.22.5.5.5zm-11 10c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zm7 7c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zm0-17c.28 0 .5-.22.5-.5s-.22-.5-.5-.5-.5.22-.5.5.22.5.5.5zM10 7c.55 0 1-.45 1-1s-.45-1-1-1-1 .45-1 1 .45 1 1 1zm0 5.5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm8 .5c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0 4c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0-8c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0-4c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm3 8.5c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zM14 17c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0 3.5c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zm-4-12c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm0 8.5c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm4-4.5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm0-4c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5z"/></symbol>
+</svg>
+  </body>
+</html>
