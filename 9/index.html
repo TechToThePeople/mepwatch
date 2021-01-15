@@ -9,6 +9,16 @@
     <link href="../dist/css/main.css" rel="stylesheet">
 
 <style>
+.bg-primary {background-color:#00b400!important}
+.bg-primary-light {background-color:#a1ff96!important}
+:root {
+  --primary: #00b400;
+  --secondary: #ffbf28;
+}
+html .bg-info, html .gradient {
+  background: #ffbc2d!important;
+}
+                                            
 td span.committee{display:block;}
 td a {color:rgb(33, 150, 243);}
 
@@ -48,7 +58,10 @@ td a {color:rgb(33, 150, 243);}
   tr.dc-table-row:hover {
     transition: background-color 1s; 
     transition: color 1s; 
-    background-color:#9c27b0;
+    background-color:#00b400;/*#9c27b0;*/
+    color:white;
+  }
+  tr.dc-table-row:hover a {
     color:white;
   }
 
