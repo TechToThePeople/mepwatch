@@ -109,7 +109,7 @@ function download(voteid, callback) {
         }
       });
       if (errors.length) {
-        d3
+/*        d3
           .select("main")
           .insert("div", ":first-child")
           .attr("class", "alert alert-danger")
@@ -117,7 +117,7 @@ function download(voteid, callback) {
             "<h1>They are " +
               errors.length +
               " votes that we couldn't process. Contact Xavier</h1>"
-          );
+          );*/
         console.log(errors);
       }
       votes = null;
