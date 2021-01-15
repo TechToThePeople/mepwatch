@@ -241,7 +241,6 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
                 <tr>
                   <th>Vote</th>
                   <th>Rebel</th>
-                  <th>Act</th>
                   <th>Name</th>
                   <th>Country</th>
                   <th>Group</th>
@@ -1095,10 +1094,6 @@ function drawMap(dom,graphs){
         , function(d){
           if (d.rebel)
             return iconify("rebel");
-        }
-        , function(d){
-          if (d.twitter)
-            return iconify("twitter");
         }
         ,function(d) {
           var t=d.firstname + " " + d.lastname;
