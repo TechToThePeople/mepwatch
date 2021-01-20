@@ -283,11 +283,11 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
     d3.select("h2").html(config.name == "CHANGE ME"? "":config.name);
     d3.select(".navbar .rapporteur").html(config.rapporteur);
     d3.select(".navbar .date").html(dateFormat(config.date));
-    d3.select(".navbar .report").html(config.report);
+    d3.select(".navbar .report").html(config.ref);
     d3.select(".navbar .app").attr("href","presentation/demo.html?v="+config.id);
     d3.select(".navbar .graph").attr("href","graph.html?v="+config.id);
     d3.select(".navbar .edit").attr("href","edit.html?v="+config.id);
-    d3.select("h3").html(config.description);
+    d3.select("h3").html([config.title,config.description].join("<br"));
     var percentColors=["#e3e3e3","#27ae60","#C8E6C9","#d3a751","#ffcdd2","#d35400"];
     if (config.goal && config.goal == "against") {
       results[1] = results[0];
