@@ -233,7 +233,6 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
       </div>
 
 <div class="container" id="meps">
-</div>
           <div class="row">
             <div class="col-md-12">
             <table class="table table-striped">
@@ -253,6 +252,7 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
             </table>
             </div>
           </div>
+</div>
     </main>
 
     <footer class="text-muted">
@@ -326,6 +326,8 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
     guessPartyLine("partyline");
 
 	  graphs.eugroup=drawBarVotes('#eugroup div.graph',function(d){ return d.eugroup});
+    console.log(graphs.eugroup.group());
+    guessLine("groupline",graphs.eugroup.group());
     graphs.eugroup.relative=false;
     graphs.party=drawBarVotes('#party div.graph',function(d){ return [d.country,d.party]});
 //    graphs.party.xAxis().tickFormat(function(d) { return d[1]; });
@@ -418,6 +420,7 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
           }
       };
   }
+
   function guessPartyLine (store) {
     var dim = ndx.dimension(function(d) {return d.party;});
 
@@ -567,7 +570,7 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
     key=key || function (d) {return d.key};
     if (config[store]) return; //already set
     config[store] = {};
-    group.top(Number.POSITIVE_INFINITY).forEach(function(d){
+    group.all().forEach(function(d){
       var whip = 2/3;
       config[store][key(d)]=null; //free vote, no instruction
       ["for","against","abstention"].forEach(function(v){ 
