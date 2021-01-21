@@ -87,7 +87,6 @@ function download(voteid, callback) {
       if (error) throw error;
       var length = votes.length;
       meps = r[0].filter(isActive); //first deferred download is the list of all meps, only keep the active during the vote
-      console.log(meps);
       for (var j = 0; j < meps.length; j++) {
         var m = meps[j];
         for (var i = 0; i < length; i++) {
@@ -109,6 +108,7 @@ function download(voteid, callback) {
         }
       });
       if (errors.length) {
+        console.log(errors);
 /*        d3
           .select("main")
           .insert("div", ":first-child")
@@ -118,7 +118,6 @@ function download(voteid, callback) {
               errors.length +
               " votes that we couldn't process. Contact Xavier</h1>"
           );*/
-        console.log(errors);
       }
       votes = null;
 
@@ -172,6 +171,7 @@ function dl_votes(callback) {
     .csv("cards/" + voteid + ".csv", function(d) {
       if (!d.mepid) return null;
       d.mepid = +d.mepid;
+      d.vote_id= +d.vote_id;
       d.identifier = +d.identifier;
       return d;
     })
