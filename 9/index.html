@@ -445,7 +445,6 @@ td a {color:rgb(33, 150, 243);}
           return "<a title='"+d.identifier+"' target='agenda' href='https://www.europarl.europa.eu/sides/getDoc.do?type=AGENDA&reference="+yymmdd(d.date)+"&secondRef=SIT&language=EN#TF2'>"+ dayFormat(d.date) +"</a>"+ (docs[d.report] ? "<span class='committee'>"+docs[d.report].committee+"</span>" :"");
         }
         ,function(d){
-          console.log(d);
           var r="";
           var f="";
           var url=null;
