@@ -1,7 +1,5 @@
 epid,firstname,lastname,active,start,end,birthdate,country,gender,eugroup,party,email,twitter,term,voteid
-,,Wiesner,1,,,,,,Renew,,,,9,7287
-,,Nienaß,1,,,,,,Verts/ALE,,,,9,6862
-,,Vandenkendelaere,1,,,,,,PPE,,,,9,6706
+214839,Emma,WIESNER,1,2021-02-04,,,se,,Renew,Centerpartiet,,,9,7287
 213330,Ernő,SCHALLER-BAROSS,1,2021-01-10,,,hu,,PPE,Fidesz-Magyar Polgári Szövetség-Kereszténydemokrata Néppárt,,,9,7286
 212855,Alin,MITUȚA,1,2020-12-28,,,ro,,Renew,"Partidul Libertate, Unitate și Solidaritate",,,9,7285
 209896,Colm,MARKEY,1,2020-11-20,,,ie,,PPE,Fine Gael Party,,,9,7284
@@ -21,7 +19,7 @@ epid,firstname,lastname,active,start,end,birthdate,country,gender,eugroup,party,
 204414,Margarita,DE LA PISA CARRIÓN,1,2020-02-01,,1975-09-19,es,,ECR,VOX,,,9,7270
 204413,Marcos,ROS SEMPERE,1,2020-02-01,,1974-03-24,es,,S&D,Partido Socialista Obrero Español,,,9,7269
 204400,Adrián,VÁZQUEZ LÁZARA,1,2020-02-01,,1982-05-05,es,,Renew,Ciudadanos – Partido de la Ciudadanía,,,9,7268
-204371,Heather,ANDERSON,1,2020-01-27,2020-01-31,1959-01-31,uk,,Verts/ALE,Scottish National Party,,,9,7267
+204371,Heather,ANDERSON,1,2020-01-27,2020-01-31,1959-01-31,gb,,Verts/ALE,Scottish National Party,,,9,7267
 204368,Christian,SAGARTZ,1,2020-01-23,,1981-01-16,at,,PPE,Österreichische Volkspartei,,,9,7266
 204346,Dominik,TARCZYŃSKI,1,2020-02-01,,,pl,,ECR,Prawo i Sprawiedliwość,,,9,7265
 204336,Miriam,LEXMANN,1,2020-02-01,,1972-12-02,sk,,PPE,Kresťanskodemokratické hnutie,,,9,7264
@@ -165,7 +163,7 @@ epid,firstname,lastname,active,start,end,birthdate,country,gender,eugroup,party,
 197714,Ellie,CHOWNS,1,2019-07-02,2020-01-31,,gb,,Verts/ALE,Green Party,,,9,7102
 197712,Henrik,OVERGAARD NIELSEN,1,2019-07-02,2020-01-31,,gb,,NI,The Brexit Party,,,9,7100
 197711,Dolors,MONTSERRAT,1,2019-07-02,,1973-09-18,es,,PPE,Partido Popular,,,9,7099
-197710,Alexandra Louise Rosenfield,PHILLIPS,1,2019-07-02,2020-01-31,1985-07-09,uk,,Verts/ALE,Green Party,,,9,7098
+197710,Alexandra Louise Rosenfield,PHILLIPS,1,2019-07-02,2020-01-31,1985-07-09,gb,,Verts/ALE,Green Party,,,9,7098
 197709,Robert,ROOS,1,2019-07-02,,1966-08-02,nl,,ECR,Forum voor Democratie,,,9,7097
 197708,Claire,FOX,1,2019-07-02,2020-01-31,,gb,,NI,The Brexit Party,,,9,7096
 197705,John David Edward,TENNANT,1,2019-07-02,2020-01-31,,gb,,NI,The Brexit Party,,,9,7093
@@ -372,6 +370,7 @@ epid,firstname,lastname,active,start,end,birthdate,country,gender,eugroup,party,
 197468,Özlem,DEMIREL,1,2019-07-02,,1984-03-10,de,,The Left,DIE LINKE.,,,9,6865
 197467,Geert,BOURGEOIS,1,2019-07-02,,1951-07-06,be,,ECR,Nieuw-Vlaamse Alliantie,,,9,6864
 197466,Jutta,PAULUS,1,2019-07-02,,1967-05-09,de,,Verts/ALE,Bündnis 90/Die Grünen,,,9,6863
+197465,Niklas,NIENASS,1,2019-07-02,,1992-04-14,de,,Verts/ALE,Bündnis 90/Die Grünen,,,9,6862
 197464,Hannah,NEUMANN,1,2019-07-02,,1984-04-03,de,,Verts/ALE,Bündnis 90/Die Grünen,,,9,6861
 197463,Olivier,CHASTEL,1,2019-07-02,,1964-11-22,be,,Renew,Mouvement Réformateur,,,9,6860
 197462,Erik,MARQUARDT,1,2019-07-02,,1987-10-20,de,,Verts/ALE,Bündnis 90/Die Grünen,,,9,6859
@@ -474,6 +473,7 @@ epid,firstname,lastname,active,start,end,birthdate,country,gender,eugroup,party,
 130833,Stelios,KOULOGLOU,1,2019-07-02,,1953-02-27,gr,,The Left,Coalition of the Radical Left,,,9,6713
 130256,Dace,MELBĀRDE,1,2019-07-02,,1971-04-03,lv,,ECR,"Nacionālā apvienība ""Visu Latvijai!""-""Tēvzemei un Brīvībai/LNNK""",,,9,7173
 130100,Hilde,VAUTMANS,1,2019-07-02,,1972-05-02,be,,Renew,Open Vlaamse Liberalen en Democraten,,,9,6710
+129164,Tom,VANDENKENDELAERE,1,2021-01-25,,,be,,PPE,Christen-Democratisch & Vlaams,,,9,6706
 129073,Urmas,PAET,1,2019-07-02,,1974-04-20,ee,,Renew,Eesti Reformierakond,,,9,6705
 128483,Markus,BUCHHEIT,1,2019-07-02,,1983-08-11,de,,ID,Alternative für Deutschland,,,9,6876
 127096,Domènec,RUIZ DEVESA,1,2019-07-02,,1978-03-03,es,,S&D,Partido Socialista Obrero Español,,,9,7128
@@ -518,7 +518,7 @@ epid,firstname,lastname,active,start,end,birthdate,country,gender,eugroup,party,
 124973,Gerolf,ANNEMANS,1,2019-07-02,,1958-11-08,be,,ID,Vlaams Belang,,,9,6593
 124972,Ernest,URTASUN,1,2019-07-02,,1982-01-27,es,,Verts/ALE,Catalunya en Comú,,,9,6591
 124970,Miriam,DALLI,1,2019-07-02,2020-10-18,1976-05-19,mt,,S&D,Partit Laburista,,,9,6589
-124965,Nathan,GILL,1,2019-07-02,2020-01-31,1973-07-06,uk,,NI,The Brexit Party,,,9,6584
+124965,Nathan,GILL,1,2019-07-02,2020-01-31,1973-07-06,gb,,NI,The Brexit Party,,,9,6584
 124963,Julie,WARD,1,2019-07-02,2020-01-31,,gb,,S&D,Labour Party,,,9,6582
 124961,Theresa,GRIFFIN,1,2019-07-02,2020-01-31,,gb,,S&D,Labour Party,,,9,6580
 124953,Jude,KIRTON-DARLING,1,2019-07-02,2020-01-31,,gb,,S&D,Labour Party,,,9,6571
@@ -603,14 +603,14 @@ epid,firstname,lastname,active,start,end,birthdate,country,gender,eugroup,party,
 118949,Ondřej,KOVAŘÍK,1,2019-07-02,,1980-08-21,cz,,Renew,ANO 2011,,,9,6917
 118859,Roberta,METSOLA,1,2019-07-02,,1979-01-18,mt,,PPE,Partit Nazzjonalista,,,9,6297
 114268,Nils,TORVALDS,1,2019-07-02,,1945-08-07,fi,,Renew,Svenska folkpartiet,,,9,6281
-113959,Martina,ANDERSON,1,2019-07-02,2020-01-31,1962-04-16,uk,,GUE/NGL,Sinn Fein,,,9,6280
+113959,Martina,ANDERSON,1,2019-07-02,2020-01-31,1962-04-16,gb,,GUE/NGL,Sinn Fein,,,9,6280
 113892,Eric,ANDRIEU,1,2019-07-02,,1960-04-14,fr,,S&D,Parti socialiste,,,9,6279
 112748,Biljana,BORZAN,1,2019-07-02,,1971-11-29,hr,,S&D,Socijaldemokratska partija Hrvatske,,,9,6264
 112747,Romana,JERKOVIĆ,1,2020-02-01,,1964-11-28,hr,,S&D,Socijaldemokratska partija Hrvatske,,,9,6263
 112744,Tonino,PICULA,1,2019-07-02,,1961-08-31,hr,,S&D,Socijaldemokratska partija Hrvatske,,,9,6261
 112611,Petri,SARVAMAA,1,2019-07-02,,1960-09-15,fi,,PPE,Kansallinen Kokoomus,,,9,6259
 112014,Phil,BENNION,1,2019-07-02,2020-01-31,,gb,,Renew,Liberal Democrats,,,9,6256
-111011,Anthea,McINTYRE,1,2019-07-02,2020-01-31,1954-06-29,uk,,ECR,Conservative Party,,,9,6234
+111011,Anthea McINTYRE,,1,2019-07-02,2020-01-31,1954-06-29,gb,,ECR,Conservative Party,,,9,6234
 107212,Andrey,NOVAKOV,1,2019-07-02,,1988-07-07,bg,,PPE,Citizens for European Development of Bulgaria,,,9,6709
 106936,Daniel,FREUND,1,2019-07-02,,1984-10-14,de,,Verts/ALE,Bündnis 90/Die Grünen,,,9,6851
 103746,Michal,ŠIMEČKA,1,2019-07-02,,1984-05-10,sk,,Renew,Progresívne Slovensko,,,9,7152
@@ -618,7 +618,7 @@ epid,firstname,lastname,active,start,end,birthdate,country,gender,eugroup,party,
 101585,Niels,FUGLSANG,1,2019-07-02,,1985-06-29,dk,,S&D,Socialdemokratiet,,,9,6955
 101039,Paolo,BORCHIA,1,2019-07-02,,1980-05-27,it,,ID,Lega,,,9,7000
 99945,Lena,DÜPONT,1,2019-07-02,,1986-04-30,de,,PPE,Christlich Demokratische Union Deutschlands,,,9,6810
-99461,Alexandra Lesley,PHILLIPS,1,2019-07-02,2020-01-31,1983-12-26,uk,,NI,The Brexit Party,,,9,7101
+99461,Alexandra Lesley,PHILLIPS,1,2019-07-02,2020-01-31,1983-12-26,gb,,NI,The Brexit Party,,,9,7101
 99283,Alessandro,PANZA,1,2019-07-02,,1982-05-15,it,,ID,Lega,,,9,6979
 98582,Loránt,VINCZE,1,2019-07-02,,1977-11-03,ro,,PPE,Uniunea Democrată Maghiară din România,,,9,7062
 98341,Eva,MAYDELL,1,2019-07-02,,1986-01-26,bg,,PPE,Citizens for European Development of Bulgaria,,,9,6483
@@ -714,7 +714,7 @@ epid,firstname,lastname,active,start,end,birthdate,country,gender,eugroup,party,
 34578,Robert,HAJŠEL,1,2019-07-02,,1967-03-28,sk,,S&D,Independent,,,9,7146
 33997,Corina,CREȚU,1,2019-07-02,,1967-06-24,ro,,S&D,PRO Romania,,,9,5661
 33982,Marian-Jean,MARINESCU,1,2019-07-02,,1952-08-11,ro,,PPE,Partidul Naţional Liberal,,,9,5646
-30490,Aileen,McLEOD,1,2019-07-02,2020-01-31,1971-08-24,uk,,Verts/ALE,Scottish National Party,,,9,7028
+30490,Aileen McLEOD,,1,2019-07-02,2020-01-31,1971-08-24,gb,,Verts/ALE,Scottish National Party,,,9,7028
 30482,Younous,OMARJEE,1,2019-07-02,,1969-09-30,fr,,The Left,La France Insoumise,,,9,6250
 29579,Marc,TARABELLA,1,2019-07-02,,1963-03-11,be,,S&D,Parti Socialiste,,,9,5624
 28619,Tatjana,ŽDANOKA,1,2019-07-02,,1950-05-08,lv,,Verts/ALE,Latvijas Krievu savienība,,,9,5602
@@ -768,7 +768,7 @@ epid,firstname,lastname,active,start,end,birthdate,country,gender,eugroup,party,
 4555,Daniel,HANNAN,1,2019-07-02,2020-01-31,,gb,,ECR,Conservative Party,,,9,4959
 4554,Chris,DAVIES,1,2019-07-02,2020-01-31,,gb,,Renew,Liberal Democrats,,,9,4958
 4550,Jill,EVANS,1,2019-07-02,2020-01-31,,gb,,Verts/ALE,Plaid Cymru - Party of Wales,,,9,4954
-4533,Neena,GILL,1,2019-07-02,2020-01-31,1956-12-24,uk,,S&D,Labour Party,,,9,4937
+4533,Neena,GILL,1,2019-07-02,2020-01-31,1956-12-24,gb,,S&D,Labour Party,,,9,4937
 4525,Nigel,FARAGE,1,2019-07-02,2020-01-31,,gb,,NI,The Brexit Party,,,9,4929
 4519,Claude,MORAES,1,2019-07-02,2020-01-31,,gb,,S&D,Labour Party,,,9,4923
 4513,Geoffrey,VAN ORDEN,1,2019-07-02,2020-01-31,,gb,,ECR,Conservative Party,,,9,4917
