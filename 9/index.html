@@ -9,6 +9,9 @@
     <link href="../dist/css/main.css" rel="stylesheet">
 
 <style>
+#search input {background:white; color:black;}
+#search input::placeholder {color:gray;}
+
 .bg-primary {background-color:#00b400!important}
 .bg-primary-light {background-color:#a1ff96!important}
 :root {
@@ -18,7 +21,11 @@
 html .bg-info, html .gradient {
   background: #ffbc2d!important;
 }
-                                            
+
+.card-header .nav-tabs {
+  margin-bottom:-1rem;
+}
+
 td span.committee{display:block;}
 td a {color:rgb(33, 150, 243);}
 
@@ -88,12 +95,15 @@ td a {color:rgb(33, 150, 243);}
       </div>
 
       <div class="navbar navbar-dark bg-primary box-shadow">
+
         <div class="container d-flex justify-content-between">
           <a href="#" class="navbar-brand d-flex align-items-center">
             <svg><use href="#logo" /></svg>MEP Watch
             
           </a>
-
+              <form id="search" class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+    </form>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
             <svg class="icon"><use href="#menu" /></svg>
 
@@ -104,49 +114,59 @@ td a {color:rgb(33, 150, 243);}
 
     <main role="main">
 
-      <section class="jumbotron text-center">
+
         <div class="container">
-          <h3 class="jumbotron-heading">Select the votes you want to analyse</h3>
+     <div>
+          <h3 class="jumbotron-heading nbvotes">Search among <span class="nb"></span> MEPs' votes</h3>
+          @matteo, I need you
           Tip: the vote is often reported <i>on (date), the EP voted and (xxx) MEPs supported...</i>. select the date on the heatmap, and type the number of votes in the search box, you should have the vote on the list under
         </div>
-      </section>
-     <div class="bg-info">
-        <div class="container">
-
-          <div class="d-flex flex-row md-3 justify-content-between align-items-center" id="summary">
-            <div class="p-2">
-              <form id="search"></form>
-            </div>
-            <div class="p-2 nbrollcalls">
-              <span class="nb"></span> rollcalls
-            </div>
-            <div class="p-2 nbvotes">
-              <span class="nb"></span>  MEPs' votes
-            </div>
-          </div>
         </div>
-     </div>
-     <div class="py-5 gradient">
         <div class="container">
+          <div class="card">
+          <div class="card-header">
+     <ul class="nav nav-tabs nav-justified" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" data-toggle="tab" href="#plenary" role="tab"><span class="nb_plenary"></span> Plenaries</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#report" role="tab" ><span class="nb_text"></span> Texts Tabled</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#rollcall" role="tab" ><span class="nb_rollcall"></span> RollCalls</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#" class=".resetall">Reset</a>
+  </li>
+</ul>
+          </div>
 
-          <div class="row">
-            <div class="col-md-12">
-              <div class="card box-shadow" id="date">
-                <div class="card-body">
-                  <h5 class="card-title text-muted text-right"><span class="nb"></span> Plenary days</h5>
-                  <p class="card-text d-none">
-                  All the plenary sessions with at least one rollcall</p>
+
+<div class="row">
+            <div class="col-md-12 tab-content" id="mytabs">
+
+  <div class="tab-pane fade show active" id="plenary" role="tabpanel" aria-labelledby="plenary-tab">
+                <div class="card-body" id="date">
+                  <p class="card-text">
+                  All the plenary days with at least one rollcall</p>
                   <div class="graph"></div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-        <div class="container">
-
-          <div class="row">
-            <div class="col-md-12">
+  </div>
+  <div class="tab-pane fade" id="report" role="tabpanel" aria-labelledby="report-tab">
+            <table class="table table-stripped">
+              <thead>
+                <tr>
+                  <th>Ref</th>
+                  <th>Title</th>
+                  <th>Rollcalls</th>
+                  <th>last vote</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+  </div>
+  <div class="tab-pane fade" id="rollcall" role="tabpanel" aria-labelledby="rollcall-tab">
             <table class="table table-stripped">
               <thead>
                 <tr>
@@ -161,17 +181,14 @@ td a {color:rgb(33, 150, 243);}
               <tbody>
               </tbody>
             </table>
-            </div>
+  </div>
+</div>
+</div>
           </div>
           </div>
     </main>
 
     <footer class="text-muted">
-      <div class="container">
-        <p class="float-right">
-          <a href="#">Back to top</a>
-        </p>
-      </div>
     </footer>
 
     <!-- Optional JavaScript -->
@@ -239,8 +256,8 @@ td a {color:rgb(33, 150, 243);}
 
   function draw(){
     graphs.date=drawDate('#date div.graph');
-//    graphs.report=drawReport('#report div.graph');
-    graphs.table=drawTable('table.table');
+    graphs.report=drawReport('#report .table');
+    graphs.table=drawTable('#rollcall table.table');
     graphs.search=drawSearch("form#search");
 
     drawNumbers(graphs);
@@ -263,12 +280,12 @@ td a {color:rgb(33, 150, 243);}
     reducer(group);
 
 
-    graphs.rollcalls = dc.numberDisplay(".nbrollcalls .nb")
+    graphs.rollcalls = dc.numberDisplay(".nb_rollcall")
       .group(group)
       .valueAccessor(function(d) {return d.value.count})
       .formatNumber(d3.format("d"))
 
-    graphs.rollcalls = dc.numberDisplay(".nbvotes .nb")
+    graphs.votes = dc.numberDisplay(".nbvotes .nb")
       .group(group)
       .valueAccessor(function(d) {return +d.value.for.sum + +d.value.against.sum + +d.value.abstention.sum})
       .formatNumber(d3.format("d"));
@@ -281,49 +298,37 @@ td a {color:rgb(33, 150, 243);}
   };
 
   function drawReport(dom){
+  function remove_empty_bins(source_group) {
+    return {
+        top:function (bucket) {
+            return source_group.top(bucket).filter(function(d) {
+                return d.value.count !== 0; // if integers only
+            });
+        }
+    };
+}
+    var dim = ndx.dimension(function(d) {
+      if (d.report === "C9-0004/2021")
+        console.log(d);
+      return d.report? d.report : "?";});
+    //var group = dim.group().reduceSum(function(d) { return 1;});
+    var group = dim.group();
+    var reducer = reductio ()
+        .count(true)
+        .max (function (d){return d.date})
+    reducer (group);
 
-    var tip = d3.tip()
-      .attr('class', 'd3-tip')
-      .offset([0, 10])
-      .direction("e")
-      .html(function(d) {
-        console.log(docs[d.key]);
-        return docs[d.key]? "<h3>"+docs[d.key].rapporteur+"</h3>"+docs[d.key].title +":"+ d.value: d.value;
-//        return abbr(d.key) + "<br><b>" + d.value + " MEPs</b>&nbsp;<i>" + formatPercent(d.value/summary.total) +"</i>";
-      });
-
-    //var dim = ndx.dimension(function(d) {return d.report?d.report:"?";}, true);
-    var dim = ndx.dimension(function(d) {return d.report? d.report : "?";});
-    var group = dim.group().reduceSum(function(d) {
-      return 1;
-    });
-
-    var graph = dc.rowChart(dom)
-      .width(0)
-      .height(300)
-      //      .rowsCap(18)
-//      .ordering(function(d) {  return -d.key      })
-      .cap(10)
-      .label (function(d){return docs[d.key]? docs[d.key].rapporteur : d.key})
-      .renderTitle(false)
-      .margins({
-        top: 0,
-        right: 0,
-        bottom: 20,
-        left: 0
-      })
-//      .ordinalColors([committee_color])
-      .gap(0)
-      .elasticX(true)
-      .dimension(dim)
-      .group(group)
-      .on("renderlet.top", function(c) {
-          c.selectAll("g.row")
-            .call(tip)
-            .on("mouseover.tip", tip.show)
-            .on("mouseout.tip", tip.hide);
-      });
-    graph.xAxis().ticks(3);
+    var graph = dc.dataTable(dom)
+      .dimension(remove_empty_bins(group))
+      .size(10000)
+      .showSections(false)
+    .columns([function (d) { return d.key },
+              function (d) { return docs[d.key] && docs[d.key].title },
+              function (d) { return d.value.count },
+              function (d) { return dayFormat(d.value.max) }
+    ])
+    .sortBy(function (d) { return d.value.max })
+    .order(d3.descending)
 
     return graph;
   }
@@ -381,7 +386,7 @@ td a {color:rgb(33, 150, 243);}
       .on('mouseout.tip', tip.hide);
     });
 
-    d3.select("#date .nb").html(graph.data().length);
+    d3.selectAll(".nb_plenary").html(graph.data().length);
 
     return graph;
   }
@@ -411,7 +416,7 @@ td a {color:rgb(33, 150, 243);}
       .on("renderlet.urlparam",function(){
         d3.select(dom + " input").classed("form-control",true);
         if (d3.select(dom + ".input-group").empty())
-          d3.select(dom).classed("input-group",true).append("div").classed("input-group-append",true).append("span").classed("input-group-text",true).text("🔎");
+//          d3.select(dom).classed("input-group",true).append("div").classed("input-group-append",true).append("span").classed("input-group-text",true).text("🔎");
         var input=d3.select(this.anchor() +" input");
         if (input.property("value")) {
           if (q != input.property("value")) {
