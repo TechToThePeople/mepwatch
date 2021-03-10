@@ -104,6 +104,7 @@ td a {color:rgb(33, 150, 243);}
               <form id="search" class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
     </form>
+    <a class="resetall">⭯</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
             <svg class="icon"><use href="#menu" /></svg>
 
@@ -127,16 +128,13 @@ td a {color:rgb(33, 150, 243);}
           <div class="card-header">
      <ul class="nav nav-tabs nav-justified" role="tablist">
   <li class="nav-item">
-    <a class="nav-link active" data-toggle="tab" href="#plenary" role="tab"><span class="nb_plenary"></span> Plenaries</a>
+    <a class="nav-link" data-toggle="tab" href="#plenary" role="tab"><span class="nb_plenary"></span> Plenaries</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" data-toggle="tab" href="#report" role="tab" ><span class="nb_text"></span> Texts Tabled</a>
+    <a class="nav-link active" data-toggle="tab" href="#report" role="tab" ><span class="nb_text"></span> Texts Tabled</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" data-toggle="tab" href="#rollcall" role="tab" ><span class="nb_rollcall"></span> RollCalls</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#" class=".resetall">Reset</a>
   </li>
 </ul>
           </div>
@@ -145,21 +143,20 @@ td a {color:rgb(33, 150, 243);}
 <div class="row">
             <div class="col-md-12 tab-content" id="mytabs">
 
-  <div class="tab-pane fade show active" id="plenary" role="tabpanel" aria-labelledby="plenary-tab">
+  <div class="tab-pane fade" id="plenary" role="tabpanel" aria-labelledby="plenary-tab">
                 <div class="card-body" id="date">
                   <p class="card-text">
                   All the plenary days with at least one rollcall</p>
                   <div class="graph"></div>
                 </div>
   </div>
-  <div class="tab-pane fade" id="report" role="tabpanel" aria-labelledby="report-tab">
+  <div class="tab-pane fade show active" id="report" role="tabpanel" aria-labelledby="report-tab">
             <table class="table table-stripped">
               <thead>
                 <tr>
                   <th>Ref</th>
                   <th>Title</th>
                   <th>Rollcalls</th>
-                  <th>last vote</th>
                 </tr>
               </thead>
               <tbody>
@@ -300,16 +297,19 @@ td a {color:rgb(33, 150, 243);}
   function drawReport(dom){
   function remove_empty_bins(source_group) {
     return {
+      all: function () {
+            return source_group.all().filter(function(d) {
+                return d.value.count !== 0; // if integers only
+            });
+      },
         top:function (bucket) {
-            return source_group.top(bucket).filter(function(d) {
+            return source_group.all().filter(function(d) {
                 return d.value.count !== 0; // if integers only
             });
         }
     };
 }
     var dim = ndx.dimension(function(d) {
-      if (d.report === "C9-0004/2021")
-        console.log(d);
       return d.report? d.report : "?";});
     //var group = dim.group().reduceSum(function(d) { return 1;});
     var group = dim.group();
@@ -318,14 +318,23 @@ td a {color:rgb(33, 150, 243);}
         .max (function (d){return d.date})
     reducer (group);
 
+    graphs.reports = dc.numberDisplay(".nb_text")
+      .group(group)
+      .valueAccessor(function(d) {return remove_empty_bins(group).top().length})
+      .formatNumber(d3.format("d"))
+
     var graph = dc.dataTable(dom)
       .dimension(remove_empty_bins(group))
       .size(10000)
-      .showSections(false)
+  .section(function(d) { return "<h3>"+
+"<span class='badge badge-light'>" +dayFormat(d.value.max)+"</span>"+ "week " +week(d.value.max) + "</h3>"})
+      //.showSections(false)
     .columns([function (d) { return d.key },
+      function (d) {return docs[d.key] && docs[d.key].committee },
               function (d) { return docs[d.key] && docs[d.key].title },
+      function (d) { return docs[d.key] && "<a title='view on oeil' class='badge badge-secondary' href='"+docs[d.key].oeil+"'>👁</a>"},
+
               function (d) { return d.value.count },
-              function (d) { return dayFormat(d.value.max) }
     ])
     .sortBy(function (d) { return d.value.max })
     .order(d3.descending)
