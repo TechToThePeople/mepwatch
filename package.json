@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "js-compile": "rollup --config build/rollup2.config.js --sourcemap",
+    "start": "snowpack dev",
+    "build": "snowpack build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -29,6 +30,8 @@
     "jquery": "^3.3.1",
     "popper.js": "^1.14.3",
     "reductio": "^0.6.3",
+    "snowpack": "^3.0.13",
+    "esbuild": "^0.8.52",
     "topojson": "^3.0.2"
   },
   "dependencies": {

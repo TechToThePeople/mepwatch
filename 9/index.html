@@ -155,6 +155,7 @@ td a {color:rgb(33, 150, 243);}
               <thead>
                 <tr>
                   <th>Ref</th>
+                  <th>Committee</th>
                   <th>Title</th>
                   <th>Rollcalls</th>
                 </tr>
@@ -288,6 +289,7 @@ td a {color:rgb(33, 150, 243);}
       .formatNumber(d3.format("d"));
 
     d3.select(".resetall").on("click",function(){
+      graphs.report.dim.filterAll();
       dc.filterAll();
       dc.renderAll();
     });
@@ -338,7 +340,19 @@ td a {color:rgb(33, 150, 243);}
     ])
     .sortBy(function (d) { return d.value.max })
     .order(d3.descending)
+    .on("renderlet.filter", function(g) {
+      g.selectAll("tr.dc-table-row")
+        .on("click", function(d) {
+          
+          var id = d3.select(this).datum().key;
+          console.log(id);
+          graphs.report.dim.filter(id);
+          $('a[href="#rollcall"]').tab('show');
+          dc.redrawAll();
+        });
+    });
 
+    graph.dim= dim;
     return graph;
   }
 
@@ -366,7 +380,7 @@ td a {color:rgb(33, 150, 243);}
     var graph=dc.heatMap(dom)
      .dimension(dim)
      .group(group)
-     .width(0)
+     .width(800)
      .height(150)
       .rowsLabel(function(d){
         return day[d];
