@@ -1,1 +1,58 @@
-{}
+{
+    "eugroups": {
+        "na": {
+            "description": "Nepřidružené",
+            "name": "Není k dispozici"
+        },
+        "greens/efa": {
+            "description": "Zelení, regionalisté a piráti",
+            "name": "Zelení/EFA"
+        },
+        "epp": {
+            "description": "Křesťanští demokraté",
+            "name": "EPP"
+        },
+        "gue/ngl": {
+            "description": "Evropská levice/Severská zelená levice",
+            "name": "GUE/NGL"
+        },
+        "the left": {
+            "description": "Evropská levice/Severská zelená levice",
+            "name": "Levice"
+        },
+        "s&d": {
+            "description": "Socialisté a demokraté",
+            "name": "S&D"
+        },
+        "verts/ale": {
+            "description": "Zelení, regionalisté a piráti",
+            "name": "Zelení/EFA"
+        },
+        "ecr": {
+            "description": "Národní konzervativci",
+            "code": "ecr",
+            "name": "ECR"
+        },
+        "id": {
+            "description": "Krajní pravice",
+            "name": "ID"
+        },
+        "ni": {
+            "description": "Nepřidružené",
+            "name": "NI"
+        },
+        "renew": {
+            "description": "Liberálové",
+            "name": "Obnovit"
+        },
+        "ppe": {
+            "description": "Křesťanští demokraté",
+            "name": "EPP"
+        }
+    },
+    "result": {
+        "abstention": "Zdržel se hlasování",
+        "against": "Proti",
+        "for": "Ve prospěch"
+    }
+}
