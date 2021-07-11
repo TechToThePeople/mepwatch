@@ -1,1 +1,58 @@
-{}
+{
+    "eugroups": {
+        "na": {
+            "description": "Non affilié",
+            "name": "N/A"
+        },
+        "greens/efa": {
+            "description": "Verts, régionalistes et pirates",
+            "name": "Verts/ALE"
+        },
+        "epp": {
+            "description": "Démocrates chrétiens",
+            "name": "EPP"
+        },
+        "gue/ngl": {
+            "description": "Gauche européenne/Gauche verte nordique",
+            "name": "GUE/NGL"
+        },
+        "the left": {
+            "description": "Gauche européenne/Gauche verte nordique",
+            "name": "La gauche"
+        },
+        "s&d": {
+            "description": "Socialistes et démocrates",
+            "name": "S&D"
+        },
+        "verts/ale": {
+            "description": "Verts, régionalistes et pirates",
+            "name": "Verts/ALE"
+        },
+        "ecr": {
+            "description": "Conservateurs nationaux",
+            "code": "ecr",
+            "name": "ECR"
+        },
+        "id": {
+            "description": "Extrême droite",
+            "name": "ID"
+        },
+        "ni": {
+            "description": "Non affilié",
+            "name": "NI"
+        },
+        "renew": {
+            "description": "Libéraux",
+            "name": "Prolonger"
+        },
+        "ppe": {
+            "description": "Démocrates chrétiens",
+            "name": "EPP"
+        }
+    },
+    "result": {
+        "abstention": "S'est abstenu",
+        "against": "Contre",
+        "for": "En faveur"
+    }
+}
