@@ -1,0 +1,16 @@
+{
+    "eugroups": {
+        "ni": {
+            "description": "Не аффилированные"
+        },
+        "renew": {
+            "description": "Либералы",
+            "name": "Обновить"
+        }
+    },
+    "result": {
+        "abstention": "Воздержаться",
+        "against": "Против",
+        "for": "В избранное"
+    }
+}

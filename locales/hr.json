@@ -1,0 +1,58 @@
+{
+    "eugroups": {
+        "na": {
+            "description": "Neovisni",
+            "name": "--"
+        },
+        "greens/efa": {
+            "description": "Zeleni, regionalisti i pirati",
+            "name": "Zeleni/Europski slobodni savez"
+        },
+        "epp": {
+            "description": "Kršćanski demokrati",
+            "name": "Europska pučka stranka"
+        },
+        "gue/ngl": {
+            "description": "Europska ljevica/Nordijsko zelena ljevica",
+            "name": "Ljevica u Europskom parlamentu"
+        },
+        "the left": {
+            "description": "Europska ljevica/Nordijsko zelena ljevica",
+            "name": "Ljevica"
+        },
+        "s&d": {
+            "description": "Socijalisti i demokrati",
+            "name": "Socijalisti i demokrati"
+        },
+        "verts/ale": {
+            "description": "Zeleni, regionalisti i pirati",
+            "name": "Zeleni/Europski slobodni savez"
+        },
+        "ecr": {
+            "description": "Nacionalni konzervativci",
+            "code": "Europski konzervativci i reformisti",
+            "name": "Europski konzervativci i reformisti"
+        },
+        "id": {
+            "description": "Krajnja desnica",
+            "name": "Identifikacija"
+        },
+        "ni": {
+            "description": "Neovisni",
+            "name": "Neovisni"
+        },
+        "renew": {
+            "description": "Liberali",
+            "name": "Obnovi"
+        },
+        "ppe": {
+            "description": "Kršćanski demokrati",
+            "name": "Europska pučka stranka"
+        }
+    },
+    "result": {
+        "abstention": "Suzdržano",
+        "against": "Protiv",
+        "for": "Za"
+    }
+}
