@@ -28,7 +28,7 @@ mepid,name,result,eugroup,identifier,vote_id
 7071,Collard,for,ID,131423,7071
 7007,Conte,for,ID,131423,7007
 6999,Da Re,for,ID,131423,6999
-7207,Donato,for,ID,131423,7207
+7207,Donato,for,NA,131423,7207
 7005,Dreosto,for,ID,131423,7005
 6972,Gancia,for,ID,131423,6972
 7018,Garraud,for,ID,131423,7018
@@ -486,7 +486,7 @@ mepid,name,result,eugroup,identifier,vote_id
 7113,Daly,for,GUE/NGL,131423,7113
 6865,Demirel,for,GUE/NGL,131423,6865
 6024,Ernst,for,GUE/NGL,131423,6024
-5886,Ferreira,for,The Left,131423,5886
+5886,Ferreira,for,GUE/NGL,131423,5886
 6597,Flanagan,for,GUE/NGL,131423,6597
 6815,Georgiou,for,GUE/NGL,131423,6815
 7204,Georgoulis,for,GUE/NGL,131423,7204
@@ -673,7 +673,7 @@ mepid,name,result,eugroup,identifier,vote_id
 6881,Reil,abstention,ID,131423,6881
 7234,Vandendriessche,abstention,ID,131423,7234
 6610,Vilimsky,abstention,ID,131423,6610
-7183,Vuolo,abstention,NA,131423,7183
+7183,Vuolo,abstention,EPP,131423,7183
 6882,Zimniok,abstention,ID,131423,6882
 6875,Berg,abstention,ECR,131423,6875
 7243,Gyöngyösi,abstention,NA,131423,7243

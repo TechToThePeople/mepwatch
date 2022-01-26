@@ -81,7 +81,7 @@ mepid,name,result,eugroup,identifier,vote_id
 7007,Conte,for,ID,133505,7007
 6999,Da Re,for,ID,133505,6999
 6949,David,for,ID,133505,6949
-7207,Donato,for,ID,133505,7207
+7207,Donato,for,NA,133505,7207
 7005,Dreosto,for,ID,133505,7005
 6972,Gancia,for,ID,133505,6972
 7018,Garraud,for,ID,133505,7018
@@ -568,7 +568,7 @@ mepid,name,result,eugroup,identifier,vote_id
 7113,Daly,for,GUE/NGL,133505,7113
 6865,Demirel,for,GUE/NGL,133505,6865
 6024,Ernst,for,GUE/NGL,133505,6024
-5886,Ferreira,for,The Left,133505,5886
+5886,Ferreira,for,GUE/NGL,133505,5886
 6597,Flanagan,for,GUE/NGL,133505,6597
 6815,Georgiou,for,GUE/NGL,133505,6815
 7204,Georgoulis,for,GUE/NGL,133505,7204
@@ -695,4 +695,4 @@ mepid,name,result,eugroup,identifier,vote_id
 6676,Papadakis Kostas,abstention,NA,133505,6676
 7148,Radačovský,abstention,NA,133505,7148
 7242,Sinčić,abstention,NA,133505,7242
-7183,Vuolo,abstention,NA,133505,7183
+7183,Vuolo,abstention,EPP,133505,7183
