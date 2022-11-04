@@ -1,60 +1,58 @@
 {
-	"result":{
-	"for":"In Favour",
-	"against":"Against",
-	"abstention":"Abstained"
-	},
-	"eugroups":
-	{"ppe":
-  {
-    "name": "EPP",
-    "description": "Christian Democrats"
-  },
-  "renew":{
-    "name": "Renew",
-    "description": "Liberals"
-  },
-  "ni":{
-    "name": "NI",
-    "description": "Non Affiliated"
-  },
-  "id":{
-    "name": "ID",
-    "description": "Far Right"
-  },
-  "ecr":{
-    "name": "ECR",
-    "code": "ecr",
-    "description": "National Conservatives"
-  },
-  "verts/ale":{
-    "name": "Greens/EFA",
-    "description": "Greens, regionalists, and pirates"
-  },
-  "s&d":{
-    "name": "S&D",
-    "description": "Socialists and Democrats"
-  },
-  "the left":{
-    "name": "The Left",
-    "description": "European Left/Nordic Green Left"
-  },
-  "gue/ngl":{
-    "name": "GUE/NGL",
-    "description": "European Left/Nordic Green Left"
-  },
-  "epp":{
-    "name": "EPP",
-    "description": "Christian Democrats"
-  },
-  "greens/efa":{
-    "name": "Greens/EFA",
-    "description": "Greens, regionalists, and pirates"
-  },
-  "na":{
-    "name": "NA",
-    "description": "Non Affiliated"
-  }
-	}
-
+    "result": {
+        "for": "In Favour",
+        "against": "Against",
+        "abstention": "Abstained"
+    },
+    "eugroups": {
+        "ppe": {
+            "name": "EPP",
+            "description": "Christian Democrats"
+        },
+        "renew": {
+            "name": "Renew",
+            "description": "Liberals"
+        },
+        "ni": {
+            "name": "NI",
+            "description": "Non Affiliated"
+        },
+        "id": {
+            "name": "ID",
+            "description": "Far Right"
+        },
+        "ecr": {
+            "name": "ECR",
+            "code": "ECR",
+            "description": "National Conservatives"
+        },
+        "verts/ale": {
+            "name": "Greens/EFA",
+            "description": "Greens, Regionalists, and Pirates"
+        },
+        "s&d": {
+            "name": "S&D",
+            "description": "Socialists and Democrats"
+        },
+        "the left": {
+            "name": "The Left",
+            "description": "European Left/Nordic Green Left"
+        },
+        "gue/ngl": {
+            "name": "GUE/NGL",
+            "description": "European Left/Nordic Green Left"
+        },
+        "epp": {
+            "name": "EPP",
+            "description": "Christian Democrats"
+        },
+        "greens/efa": {
+            "name": "Greens/EFA",
+            "description": "Greens, Regionalists, and Pirates"
+        },
+        "na": {
+            "name": "NA",
+            "description": "Non Affiliated"
+        }
+    }
 }
