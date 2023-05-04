@@ -4,7 +4,7 @@
             "description": "Nicht angegliedert",
             "name": "N.V."
         },
-        "greens/efa": {
+        "greensefa": {
             "description": "Grüne, Regionalisten und Piraten",
             "name": "Grüne/EFA"
         },
@@ -12,7 +12,7 @@
             "description": "Christdemokraten",
             "name": "EPP"
         },
-        "gue/ngl": {
+        "guengl": {
             "description": "Europäische Linke/Nordische Grüne Linke",
             "name": "GUE/NGL"
         },
@@ -20,11 +20,11 @@
             "description": "Europäische Linke/Nordische Grüne Linke",
             "name": "Die Linke"
         },
-        "s&d": {
+        "sd": {
             "description": "Sozialisten und Demokraten",
             "name": "S&D"
         },
-        "verts/ale": {
+        "vertsale": {
             "description": "Grüne, Regionalisten und Piraten",
             "name": "Grüne/EFA"
         },
