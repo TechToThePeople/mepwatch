@@ -26,19 +26,19 @@
             "code": "ECR",
             "description": "National Conservatives"
         },
-        "verts/ale": {
+        "vertsale": {
             "name": "Greens/EFA",
             "description": "Greens, Regionalists, and Pirates"
         },
-        "s&d": {
+        "sd": {
             "name": "S&D",
             "description": "Socialists and Democrats"
         },
-        "the left": {
+        "theleft": {
             "name": "The Left",
             "description": "European Left/Nordic Green Left"
         },
-        "gue/ngl": {
+        "guengl": {
             "name": "GUE/NGL",
             "description": "European Left/Nordic Green Left"
         },
@@ -46,7 +46,7 @@
             "name": "EPP",
             "description": "Christian Democrats"
         },
-        "greens/efa": {
+        "greensefa": {
             "name": "Greens/EFA",
             "description": "Greens, Regionalists, and Pirates"
         },
