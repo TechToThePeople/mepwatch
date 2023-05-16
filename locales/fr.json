@@ -29,7 +29,7 @@
             "name": "Verts/ALE"
         },
         "ecr": {
-            "description": "Conservateurs nationaux",
+            "description": "Conservateurs et nationalistes",
             "code": "ecr",
             "name": "ECR"
         },
@@ -53,6 +53,6 @@
     "result": {
         "abstention": "Abstention",
         "against": "Contre",
-        "for": "En faveur"
+        "for": "Pour"
     }
 }
