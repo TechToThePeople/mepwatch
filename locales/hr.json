@@ -48,6 +48,26 @@
         "ppe": {
             "description": "Kršćanski demokrati",
             "name": "Europska pučka stranka"
+        },
+        "theleft": {
+            "description": "Europska ljevica/Nordijska zelena ljevica",
+            "name": "Ljevica"
+        },
+        "guengl": {
+            "description": "Europska ljevica/Nordijska zelena ljevica",
+            "name": "Europska ljevica/Nordijska zelena ljevica"
+        },
+        "sd": {
+            "description": "Socijalisti i demokrati",
+            "name": "Socijalisti i demokrati"
+        },
+        "vertsale": {
+            "name": "Zeleni/Europski slobodni savez",
+            "description": "Zeleni, regionalisti i pirati"
+        },
+        "greensefa": {
+            "description": "Zeleni, regionalisti i pirati",
+            "name": "Zeleni/Europski slobodni savez"
         }
     },
     "result": {
