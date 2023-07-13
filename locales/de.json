@@ -48,6 +48,10 @@
         "ppe": {
             "description": "Christdemokraten",
             "name": "EPP"
+        },
+        "theleft": {
+            "description": "Europäische Linke/Nordische Grüne Linke",
+            "name": "Die Linke"
         }
     },
     "result": {

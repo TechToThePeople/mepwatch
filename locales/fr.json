@@ -21,15 +21,15 @@
             "name": "La gauche"
         },
         "s&d": {
-            "description": "Socialistes et démocrates",
+            "description": "Socialistes et Démocrates",
             "name": "S&D"
         },
         "verts/ale": {
-            "description": "Verts, régionalistes et pirates",
+            "description": "Verts, Régionalistes et Pirates",
             "name": "Verts/ALE"
         },
         "ecr": {
-            "description": "Conservateurs nationaux",
+            "description": "Conservateurs et nationalistes",
             "code": "ecr",
             "name": "ECR"
         },
@@ -38,21 +38,21 @@
             "name": "ID"
         },
         "ni": {
-            "description": "Non affilié",
+            "description": "Non affiliés",
             "name": "NI"
         },
         "renew": {
             "description": "Libéraux",
-            "name": "Prolonger"
+            "name": "Renew"
         },
         "ppe": {
             "description": "Démocrates chrétiens",
-            "name": "EPP"
+            "name": "PPE"
         }
     },
     "result": {
         "abstention": "Abstention",
         "against": "Contre",
-        "for": "En faveur"
+        "for": "Pour"
     }
 }
