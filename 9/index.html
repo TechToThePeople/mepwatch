@@ -260,7 +260,7 @@
       var week = d3.timeFormat("%V");
       const isMobile = window.matchMedia('screen and (max-width: 768px)').matches;
 
-      document.querySelectorAll('table').forEach ( d => d.classList.add('table-sm'));
+      isMobile && document.querySelectorAll('table').forEach ( d => d.classList.add('table-sm'));
 
       //d3.csv('data/ep_votes.csv',function(d){
       q.defer(dl_votes)

@@ -225,14 +225,15 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
 <div class="container" id="meps">
           <div class="row">
             <div class="col-md-12">
+<div class="table-responsive">
             <table class="table table-striped">
               <thead>
                 <tr>
                   <th>Vote</th>
-                  <th>Rebel</th>
                   <th>Name</th>
                   <th>Country</th>
                   <th>Group</th>
+                  <th>Rebel</th>
                   <th>Party</th>
                 </tr>
               </thead>
@@ -240,6 +241,7 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
                 <tr><td colspan="6" class="alert alert-info">Click on a graph to filter and display the list of MEPs, or <a href="#" onclick="graphs.table.redraw();return false;">display them all</a></td>
               </tbody>
             </table>
+<div class="table-responsive">
             </div>
           </div>
 </div>
@@ -261,6 +263,9 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
   var voteid= urlParam("v");
   var resultscolor= null;
   var percentagecolor=null;
+  const isMobile = window.matchMedia('screen and (max-width: 768px)').matches;
+  
+  isMobile && document.querySelectorAll('table').forEach ( d => d.classList.add('table-sm'));
 
 
   download(voteid,draw);
@@ -1083,10 +1088,6 @@ function drawMap(dom,graphs){
         function(d){
           return iconify(d.vote);
         }
-        , function(d){
-          if (d.rebel)
-            return iconify("rebel");
-        }
         ,function(d) {
           var t=d.firstname + " " + d.lastname;
           if (!graph.compact) 
@@ -1102,6 +1103,10 @@ function drawMap(dom,graphs){
         ,function(d) {
             return "<span title='" + d.eugroup + "' class='img-rounded text-filter eugroup " + d.eugroup.replace(/&|\/|car/g, "-").toLowerCase() + "'>" + d.eugroup + "</span>";
           },
+        , function(d){
+          if (d.rebel)
+            return iconify("rebel");
+        }
         ,function(d){ return d.party;}
     ]);
 
@@ -1129,11 +1134,11 @@ function drawMap(dom,graphs){
       var th = [
         {attr:function(d){return results.indexOf(d.vote)}}
         //,{attr:function(d){return isRebel(config.partyline,d,function(d){return d.party})}}
-        ,{attr:function (d){return d.rebel == true}}
         ,{attr:"twitter"}
         ,{attr:"last_name"}
         ,{attr:"country"}
         ,{attr:"eugroup"}
+        ,{attr:function (d){return d.rebel == true}}
         ,{attr:"party"}
       ];
       d3.selectAll("th")
