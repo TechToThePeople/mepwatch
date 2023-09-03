@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="en">
   <head>
     <!-- Required meta tags -->
@@ -161,11 +161,11 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
 
       <section class="jumbotron">
         <div class="container"><div class="row">
-          <div class="col">
+          <div class="col-sm-12 col">
           <h2 class="jumbotron-heading">Loading...</h2>
           <h3 class="jumbotron-heading"></h3>
           </div>
-          <div class="col" id="map">
+          <div class="col-sm-12 col" id="map">
             <div class="graph"></div>
           </div>
           </div></div>
@@ -259,7 +259,6 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
     <script src="../dist/js/dcbundle.js"></script>
     <script src="js/vote.js"></script>
 <script>
-
   var voteid= urlParam("v");
   var resultscolor= null;
   var percentagecolor=null;
@@ -582,7 +581,8 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
     return store[key(mep)] && store[key(mep)] !== mep.vote;
   }
   function drawResult(dom) {
-    var graph = dc.pieChart(dom).innerRadius(40) //.radius(70);
+    const radius=(window.screen.width-60) / 2;
+    var graph = dc.pieChart(dom).innerRadius(40) //.radius(radius);
     var dim = ndx.dimension(function(d) {
       return d.vote || "?";
     });
@@ -613,6 +613,7 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
 
     function drawBarVotes (dom,dimension) {
       //var dim = ndx.dimension(function(d) {return d[dimension]});
+      const width=isMobile ? window.screen.width-40 : 220;
       var dim = ndx.dimension(dimension);
       var reducer = reductio();
       reducer.value("nb").count(true);
@@ -633,10 +634,11 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
         return function(d){
           return d.value[result].count; }
       }
-
       graph
-        .width(220)
-        .height(220)
+        .width(width)
+        .height(width)
+//        .width(220)
+//        .height(220)
         .outerPadding(0)
         .gap(1)
         .margins({
@@ -734,7 +736,8 @@ function drawMap(dom,graphs){
 
 
   function drawMap (dom) {
-    var width=450;
+    //var width=450;
+    const width=window.screen.width-60;
     europe.objects.countries.geometries.forEach(function(d){
       d.id = d.id.toLowerCase();
     });
@@ -768,6 +771,12 @@ function drawMap(dom,graphs){
     graph.fixedSize=true;
 
     graph.on("renderlet.top", function(c) {
+      const graph=c.select("svg").node();
+      const viewBox=[0,0,graph.width.baseVal.value,graph.height.baseVal.value];
+      graph.viewBox = viewBox.join(" ");
+      graph.width="100%";
+      graph.height=null;
+console.log(graph.width.baseVal.value, graph.height.baseVal.value);
           c.selectAll(".countries")
             .call(tip)
             .on("mouseover.tip", tip.show)
@@ -792,6 +801,8 @@ function drawMap(dom,graphs){
 }
 
     function drawCountry(dom) {
+      let heigth = 186;
+      let width = 0;
       var dim = ndx.dimension(function(d) {return d.country;});
       var reducer = reductio();
       var res=results.slice();
@@ -807,6 +818,12 @@ function drawMap(dom,graphs){
       var graph = dc.barChart(dom);
       graph.relative=true;
 
+      if (isMobile) {
+        heigth= window.screen.width-80;
+//        width=900;
+        document.getElementById("country").className += " rotated90";
+      }
+
       function getValue(result){
         if (graph.relative)
           return function(d){return d.value[result].count/d.value.count*100; }
@@ -815,8 +832,8 @@ function drawMap(dom,graphs){
       }
 
       graph
-        .width(0)
-        .height(186)
+        .width(width)
+        .height(heigth)
         .outerPadding(0)
         .gap(0)
         .margins({
@@ -847,6 +864,7 @@ function drawMap(dom,graphs){
 //        .group(group, "for", getValue("for")) bug: doesn't switch properly between absolute and relative
         .group(group, "", 0)
         .on("renderlet", function(c) {
+          //!isMobile && 
           rotateBarChartLabels();
           if (!d3.select("#country .axis.x use").empty()) return;
           d3.select("#country .axis.x").selectAll(".tick")
