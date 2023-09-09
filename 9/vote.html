@@ -161,11 +161,11 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
 
       <section class="jumbotron">
         <div class="container"><div class="row">
-          <div class="col-sm-12 col">
+          <div class="col-sm-12 col-md-6">
           <h2 class="jumbotron-heading">Loading...</h2>
           <h3 class="jumbotron-heading"></h3>
           </div>
-          <div class="col-sm-12 col" id="map">
+          <div class="col-sm-12 col-md-6" id="map">
             <div class="graph"></div>
           </div>
           </div></div>
@@ -633,6 +633,8 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
           return function(d){return d.value[result].count/d.value.nb.count*100; }
         return function(d){
           return d.value[result].count; }
+
+console.log("ismobile",isMobile,width);
       }
       graph
         .width(width)
@@ -737,7 +739,7 @@ function drawMap(dom,graphs){
 
   function drawMap (dom) {
     //var width=450;
-    const width=window.screen.width-60;
+    const width=isMobile ? window.screen.width-60: 450;
     europe.objects.countries.geometries.forEach(function(d){
       d.id = d.id.toLowerCase();
     });
@@ -774,9 +776,9 @@ function drawMap(dom,graphs){
       const graph=c.select("svg").node();
       const viewBox=[0,0,graph.width.baseVal.value,graph.height.baseVal.value];
       graph.viewBox = viewBox.join(" ");
-      graph.width="100%";
-      graph.height=null;
-console.log(graph.width.baseVal.value, graph.height.baseVal.value);
+//      graph.width="100%";
+//      graph.height=null;
+//console.log(graph.width.baseVal.value, graph.height.baseVal.value);
           c.selectAll(".countries")
             .call(tip)
             .on("mouseover.tip", tip.show)
