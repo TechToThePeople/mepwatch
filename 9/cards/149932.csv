@@ -1,4 +1,5 @@
 mepid,name,result,eugroup,identifier,vote_id
+7260,Andrews,for,Renew,149932,7260
 7202,Wallace,abstention,GUE/NGL,149932,7202
 6961,Villumsen,abstention,GUE/NGL,149932,6961
 7212,Villanueva Ruiz,abstention,GUE/NGL,149932,7212
@@ -53,7 +54,7 @@ mepid,name,result,eugroup,identifier,vote_id
 6676,Papadakis Kostas,against,NA,149932,6676
 7116,Nikolaou-Alavanos,against,NA,149932,7116
 6836,Kolakušić,against,NA,149932,6836
-6630,de Graaff,against,ID,149932,6630
+6630,de Graaff,against,NA,149932,6630
 6882,Zimniok,against,ID,149932,6882
 6881,Reil,against,ID,149932,6881
 6880,Limmer,against,ID,149932,6880
@@ -103,7 +104,7 @@ mepid,name,result,eugroup,identifier,vote_id
 6459,Köster,for,S&D,149932,6459
 6916,Kohut,for,S&D,149932,6916
 6009,Kammerevert,for,S&D,149932,6009
-6686,Kaili,for,S&D,149932,6686
+6686,Kaili,for,NA,149932,6686
 6624,Jongerius,for,S&D,149932,6624
 6263,Jerković,for,S&D,149932,6263
 6792,Incir,for,S&D,149932,6792
@@ -133,9 +134,9 @@ mepid,name,result,eugroup,identifier,vote_id
 6062,De Castro,for,S&D,149932,6062
 7293,De Basso,for,S&D,149932,7293
 6794,Cutajar,for,S&D,149932,6794
-6051,Cozzolino,for,S&D,149932,6051
+6051,Cozzolino,for,NA,149932,6051
 6901,Cimoszewicz,for,S&D,149932,6901
-6499,Chinnici,for,S&D,149932,6499
+6499,Chinnici,for,EPP,149932,6499
 7166,Chahim,for,S&D,149932,7166
 7030,Cerdas,for,S&D,149932,7030
 7252,Carvalhais,for,S&D,149932,7252
@@ -175,7 +176,7 @@ mepid,name,result,eugroup,identifier,vote_id
 6940,Tolleret,for,Renew,149932,6940
 5949,Thun und Hohenstein,for,Renew,149932,5949
 7058,Strugariu,for,Renew,149932,7058
-7055,Ştefănuță,for,Renew,149932,7055
+7055,Ştefănuță,for,Greens/EFA,149932,7055
 7168,Solís Pérez,for,Renew,149932,7168
 7152,Šimečka,for,Renew,149932,7152
 6817,Semedo,for,Renew,149932,6817
@@ -226,11 +227,11 @@ mepid,name,result,eugroup,identifier,vote_id
 7283,Gheorghe,for,Renew,149932,7283
 7022,Gamon,for,Renew,149932,7022
 6818,Flego,for,Renew,149932,6818
-6770,Ferrandino,for,S&D,149932,6770
+6770,Ferrandino,for,Renew,149932,6770
 6980,Farreng,for,Renew,149932,6980
 6828,Eroglu,for,Renew,149932,6828
 7150,Ďuriš Nicholsonová,for,Renew,149932,7150
-6324,Durand,for,Renew,149932,6324
+6324,Durand,for,S&D,149932,6324
 6898,Decerle,for,Renew,149932,6898
 6458,Danti,for,Renew,149932,6458
 6978,Cseh,for,Renew,149932,6978
@@ -249,7 +250,6 @@ mepid,name,result,eugroup,identifier,vote_id
 7165,Azmani,for,Renew,149932,7165
 6400,Auštrevičius,for,Renew,149932,6400
 6327,Ansip,for,Renew,149932,6327
-7260,Andrews,for,Renew,149932,7260
 6799,Al-Sahlani,for,Renew,149932,6799
 7230,Alieva-Veli,for,Renew,149932,7230
 6094,Zver,for,EPP,149932,6094
@@ -277,7 +277,7 @@ mepid,name,result,eugroup,identifier,vote_id
 7056,Thaler,for,EPP,149932,7056
 7277,Terras,for,EPP,149932,7277
 6547,Štefanec,for,EPP,149932,6547
-7317,Stavrou,for,PPE,149932,7317
+7317,Stavrou,for,EPP,149932,7317
 6663,Spyraki,for,EPP,149932,6663
 6816,Sokol,for,EPP,149932,6816
 6341,Šojdrová,for,EPP,149932,6341
@@ -375,7 +375,7 @@ mepid,name,result,eugroup,identifier,vote_id
 7261,De Meo,for,EPP,149932,7261
 5921,Danjean,for,EPP,149932,5921
 5981,van Dalen,for,EPP,149932,5981
-5948,Comi,for,PPE,149932,5948
+5948,Comi,for,EPP,149932,5948
 6929,Colin-Oesterlé,for,EPP,149932,6929
 6600,Clune,for,EPP,149932,6600
 5508,del Castillo Vera,for,EPP,149932,5508
@@ -406,7 +406,7 @@ mepid,name,result,eugroup,identifier,vote_id
 6965,Tóth,for,NA,149932,6965
 6471,Sonneborn,for,NA,149932,6471
 7286,Schaller-Baross,for,NA,149932,7286
-7177,Rondinelli,for,NA,149932,7177
+7177,Rondinelli,for,S&D,149932,7177
 7281,Matthieu,for,Greens/EFA,149932,7281
 6859,Marquardt,for,Greens/EFA,149932,6859
 5838,Lamberts,for,Greens/EFA,149932,5838
@@ -471,7 +471,7 @@ mepid,name,result,eugroup,identifier,vote_id
 5459,Toia,for,S&D,149932,5459
 6983,Tinagli,for,S&D,149932,6983
 7140,Tax,for,S&D,149932,7140
-5624,Tarabella,for,S&D,149932,5624
+5624,Tarabella,for,NA,149932,5624
 6623,Tang,for,S&D,149932,6623
 6490,Stanishev,for,S&D,149932,6490
 6093,Sippel,for,S&D,149932,6093
@@ -528,12 +528,12 @@ mepid,name,result,eugroup,identifier,vote_id
 5138,Gyürk,for,NA,149932,5138
 6002,Győri,for,NA,149932,6002
 7189,Giarrusso,for,NA,149932,7189
-7179,Gemma,for,NA,149932,7179
+7179,Gemma,for,ECR,149932,7179
 5280,Gál,for,NA,149932,5280
 7180,Furore,for,NA,149932,7180
 6470,Ferrara,for,NA,149932,6470
 6345,Deli,for,NA,149932,6345
-7314,Danzì,for,NI,149932,7314
+7314,Danzì,for,NA,149932,7314
 7258,Comín i Oliveres,for,NA,149932,7258
 6446,Castaldo,for,NA,149932,6446
 6343,Bocskor,for,NA,149932,6343
@@ -548,14 +548,14 @@ mepid,name,result,eugroup,identifier,vote_id
 7002,Lizzi,for,ID,149932,7002
 6771,Lancini,for,ID,149932,6771
 6960,Kofod,for,ID,149932,6960
-6986,Huhtasaari,for,ID,149932,6986
-6989,Hakkarainen,for,ID,149932,6989
+6986,Huhtasaari,for,NI,149932,6986
+6989,Hakkarainen,for,ECR,149932,6989
 7184,Grant,for,ID,149932,7184
 7312,Ghidoni,for,ID,149932,7312
 7311,Gazzini,for,ID,149932,7311
 6972,Gancia,for,ID,149932,6972
 6869,De Man,for,ID,149932,6869
-7316,De Blasis,for,ID,149932,7316
+7316,De Blasis,for,NA,149932,7316
 6999,Da Re,for,ID,149932,6999
 7007,Conte,for,ID,149932,7007
 6731,Ciocca,for,ID,149932,6731

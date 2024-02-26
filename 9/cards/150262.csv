@@ -1,4 +1,5 @@
 mepid,name,result,eugroup,identifier,vote_id
+4676,Ries,abstention,Renew,150262,4676
 7202,Wallace,abstention,GUE/NGL,150262,7202
 7113,Daly,abstention,GUE/NGL,150262,7113
 7249,Wolters,abstention,S&D,150262,7249
@@ -10,12 +11,11 @@ mepid,name,result,eugroup,identifier,vote_id
 6916,Kohut,abstention,S&D,150262,6916
 6792,Incir,abstention,S&D,150262,6792
 7229,Hristov,abstention,S&D,150262,7229
-6499,Chinnici,abstention,S&D,150262,6499
+6499,Chinnici,abstention,EPP,150262,6499
 7166,Chahim,abstention,S&D,150262,7166
 6833,Bischoff,abstention,S&D,150262,6833
 6888,Balt,abstention,S&D,150262,6888
 7305,Albuquerque,abstention,S&D,150262,7305
-4676,Ries,abstention,Renew,150262,4676
 6332,Niedermayer,abstention,EPP,150262,6332
 6196,Kovatchev,abstention,EPP,150262,6196
 6918,Kopacz,abstention,EPP,150262,6918
@@ -34,7 +34,7 @@ mepid,name,result,eugroup,identifier,vote_id
 7251,Vind,against,S&D,150262,7251
 7313,Variati,against,S&D,150262,7313
 6336,Ujhelyi,against,S&D,150262,6336
-5624,Tarabella,against,S&D,150262,5624
+5624,Tarabella,against,NA,150262,5624
 6093,Sippel,against,S&D,150262,6093
 6381,Silva Pereira,against,S&D,150262,6381
 7065,Sidl,against,S&D,150262,7065
@@ -61,7 +61,7 @@ mepid,name,result,eugroup,identifier,vote_id
 7024,Leitão-Marques,against,S&D,150262,7024
 7297,Laureti,against,S&D,150262,7297
 3823,Lange,against,S&D,150262,3823
-6686,Kaili,against,S&D,150262,6686
+6686,Kaili,against,NA,150262,6686
 6624,Jongerius,against,S&D,150262,6624
 7122,Homs Ginel,against,S&D,150262,7122
 7070,Heide,against,S&D,150262,7070
@@ -102,7 +102,7 @@ mepid,name,result,eugroup,identifier,vote_id
 5930,Verheyen,against,EPP,150262,5930
 7061,Tomac,against,EPP,150262,7061
 7056,Thaler,against,EPP,150262,7056
-7317,Stavrou,against,PPE,150262,7317
+7317,Stavrou,against,EPP,150262,7317
 6941,Sikorski,against,EPP,150262,6941
 5345,Schwab,against,EPP,150262,5345
 7045,Schmiedtbauer,against,EPP,150262,7045
@@ -115,7 +115,7 @@ mepid,name,result,eugroup,identifier,vote_id
 7120,Pereira Lídia,against,EPP,150262,7120
 5407,Olbrycht,against,EPP,150262,5407
 5413,Novak,against,EPP,150262,5413
-5547,Mussolini,against,PPE,150262,5547
+5547,Mussolini,against,EPP,150262,5547
 6436,Mureşan,against,EPP,150262,6436
 6825,Mortler,against,EPP,150262,6825
 7173,Melbārde,against,EPP,150262,7173
@@ -176,7 +176,7 @@ mepid,name,result,eugroup,identifier,vote_id
 6879,Kuhs,against,ID,150262,6879
 7312,Ghidoni,against,ID,150262,7312
 6877,Fest,against,ID,150262,6877
-7316,De Blasis,against,ID,150262,7316
+7316,De Blasis,against,NA,150262,7316
 6999,Da Re,against,ID,150262,6999
 7007,Conte,against,ID,150262,7007
 7170,Ceccardi,against,ID,150262,7170
@@ -292,7 +292,7 @@ mepid,name,result,eugroup,identifier,vote_id
 6940,Tolleret,for,Renew,150262,6940
 5949,Thun und Hohenstein,for,Renew,150262,5949
 7058,Strugariu,for,Renew,150262,7058
-7055,Ştefănuță,for,Renew,150262,7055
+7055,Ştefănuță,for,Greens/EFA,150262,7055
 7168,Solís Pérez,for,Renew,150262,7168
 7152,Šimečka,for,Renew,150262,7152
 6817,Semedo,for,Renew,150262,6817
@@ -327,7 +327,7 @@ mepid,name,result,eugroup,identifier,vote_id
 6818,Flego,for,Renew,150262,6818
 6980,Farreng,for,Renew,150262,6980
 6828,Eroglu,for,Renew,150262,6828
-6324,Durand,for,Renew,150262,6324
+6324,Durand,for,S&D,150262,6324
 6898,Decerle,for,Renew,150262,6898
 6978,Cseh,for,Renew,150262,6978
 7021,Cioloş,for,Renew,150262,7021
@@ -346,16 +346,16 @@ mepid,name,result,eugroup,identifier,vote_id
 6855,Lutgen,for,EPP,150262,6855
 7222,Kanev,for,EPP,150262,7222
 6883,Adamowicz,for,EPP,150262,6883
-7177,Rondinelli,for,NA,150262,7177
+7177,Rondinelli,for,S&D,150262,7177
 7257,Puigdemont i Casamajó,for,NA,150262,7257
 7276,Ponsatí Obiols,for,NA,150262,7276
 6676,Papadakis Kostas,for,NA,150262,6676
 7116,Nikolaou-Alavanos,for,NA,150262,7116
 6836,Kolakušić,for,NA,150262,6836
-7179,Gemma,for,NA,150262,7179
+7179,Gemma,for,ECR,150262,7179
 6470,Ferrara,for,NA,150262,6470
 7207,Donato,for,NA,150262,7207
-7314,Danzì,for,NI,150262,7314
+7314,Danzì,for,NA,150262,7314
 7078,Rougé,for,ID,150262,7078
 6372,Lebreton,for,ID,150262,6372
 6751,Jamet,for,ID,150262,6751

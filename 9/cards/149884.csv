@@ -1,4 +1,5 @@
 mepid,name,result,eugroup,identifier,vote_id
+7214,Buxadé Villalba,for,ECR,149884,7214
 6727,Pimenta Lopes,abstention,GUE/NGL,149884,6727
 7138,Pereira Sandra,abstention,GUE/NGL,149884,7138
 6370,Sander,abstention,EPP,149884,6370
@@ -26,7 +27,7 @@ mepid,name,result,eugroup,identifier,vote_id
 6318,Hidvéghi,against,NA,149884,6318
 5138,Gyürk,against,NA,149884,5138
 6002,Győri,against,NA,149884,6002
-6630,de Graaff,against,ID,149884,6630
+6630,de Graaff,against,NA,149884,6630
 5280,Gál,against,NA,149884,5280
 6345,Deli,against,NA,149884,6345
 6343,Bocskor,against,NA,149884,6343
@@ -53,15 +54,15 @@ mepid,name,result,eugroup,identifier,vote_id
 7017,Joron,against,ID,149884,7017
 6751,Jamet,against,ID,149884,6751
 6404,Jalkh,against,ID,149884,6404
-6986,Huhtasaari,against,ID,149884,6986
-6989,Hakkarainen,against,ID,149884,6989
+6986,Huhtasaari,against,NI,149884,6986
+6989,Hakkarainen,against,ECR,149884,6989
 7019,Griset,against,ID,149884,7019
 7184,Grant,against,ID,149884,7184
 7312,Ghidoni,against,ID,149884,7312
 7311,Gazzini,against,ID,149884,7311
 6972,Gancia,against,ID,149884,6972
 6877,Fest,against,ID,149884,6877
-7316,De Blasis,against,ID,149884,7316
+7316,De Blasis,against,NA,149884,7316
 7300,Dauchy,against,ID,149884,7300
 6999,Da Re,against,ID,149884,6999
 7007,Conte,against,ID,149884,7007
@@ -137,7 +138,7 @@ mepid,name,result,eugroup,identifier,vote_id
 5459,Toia,for,S&D,149884,5459
 6983,Tinagli,for,S&D,149884,6983
 7140,Tax,for,S&D,149884,7140
-5624,Tarabella,for,S&D,149884,5624
+5624,Tarabella,for,NA,149884,5624
 6623,Tang,for,S&D,149884,6623
 6490,Stanishev,for,S&D,149884,6490
 6093,Sippel,for,S&D,149884,6093
@@ -190,7 +191,7 @@ mepid,name,result,eugroup,identifier,vote_id
 6459,Köster,for,S&D,149884,6459
 6916,Kohut,for,S&D,149884,6916
 6009,Kammerevert,for,S&D,149884,6009
-6686,Kaili,for,S&D,149884,6686
+6686,Kaili,for,NA,149884,6686
 6624,Jongerius,for,S&D,149884,6624
 6263,Jerković,for,S&D,149884,6263
 6792,Incir,for,S&D,149884,6792
@@ -220,9 +221,9 @@ mepid,name,result,eugroup,identifier,vote_id
 6062,De Castro,for,S&D,149884,6062
 7293,De Basso,for,S&D,149884,7293
 6794,Cutajar,for,S&D,149884,6794
-6051,Cozzolino,for,S&D,149884,6051
+6051,Cozzolino,for,NA,149884,6051
 6901,Cimoszewicz,for,S&D,149884,6901
-6499,Chinnici,for,S&D,149884,6499
+6499,Chinnici,for,EPP,149884,6499
 7166,Chahim,for,S&D,149884,7166
 7030,Cerdas,for,S&D,149884,7030
 7252,Carvalhais,for,S&D,149884,7252
@@ -262,7 +263,7 @@ mepid,name,result,eugroup,identifier,vote_id
 6940,Tolleret,for,Renew,149884,6940
 5949,Thun und Hohenstein,for,Renew,149884,5949
 7058,Strugariu,for,Renew,149884,7058
-7055,Ştefănuță,for,Renew,149884,7055
+7055,Ştefănuță,for,Greens/EFA,149884,7055
 7168,Solís Pérez,for,Renew,149884,7168
 7152,Šimečka,for,Renew,149884,7152
 6817,Semedo,for,Renew,149884,6817
@@ -314,11 +315,11 @@ mepid,name,result,eugroup,identifier,vote_id
 7283,Gheorghe,for,Renew,149884,7283
 7022,Gamon,for,Renew,149884,7022
 6818,Flego,for,Renew,149884,6818
-6770,Ferrandino,for,S&D,149884,6770
+6770,Ferrandino,for,Renew,149884,6770
 6980,Farreng,for,Renew,149884,6980
 6828,Eroglu,for,Renew,149884,6828
 7150,Ďuriš Nicholsonová,for,Renew,149884,7150
-6324,Durand,for,Renew,149884,6324
+6324,Durand,for,S&D,149884,6324
 6898,Decerle,for,Renew,149884,6898
 6458,Danti,for,Renew,149884,6458
 6978,Cseh,for,Renew,149884,6978
@@ -366,7 +367,7 @@ mepid,name,result,eugroup,identifier,vote_id
 7056,Thaler,for,EPP,149884,7056
 7277,Terras,for,EPP,149884,7277
 6547,Štefanec,for,EPP,149884,6547
-7317,Stavrou,for,PPE,149884,7317
+7317,Stavrou,for,EPP,149884,7317
 6530,Krasnodębski,against,ECR,149884,6530
 6923,Kopcińska,against,ECR,149884,6923
 6913,Kloc,against,ECR,149884,6913
@@ -562,7 +563,7 @@ mepid,name,result,eugroup,identifier,vote_id
 6762,Didier,for,EPP,149884,6762
 7261,De Meo,for,EPP,149884,7261
 5981,van Dalen,for,EPP,149884,5981
-5948,Comi,for,PPE,149884,5948
+5948,Comi,for,EPP,149884,5948
 6600,Clune,for,EPP,149884,6600
 5508,del Castillo Vera,for,EPP,149884,5508
 5252,Casa,for,EPP,149884,5252
@@ -592,15 +593,15 @@ mepid,name,result,eugroup,identifier,vote_id
 7147,Uhrík,for,NA,149884,7147
 6471,Sonneborn,for,NA,149884,6471
 7242,Sinčić,for,NA,149884,7242
-7177,Rondinelli,for,NA,149884,7177
+7177,Rondinelli,for,S&D,149884,7177
 7257,Puigdemont i Casamajó,for,NA,149884,7257
 7276,Ponsatí Obiols,for,NA,149884,7276
 7010,Pignedoli,for,NA,149884,7010
 7189,Giarrusso,for,NA,149884,7189
-7179,Gemma,for,NA,149884,7179
+7179,Gemma,for,ECR,149884,7179
 7180,Furore,for,NA,149884,7180
 6470,Ferrara,for,NA,149884,6470
-7314,Danzì,for,NI,149884,7314
+7314,Danzì,for,NA,149884,7314
 7258,Comín i Oliveres,for,NA,149884,7258
 6446,Castaldo,for,NA,149884,6446
 6832,Buschmann,for,NA,149884,6832
@@ -613,4 +614,3 @@ mepid,name,result,eugroup,identifier,vote_id
 6949,David,for,ID,149884,6949
 6593,Annemans,for,ID,149884,6593
 7157,Ruissen,for,ECR,149884,7157
-7214,Buxadé Villalba,for,ECR,149884,7214
