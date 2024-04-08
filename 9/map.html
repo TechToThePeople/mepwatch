@@ -123,85 +123,16 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
 </style>
   </head>
   <body>
-    <header>
-      <div class="collapse bg-primary-light" id="navbarHeader">
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-8 col-md-7 py-4">
-              <h4 class="">About</h4>
-              <p class="">
-              </p>
-            </div>
-            <div class="col-sm-4 offset-md-1 py-4">
-              <h4 class="">Contact</h4>
-              <ul class="list-unstyled">
-                <li><a href="https://twitter.com/eucampaign" class="">Follow on Twitter</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="navbar navbar-dark bg-primary box-shadow">
-        <div class="container d-flex justify-content-between">
-          <a href="/9" class="navbar-brand d-flex align-items-center">
-            <svg><use href="#logo" /></svg><span class="rapporteur">Vote</span>
-          </a>
-          <span class="date">YYYY-mm-DD</span>
-          <span class="report">A8-XXXX/20YY</span>
-
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-            <svg class="icon"><use href="#menu" /></svg>
-          </button>
-        </div>
-      </div>
-    </header>
 
     <main role="main">
 
       <section class="jumbotron">
         <div class="container"><div class="row">
-          <div class="col-sm-12 col-md-6">
-          <h2 class="jumbotron-heading">Loading...</h2>
-          <h3 class="jumbotron-heading"></h3>
-          </div>
-          <div class="col-sm-12 col-md-6" id="map">
+          <div class="col-sm-12" id="map">
             <div class="graph"></div>
           </div>
           </div></div>
       </section>
-     <div class="py-5 bg-info">
-        <div class="container">
-
-          <div class="row">
-            <div class="col-md-3">
-          <form id="search">
-            <div class="input-group mb-3">
-  <span class="graph form-control"></span>
-              <div class="input-group-append">
-    <a href="#meps" class="btn btn-info">MEP</a>
-  </div>
-            </div>
-          </form>
-          <ul class="list-group">
-            <li class="list-group-item nbmep"><a class="resetall"><span class="nb"></span><span class="total d-none">/</span> MEPs<button type="button" class="btn btn-warning float-right" title="reset the filters">↺</button></a></li> 
-            <li class="list-group-item nbvoted"><span class="percent badge badge-primary badge-pill float-right">%</span><span class="nb"></span> voted</li> 
-            <li class="list-group-item result"><span class="percent badge badge-primary badge-pill float-right"></span><span class="nb"></span> result</li> 
-            <li class="list-group-item goal d-none"><span class="win badge badge-pill float-right">AA</span><span class="nb"></span>We wanted</li> 
-          </ul>
-            </div>
-            <div class="col-md-3" id="result">
-                  <div class="graph"></div>
-            </div>
-            <div class="col-md-3 rotated90" id="eugroup">
-                  <div class="graph"></div>
-            </div>
-            <div class="col-md-3 rotated90 d-none" id="party">
-                  <div class="graph"></div>
-            </div>
-          </div>
-        </div>
-     </div>
      <div class="py-5 bg-light">
         <div class="container">
 
@@ -220,7 +151,6 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
             </div>
           </div>
         </div>
-      </div>
 
 <div class="container" id="meps">
           <div class="row">
@@ -233,7 +163,6 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
                   <th>Name</th>
                   <th>Country</th>
                   <th>Group</th>
-                  <th>Rebel</th>
                   <th>Party</th>
                 </tr>
               </thead>
@@ -317,15 +246,15 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
     graphs.country=drawCountry('#country div.graph');
     graphs.map=drawMap('#map div.graph',graphs);
 //    graphs.party=drawParty('#voidparty div.graph');
-    guessPartyLine("partyline");
+//    guessPartyLine("partyline");
 
-	  graphs.eugroup=drawBarVotes('#eugroup div.graph',function(d){ return d.eugroup});
-    guessLine("groupline",graphs.eugroup.group());
-    graphs.eugroup.relative=false;
-    graphs.party=drawBarVotes('#party div.graph',function(d){ return [d.country,d.party]});
+//	  graphs.eugroup=drawBarVotes('#eugroup div.graph',function(d){ return d.eugroup});
+//    guessLine("groupline",graphs.eugroup.group());
+//    graphs.eugroup.relative=false;
+//    graphs.party=drawBarVotes('#party div.graph',function(d){ return [d.country,d.party]});
 //    graphs.party.xAxis().tickFormat(function(d) { return d[1]; });
 
-    graphs.party
+/*    graphs.party
       .elasticX(true)
       .title(function(d) {
         if (this.layer == 0) return "";
@@ -341,31 +270,12 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
           left: 5
         })
         
-
+*/
 //    graphs.group=drawGroup('#eugroup div.graph');
-    drawNumbers(graphs);
-    graphs.result=drawResult('#result .graph');
-    graphs.search=drawSearch("form#search .graph");
+//    drawNumbers(graphs);
+//    graphs.result=drawResult('#result .graph');
+//    graphs.search=drawSearch("form#search .graph");
 
-    var glow = function(graph){
-      //add a glow, doesn't work great IMO
-      var defs = graph.svg().append("defs");
-
-      //Filter for the outside glow
-      var filter = defs.append("filter")
-          .attr("id","glow");
-      filter.append("feGaussianBlur")
-          .attr("stdDeviation","2.5")
-          .attr("result","coloredBlur");
-      var feMerge = filter.append("feMerge");
-      feMerge.append("feMergeNode")
-          .attr("in","coloredBlur");
-      feMerge.append("feMergeNode")
-          .attr("in","SourceGraphic");
-
-      graph.svg().selectAll("path")
-          .style("filter", "url(#glow)");
-    };
   
     var filter=urlParam("q");
     if (filter) {
@@ -378,22 +288,6 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
       d3.select("#party").classed("d-none",false);
     }
 
-    ["eugroup","country"].forEach(function(d){
-      graphs[d].on("filtered",function(graph){
-        var f=graph.filters().join("|");
-        urlParam(d,f);
-        d3.select("#party").classed("d-none",false);
-      });
-      filter=urlParam(d);
-      if (filter) {
-        (function (filter){
-          graphs[d].on("pretransition.url",function(){
-            graphs[d].on("pretransition.url",null);
-          graphs[d].filter([filter]);
-          })
-        })(filter.split("|"));
-      }
-    });
     dc.renderAll();
 
     graphs.table=drawTable('table.table');
@@ -441,57 +335,6 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
     dim.dispose();
   }
 
-   function drawParty(dom) {
-     var eu_groups = {
-      "GUE/NGL": "#800c00",
-      "S&D": "#c21200",
-      "Verts/ALE": "#05a61e",
-      "Greens/EFA": "#05a61e",
-      "ALDE": "#ffc200",
-      "EFDD": "#5eced6",
-      "PPE": "#0a3e63",
-      "EPP": "#0a3e63",
-      "ECR": "#3086c2",
-      "NA/NI": "#cccccc",
-      "NA,NI": "#cccccc",
-      "ENF": "#A1480D",
-      "Array": "pink"
-     };
-
-      var graph = dc.sunburstChart(dom).innerRadius(10);//.radius(70);
-      var dim = ndx.dimension(function(d) {
-        return [d.eugroup,d.party];
-      });
-      var reducer = reductio();
-      var res=results.slice();
-      reducer.value("nb").count(true);
-      res.forEach(function(r){
-        reducer.value(r).count(true).filter(function(d){ return d.vote == r});
-      });
-
-      var group = dim.group();
-      reducer(group);
-      //var group = dim.group().reduceSum(function(d) {return 1;});
-      graph
-        .width(0)
-        .height(0)
-        .colorCalculator(function(d, i) {
-          return eu_groups[d.data.path[0]];
-        })
-        .valueAccessor(function(d){return d.value.nb.count})
-        .dimension(dim)
-        .group(group)
-//        .externalLabels(-26)
-        .minAngleForLabel(0.4)
-        .on("preRender", function(){
-          guessLine("partyline",group,function(d){return d.key[1]});
-       })
-       .ordering(function(d){
-          return 0+groups.indexOf(d.key[0]);
-       })
-//        .legend(dc.legend().horizontal(true).autoItemWidth(true).y(200));
-      return graph;
-    }
 
   function drawGroup(dom) {
     var graph = dc.pieChart(dom).innerRadius(20) //.radius(70);
@@ -1102,7 +945,7 @@ function drawMap(dom,graphs){
       .order (d3.ascending)
       .showSections(false)
       .on("preRedraw", function(){
-        graph.compact = graphs.total.data() > 400;
+//        graph.compact = graphs.total.data() > 400;
       })
       .columns([
         function(d){
@@ -1122,11 +965,7 @@ function drawMap(dom,graphs){
           }
         ,function(d) {
             return "<span title='" + d.eugroup + "' class='img-rounded text-filter eugroup " + d.eugroup.replace(/&|\/|car/g, "-").toLowerCase() + "'>" + d.eugroup + "</span>";
-          },
-        , function(d){
-          if (d.rebel)
-            return iconify("rebel");
-        }
+          }
         ,function(d){ return d.party;}
     ]);
 

@@ -7,9 +7,7 @@ if (!String.prototype.startsWith) {
   };
 }
 
-
-(function(){
-  var urlParam = function(name){
+  const urlParam = function(name){
     var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
     if (results==null){
       return null;
@@ -19,9 +17,11 @@ if (!String.prototype.startsWith) {
     }
   };
 
+(function(){
+
 
   var defaults = {
-    url: "https://mepwatch.eu/",
+    url: "https://mepwatch.eu/9",
     cssClass: "mepwatch",
     params: "v,action".split(",")
   };
