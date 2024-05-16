@@ -8,8 +8,12 @@ var config = {};
 
 var voteid = urlParam("v");
 var results = "for,against,abstention,no show,excused,attended".split(",");
-var groups = "NA/NI,ENF,EFDD,ECR,PPE,ALDE,Verts/ALE,S&D,GUE/NGL".split(",");
 
+const groupAlias = {
+  PPE: "EPP",
+  NI: "NA",
+  "The Left": "GUE/NGL",
+};
 var countries = {
   be: "Belgium",
   bg: "Bulgaria",
@@ -85,12 +89,16 @@ function download(voteid, callback) {
     .awaitAll(function(error, r) {
       
       if (error) throw error;
-      var length = votes.length;
+      let length = votes.length;
       meps = r[0].filter(isActive); //first deferred download is the list of all meps, only keep the active during the vote
-      for (var j = 0; j < meps.length; j++) {
-        var m = meps[j];
-        for (var i = 0; i < length; i++) {
+      for (let j = 0; j < meps.length; j++) {
+        let m = meps[j];
+        for (let i = 0; i < length; i++) {
           if (votes[i].mepid == m.voteid) {
+            if (votes[i].eugroup !== m.eugroup && groupAlias[votes[i].eugroup] !== m.eugroup) {
+m.prevGroup = groupAlias[votes[i].eugroup] || votes[i].eugroup;
+console.log("discrepency",m.eugroup,votes[i].eugroup,m.prevGroup);
+            }
             meps[j].vote = votes[i].result;
             votes[i].processed = true;
             break;
@@ -102,7 +110,7 @@ function download(voteid, callback) {
       }
       //TODO: handle this properly, this is a big problem
       var errors = [];
-      votes.map(function(v) {
+      votes.forEach(function(v) {
         if (!v.processed) { errors.push(v);
 //          meps.push({firstname:"aaa",lastname:v.name,eugroup:"?",country:"?",vote:v.result});
         }
