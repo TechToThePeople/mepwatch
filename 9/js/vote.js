@@ -12,7 +12,8 @@ var results = "for,against,abstention,no show,excused,attended".split(",");
 const groupAlias = {
   PPE: "EPP",
   NI: "NA",
-  "The Left": "GUE/NGL",
+  //  "The Left": "GUE/NGL",
+  "GUE/NGL": "The Left",
 };
 var countries = {
   be: "Belgium",
@@ -42,10 +43,10 @@ var countries = {
   sk: "Slovakia",
   fi: "Finland",
   se: "Sweden",
-  gb: "United Kingdom"
+  gb: "United Kingdom",
 };
 
-var iconify = function(name, prefix) {
+var iconify = function (name, prefix) {
   prefix = prefix || "icon";
   return (
     '<svg class="icon" class="' +
@@ -77,27 +78,37 @@ var dateFormat = d3.timeFormat("%Y-%m-%d %H:%M:%S");
 var formatPercent = d3.format(".0%");
 
 function download(voteid, callback) {
-
-  function isActive(d){//relies on global config.date, the date of the vote
+  function isActive(d) {
+    //relies on global config.date, the date of the vote
     return d.start9 <= config.date && (d.end == null || d.end >= config.date);
-  };
+  }
 
-  q
-    .defer(dl_meps)
+  q.defer(dl_meps)
     .defer(dl_details)
     .defer(dl_votes)
-    .awaitAll(function(error, r) {
-      
+    .awaitAll(function (error, r) {
       if (error) throw error;
       let length = votes.length;
       meps = r[0].filter(isActive); //first deferred download is the list of all meps, only keep the active during the vote
       for (let j = 0; j < meps.length; j++) {
         let m = meps[j];
+        if (groupAlias[m.eugroup]) {
+          m.eugroup = groupAlias[m.eugroup];
+        }
         for (let i = 0; i < length; i++) {
           if (votes[i].mepid == m.voteid) {
-            if (votes[i].eugroup !== m.eugroup && groupAlias[votes[i].eugroup] !== m.eugroup) {
-m.prevGroup = groupAlias[votes[i].eugroup] || votes[i].eugroup;
-console.log("discrepency",m.eugroup,votes[i].eugroup,m.prevGroup);
+            if (
+              votes[i].eugroup !== m.eugroup &&
+              groupAlias[votes[i].eugroup] !== m.eugroup
+            ) {
+              m.prevGroup = groupAlias[votes[i].eugroup] || votes[i].eugroup;
+              console.log(
+                "group change",
+                m.lastname,
+                m.eugroup,
+                votes[i].eugroup,
+                m.prevGroup
+              );
             }
             meps[j].vote = votes[i].result;
             votes[i].processed = true;
@@ -110,14 +121,15 @@ console.log("discrepency",m.eugroup,votes[i].eugroup,m.prevGroup);
       }
       //TODO: handle this properly, this is a big problem
       var errors = [];
-      votes.forEach(function(v) {
-        if (!v.processed) { errors.push(v);
-//          meps.push({firstname:"aaa",lastname:v.name,eugroup:"?",country:"?",vote:v.result});
+      votes.forEach(function (v) {
+        if (!v.processed) {
+          errors.push(v);
+          //          meps.push({firstname:"aaa",lastname:v.name,eugroup:"?",country:"?",vote:v.result});
         }
       });
       if (errors.length) {
         console.log(errors);
-/*        d3
+        /*        d3
           .select("main")
           .insert("div", ":first-child")
           .attr("class", "alert alert-danger")
@@ -136,88 +148,96 @@ console.log("discrepency",m.eugroup,votes[i].eugroup,m.prevGroup);
     });
 }
 
-d3.text("img/eu-flags.svg").then(function(xml) {
-  d3.select("body").append("svg").attr("id","flags").html(xml).classed("d-none",true);
-  d3.selectAll("#flags symbol").attr("fill","#000");
-//  document.body.appendChild(xml.documentElement);
+d3.text("img/eu-flags.svg").then(function (xml) {
+  d3.select("body")
+    .append("svg")
+    .attr("id", "flags")
+    .html(xml)
+    .classed("d-none", true);
+  d3.selectAll("#flags symbol").attr("fill", "#000");
+  //  document.body.appendChild(xml.documentElement);
 });
 
 function dl_details(callback) {
-  d3.json("cards/" + voteid + ".json").then(function(d) {
-    document.title = (d.name=="CHANGE ME"? "":d.name) + " "+ d.report+" "+d.date + " "+d.description;
-    d.day = dateParse(d.date.substring(0,10));
-    d.date = dateTimeParse(d.date) || d.day; //bug, on some rollcalls, the date isn't the voting timestamp but the day
-    config = d;
-    config.win = config.for > config.against ? "for" : "against";
-    callback(null);
-  }).catch(function(d){//we have a problem with the json
-    d3.csv('data/item_rollcall.csv',function(d){
-      if (d.identifier != voteid) return;
-      d.day=dateParse(d.date.substring(0,10));
-      d.date = dateTimeParse(d.date);
+  d3.json("cards/" + voteid + ".json")
+    .then(function (d) {
+      document.title =
+        (d.name == "CHANGE ME" ? "" : d.name) +
+        " " +
+        d.report +
+        " " +
+        d.date +
+        " " +
+        d.description;
+      d.day = dateParse(d.date.substring(0, 10));
+      d.date = dateTimeParse(d.date) || d.day; //bug, on some rollcalls, the date isn't the voting timestamp but the day
       config = d;
       config.win = config.for > config.against ? "for" : "against";
-      return d;
-    })
-    .then(function(d){
-//      draw();
       callback(null);
-    });
-    d3
-      .select("main")
-      .insert("div", ":first-child")
-      .attr("class", "alert alert-danger")
-      .html(
+    })
+    .catch(function (d) {
+      //we have a problem with the json
+      d3.csv("data/item_rollcall.csv", function (d) {
+        if (d.identifier != voteid) return;
+        d.day = dateParse(d.date.substring(0, 10));
+        d.date = dateTimeParse(d.date);
+        config = d;
+        config.win = config.for > config.against ? "for" : "against";
+        return d;
+      }).then(function (d) {
+        //      draw();
+        callback(null);
+      });
+      d3.select("main")
+        .insert("div", ":first-child")
+        .attr("class", "alert alert-danger")
+        .html(
           "<h1>There is an error in the file that we couldn't process. Contact Xavier</h1>"
-          );
-    console.log(d);
-//    callback(null);
-  });
+        );
+      console.log(d);
+      //    callback(null);
+    });
 }
 function dl_votes(callback) {
-  d3
-    .csv("cards/" + voteid + ".csv", function(d) {
-      if (!d.mepid) return null;
-      d.mepid = +d.mepid;
-      d.vote_id= +d.vote_id;
-      d.identifier = +d.identifier;
-      return d;
-    })
-    .then(function(d) {
-      votes = d;
-      callback(null);
-    });
+  d3.csv("cards/" + voteid + ".csv", function (d) {
+    if (!d.mepid) return null;
+    d.mepid = +d.mepid;
+    d.vote_id = +d.vote_id;
+    d.identifier = +d.identifier;
+    return d;
+  }).then(function (d) {
+    votes = d;
+    callback(null);
+  });
 }
 
 function dl_meps(callback) {
-  d3
-    .csv("data/meps.csv", function(d) {
-      //      d.date=dateParse(d.date.substring(0,10));
-      //      if (!d.date) {console.log(d)};
-      d.voteid = +d.voteid;
-      d.epid = +d.epid;
-      d.active = d.active == "true";
-      d.birthdate = dateParse(d.birthdate);
-      d.start = dateParse(d.start);
-      d.start9 = d.start;
-//      d.end = d.end == "" ? null : dateParse(d.end);
-      if (d.end !== "") {
-        d.end=dateParse(d.end);
-        d.end.setDate(d.end.getDate() + 1);
-      } else {
-        d.end = null;
-      }
-      return d;
-    })
-    .then(function(d) {
-      //      draw();
-      callback(null, d);
-    });
+  d3.csv("data/meps.csv", function (d) {
+    //      d.date=dateParse(d.date.substring(0,10));
+    //      if (!d.date) {console.log(d)};
+    d.voteid = +d.voteid;
+    d.epid = +d.epid;
+    d.active = d.active == "true";
+    d.birthdate = dateParse(d.birthdate);
+    d.start = dateParse(d.start);
+    d.start9 = d.start;
+    //      d.end = d.end == "" ? null : dateParse(d.end);
+    if (d.end !== "") {
+      d.end = dateParse(d.end);
+      d.end.setDate(d.end.getDate() + 1);
+    } else {
+      d.end = null;
+    }
+    return d;
+  }).then(function (d) {
+    //      draw();
+    callback(null, d);
+  });
 }
 
-d3.select(window).on("resize.updatedc", function() {
-  dc.events.trigger(function() {
-    dc.chartRegistry.list().forEach(function(chart) {
+d3.select(window).on("resize.updatedc", function () {
+  dc.events.trigger(function () {
+    dc.chartRegistry.list().forEach(function (chart) {
       if (chart.fixedSize) return;
       var container = chart.root().node();
       if (!container) return; // some graphs don't have a node (?!)
