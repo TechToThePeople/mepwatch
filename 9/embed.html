@@ -132,7 +132,7 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
           <div class="row card-body" id="main-row">
             <div class="col-md-4 col-6">
           <ul class="list-group">
-            <li class="list-group-item nbmep"><a class="resetall"><span class="nb"></span><span class="total d-none">/</span> MEPs<button type="button" class="btn btn-warning float-right" title="reset the filters">↺</button></a></li> 
+            <li class="list-group-item nbmep"><a class="resetall"><span class="nb" id="download"></span><span class="total d-none">/</span> MEPs<button type="button" class="btn btn-warning float-right" title="reset the filters">↺</button></a></li> 
             <li class="list-group-item nbvoted"><span class="percent badge badge-primary badge-pill float-right">%</span><span class="nb"></span> voted</li> 
             <li class="list-group-item result"><span class="percent badge badge-primary badge-pill float-right"></span><span class="nb"></span> result</li> 
             <li class="list-group-item">
@@ -335,9 +335,12 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
         })(filter.split("|"));
       }
     });
+//      d3.selectAll('#table-mep,#pagination').classed("d-none",display);
+//      if(!graphs.table){
+//        graphs.table=drawTable("#table-mep");
     dc.renderAll();
 
-    graphs.table=drawTable('.table-mep');
+    graphs.table=drawTable('#table-mep');
     drawToggle();
 //    setTimeout(function() { graphs.table.redraw(); }, 3000); //delay a bit the drawing of the table
 //graphs.grid=drawGrid('#grid');

@@ -30,8 +30,8 @@ function arrayToCSV(data) {
 
 // Function to download the CSV file
 function downloadCSV(id) {
-
-  const data = ndx.all().map (d => ({vote:d.vote,firstname:d.firstname,lastname:d.lastname,country:d.country,id:d.epid,group:d.eugroup,party:d.party}));
+  const data =graphs.table.dimension().top(Infinity).map (d => ({vote:d.vote,firstname:d.firstname,lastname:d.lastname,country:d.country,id:d.epid,group:d.eugroup,party:d.party}));
+//  const data = ndx.all().map (...
 console.log(data);
   const csvData = arrayToCSV(data);
   const blob = new Blob([csvData], { type: "text/csv" });
@@ -42,8 +42,6 @@ console.log(data);
   a.click();
 }
 
-// Add event listener to the button
-//document.getElementById("downloadCsv").addEventListener("click", () => {downloadCSV(data);});
 
 const groupAlias = {
   PPE: "EPP",
