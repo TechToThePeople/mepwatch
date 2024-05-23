@@ -196,11 +196,19 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
             </table>
             </div>
           </div>
-
-    <div class="row footer text-right pr-3">
-          <a href="https://mepwatch.eu/" target="_blank"">Powered by MEPwatch
+<div class="container">
+    <div class="row footer">
+<div class="col-sm-8 text-right">
+<button type="button" id="download" class="btn btn-default btn-sm">
+<svg aria-label="download votes" width=24 height=24><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96M17 13l-5 5-5-5h3V9h4v4z"></path></svg>
+</button>
+</div>
+<div class="col-sm-4 text-right">
+          <a href="https://mepwatch.eu/" target="_blank" id="powered">Powered by MEPwatch
             <svg class="logo"><use href="#logo" /></svg>
           </a>
+</div>
+    </div>
     </div>
 
           </div>
@@ -218,6 +226,8 @@ th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
   var voteid= Number(urlParam("v"));
   var resultscolor= null;
   var percentagecolor=null;
+  
+  d3.select("#powered").attr("href", () => "https://mepwatch.eu/9/vote.html?v="+voteid);
 
 
   download(voteid,draw);
@@ -1195,6 +1205,7 @@ function urlParam(name,value) {
   }
 };
 
+document.getElementById("download").addEventListener("click", () => {downloadCSV(voteid);});
 </script>
 
 <svg class="d-none" id="icons">

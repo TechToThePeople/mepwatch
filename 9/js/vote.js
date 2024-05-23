@@ -9,6 +9,42 @@ var config = {};
 var voteid = urlParam("v");
 var results = "for,against,abstention,no show,excused,attended".split(",");
 
+// Function to convert array of objects to CSV
+function arrayToCSV(data) {
+  const csvRows = [];
+  // Get the headers
+  const headers = Object.keys(data[0]);
+  csvRows.push(headers.join(","));
+
+  // Loop over the rows
+  for (const row of data) {
+    const values = headers.map((header) => {
+      const escaped = ("" + row[header]).replace(/"/g, '\\"');
+      return `"${escaped}"`;
+    });
+    csvRows.push(values.join(","));
+  }
+
+  return csvRows.join("\n");
+}
+
+// Function to download the CSV file
+function downloadCSV(id) {
+
+  const data = ndx.all().map (d => ({vote:d.vote,firstname:d.firstname,lastname:d.lastname,country:d.country,id:d.epid,group:d.eugroup,party:d.party}));
+console.log(data);
+  const csvData = arrayToCSV(data);
+  const blob = new Blob([csvData], { type: "text/csv" });
+  const url = window.URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.setAttribute("href", url);
+  a.setAttribute("download", id? 'mepwatch-' + id +'.csv' : 'mepwatch-vote.csv');
+  a.click();
+}
+
+// Add event listener to the button
+//document.getElementById("downloadCsv").addEventListener("click", () => {downloadCSV(data);});
+
 const groupAlias = {
   PPE: "EPP",
   NI: "NA",
@@ -71,11 +107,11 @@ var percentagecolor = d3
   .range(["#27ae60", "#C8E6C9", "#9E9E9E", "#ffcdd2", "#d35400"])
   .interpolate(d3.interpolateHcl);
 
-var dateParse = d3.utcParse("%Y-%m-%d");
-var dateTimeParse = d3.utcParse("%Y-%m-%d %H:%M:%S");
-var dayFormat = d3.timeFormat("%Y-%m-%d");
-var dateFormat = d3.timeFormat("%Y-%m-%d %H:%M:%S");
-var formatPercent = d3.format(".0%");
+const dateParse = d3.utcParse("%Y-%m-%d");
+const dateTimeParse = d3.utcParse("%Y-%m-%d %H:%M:%S");
+const dayFormat = d3.timeFormat("%Y-%m-%d");
+const dateFormat = d3.timeFormat("%Y-%m-%d %H:%M:%S");
+const formatPercent = d3.format(".0%");
 
 function download(voteid, callback) {
   function isActive(d) {
