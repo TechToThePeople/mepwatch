@@ -257,12 +257,8 @@
         docs[reference] ? docs[reference] : "";
       };
 
-      var dateParse = d3.timeParse("%Y-%m-%d");
-      var dateTimeParse = d3.timeParse("%Y-%m-%dT%H:%M:%S");
-      var dayFormat = d3.timeFormat("%Y-%m-%d");
-      var yymmdd = d3.timeFormat("%Y%m%d");
-      var dateFormat = d3.timeFormat("%Y-%m-%d %H:%M:%S");
-      var week = d3.timeFormat("%V");
+      const yymmdd = d3.timeFormat("%Y%m%d");
+      const week = d3.timeFormat("%V");
       const isMobile = window.matchMedia('screen and (max-width: 768px)').matches;
 
       isMobile && document.querySelectorAll('table').forEach ( d => d.classList.add('table-sm'));
