@@ -76,6 +76,9 @@
         background-color: var(--primary-light); /*#9c27b0;*/
       }
     </style>
+
+<script src="../dist/js/flexsearch.bundle.min.js"></script>
+
   </head>
   <body>
     <header>
@@ -256,6 +259,7 @@
       docs.get = function (reference) {
         docs[reference] ? docs[reference] : "";
       };
+const flex = new FlexSearch.Document({language:"en",id:"id",tokenize:"forward",index:["title","report","committee"]});
 
       const yymmdd = d3.timeFormat("%Y%m%d");
       const week = d3.timeFormat("%V");
@@ -267,6 +271,7 @@
       q.defer(dl_votes)
         .defer(dl_doc)
         .awaitAll(function (error, results) {
+
           draw();
         });
 
@@ -310,7 +315,15 @@
       }
 
       function draw() {
-        graphs.date = drawDate("#date div.graph");
+        ndx.all().forEach ( d => {
+          let t = {id:d.identifier,title:d.title};
+          if (docs[d.report]) {
+            t.committee= docs[d.report].committee;
+            t.report = docs[d.report].title;
+          }
+          flex.add(t);
+          });
+          graphs.date = drawDate("#date div.graph");
         graphs.report = drawReport("#report .table");
         graphs.table = drawTable("#rollcall table.table");
         graphs.search = drawSearch("form#search");
@@ -529,7 +542,9 @@
       }
 
       function drawSearch(dom) {
-        var dim = ndx.dimension(function (d) {
+console.log("search");
+        const dim = ndx.dimension (d => d.identifier);
+        const dim2 = ndx.dimension(function (d) {
           //var t= docs[d.report] && docs[d.report].name ? docs[d.report].name.toLowerCase() : "";
           var t =
             docs[d.report] && docs[d.report].title
@@ -548,7 +563,11 @@
         });
         var filter = function (query) {
           //        query = _normalize(query);
+          const search=flex.search (query);
+console.log(search,query);
           return function (d) {
+return search.some (s => s.result.includes(d));
+//console.log(d);
             return d.indexOf(query.toLowerCase()) !== -1;
           };
         };
@@ -559,8 +578,8 @@
           .textFilterWidget(dom)
           .placeHolder("Search")
           .filterFunctionFactory(filter)
-          .on("filtered", function () {
-            console.log("filter");
+          .on("filtered", function (d) {
+            console.log("filter","aaa",d,chart.filter());
           })
           .on("renderlet.urlparam", function () {
             d3.select(dom + " input").classed("form-control", true);
