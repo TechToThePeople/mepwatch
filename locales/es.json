@@ -30,7 +30,7 @@
         },
         "ecr": {
             "description": "Conservadores nacionales",
-            "code": "ecr",
+            "code": "ECR",
             "name": "ECR"
         },
         "id": {
@@ -48,6 +48,26 @@
         "ppe": {
             "description": "Demócratas Cristianos",
             "name": "EPP"
+        },
+        "theleft": {
+            "description": "Izquierda Europea/Izquierda Verde Nórdica",
+            "name": "La izquierda"
+        },
+        "guengl": {
+            "name": "GUE/NGL",
+            "description": "Izquierda Europea/Izquierda Verde Nórdica"
+        },
+        "vertsale": {
+            "name": "Verdes/ALE",
+            "description": "Verdes, regionalistas y piratas"
+        },
+        "sd": {
+            "name": "S&D",
+            "description": "Socialistas y demócratas"
+        },
+        "greensefa": {
+            "name": "Verdes/ALE",
+            "description": "Verdes, regionalistas y piratas"
         }
     },
     "result": {
