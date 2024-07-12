@@ -1,1 +1,58 @@
-{}
+{
+    "eugroups": {
+        "ecr": {
+            "code": "ECR",
+            "name": "ECR",
+            "description": "Coimeádaithe Náisiúnta"
+        },
+        "ppe": {
+            "name": "EPP",
+            "description": "Daonlathaithe Críostaí"
+        },
+        "renew": {
+            "name": "Athnuaigh",
+            "description": "Liobrálaithe"
+        },
+        "ni": {
+            "name": "NI",
+            "description": "Neamh-Chleamhnaithe"
+        },
+        "id": {
+            "name": "ID",
+            "description": "Ar dheis i bhfad"
+        },
+        "epp": {
+            "name": "EPP",
+            "description": "Na Críostaíocha Daonlathacha"
+        },
+        "na": {
+            "name": "NA",
+            "description": "Neamh-Chleamhnaithe"
+        },
+        "vertsale": {
+            "name": "Glasaigh/EFA",
+            "description": "An Ghlaschúrsaigh, Réigiúnaithe, agus Mairnéalaigh"
+        },
+        "sd": {
+            "description": "Sóisialaithe agus Daonlathaithe",
+            "name": "S&D"
+        },
+        "theleft": {
+            "name": "An Chlé",
+            "description": "An Chlé Eorpach/Ar Chlé Ghlas Nordach"
+        },
+        "guengl": {
+            "name": "GUE/NGL",
+            "description": "An Chlé Eorpach/Ar Chlé Ghlas Nordach"
+        },
+        "greensefa": {
+            "name": "Glasaigh/EFA",
+            "description": "An Ghlaschúrsaigh, Réigiúnaithe, agus Mairnéalaigh"
+        }
+    },
+    "result": {
+        "for": "I bhFabhair",
+        "against": "in aghaidh",
+        "abstention": "Staon"
+    }
+}
