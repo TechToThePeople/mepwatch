@@ -249,7 +249,7 @@ function dl_meps(callback) {
   d3.csv("data/meps.csv", function (d) {
     //      d.date=dateParse(d.date.substring(0,10));
     //      if (!d.date) {console.log(d)};
-    d.voteid = +d.voteid;
+    d.voteid = +d.epid; // we are now joining on the epid
     d.epid = +d.epid;
     d.active = d.active == "true";
     d.birthdate = dateParse(d.birthdate);
