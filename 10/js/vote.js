@@ -10,6 +10,14 @@ var config = {};
 var voteid = urlParam("v");
 var results = "for,against,abstention,no show,excused,attended".split(",");
 
+const flag = (isoCode) => {
+  const offset = 127397;
+  return isoCode
+    .toUpperCase()
+    .replace(/./g, (char) => String.fromCodePoint(char.charCodeAt(0) + offset));
+  // U+1F6A9
+};
+
 // Function to convert array of objects to CSV
 function arrayToCSV(data) {
   const csvRows = [];
@@ -81,7 +89,8 @@ var countries = {
   gb: "United Kingdom",
 };
 
-var iconify = function (name, prefix) {
+var iconify = function (name, prefix) { 
+  if (prefix === "flag") return flag(name);
   prefix = prefix || "icon";
   return (
     '<svg class="icon" class="' +
@@ -183,15 +192,6 @@ function download(voteid, callback) {
     });
 }
 
-d3.text("img/eu-flags.svg").then(function (xml) {
-  d3.select("body")
-    .append("svg")
-    .attr("id", "flags")
-    .html(xml)
-    .classed("d-none", true);
-  d3.selectAll("#flags symbol").attr("fill", "#000");
-  //  document.body.appendChild(xml.documentElement);
-});
 
 function dl_details(callback) {
   d3.json("cards/" + voteid + ".json")

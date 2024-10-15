@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "npx esbuild build.cjs  --bundle --minify --sourcemap --outfile=dist/js/dcbundle.js; gzip -k dist/js/dcbundle.js",
+    "build": "npx esbuild build.cjs  --bundle --minify --sourcemap --outfile=dist/js/dcbundle.js; gzip -k -f dist/js/dcbundle.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

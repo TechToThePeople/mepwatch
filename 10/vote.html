@@ -84,16 +84,9 @@
         content: "⤓";
       }
 
-      aa.flag-icon,
-      aa.country-flag {
-        width: 21px;
-        height: 16px;
-        border: 0.2px solid lightgrey;
-      }
-      .country-flag img {
-        width: 20px;
-        height: 15px;
-        border: 0.2px solid lightgrey;
+      .flag-icon,
+      .country-flag {
+        font-size: 1.4em!important;
       }
 
       img.face {
@@ -1140,13 +1133,20 @@
             if (!d3.select("#country .axis.x use").empty()) return;
             d3.select("#country .axis.x")
               .selectAll(".tick")
-              .append("use")
-              .attr("href", function (d) {
-                return "#flag-" + d;
-              })
-              .attr("width", 24)
-              .attr("height", 16)
-              .attr("transform", "translate(-10,2)");
+.append("text")
+//            .style("text-anchor", "start")
+.text(d => flag(d))
+.attr("y",20)
+.attr("x",2)
+.attr("fill","currentColor")
+.attr("class","country-flag")
+//              .append("use")
+//              .attr("href", function (d) {
+//                return "#flag-" + d;
+//              })
+            .attr("width", 24)
+            .attr("height", 16)
+//            .attr("transform", "translate(-10,2)");
           });
         graph.xAxis().ticks(3);
         //      res.shift();
@@ -1450,16 +1450,7 @@
               return t;
             },
             function (d) {
-              return (
-                "<span title='" +
-                d.country +
-                "' class='img-rounded country-flag'><img src='img/country/" +
-                d.country +
-                ".svg' /></span>"
-              );
-              //TOFIX for no reason, it's dog slow to use svg use here
-              //          return iconify(d.country,"flag");
-              //          return "<svg class='img-rounded flag-icon'><use href='#flag-" + d.country + "'/><title>" + d.country + "</title></svg>";
+                        return '<span class="country-flag">' + iconify(d.country,"flag") + '</span>';
             },
             function (d) {
               return (
