@@ -10,5 +10,4 @@ window.d3.queue = require('d3-queue/build/d3-queue.js').queue;
 // Use relative path for doT.js
 window.doT = require('./node_modules/dot/doT.js');
 
-const polyfill = require('country-flag-emoji-polyfill');
-polyfill();
+require('country-flag-emoji-polyfill').polyfillCountryFlagEmojis();

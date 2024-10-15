@@ -1,7 +1,6 @@
 "use strict";
 var ndx = null;
 var graphs = {};
-console.log(d3.queue);
 var q = d3.queue();
 var meps = [];
 var votes = [];
