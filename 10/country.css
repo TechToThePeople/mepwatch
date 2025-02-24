@@ -187,7 +187,8 @@ svg.icon-attended * {
 #gridmeps {
   width: 1600px;
   height: 900px;
-  background: linear-gradient(45deg, #3dae5c 0%, #0c6154 100%);
+  _background: linear-gradient(45deg, #3dae5c 0%, #0c6154 100%);
+  background: url('./img/background.png');
 }
 
 #gridmeps .graph {
@@ -205,6 +206,10 @@ svg.icon-attended * {
   display: flex;
   align-items: center;
   width: 100%;
+  border:1px solid black;
+  border-radius: 20px;
+  margin: -5px 0 10px 0;
+  overflow: hidden;
 }
 
 .party img,
@@ -311,7 +316,7 @@ width:30px;
     0 3px 4px 0 rgba(0, 0, 0, 0.12),
     0 1px 5px 0 rgba(0, 0, 0, 0.2);
   padding: 10px 10px;
-  background-color: white;
+  background-color: rgba(255,255,255,0.9);
   margin-bottom: 10px;
   break-inside: auto;
   _box-decoration-break: clone;
@@ -325,6 +330,7 @@ width:30px;
 .cgradient {
 }
 .gradient {
+  display:none;
   position: absolute; /* Crucial for positioning within each rect */
   left: 0;
   right: 0;
@@ -332,7 +338,19 @@ width:30px;
   pointer-events: none;
 }
 
-.gradient.bottom {
+.cloned_full {
+  border-radius: 10px;
+}
+
+.cloned_0 {
+  border-radius: 10px 10px 0 0;
+}
+
+.cloned_1 {
+  border-radius:  0  0 10px 10px;
+}
+
+__.gradient.bottom {
   bottom: -20px;
   height: 20px;
   background-image: linear-gradient(
@@ -342,7 +360,7 @@ width:30px;
   )!important;
 }
 
-.gradient.top {
+__.gradient.top {
   top: -2px;
   background-image: linear-gradient(
     to bottom,

@@ -194,9 +194,7 @@ async function draw() {
   //    graphs.party=drawParty('#voidparty div.graph');
   guessPartyLine("partyline");
 
-  graphs.eugroup = drawBarVotes("#eugroup div.graph", function (d) {
-    return d.eugroup;
-  });
+  graphs.eugroup = drawBarVotes("#eugroup div.graph", d => d.eugroup);
   guessLine("groupline", graphs.eugroup.group());
   graphs.eugroup.relative = false;
   graphs.party = drawBarVotes("#party div.graph", (d) => {
@@ -1033,9 +1031,10 @@ function addGradients() {
 //      console.log("split in columns", item.firstChild?.firstChild, rects);
       rects.forEach((rect, index) => {
         const cloned = cloneRect(item, rect.left + paddingLeft);
-        cloned.id = "cloned_" + index;
+        //cloned.id = "cloned_" + index;
+        cloned.classList.add("cloned_"+index);
         //        container.insertBefore(cloned, item);
-        const gradient = document.createElement("div");
+/*        const gradient = document.createElement("div");
         if (index === 0) {
           gradient.classList.add("gradient", "bottom");
           cloned.insertBefore(gradient, cloned.firstChild);
@@ -1043,11 +1042,13 @@ function addGradients() {
           gradient.classList.add("gradient", "top");
           cloned.appendChild(gradient);
         }
+*/
         clonedItems.push(cloned);
       });
       //      container.removeChild(item);
     } else {
 //      console.log("in a single column", item.firstChild?.firstChild, rects);
+        item.classList.add("cloned_full");
       clonedItems.push(item.cloneNode(true));
     }
   });
@@ -1092,9 +1093,10 @@ function drawGrid(dom) {
     .htmlSection((d) => {
       const [position, group, party] = d.key.split(",");
       const full = getParty(party, country);
+      const eugroup = group.replace(/&|\/| |car/g, "-").toLowerCase();
       if (full) {
         return (
-          "<div class='party'>" +
+          "<div class='party h"+eugroup+"'>" +
           (full.picture &&
             "<img crossorigin='anonymous' src='https://pics.mepwatch.eu/parties/" +
               full.twitter?.toLowerCase() +
@@ -1106,8 +1108,7 @@ function drawGrid(dom) {
           "</span>" +
           "<span title='" +
           group +
-          "' class='img-rounded text-filter eugroup " +
-          group.replace(/&|\/| |car/g, "-").toLowerCase() +
+          "' class='img-rounded text-filter eugroup " + eugroup + 
           "'>" +
           group +
           "</span></div>"
