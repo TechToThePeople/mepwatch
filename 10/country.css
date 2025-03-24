@@ -187,8 +187,8 @@ svg.icon-attended * {
 #gridmeps {
   width: 1600px;
   height: 900px;
-  _background: linear-gradient(45deg, #3dae5c 0%, #0c6154 100%);
-  background: url('./img/background.png');
+  -background: linear-gradient(45deg, #3dae5c 0%, #0c6154 100%);
+  background: linear-gradient(210deg, #6e45e2 10%, #88d3ce 100%);
 }
 
 #gridmeps .graph {

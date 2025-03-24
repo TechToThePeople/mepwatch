@@ -233,8 +233,11 @@ async function draw() {
   graphs.result = drawResult("#result .graph");
   if (urlParam("country")) {
     d3.select("#party").classed("d-none", false);
-  }
-
+  } else {
+console.log("filter by country");
+   urlParam("country","de");
+    
+  } 
   ["eugroup", "country"].forEach(function (d) {
     if (!graphs[d]) return;
     graphs[d].on("filtered", function (graph) {
@@ -1208,14 +1211,12 @@ function urlParam(name, value) {
 
 function init(id) {
   setTimeout(() => {
-    console.log("vot id", id, window.voteid);
     download(id || window.voteid, draw);
     clickifyPrint(document.getElementById("print"));
   }, 0);
 }
 
 setTimeout(() => {
-  console.log("dispatch mepwatch.country_ready");
   document.dispatchEvent(
     new CustomEvent("mepwatch.country_ready", {
       detail: {
