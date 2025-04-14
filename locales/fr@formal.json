@@ -1,1 +1,18 @@
-{}
+{
+    "result": {
+        "for": "En faveur",
+        "against": "Contre"
+    },
+    "eugroups": {
+        "renew": {
+            "name": "Renouveau"
+        },
+        "ni": {
+            "description": "Non affilié"
+        },
+        "id": {
+            "name": "Identifiant",
+            "description": "Extrême droite"
+        }
+    }
+}
