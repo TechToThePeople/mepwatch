@@ -1,1 +1,58 @@
-{}
+{
+    "result": {
+        "for": "За",
+        "against": "Проти",
+        "abstention": "Утримався"
+    },
+    "eugroups": {
+        "ppe": {
+            "name": "EPP",
+            "description": "християнські демократи"
+        },
+        "renew": {
+            "name": "Відновити",
+            "description": "Ліберали"
+        },
+        "ni": {
+            "description": "Не афілійовані",
+            "name": "NI"
+        },
+        "id": {
+            "name": "ID",
+            "description": "Крайній правий"
+        },
+        "ecr": {
+            "name": "ECR",
+            "description": "націонал-консерватори",
+            "code": "ECR"
+        },
+        "epp": {
+            "name": "EPP",
+            "description": "християнські демократи"
+        },
+        "na": {
+            "name": "NA",
+            "description": "Неафілійований"
+        },
+        "sd": {
+            "description": "соціалістів і демократів",
+            "name": "S&D"
+        },
+        "theleft": {
+            "description": "Європейські ліві/Скандинавські зелені ліві",
+            "name": "Ліві"
+        },
+        "guengl": {
+            "name": "GUE/NGL",
+            "description": "Європейські ліві/Скандинавські зелені ліві"
+        },
+        "greensefa": {
+            "description": "Зелені, регіонали та пірати",
+            "name": "зелень/EFA"
+        },
+        "vertsale": {
+            "description": "Зелені, регіонали та пірати",
+            "name": "зелень/EFA"
+        }
+    }
+}
