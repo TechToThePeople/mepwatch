@@ -50,7 +50,6 @@ const clickifyPrint = (dom) => {
           position: "fixed", // Prevents layout shifts
         },
         filter: (node) => {
-console.log("filter",node);
           if (
             node.style?.display === "none" ||
             node.style?.visibility === "hidden" ||
@@ -65,6 +64,9 @@ console.log("filter",node);
           }
           return true; // Include all other nodes
         },
+        fetch: {
+          requestInit: { cache: 'only-if-cached'}
+        }
       })
       .then(function (dataUrl) {
 console.log("generated");

@@ -170,11 +170,6 @@ svg.icon-attended * {
   background-image: url("img/eugroups/ecr.png");
 }
 
-.na,
-.ni,
-.na-ni {
-  background-image: url("img/eugroups/ni.png");
-}
 
 #gridmeps h1 {
   font-size: 1rem;
@@ -206,7 +201,10 @@ svg.icon-attended * {
   display: flex;
   align-items: center;
   width: 100%;
-  border:1px solid black;
+box-shadow: 
+    2px 2px 3px rgba(0, 0, 0, 0.3);
+  background-color: rgba(255,255,255,1);
+  padding:1px;
   border-radius: 20px;
   margin: -5px 0 10px 0;
   overflow: hidden;
@@ -214,9 +212,9 @@ svg.icon-attended * {
 
 .party img,
 .party svg {
-  _ndflex: 0 0 auto;
   height: 30px;
-  max-width: 50px;
+  max-width: 30px;
+  border-radius:15px;
 }
 
 .party {
@@ -318,6 +316,7 @@ width:30px;
   padding: 10px 10px;
   background-color: rgba(255,255,255,0.9);
   margin-bottom: 10px;
+  border-radius: 10px;
   break-inside: auto;
   _box-decoration-break: clone;
   position: relative;
@@ -338,9 +337,6 @@ width:30px;
   pointer-events: none;
 }
 
-.cloned_full {
-  border-radius: 10px;
-}
 
 .cloned_0 {
   border-radius: 10px 10px 0 0;
@@ -348,6 +344,7 @@ width:30px;
 
 .cloned_1 {
   border-radius:  0  0 10px 10px;
+  padding-top: 0;
 }
 
 __.gradient.bottom {
