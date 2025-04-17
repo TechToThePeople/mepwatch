@@ -33,15 +33,16 @@ const clickifyPrint = (dom) => {
     const element = document.getElementById("gridmeps");
     //      const originalTransform = element.style.transform;
     //      element.style.transform = 'none';
-    inlineSVGRefs(element);
-    const link = document.createElement('a')
+//    inlineSVGRefs(element);
+    const link = document.createElement('a');
+console.log("start");
     modernScreenshot.domToPng(element,{
 //    htmlToImage
 //      .toPng(element, {
         width: 1600,
         height: 900,
-        pixelRatio: 1, // Force 1:1 pixel ratio
-        style: {
+        pixelRatio: 2, // Force 1:1 pixel ratio
+        _style: {
           transform: "none",
           // Force the element to render at the specified dimensions
           width: "1600px",
@@ -49,7 +50,7 @@ const clickifyPrint = (dom) => {
           display: "block",
           position: "fixed", // Prevents layout shifts
         },
-        filter: (node) => {
+        _filter: (node) => {
           if (
             node.style?.display === "none" ||
             node.style?.visibility === "hidden" ||
@@ -64,7 +65,7 @@ const clickifyPrint = (dom) => {
           }
           return true; // Include all other nodes
         },
-        fetch: {
+        _fetch: {
           requestInit: { cache: 'only-if-cached'}
         }
       })
@@ -73,7 +74,7 @@ console.log("generated");
         const element = document.getElementById("preview");
         element.src = dataUrl;
         const link = document.createElement("a");
-        link.download = "vote.png";
+        link.download = "vote"+voteid+".png";
         link.href = dataUrl;
         link.click();
         //        element.style.transform = originalTransform;
