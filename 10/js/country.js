@@ -1114,8 +1114,9 @@ function drawGrid(dom) {
           "</span>" +
           "<span title='" +
           group +
-          "' class='img-rounded text-filter eugroup " + eugroup + 
+          "' class='img-rounded text-filter _eugroup " + eugroup + 
           "'>" +
+          "<img crossorigin='anonymous' src='https://mepwatch.eu/10/img/eugroupsl/"+eugroup+".png' />" +
           group +
           "</span></div>"
         );
