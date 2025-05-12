@@ -1104,7 +1104,7 @@ function drawGrid(dom) {
         return (
           "<div class='party h"+eugroup+"'>" +
           (full.picture &&
-            "<img crossorigin='anonymous' src='https://pics.mepwatch.eu/parties/" +
+            "<img class='logo' crossorigin='anonymous' src='https://pics.mepwatch.eu/parties/" +
               full.twitter?.toLowerCase() +
               ".jpg' title='" +
               full.party +
@@ -1117,7 +1117,6 @@ function drawGrid(dom) {
           "' class='img-rounded text-filter _eugroup " + eugroup + 
           "'>" +
           "<img crossorigin='anonymous' src='https://mepwatch.eu/10/img/eugroupsl/"+eugroup+".png' />" +
-          group +
           "</span></div>"
         );
       }

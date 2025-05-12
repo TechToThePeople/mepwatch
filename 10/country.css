@@ -210,6 +210,11 @@ box-shadow:
   overflow: hidden;
 }
 
+.party .logo {
+height:30px;
+border-radius: 15px;
+}
+
 .party img,
 .party svg {
   max-width: 30px;
@@ -220,8 +225,7 @@ box-shadow:
 }
 
 .party span.img-rounded {
-height:30px;
-width:30px;
+  max-width: 30px;
 }
 
 .party span.text {
