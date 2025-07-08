@@ -1258,7 +1258,7 @@
           .numberDisplay(".nbmep .nb")
           .group(group)
           .valueAccessor(function (d) {
-            return d.value.nb.count;
+            return d.value?.nb.count;
           })
           .formatNumber(d3.format("d"))
           .on("renderlet.linked", function () {
