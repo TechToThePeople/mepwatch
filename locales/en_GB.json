@@ -1,1 +1,58 @@
-{}
+{
+    "result": {
+        "for": "In Favour",
+        "against": "Against",
+        "abstention": "Abstained"
+    },
+    "eugroups": {
+        "ppe": {
+            "name": "EPP",
+            "description": "Christian Democrats"
+        },
+        "renew": {
+            "name": "Renew",
+            "description": "Liberals"
+        },
+        "ni": {
+            "name": "NI",
+            "description": "Non Affiliated"
+        },
+        "id": {
+            "name": "ID",
+            "description": "Far Right"
+        },
+        "ecr": {
+            "name": "ECR",
+            "code": "ECR",
+            "description": "National Conservatives"
+        },
+        "vertsale": {
+            "name": "Greens/EFA",
+            "description": "Greens, Regionalists, and Pirates"
+        },
+        "sd": {
+            "name": "S&D",
+            "description": "Socialists and Democrats"
+        },
+        "theleft": {
+            "name": "The Left",
+            "description": "European Left/Nordic Green Left"
+        },
+        "guengl": {
+            "name": "GUE/NGL",
+            "description": "European Left/Nordic Green Left"
+        },
+        "epp": {
+            "name": "EPP",
+            "description": "Christian Democrats"
+        },
+        "greensefa": {
+            "name": "Greens/EFA",
+            "description": "Greens, Regionalists, and Pirates"
+        },
+        "na": {
+            "name": "NA",
+            "description": "Non Affiliated"
+        }
+    }
+}
