@@ -53,8 +53,8 @@
                     transform-origin: 50% 50%;
                   }
 
-                  html .bg-info {
-                    background-image: linear-gradient(-20deg, #6e45e2 0%, #88d3ce 100%);
+                  .bg-info {
+                    --bs-info-rgb: 222, 212, 230;
                   }
 
                   .wide-tip {
@@ -242,7 +242,7 @@
       <div class="py-5 bg-info">
         <div class="container">
           <div class="row">
-            <div class="col-md-3">
+            <div class="col-md">
               <form id="search">
                 <div class="input-group mb-3">
                   <span class="graph form-control"></span>
@@ -282,13 +282,13 @@
                 </li>
               </ul>
             </div>
-            <div class="col-md-3" id="result">
+            <div class="col-md" id="result">
               <div class="graph"></div>
             </div>
-            <div class="col-md-3 rotated90" id="eugroup">
+            <div class="col-md rotated90" id="eugroup">
               <div class="graph"></div>
             </div>
-            <div class="col-md-3 rotated90 d-none" id="party">
+            <div class="col-md rotated90 d-none" id="party">
               <div class="graph"></div>
             </div>
           </div>
