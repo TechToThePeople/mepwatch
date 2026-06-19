@@ -107,7 +107,7 @@ const aliasPosition = {
   "no show": "not present at the plenary",
 };
 let parties = [];
-  const percentagecolor = null;
+var percentagecolor = null;
 
 const getParty = (name, country) => {
   const party = parties.find((d) => d.party === name && d.country === country);
@@ -156,7 +156,7 @@ const updateHtml = () => {
 async function draw() {
   parties = await dl_parties();
   updateHtml();
-  const percentColors = [
+  var percentColors = [
     "#e3e3e3",
     "#27ae60",
     "#C8E6C9",
@@ -244,7 +244,7 @@ console.log("filter by country");
   ["eugroup", "country"].forEach(function (d) {
     if (!graphs[d]) return;
     graphs[d].on("filtered", function (graph) {
-  const f = graph.filters().join("|");
+      var f = graph.filters().join("|");
       urlParam(d, f);
       d3.select("#party").classed("d-none", false);
     });
@@ -267,7 +267,7 @@ function remove_empty_bins(source_group, cap) {
   return {
     all: function () {
       source_group.top(Infinity);
-  const g = source_group.all().filter(function (d) {
+      var g = source_group.all().filter(function (d) {
         return d.value.nb.count !== 0;
       });
       return g.slice(0, cap);
@@ -276,11 +276,11 @@ function remove_empty_bins(source_group, cap) {
 }
 
 function guessPartyLine(store) {
-  const dim = ndx.dimension(function (d) {
+  var dim = ndx.dimension(function (d) {
     return d.party;
   });
 
-  const reducer = reductio();
+  var reducer = reductio();
   reducer.value("nb").count(true);
   results.forEach(function (r) {
     reducer
@@ -291,11 +291,11 @@ function guessPartyLine(store) {
       });
   });
 
-  const group = dim.group();
+  var group = dim.group();
   reducer(group);
   guessLine(store, group);
   ndx.all().forEach(function (mep) {
-  const key = function (d) {
+    var key = function (d) {
       return d.party;
     };
     if (["for", "against", "abstention"].indexOf(mep.vote) == -1) return false; // you aren't a rebel when you are a noshow ;P
@@ -311,7 +311,7 @@ function guessPartyLine(store) {
 }
 
 function drawParty(dom) {
-  const eu_groups = {
+  var eu_groups = {
     "GUE/NGL": "#800c00",
     "S&D": "#c21200",
     "Verts/ALE": "#05a61e",
@@ -327,12 +327,12 @@ function drawParty(dom) {
     Array: "pink",
   };
 
-  const graph = dc.sunburstChart(dom).innerRadius(10); //.radius(70);
-  const dim = ndx.dimension(function (d) {
+  var graph = dc.sunburstChart(dom).innerRadius(10); //.radius(70);
+  var dim = ndx.dimension(function (d) {
     return [d.eugroup, d.party];
   });
-  const reducer = reductio();
-  const res = results.slice();
+  var reducer = reductio();
+  var res = results.slice();
   reducer.value("nb").count(true);
   res.forEach(function (r) {
     reducer
@@ -343,7 +343,7 @@ function drawParty(dom) {
       });
   });
 
-  const group = dim.group();
+  var group = dim.group();
   reducer(group);
   //var group = dim.group().reduceSum(function(d) {return 1;});
   graph
@@ -372,18 +372,18 @@ function drawParty(dom) {
 }
 
 function drawGroup(dom) {
-  const graph = dc.pieChart(dom).innerRadius(20); //.radius(70);
-  const reducer = reductio();
-  const dim = ndx.dimension(function (d) {
+  var graph = dc.pieChart(dom).innerRadius(20); //.radius(70);
+  var reducer = reductio();
+  var dim = ndx.dimension(function (d) {
     return d.eugroup || "?";
   });
 
-  const tip = d3
+  var tip = d3
     .tip()
     .attr("class", "d3-tip wide-tip")
     .offset([-10, 0])
     .html(function (d) {
-  const t =
+      var t =
         "<h3 class='d-flex flex-row justify-content-between' ><span>" +
           aliasPosition[d.data.key] ||
         d.data.key +
@@ -416,7 +416,7 @@ function drawGroup(dom) {
   //reducer.value("nb").count(true);
   reducer.count(true);
 
-  const group = dim.group();
+  var group = dim.group();
   reducer(group);
   //    var group = dim.group().reduceSum(function(d) {return 1;});
   graph
@@ -426,7 +426,7 @@ function drawGroup(dom) {
       return 0 + groups.indexOf(d.key);
     })
     .colorAccessor(function (d) {
-  const sum = d.value.for.count + d.value.against.count;
+      var sum = d.value.for.count + d.value.against.count;
       return (100 * d.value.against.count) / sum;
     })
     .label((d) => {
@@ -468,10 +468,10 @@ function guessLine(store, group, key) {
   if (config[store]) return; //already set
   config[store] = {};
   group.all().forEach(function (d) {
-  const whip = 2 / 3;
+    var whip = 2 / 3;
     config[store][key(d)] = null; //free vote, no instruction
     ["for", "against", "abstention"].forEach(function (v) {
-  const sum =
+      var sum =
         d.value.for.count + d.value.against.count + d.value.abstention.count;
       if (d.value[v].count / sum > whip) config[store][key(d)] = v;
     });
@@ -497,11 +497,11 @@ function getResultColor(results) {
 function drawResult(dom) {
   const resultscolor = getResultColor(results);
 
-  const graph = dc.pieChart(dom).innerRadius(40); //.radius(radius);
-  const dim = ndx.dimension(function (d) {
+  var graph = dc.pieChart(dom).innerRadius(40); //.radius(radius);
+  var dim = ndx.dimension(function (d) {
     return d.vote || "?";
   });
-  const group = dim.group().reduceSum(function (d) {
+  var group = dim.group().reduceSum(function (d) {
     return 1;
   });
 
@@ -519,7 +519,7 @@ function drawResult(dom) {
                         })
                       */
     .on("filtered", function (c) {
-  const mode = graphs.result.filters().length == 1 ? "absolute" : "relative";
+      var mode = graphs.result.filters().length == 1 ? "absolute" : "relative";
       d3.select("#country .btn-" + mode).dispatch("click");
     })
     .dimension(dim)
@@ -565,8 +565,8 @@ function drawBarVotes(dom, dimension) {
   //const width = isMobile ? window.screen.width - 40 : 220;
   const width = 0;
   const resultscolor = getResultColor(results);
-  const dim = ndx.dimension(dimension);
-  const reducer = reductio();
+  var dim = ndx.dimension(dimension);
+  var reducer = reductio();
   reducer.value("nb").count(true);
   results.forEach(function (r) {
     reducer
@@ -577,10 +577,10 @@ function drawBarVotes(dom, dimension) {
       });
   });
 
-  const group = dim.group();
+  var group = dim.group();
   reducer(group);
 
-  const graph = dc.barChart(dom);
+  var graph = dc.barChart(dom);
   graph.fixedSize = true;
   graph.relative = true;
 
@@ -680,14 +680,14 @@ function drawBarVotes(dom, dimension) {
       })
       .style("text-anchor", "start")
       .attr("transform", function (d) {
-  const left = -1 * graph.margins().bottom + 10;
+        var left = -1 * graph.margins().bottom + 10;
         return "rotate(-90, -4, 9), translate(" + left + ",0) ";
       });
   }
 
   function toggleMode() {
     d3.selectAll("#country h5 button").on("click", function () {
-  const b = d3.select(this);
+      var b = d3.select(this);
       if (!b.classed("active")) return;
       graph.relative = b.classed("btn-relative");
       b.classed("active", false);
@@ -710,11 +710,11 @@ function drawCountry(dom) {
   const resultscolor = getResultColor(results);
   let heigth = 186;
   let width = 0;
-  const dim = ndx.dimension(function (d) {
+  var dim = ndx.dimension(function (d) {
     return d.country;
   });
-  const reducer = reductio();
-  const res = results.slice();
+  var reducer = reductio();
+  var res = results.slice();
   reducer.count(true);
   // reducer.value("nb").count(true);
   res.forEach(function (r) {
@@ -726,10 +726,10 @@ function drawCountry(dom) {
       });
   });
 
-  const group = dim.group();
+  var group = dim.group();
   reducer(group);
 
-  const graph = dc.barChart(dom);
+  var graph = dc.barChart(dom);
   graph.relative = true;
 
   function getValue(result) {
@@ -840,7 +840,7 @@ function drawCountry(dom) {
 
   function toggleMode() {
     d3.selectAll("#country h5 button").on("click", function () {
-  const b = d3.select(this);
+      var b = d3.select(this);
       if (!b.classed("active")) return;
       graph.relative = b.classed("btn-relative");
       b.classed("active", false);
@@ -854,11 +854,11 @@ function drawCountry(dom) {
 }
 
 function drawNumbers(graphs) {
-  const dim = ndx.dimension(function (d) {
+  var dim = ndx.dimension(function (d) {
     return true;
   });
 
-  const reducer = reductio();
+  var reducer = reductio();
   reducer.value("nb").count(true);
   //    reducer.value("woman").count(true).filter(function(d) {return d.Gender == "F;});
 
@@ -872,7 +872,7 @@ function drawNumbers(graphs) {
       });
   });
 
-  const group = dim.group();
+  var group = dim.group();
   reducer(group);
 
   graphs.total = dc
@@ -883,7 +883,7 @@ function drawNumbers(graphs) {
     })
     .formatNumber(d3.format("d"))
     .on("renderlet.linked", function () {
-  const d = group.top(1)[0].value.nb.count;
+      var d = group.top(1)[0].value.nb.count;
       d3.select(".nbmep button").classed("disabled", d == config.nb);
       d3.select(".nbmep .total").classed("d-none", d == config.nb);
     });
@@ -902,7 +902,7 @@ function drawNumbers(graphs) {
     })
     .formatNumber(d3.format("d"))
     .on("renderlet.linked", function () {
-  const d = group.top(1)[0];
+      var d = group.top(1)[0];
       d3.select(".result .nb").html(function () {
         if (!config.goal || d.value.for.count + d.value.against.count == 0)
           return "";
@@ -918,7 +918,7 @@ function drawNumbers(graphs) {
       });
       d3.select(".result .badge")
         .html(function () {
-  const sum = d.value.for.count + d.value.against.count;
+          var sum = d.value.for.count + d.value.against.count;
           if (sum == 0) return "";
           return (
             "" +
@@ -932,11 +932,11 @@ function drawNumbers(graphs) {
           );
         })
         .style("background-color", function () {
-  const sum = d.value.for.count + d.value.against.count;
+          var sum = d.value.for.count + d.value.against.count;
           return percentagecolor((100 * d.value.against.count) / sum);
         });
       d3.select(".nbvoted .badge").html(function () {
-  const sum =
+        var sum =
           d.value.for.count + d.value.against.count + d.value.abstention.count;
         if (sum == 0 || sum == d.value.nb.count) return "";
         return formatPercent(sum / d.value.nb.count);
@@ -945,11 +945,11 @@ function drawNumbers(graphs) {
 }
 
 function drawReport(dom) {
-  const dim = ndx.dimension(function (d) {
+  var dim = ndx.dimension(function (d) {
     return d.epid;
   });
 
-  const tip = d3
+  var tip = d3
     .tip()
     .attr("class", "d3-tip")
     .offset([0, 10])
@@ -967,14 +967,14 @@ function drawReport(dom) {
     });
 
   //var dim = ndx.dimension(function(d) {return d.report?d.report:"?";}, true);
-  const dim = ndx.dimension(function (d) {
+  var dim = ndx.dimension(function (d) {
     return d.report ? d.report : "?";
   });
-  const group = dim.group().reduceSum(function (d) {
+  var group = dim.group().reduceSum(function (d) {
     return 1;
   });
 
-  const graph = dc
+  var graph = dc
     .rowChart(dom)
     .width(0)
     .height(300)
@@ -1069,15 +1069,15 @@ function drawGrid(dom) {
     .range([2, 3, 4, 5, 6]);
   const columns = (d) => Math.ceil(_columns(d));
 
-  const dim = ndx.dimension(function (d) {
+  var dim = ndx.dimension(function (d) {
     return d.epid;
   });
-  const template = d3.selectAll(".mep").html();
-  const tpl = function (d) {
-  const str = template;
+  var template = d3.selectAll(".mep").html();
+  var tpl = function (d) {
+    var str = template;
     for (var key in d) {
       return str.replace(/({([^}]+)})/g, function (i) {
-  const key = i.replace(/{/, "").replace(/}/, "");
+        var key = i.replace(/{/, "").replace(/}/, "");
         if (!d[key]) {
           return i;
         }
@@ -1087,7 +1087,7 @@ function drawGrid(dom) {
     }
     //      "firstname,lastname,country,eugroup,party,vote,id".split(",").forEach(function(f){});
   };
-  const graph = dc
+  var graph = dc
     .dataGrid(dom)
     .dimension(dim)
     .size(1000)
@@ -1184,24 +1184,24 @@ function drawGrid(dom) {
 
 function urlParam(name, value) {
   if (typeof value == "string") {
-  const uri = window.location.href;
+    var uri = window.location.href;
     value = encodeURIComponent(value);
-  const re = new RegExp("([?&])" + name + "=.*?(&|#|$)", "i");
+    var re = new RegExp("([?&])" + name + "=.*?(&|#|$)", "i");
     if (uri.match(re)) {
       uri = uri.replace(re, "$1" + name + "=" + value + "$2");
     } else {
-  const hash = "";
+      var hash = "";
       if (uri.indexOf("#") !== -1) {
         hash = uri.replace(/.*#/, "#");
         uri = uri.replace(/#.*/, "");
       }
-  const separator = uri.indexOf("?") !== -1 ? "&" : "?";
+      var separator = uri.indexOf("?") !== -1 ? "&" : "?";
       uri = uri + separator + name + "=" + value + hash;
     }
     history.pushState({ q: value }, "search for " + value, uri);
     return uri;
   } else {
-  const results = new RegExp("[?&]" + name + "=([^&#]*)").exec(
+    var results = new RegExp("[?&]" + name + "=([^&#]*)").exec(
       window.location.href,
     );
     if (results == null) {

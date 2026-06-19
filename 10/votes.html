@@ -166,20 +166,20 @@ td a {color:rgb(33, 150, 243);}
     <script src="./js/vote.js"></script>
 <script>
   'use strict';
-      let ndx=null;
-      let graphs={};
-      let q=d3.queue();
-      let docs = {};
+  var ndx=null;
+  var graphs={};
+  var q=d3.queue();
+  var docs = {};
   docs.get=function(reference){
     docs[reference] ? docs[reference] : "";
   };
 
-      let dateParse = d3.timeParse("%Y-%m-%d");
-      let dateTimeParse = d3.timeParse("%Y-%m-%dT%H:%M:%S");
-      let dayFormat = d3.timeFormat("%Y-%m-%d");
-      let yymmdd =d3.timeFormat("%Y%m%d");
-      let dateFormat = d3.timeFormat("%Y-%m-%d %H:%M:%S");
-      let week = d3.timeFormat("%V");
+  var dateParse = d3.timeParse("%Y-%m-%d");
+  var dateTimeParse = d3.timeParse("%Y-%m-%dT%H:%M:%S");
+  var dayFormat = d3.timeFormat("%Y-%m-%d");
+  var yymmdd =d3.timeFormat("%Y%m%d");
+  var dateFormat = d3.timeFormat("%Y-%m-%d %H:%M:%S");
+  var week = d3.timeFormat("%V");
   //d3.csv('data/ep_votes.csv',function(d){
   q
   .defer(dl_votes)
@@ -189,12 +189,12 @@ td a {color:rgb(33, 150, 243);}
   });
 
   function dl_doc (callback){
-      const map = {
+    var map = {
       "REPORT on the proposal for a regulation of the European Parliament and of the Council": "Report",
       "JOINT MOTION FOR A RESOLUTION":"Motion",
       "MOTION FOR A RESOLUTION":"Motion",
     };
-      const needle = Object.keys(map);
+    var needle = Object.keys(map);
     d3.csv('data/text_tabled.csv',function(d){
       needle.forEach(function(n){d.title = d.title.replace(n,map[n])});
       docs[d.reference]=d;
@@ -235,17 +235,17 @@ td a {color:rgb(33, 150, 243);}
   }
 
   function drawNumbers(graphs) {
-      const dim = ndx.dimension(function(d) {
+    var dim = ndx.dimension(function(d) {
       return true;
     });
 
-      const reducer = reductio();
+    var reducer = reductio();
     reducer.count(true);
     results.forEach(function(r){
       reducer.value(r).count(true).sum(function(d){ return +d[r]});
     });
 
-      const group = dim.group();
+    var group = dim.group();
     reducer(group);
 
 
@@ -268,7 +268,7 @@ td a {color:rgb(33, 150, 243);}
 
   function drawReport(dom){
 
-      const tip = d3.tip()
+    var tip = d3.tip()
       .attr('class', 'd3-tip')
       .offset([0, 10])
       .direction("e")
@@ -279,12 +279,12 @@ td a {color:rgb(33, 150, 243);}
       });
 
     //var dim = ndx.dimension(function(d) {return d.report?d.report:"?";}, true);
-      const dim = ndx.dimension(function(d) {return d.report? d.report : "?";});
-      const group = dim.group().reduceSum(function(d) {
+    var dim = ndx.dimension(function(d) {return d.report? d.report : "?";});
+    var group = dim.group().reduceSum(function(d) {
       return 1;
     });
 
-      const graph = dc.rowChart(dom)
+    var graph = dc.rowChart(dom)
       .width(0)
       .height(300)
       //      .rowsCap(18)
@@ -316,17 +316,17 @@ td a {color:rgb(33, 150, 243);}
 
   function drawDate(dom){ // not working for now....
     //var dim=ndx.dimension(function(d){return [d.year,d.week,d.day]});
-      let col=d3.timeFormat("%y-%m-%w");
-      let coltick=d3.timeFormat("%b");
-      let lasttick="";
-      let dim=ndx.dimension(function(d){return d.date});
-      let group=dim.group().reduceSum(function(d){return 1});
+    var col=d3.timeFormat("%y-%m-%w");
+    var coltick=d3.timeFormat("%b");
+    var lasttick="";
+    var dim=ndx.dimension(function(d){return d.date});
+    var group=dim.group().reduceSum(function(d){return 1});
 //    var day=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
-      let day=["Sat","Fri","Thu","Wed","Tue","Mon","Sun"];
-      const color = d3.scaleLinear()
+    var day=["Sat","Fri","Thu","Wed","Tue","Mon","Sun"];
+    var color = d3.scaleLinear()
             .domain([0,1, 300])
             .range(["white","lightgrey","#7b2253"]);
-      const tip = d3.tip()
+    var tip = d3.tip()
     .attr('class', 'd3-tip wide-tip')
     .offset([-10, 0])
     .html(function (d) {
@@ -335,7 +335,7 @@ td a {color:rgb(33, 150, 243);}
         +d.value 
         + "</span></div>";
     });
-      let graph=dc.heatMap(dom)
+    var graph=dc.heatMap(dom)
      .dimension(dim)
      .group(group)
      .width(0)
@@ -344,7 +344,7 @@ td a {color:rgb(33, 150, 243);}
         return day[d];
       })
       .colsLabel(function(d){
-      let t=Math.floor(d /100000);
+        var t=Math.floor(d /100000);
         if(lasttick !==t){
           lasttick=t;
           return t;
@@ -374,21 +374,21 @@ td a {color:rgb(33, 150, 243);}
 
   function drawSearch(dom){
 
-      let dim=ndx.dimension(function(d) {
+    var dim=ndx.dimension(function(d) {
       //var t= docs[d.report] && docs[d.report].name ? docs[d.report].name.toLowerCase() : "";
-      let t= docs[d.report] && docs[d.report].title ? docs[d.report].title.toLowerCase() : "";
+      var t= docs[d.report] && docs[d.report].title ? docs[d.report].title.toLowerCase() : "";
       return t + d.report.toLowerCase()+" "+ d.desc.toLowerCase()+" "+d.for + " " + d.against;
     });
-      let filter = function (query) {
+    var filter = function (query) {
 //        query = _normalize(query);
         return function (d) {
             return d.indexOf(query.toLowerCase()) !== -1;
         };
     };
 
-      let q=urlParam("q");
+    var q=urlParam("q");
 
-      let chart=dc.textFilterWidget(dom)
+    var chart=dc.textFilterWidget(dom)
       .placeHolder("Search")
       .filterFunctionFactory(filter)
       .on("filtered",function(){
@@ -398,7 +398,7 @@ td a {color:rgb(33, 150, 243);}
         d3.select(dom + " input").classed("form-control",true);
         if (d3.select(dom + ".input-group").empty())
           d3.select(dom).classed("input-group",true).append("div").classed("input-group-append",true).append("span").classed("input-group-text",true).text("🔎");
-      let input=d3.select(this.anchor() +" input");
+        var input=d3.select(this.anchor() +" input");
         if (input.property("value")) {
           if (q != input.property("value")) {
             urlParam("q",input.property("value"));
@@ -415,10 +415,10 @@ td a {color:rgb(33, 150, 243);}
   }
 
   function drawTable(dom){
-      const dim = ndx.dimension(function(d) {
+    var dim = ndx.dimension(function(d) {
       return d.identifier
     });
-      const graph = dc.dataTable(dom)
+    var graph = dc.dataTable(dom)
       .dimension(dim)
       .size(100)
       .sortBy(function(d) {
@@ -432,10 +432,10 @@ td a {color:rgb(33, 150, 243);}
         }
         ,function(d){
           console.log(d);
-      let r="";
-      let f="";
-      let url=null;
-      let s=d.report.match(/^A(\d)-(\d+)\/(\d+)$/); // A8-1234/2018
+          var r="";
+          var f="";
+          var url=null;
+          var s=d.report.match(/^A(\d)-(\d+)\/(\d+)$/); // A8-1234/2018
           if (s && s.length == 4)
             url="http://www.europarl.europa.eu/doceo/document/A-"+s[1]+"-"+s[3]+"-"+s[2]+"_EN.html?redirect";
           if (docs[d.report]){
@@ -463,25 +463,25 @@ td a {color:rgb(33, 150, 243);}
     return graph;
   }
 
-      const urlParam = function (name,value) {
+var urlParam = function (name,value) {
   if (value) {
-      let uri=window.location.href;
-      let re = new RegExp("([?&])" + name + "=.*?(&|#|$)", "i");
+    var uri=window.location.href;
+    var re = new RegExp("([?&])" + name + "=.*?(&|#|$)", "i");
     if (uri.match(re)) {
     uri=uri.replace(re, '$1' + name + "=" + value + '$2');
     } else {
-      let hash =  '';
+      var hash =  '';
       if( uri.indexOf('#') !== -1 ){
         hash = uri.replace(/.*#/, '#');
         uri = uri.replace(/#.*/, '');
       }
-      let separator = uri.indexOf('?') !== -1 ? "&" : "?";
+      var separator = uri.indexOf('?') !== -1 ? "&" : "?";
       uri= uri + separator + name + "=" + value + hash;
     }
     history.pushState({q:value},"search for "+value,uri);
     return uri;
   } else {
-      let results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
     if (results == null) {
       return null;
     } else {
