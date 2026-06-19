@@ -60,7 +60,7 @@ const groupAlias = {
   "PfE": "Patriots",
 };
 
-var countries = {
+  const countries = {
   be: "Belgium",
   bg: "Bulgaria",
   cz: "Czech Republic",
@@ -91,7 +91,7 @@ var countries = {
   gb: "United Kingdom",
 };
 
-var iconify = function (name, prefix) { 
+  const iconify = function (name, prefix) { 
   if (prefix === "flag") return flag(name);
   prefix = prefix || "icon";
   return (
@@ -108,7 +108,7 @@ var iconify = function (name, prefix) {
 };
 
 
-var percentagecolor = d3
+  const percentagecolor = d3
   .scaleLinear()
   .domain([0, 49, 50, 51, 100])
   .range(["#27ae60", "#C8E6C9", "#9E9E9E", "#ffcdd2", "#d35400"])
@@ -120,7 +120,7 @@ const dayFormat = d3.timeFormat("%Y-%m-%d");
 const dateFormat = d3.timeFormat("%Y-%m-%d %H:%M:%S");
 const formatPercent = d3.format(".0%");
 
-var mwbaseUrl = new URL(document.currentScript && document.currentScript.src); 
+  const mwbaseUrl = new URL(document.currentScript && document.currentScript.src); 
 
 function dataUrl (path) {
   if (!mwbaseUrl)
@@ -176,7 +176,7 @@ console.log ("download...");
         }
       }
       //TODO: handle this properly, this is a big problem
-      var errors = [];
+  const errors = [];
       votes.forEach(function (v) {
         if (!v.processed) {
           errors.push(v);
@@ -303,7 +303,7 @@ d3.select(window).on("resize.updatedc", function () {
   dc.events.trigger(function () {
     dc.chartRegistry.list().forEach(function (chart) {
       if (chart.fixedSize) return;
-      var container = chart.root().node();
+  const container = chart.root().node();
       if (!container) return; // some graphs don't have a node (?!)
       container = container.parentNode.getBoundingClientRect();
       chart.width(container.width);
@@ -318,24 +318,24 @@ dc.config.defaultColors(d3.schemeCategory10);
 
 function urlParam(name, value) {
   if (typeof value == "string") {
-    var uri = window.location.href;
+  const uri = window.location.href;
     value = encodeURIComponent(value);
-    var re = new RegExp("([?&])" + name + "=.*?(&|#|$)", "i");
+  const re = new RegExp("([?&])" + name + "=.*?(&|#|$)", "i");
     if (uri.match(re)) {
       uri = uri.replace(re, "$1" + name + "=" + value + "$2");
     } else {
-      var hash = "";
+  const hash = "";
       if (uri.indexOf("#") !== -1) {
         hash = uri.replace(/.*#/, "#");
         uri = uri.replace(/#.*/, "");
       }
-      var separator = uri.indexOf("?") !== -1 ? "&" : "?";
+  const separator = uri.indexOf("?") !== -1 ? "&" : "?";
       uri = uri + separator + name + "=" + value + hash;
     }
     history.pushState({ q: value }, "search for " + value, uri);
     return uri;
   } else {
-    var results = new RegExp("[?&]" + name + "=([^&#]*)").exec(
+  const results = new RegExp("[?&]" + name + "=([^&#]*)").exec(
       window.location.href
     );
     if (results == null) {

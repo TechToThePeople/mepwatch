@@ -262,10 +262,10 @@
     <script src="./js/vote.js"></script>
     <script>
       "use strict";
-      var docs = {};
-      var _reportFilterActive = false;
+      let docs = {};
+      let _reportFilterActive = false;
       function updateResetButton() {
-        var hasFilter = _reportFilterActive
+      let hasFilter = _reportFilterActive
           || dc.chartRegistry.list().some(function (c) { return c.hasFilter(); });
         if (d3.select(".resetall").size()) {
           d3.select(".resetall").classed("disabled", !hasFilter);
@@ -302,13 +302,13 @@
         });
 
       function dl_doc(callback) {
-        var map = {
+      const map = {
           "REPORT on the proposal for a regulation of the European Parliament and of the Council":
             "Report",
           "JOINT MOTION FOR A RESOLUTION": "Motion",
           "MOTION FOR A RESOLUTION": "Motion",
         };
-        var needle = Object.keys(map);
+      const needle = Object.keys(map);
         d3.csv("data/text_tabled.csv", function (d) {
           needle.forEach(function (n) {
             d.title = d.title.replace(n, map[n]);
@@ -364,7 +364,7 @@
         updateResetButton();
 
         // Restore ?report= from URL on page load
-        var reportParam = urlParam("report");
+      let reportParam = urlParam("report");
         if (reportParam && graphs.report) {
           _reportFilterActive = true;
           graphs.report.dim.filter(reportParam);
@@ -375,11 +375,11 @@
       }
 
       function drawNumbers(graphs) {
-        var dim = ndx.dimension(function (d) {
+      const dim = ndx.dimension(function (d) {
           return true;
         });
 
-        var reducer = reductio();
+      const reducer = reductio();
         reducer.count(true);
         results.forEach(function (r) {
           reducer
@@ -390,7 +390,7 @@
             });
         });
 
-        var group = dim.group();
+      const group = dim.group();
         reducer(group);
 
         graphs.rollcalls = dc
@@ -417,7 +417,7 @@
           dc.filterAll();
           dc.renderAll();
           // Remove report param from URL
-          var u = new URL(window.location);
+      let u = new URL(window.location);
           u.searchParams.delete('report');
           history.replaceState({}, '', u.toString());
           updateResetButton();
@@ -439,12 +439,12 @@
             },
           };
         }
-        var dim = ndx.dimension(function (d) {
+      const dim = ndx.dimension(function (d) {
           return d.report ? d.report : "?";
         });
         //var group = dim.group().reduceSum(function(d) { return 1;});
-        var group = dim.group();
-        var reducer = reductio()
+      const group = dim.group();
+      const reducer = reductio()
           .count(true)
           .max(function (d) {
             return d.date;
@@ -476,7 +476,7 @@
           (d) => d.value.count,
         ].filter((d, i) => (isMobile ? !mobileColumns.includes(i) : true));
 
-        var graph = dc
+      const graph = dc
           .dataTable(dom)
           .dimension(remove_empty_bins(group))
           .size(10000)
@@ -500,7 +500,7 @@
           .on("renderlet.filter", function (g) {
             g.selectAll('tr.dc-table-row a').on('click', (e) => { console.log("oeil");return e.stopPropagation()});
             g.selectAll("tr.dc-table-row").on("click", function (d) {
-              var id = d3.select(this).datum().key;
+      let id = d3.select(this).datum().key;
               console.log(id);
               _reportFilterActive = true;
               graphs.report.dim.filter(id);
@@ -518,22 +518,22 @@
       function drawDate(dom) {
         // not working for now....
         //var dim=ndx.dimension(function(d){return [d.year,d.week,d.day]});
-        var col = d3.timeFormat("%y-%m-%w");
-        var coltick = d3.timeFormat("%b");
-        var lasttick = "";
-        var dim = ndx.dimension(function (d) {
+      let col = d3.timeFormat("%y-%m-%w");
+      const coltick = d3.timeFormat("%b");
+      const lasttick = "";
+      const dim = ndx.dimension(function (d) {
           return d.date;
         });
-        var group = dim.group().reduceSum(function (d) {
+      const group = dim.group().reduceSum(function (d) {
           return 1;
         });
         //    var day=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
-        var day = ["Sat", "Fri", "Thu", "Wed", "Tue", "Mon", "Sun"];
-        var color = d3
+      const day = ["Sat", "Fri", "Thu", "Wed", "Tue", "Mon", "Sun"];
+      const color = d3
           .scaleLinear()
           .domain([0, 1, 300])
           .range(["white", "lightgrey", "#7b2253"]);
-        var tip = d3
+      const tip = d3
           .tip()
           .attr("class", "d3-tip wide-tip")
           .offset([-10, 0])
@@ -547,7 +547,7 @@
               "</span></div>"
             );
           });
-        var graph = dc
+      const graph = dc
           .heatMap(dom)
           .dimension(dim)
           .group(group)
@@ -557,7 +557,7 @@
             return day[d];
           })
           .colsLabel(function (d) {
-            var t = Math.floor(d / 100000);
+      let t = Math.floor(d / 100000);
             if (lasttick !== t) {
               lasttick = t;
               return t;
@@ -617,7 +617,7 @@
             d3.select(dom + " input").classed("form-control", true);
             if (d3.select(dom + ".input-group").empty())
               //          d3.select(dom).classed("input-group",true).append("div").classed("input-group-append",true).append("span").classed("input-group-text",true).text("🔎");
-              var input = d3.select(this.anchor() + " input");
+      let input = d3.select(this.anchor() + " input");
             if (input.property("value")) {
               if (q != input.property("value")) {
                 urlParam("q", input.property("value"));
@@ -634,10 +634,10 @@
       }
 
       function drawTable(dom) {
-        var dim = ndx.dimension(function (d) {
+      const dim = ndx.dimension(function (d) {
           return d.identifier;
         });
-        var graph = dc
+      const graph = dc
           .dataTable(dom)
           .dimension(dim)
           .size(500)
@@ -664,7 +664,7 @@
               );
             },
             function (d) {
-              var f = "";
+      let f = "";
               if (docs[d.report]) {
                 f =
                   "<div class='rapporteur'>" +
@@ -700,25 +700,25 @@
         return graph;
       }
 
-      var urlParam = function (name, value) {
+      const urlParam = function (name, value) {
         if (value) {
-          var uri = window.location.href;
-          var re = new RegExp("([?&])" + name + "=.*?(&|#|$)", "i");
+      let uri = window.location.href;
+      let re = new RegExp("([?&])" + name + "=.*?(&|#|$)", "i");
           if (uri.match(re)) {
             uri = uri.replace(re, "$1" + name + "=" + value + "$2");
           } else {
-            var hash = "";
+      let hash = "";
             if (uri.indexOf("#") !== -1) {
               hash = uri.replace(/.*#/, "#");
               uri = uri.replace(/#.*/, "");
             }
-            var separator = uri.indexOf("?") !== -1 ? "&" : "?";
+      let separator = uri.indexOf("?") !== -1 ? "&" : "?";
             uri = uri + separator + name + "=" + value + hash;
           }
           history.pushState({ q: value }, "search for " + value, uri);
           return uri;
         } else {
-          var results = new RegExp("[\?&]" + name + "=([^&#]*)").exec(
+      let results = new RegExp("[\?&]" + name + "=([^&#]*)").exec(
             window.location.href
           );
           if (results == null) {

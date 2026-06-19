@@ -11,7 +11,7 @@ if (!String.prototype.startsWith) {
 }
 
 const urlParam = function(name){
-  var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+  const results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
   if (results==null){
     return null;
   }
@@ -22,14 +22,14 @@ const urlParam = function(name){
 
 (function(){
 
-  var defaults = {
+  const defaults = {
     url: "https://mepwatch.eu/9",
     cssClass: "mepwatch",
     params: "v,action".split(",")
   };
 
-  var style = function (){
-    var style   = document.createElement("style");
+  const style = function (){
+  let style   = document.createElement("style");
     style.type = 'text/css';
     style.id = 'mepwatch-style';
     style.appendChild(document.createTextNode(".mepwatch-act iframe {width:100%;min-width:100%;border:0px;overflow:hidden;}"));
@@ -37,31 +37,31 @@ const urlParam = function(name){
     document.head.appendChild(style);
   };
 
-  var iframe = function () {
-    var target = document.querySelector(".mepwatch-act");
+  const iframe = function () {
+  const target = document.querySelector(".mepwatch-act");
     if (!target) return;
-    var iframe = document.createElement('iframe');
+  const iframe = document.createElement('iframe');
     iframe.className = 'mepwatch-iframe';
-    var vote=target.dataset.vote || urlParam("v");
+  let vote=target.dataset.vote || urlParam("v");
     iframe.src = defaults.url + 'widget-act.html?v='+vote;
     iframe.scrolling= 'no';
     target.appendChild(iframe);
   };
 
-  var iframeGraph = function () {
-    var targets = document.querySelectorAll(".mepwatch-graph");
+  const iframeGraph = function () {
+  const targets = document.querySelectorAll(".mepwatch-graph");
     if (targets.length == 0) return;
     targets.forEach(function(target){
-      var iframe = document.createElement('iframe');
+  const iframe = document.createElement('iframe');
       iframe.className = 'mepwatch-iframe';
       iframe.scrolling= 'no';
-      var vote=target.dataset.vote || urlParam("v");
+  let vote=target.dataset.vote || urlParam("v");
       iframe.src = defaults.url + 'embed.html?v='+vote;
       target.appendChild(iframe);
     });
   };
 
-  var iframeresizer = function(){
+  const iframeresizer = function(){
     iFrameResize({
       log:false,
       checkOrigin:false,

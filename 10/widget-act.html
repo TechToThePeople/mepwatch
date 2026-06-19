@@ -293,7 +293,7 @@ function selectTab(hash){
 //d3.selectAll(".embed > .row").attr("hidden","");
 //  d3.select(".embed #mep").attr("hidden",null);
 
-var steps="About,Intro,Country,Party,Position,MEPs".split(",");
+      let steps="About,Intro,Country,Party,Position,MEPs".split(",");
 d3.select(".nav")
   .selectAll(".nav-item")
   .data(steps)
@@ -307,14 +307,14 @@ d3.select(".nav")
 //d3.selectAll(".embed a.nav-link")
   .on("click",function(){
     d3.event.preventDefault();
-    var hash = this.href.substring(this.href.indexOf('#')+1);
+      let hash = this.href.substring(this.href.indexOf('#')+1);
     selectTab(hash);
     d3.select(this).classed("active",true);
   });
 
 d3.selectAll(".tabcontrol").on("click",function(){
   d3.event.preventDefault();
-  var hash = this.href.substring(this.href.indexOf('#')+1);
+      let hash = this.href.substring(this.href.indexOf('#')+1);
   selectTab(hash);
   d3.select(this).classed("active",true);
 });
@@ -347,9 +347,9 @@ selectTab(urlParam("action")|| "intro");
     <script>
       'use strict';
 
-var graphs = {};
+      let graphs = {};
 
-var voteid= Number(urlParam("v") || 93602);
+      let voteid= Number(urlParam("v") || 93602);
 
 download(voteid,draw);
 
@@ -379,17 +379,17 @@ function draw(){
 }
 
 function drawNumbers(graphs) {
-  var dim = ndx.dimension(function(d) {
+      const dim = ndx.dimension(function(d) {
     return true;
   });
 
-  var reducer = reductio();
+      const reducer = reductio();
   reducer.value("nb").count(true);
   results.forEach(function(r){
     reducer.value(r).count(true).filter(function(d){ return d.vote == r});
   });
 
-  var group = dim.group();
+      const group = dim.group();
   reducer(group);
 
 
@@ -398,7 +398,7 @@ function drawNumbers(graphs) {
     .valueAccessor(function(d) {return d.value.nb.count})
     .formatNumber(d3.format("d"))
     .on("renderlet.linked",function(){
-      var d=group.top(1)[0].value.nb.count;
+      let d=group.top(1)[0].value.nb.count;
       d3.select(".nbmep button").classed("disabled",d == config.nb);
       d3.select(".nbmep .total").classed("d-none",d == config.nb);
       drawMep();
@@ -418,11 +418,11 @@ function drawNumbers(graphs) {
 }
 
 function drawResult(dom) {
-  var graph = dc.pieChart(dom);//.innerRadius(40) //.radius(70);
-  var dim = ndx.dimension(function(d) {
+      const graph = dc.pieChart(dom);//.innerRadius(40) //.radius(70);
+      const dim = ndx.dimension(function(d) {
     return d.vote || "?";
   });
-  var group = dim.group().reduceSum(function(d) {
+      const group = dim.group().reduceSum(function(d) {
     return 1;
   });
   graph
@@ -449,7 +449,7 @@ function drawResult(dom) {
 
 
 function drawIntro(){
-  var voted=config.for+config.against+config.abstention;
+      let voted=config.for+config.against+config.abstention;
   //d3.select("#intro .date").text(d3.timeFormat("%e %B %Y at %H:%M")(config.date));
   d3.select("#intro .date").text(d3.timeFormat("%e %B %Y")(config.date));
   d3.select("#intro .name").text(config.name);
@@ -469,19 +469,19 @@ function drawIntro(){
 }
 
 function drawMep() {
-  var meps=ndx.allFiltered();
-  var i=Math.floor(Math.random() * meps.length);
+      let meps=ndx.allFiltered();
+      let i=Math.floor(Math.random() * meps.length);
   doT.templateSettings.varname = "d";
-  var meptpl = doT.template(d3.select("#mep-template").html());
+      let meptpl = doT.template(d3.select("#mep-template").html());
   meps[i].mailhref = (function (d){
-    var href="mailto:"+d.email;
+      let href="mailto:"+d.email;
     if (config.subject && config.subject[d.vote]) {
         href += "?subject="+encodeURIComponent(config.subject[d.vote]);
         href += "&body="+encodeURIComponent(config.body[d.vote]);
     }
     return href;
   })(meps[i]);
-  var html=meptpl(meps[i]);
+      let html=meptpl(meps[i]);
   d3.select("#mep-card")
     .classed("flip",false)
     .each(function(){this.offsetWidth})
@@ -497,9 +497,9 @@ function drawMep() {
 
   d3.selectAll(".tweet")
     .on("click",function(){
-      var d=meps[i];
-      var url= "https://mepwatch.eu/widget.html?epid="+d.epid;
-      var tpl = ".@mep , this is what you voted {url}, do you want to comment? #mepwatch";
+      let d=meps[i];
+      let url= "https://mepwatch.eu/widget.html?epid="+d.epid;
+      let tpl = ".@mep , this is what you voted {url}, do you want to comment? #mepwatch";
       if (config.tweets && config.tweets[d.vote]) 
         tpl=config.tweets[d.vote];
       tpl=tpl.replace("@mep","@"+d.twitter).replace("{url}",url);
@@ -508,14 +508,14 @@ function drawMep() {
     })
 
   function tweet(text){
-    var url="https://twitter.com/intent/tweet?text="+encodeURIComponent(text);
-    var  windowOptions = 'scrollbars=yes,resizable=yes,toolbar=no,location=yes',
+      let url="https://twitter.com/intent/tweet?text="+encodeURIComponent(text);
+    const windowOptions = 'scrollbars=yes,resizable=yes,toolbar=no,location=yes',
       width = 550,
       height = 420,
       winHeight = screen.height,
       winWidth = screen.width;
-      var left = Math.round((winWidth / 2) - (width / 2));
-      var top = 0;
+      let left = Math.round((winWidth / 2) - (width / 2));
+      let top = 0;
 
       if (winHeight > height) {
         top = Math.round((winHeight / 2) - (height / 2));
@@ -528,11 +528,11 @@ function drawMep() {
 }
 
 function drawParty (dom){
-  var dim = ndx.dimension(function(d){return d.party});
-  var group = dim.group().reduceSum(function(d) {return 1;});
+      const dim = ndx.dimension(function(d){return d.party});
+      const group = dim.group().reduceSum(function(d) {return 1;});
 
 
-  var graph=dc.selectMenu(dom)
+      let graph=dc.selectMenu(dom)
     .dimension(dim)
     .controlsUseVisibility(true)
     .promptText('Select the party')
@@ -556,7 +556,7 @@ function drawParty (dom){
     return {
       all:function () {
         source_group.top(Infinity);
-        var g=source_group.all().filter(function(d) {
+      let g=source_group.all().filter(function(d) {
           return d.value !== 0; 
         });
         return g;
@@ -566,18 +566,18 @@ function drawParty (dom){
 
 };
 function drawGraphCountry(dom) {
-  var dim = ndx.dimension(function(d) {return d.country;});
-  var reducer = reductio();
-  var res=results.slice();
+      const dim = ndx.dimension(function(d) {return d.country;});
+      const reducer = reductio();
+      let res=results.slice();
   reducer.value("nb").count(true);
   res.forEach(function(r){
     reducer.value(r).count(true).filter(function(d){ return d.vote == r});
   });
 
-  var group = dim.group();
+      const group = dim.group();
   reducer(group);
 
-  var graph = dc.barChart(dom);
+      const graph = dc.barChart(dom);
   graph.relative=true;
 
   function getValue(result){
@@ -628,8 +628,8 @@ function drawGraphCountry(dom) {
       rotateBarChartLabels();
       if (!d3.select("#country .axis.x use").empty()) return;
       d3.select(dom).selectAll("rect").on("click.flag",function(){
-        var b=d3.select(this);
-        var country=b.datum().data.key;
+      let b=d3.select(this);
+      let country=b.datum().data.key;
         graphs.country.filter(null).filter(country).redraw();
         d3.select(".nav-link .flag").attr("href","#flag-"+country);
 
@@ -663,7 +663,7 @@ function drawGraphCountry(dom) {
 
   function toggleMode (){
     d3.selectAll("#country h5 button").on("click",function(){
-      var b=d3.select(this);
+      let b=d3.select(this);
       if (!b.classed("active")) return;
       graph.relative= b.classed("btn-relative");
       b.classed("active",false);
@@ -678,10 +678,10 @@ function drawGraphCountry(dom) {
 function drawCountry (dom){
 
   //var dim = ndx.dimension(function(d){return d.country});
-  var dim = graphs.barcountry.dimension();
-  var group = dim.group().reduceSum(function(d) {return 1;});
+      let dim = graphs.barcountry.dimension();
+      const group = dim.group().reduceSum(function(d) {return 1;});
 
-  var graph=dc.selectMenu(dom)
+      let graph=dc.selectMenu(dom)
     .dimension(dim)
     .group(group)
     .title(function(d){return countries[d.key]})
