@@ -264,6 +264,13 @@
       "use strict";
       var docs = {};
       var _reportFilterActive = false;
+      function updateResetButton() {
+        var hasFilter = _reportFilterActive
+          || dc.chartRegistry.list().some(function (c) { return c.hasFilter(); });
+        if (d3.select(".resetall").size()) {
+          d3.select(".resetall").classed("disabled", !hasFilter);
+        }
+      }
       docs.get = function (reference) {
         docs[reference] ? docs[reference] : "";
       };
@@ -348,13 +355,6 @@
         graphs.search = drawSearch("form#search");
 
         drawNumbers(graphs);
-
-        // Track whether any filter is active for the reset button
-        function updateResetButton() {
-          var hasFilter = _reportFilterActive
-            || dc.chartRegistry.list().some(function (c) { return c.hasFilter(); });
-          d3.select(".resetall").classed("disabled", !hasFilter);
-        }
 
         dc.chartRegistry.list().forEach(function (c) {
           c.on("filtered.updateReset", updateResetButton);
