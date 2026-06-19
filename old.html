@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta content="initial-scale=1, shrink-to-fit=no, width=device-width" name="viewport">
+
+    <!-- CSS -->
+    <link href="dist/css/main.css" rel="stylesheet">
+    <style>
+
+html,body {
+    height:100%;
+}
+.flex-fill {
+    flex:1;
+}
+
+.router {
+  position:relative;
+}
+
+.router::before {
+  --size: 0;
+  content: '';
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: var(--size);
+  height: var(--size);
+  background: radial-gradient(circle closest-side, #9c27b0, transparent);
+  transform: translate(-50%, -50%);
+  transition: width 0.2s ease, height 0.2s ease;
+}
+.router:hover::before {
+  --size: 123px;
+}
+
+
+
+html, body {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.router a {color:white;}
+.router a:hover {text-decoration:none;}
+
+.router svg {max-width:80%;max-height:300px;fill:#9c27b0;margin:1.3em 0}
+
+.router svg:hover { 
+  fill:white; 
+-no-animation-name: rubberBand; 
+-no-animation-duration: 1s; 
+-no-animation-fill-mode: both; 
+} 
+
+    .icon
+    {
+      display: inline-block;
+      width: 25px;
+      height: 20px;
+      text-indent: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      background-size: cover;
+      background-position:center;
+    }
+</style>
+  </head>
+  <body>
+    <header>
+      <div class="collapse bg-primary-light" id="navbarHeader">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-8 col-md-7 py-4">
+              <h4 class=""><a href="proposal.html">About</a></h4>
+              <p class="">
+              </p>
+            </div>
+            <div class="col-sm-4 offset-md-1 py-4">
+              <h4 class="">Contact</h4>
+              <ul class="list-unstyled">
+                <li><a href="https://twitter.com/eucampaign" class="">Follow on Twitter</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="navbar navbar-dark bg-primary box-shadow">
+        <div class="container d-flex justify-content-between">
+          <a href="#" class="navbar-brand d-flex align-items-center">
+            <svg><use href="#logo" /></svg>MEP Watch
+            
+          </a>
+
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+            <svg class="icon"><use href="#menu" /></svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main role="main" class="d-flex flex-column">
+
+      <section class="jumbotron text-center">
+        <div class="container">
+          <h1 class="jumbotron-heading">Informed citizens = Better democracy</h1>
+          <p>
+          We help you understand better 
+          Score your MEP on the issues you care about: closing the knowledge gap and promoting fact-based CSO campaigning for the European elections.
+          </p>
+        </div>
+      </section>
+     <div class="">
+        <div class="container-fluid d-flex flex-column">
+
+        <div class="row gradient router flex-fill d-flex">
+        <div class="col-md-4 p-4 d-none">
+          <a href="/presentation" >
+            <h3 class="text-center">How this works</h3>
+            <div class="text-center">
+              <svg viewBox="0 0 200 211"><path d="M30 124h85v5H30zm0-9h113v4H30zm0-10h139v5H30zm0-9h139v4H30zm0-10h139v5H30zm0-10h139v5H30zm0-9h139v5H30zm0-10h139v5H30zm0-9h139v5H30zm0-10h139v5H30zM12 0C5 0 0 5 0 12c0 6 4 10 9 12v127c0 3 2 5 5 5h79v3c-4 2-7 6-7 11l2 6-48 35h24l32-28 4 1 4-1 32 28h23l-9-7-38-28a13 13 0 0 0-5-17v-3h79c3 0 5-2 5-5V24c5-2 9-6 9-12 0-7-5-12-12-12H12zm7 27h162v119H19z"/></svg>
+              
+<p class="text-center">Our launch at the Eudatathon2018</p></a>
+            </div>
+      </div>
+        <div class="col-md-4 p-4">
+          <a href="/10" >
+            <h3 class="text-center">Analyse votes</h3>
+            <div class="text-center">
+            <svg viewBox="0 0 81 81"><g clip-rule="evenodd" fill-rule="evenodd"><path d="M69 42H56v6h4v1l2 5H16l2-5v-1h4v-6H9 8L1 59l-1 2h78l-9-19zM0 64v17h78v-1-16H0zM81 0H62v17h19V0z"/><path d="M54 26h-1-1l-11 8-2 1c-3 1-5 0-5-2l1-6 1-1H24v26h30z"/><path d="M37 24v-1l2-3 1-2h5v1l-1 1-7 9h-1v3c0 1 1 2 2 1l2-1a4189 4189 0 0 0 15-11l1-3a235 235 0 0 1 3-3V5H49h-1a1288 1288 0 0 0-14 11l-2 4-1 3 1 1h5z"/></g></svg>
+            </div>
+<p class="text-center">rollcalls 2024...</p></a>
+      </div>
+        <div class="col-md-4 p-4">
+          <a href="/9" >
+            <h3 class="text-center">9th term</h3>
+            <div class="text-center">
+            <svg viewBox="0 0 81 81"><g clip-rule="evenodd" fill-rule="evenodd"><path d="M69 42H56v6h4v1l2 5H16l2-5v-1h4v-6H9 8L1 59l-1 2h78l-9-19zM0 64v17h78v-1-16H0zM81 0H62v17h19V0z"/><path d="M54 26h-1-1l-11 8-2 1c-3 1-5 0-5-2l1-6 1-1H24v26h30z"/><path d="M37 24v-1l2-3 1-2h5v1l-1 1-7 9h-1v3c0 1 1 2 2 1l2-1a4189 4189 0 0 0 15-11l1-3a235 235 0 0 1 3-3V5H49h-1a1288 1288 0 0 0-14 11l-2 4-1 3 1 1h5z"/></g></svg>
+            </div>
+<p class="text-center">rollcalls 2019-2024</p></a>
+      </div>
+        <div class="col-md-4 p-4">
+          <a href="/8" >
+            <h3 class="text-center">8th term</h3>
+            <div class="text-center">
+            <svg viewBox="0 0 81 81"><g clip-rule="evenodd" fill-rule="evenodd"><path d="M69 42H56v6h4v1l2 5H16l2-5v-1h4v-6H9 8L1 59l-1 2h78l-9-19zM0 64v17h78v-1-16H0zM81 0H62v17h19V0z"/><path d="M54 26h-1-1l-11 8-2 1c-3 1-5 0-5-2l1-6 1-1H24v26h30z"/><path d="M37 24v-1l2-3 1-2h5v1l-1 1-7 9h-1v3c0 1 1 2 2 1l2-1a4189 4189 0 0 0 15-11l1-3a235 235 0 0 1 3-3V5H49h-1a1288 1288 0 0 0-14 11l-2 4-1 3 1 1h5z"/></g></svg>
+            </div>
+<p class="text-center">votes 2014-2019</p></a>
+      </div>
+        <div class="col-md-4 p-4 p-none">
+            <a href="presentation/app.html" ><h3 class="text-center">Score your MEP</h3>
+            <div class="text-center">
+              <svg viewBox="0 0 97 97"><path d="M42 81l-1-3-1-8h-1l-1-1 3-2 2-1 2 1 1 2v1l-1 1-2 1v3l-1 6c0 1 0 1 0 0z" fill="none"/><path d="M41 29v-2c0-2-1-4-5-5l-3-2 2-4 2-4 2-4h2l4 1 5 4c1 3 0 4-2 9l-6 7h-1zM28 18a42 42 0 0 1-7-4h-1v-1l1-2 2-3 4-6 2-2 6 4c2 1 2 2 2 3l-1 5c-4 6-5 7-8 6zm15 26l-4-2c-1-1-2-2-1-3l1-1v-1a40 40 0 0 1 5-7 201 201 0 0 0 6-9l2-2 3 1 6 5v2l-1 1a39 39 0 0 1-3 6 73 73 0 0 1-10 10h-4zm8 7l-2-2-1-2c0-2 1-2 4-6a283 283 0 0 1 11-11l2 1 2 6-1 4a95 95 0 0 1-13 11l-2-1zM32 41l-4-2v-1l3-2 3-1h4l-1 2a8 8 0 0 0-2 3c-1 2-1 2-3 1z"/><path d="M19 96v-5a51 51 0 0 0 1-6 63 63 0 0 0 1-8v-3c1-4 1-4-2-7L7 50a63 63 0 0 1-7-11l6-11 7-11 1-2h3l3 1a266 266 0 0 0 5 2l7 4 6 3v7l-9 3c-2 0-2-1-5-3l-2-1-3 3c-1 3-1 3 4 5l2 1 8 10a1588 1588 0 0 0 6 8v-2a48 48 0 0 0-4-7 36 36 0 0 0-3-4 3 3 0 0 1-1-1l2-1 9 2 7 6 3 2 1 1 1-1 4-3 5-4 1 4-2 12a25 25 0 0 1-5 8l-2 3-1 13v10l-18 1-17-1zm24-15v-5c0-4 0-4 2-5l2-1-2-3c-2-2-2-2-4 0a53 53 0 0 1-3 3h2l2 8v4l1-1z"/></svg>
+            </div>
+          <p>Use the app to score, contact and engage with your MEP</p>
+            </a>
+      </div>
+        </div>
+    </main>
+
+    <footer class="text-muted">
+      <div class="container">
+      </div>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <script src="dist/js/main.js"></script> 
+    <script src="dist/js/dcbundle.js"></script>
+  <script>
+var btn=document.querySelector('.router')
+btn.onmousemove = function(e) {
+  var x = e.pageX - btn.offsetLeft - btn.offsetParent.offsetLeft
+  var y = e.pageY - btn.offsetTop - btn.offsetParent.offsetTop
+  btn.style.setProperty('--x', x + 'px')
+  btn.style.setProperty('--y', y + 'px')
+}
+
+  </script>
+<svg class="d-none">
+  <symbol id="menu" viewBox="0 0 24 24">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+</symbol>
+<symbol id="logo" viewBox="0 0 24 24"><path d="M6 13c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0 4c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0-8c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm-3 .5c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zM6 5c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm15 5.5c.28 0 .5-.22.5-.5s-.22-.5-.5-.5-.5.22-.5.5.22.5.5.5zM14 7c.55 0 1-.45 1-1s-.45-1-1-1-1 .45-1 1 .45 1 1 1zm0-3.5c.28 0 .5-.22.5-.5s-.22-.5-.5-.5-.5.22-.5.5.22.5.5.5zm-11 10c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zm7 7c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zm0-17c.28 0 .5-.22.5-.5s-.22-.5-.5-.5-.5.22-.5.5.22.5.5.5zM10 7c.55 0 1-.45 1-1s-.45-1-1-1-1 .45-1 1 .45 1 1 1zm0 5.5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm8 .5c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0 4c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0-8c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0-4c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm3 8.5c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zM14 17c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0 3.5c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zm-4-12c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm0 8.5c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm4-4.5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm0-4c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5z"/></symbol>
+</svg>
+  </body>
+</html>

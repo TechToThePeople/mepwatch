@@ -1,5 +1,48 @@
 
 
+/* Bootstrap 5 primary color override — match old Daemonite Material purple */
+:root {
+  --bs-primary: #9c27b0;
+  --bs-primary-rgb: 156, 39, 176;
+  --bs-primary-bg-subtle: #f3e5f5;
+  --bs-primary-border-subtle: #ce93d8;
+  --bs-link-color: #9c27b0;
+  --bs-link-hover-color: #7b1fa2;
+}
+.btn-primary {
+  --bs-btn-bg: #9c27b0;
+  --bs-btn-border-color: #9c27b0;
+  --bs-btn-hover-bg: #7b1fa2;
+  --bs-btn-hover-border-color: #7b1fa2;
+  --bs-btn-active-bg: #6a1b9a;
+  --bs-btn-active-border-color: #6a1b9a;
+}
+.bg-primary {
+  --bs-bg-opacity: 1;
+  background-color: rgba(var(--bs-primary-rgb), var(--bs-bg-opacity)) !important;
+}
+.text-bg-primary {
+  color: #fff !important;
+  background-color: RGBA(var(--bs-primary-rgb), var(--bs-bg-opacity, 1)) !important;
+}
+.navbar-dark .navbar-toggler-icon {
+  filter: invert(1);
+}
+.bg-primary-light {
+  background-color: #f3e5f5 !important;
+}
+
+/* Bootstrap 5 removed jumbotron — restore as custom class */
+.jumbotron {
+  padding: 2rem 1rem;
+  margin-bottom: 2rem;
+  background-color: #e9ecef;
+  border-radius: 0.3rem;
+}
+.jumbotron-heading {
+  font-weight: 300;
+}
+
 .gradient {
 background-image: linear-gradient(-20deg, #6e45e2 0%, #88d3ce 100%);
 }
@@ -13,10 +56,15 @@ main {
 
 .navbar-brand svg {
   width:2em;
+  height:2em;
   fill:white;
   animation-name: rubberBand;
   animation-duration: 1s;
   animation-fill-mode: both;
+}
+.navbar-dark .date,
+.navbar-dark .rapporteur {
+  color: #fff;
 }
 
   @keyframes rubberBand {

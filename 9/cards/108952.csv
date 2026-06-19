@@ -4,7 +4,7 @@ mepid,name,result,eugroup,identifier,vote_id
 6895,Brudziński,for,ECR,108952,6895
 7214,Buxadé Villalba,for,ECR,108952,7214
 5490,Czarnecki,for,ECR,108952,5490
-7150,Ďuriš Nicholsonová,for,ECR,108952,7150
+7150,Ďuriš Nicholsonová,for,Renew,108952,7150
 6167,Eppink,for,ECR,108952,6167
 5982,Fidanza,for,ECR,108952,5982
 6998,Fiocchi,for,ECR,108952,6998
@@ -26,7 +26,7 @@ mepid,name,result,eugroup,identifier,vote_id
 6608,Lundgren,for,ECR,108952,6608
 6234,McIntyre,for,ECR,108952,6234
 6931,Mazurek,for,ECR,108952,6931
-7173,Melbārde,for,ECR,108952,7173
+7173,Melbārde,for,EPP,108952,7173
 6752,Mobarik,for,ECR,108952,6752
 6934,Możdżanowska,for,ECR,108952,6934
 5974,Poręba,for,ECR,108952,5974
@@ -60,7 +60,7 @@ mepid,name,result,eugroup,identifier,vote_id
 6604,Björk,for,GUE/NGL,108952,6604
 6914,Bompard,for,GUE/NGL,108952,6914
 6873,Botenga,for,GUE/NGL,108952,6873
-6832,Buschmann,for,NI,108952,6832
+6832,Buschmann,for,NA,108952,6832
 6598,Carthy,for,GUE/NGL,108952,6598
 6922,Chaibi,for,GUE/NGL,108952,6922
 7113,Daly,for,GUE/NGL,108952,7113
@@ -69,7 +69,7 @@ mepid,name,result,eugroup,identifier,vote_id
 5886,Ferreira,for,GUE/NGL,108952,5886
 6597,Flanagan,for,GUE/NGL,108952,6597
 6815,Georgiou,for,GUE/NGL,108952,6815
-7204,Georgoulis,for,GUE/NGL,108952,7204
+7204,Georgoulis,for,NA,108952,7204
 6628,Hazekamp,for,GUE/NGL,108952,6628
 6814,Kizilyürek,for,GUE/NGL,108952,6814
 7126,Kokkalis,for,GUE/NGL,108952,7126
@@ -96,10 +96,10 @@ mepid,name,result,eugroup,identifier,vote_id
 7174,Baldassarre,for,ID,108952,7174
 6988,Bardella,for,ID,108952,6988
 7001,Basso,for,ID,108952,7001
-6394,Bay,for,ID,108952,6394
+6394,Bay,for,NA,108952,6394
 6874,Beck,for,ID,108952,6874
 7068,Beigneux,for,ID,108952,7068
-6875,Berg,for,ID,108952,6875
+6875,Berg,for,ECR,108952,6875
 6405,Bilde,for,ID,108952,6405
 6179,Bizzotto,for,ID,108952,6179
 6954,Blaško,for,ID,108952,6954
@@ -108,16 +108,16 @@ mepid,name,result,eugroup,identifier,vote_id
 7076,Bruna,for,ID,108952,7076
 6876,Buchheit,for,ID,108952,6876
 6981,Campomenosi,for,ID,108952,6981
-7182,Caroppo,for,NI,108952,7182
+7182,Caroppo,for,EPP,108952,7182
 7181,Casanova,for,ID,108952,7181
 7170,Ceccardi,for,ID,108952,7170
 6731,Ciocca,for,ID,108952,6731
-7071,Collard,for,ID,108952,7071
+7071,Collard,for,NA,108952,7071
 7007,Conte,for,ID,108952,7007
 6999,Da Re,for,ID,108952,6999
 6949,David,for,ID,108952,6949
 6869,De Man,for,ID,108952,6869
-7207,Donato,for,ID,108952,7207
+7207,Donato,for,NA,108952,7207
 7005,Dreosto,for,ID,108952,7005
 6877,Fest,for,ID,108952,6877
 6972,Gancia,for,ID,108952,6972
@@ -125,12 +125,12 @@ mepid,name,result,eugroup,identifier,vote_id
 7184,Grant,for,ID,108952,7184
 7019,Griset,for,ID,108952,7019
 7246,Haider,for,ID,108952,7246
-6989,Hakkarainen,for,ID,108952,6989
-6986,Huhtasaari,for,ID,108952,6986
+6989,Hakkarainen,for,ECR,108952,6989
+6986,Huhtasaari,for,NI,108952,6986
 6404,Jalkh,for,ID,108952,6404
 6751,Jamet,for,ID,108952,6751
 7017,Joron,for,ID,108952,7017
-7016,Juvin,for,ID,108952,7016
+7016,Juvin,for,NA,108952,7016
 6960,Kofod,for,ID,108952,6960
 6879,Kuhs,for,ID,108952,6879
 6771,Lancini,for,ID,108952,6771
@@ -143,242 +143,242 @@ mepid,name,result,eugroup,identifier,vote_id
 7013,Mariani,for,ID,108952,7013
 6627,Mayer,for,ID,108952,6627
 6399,Mélin,for,ID,108952,6399
-6759,Meuthen,for,ID,108952,6759
+6759,Meuthen,for,NA,108952,6759
 7075,Olivier,for,ID,108952,7075
 6979,Panza,for,ID,108952,6979
-7175,Regimenti,for,ID,108952,7175
+7175,Regimenti,for,EPP,108952,7175
 6881,Reil,for,ID,108952,6881
 7171,Rinaldi,for,ID,108952,7171
-7006,Rivière,for,ID,108952,7006
+7006,Rivière,for,NA,108952,7006
 7078,Rougé,for,ID,108952,7078
 6968,Sardone,for,ID,108952,6968
 7191,Tardino,for,ID,108952,7191
 6970,Tovaglieri,for,ID,108952,6970
 7234,Vandendriessche,for,ID,108952,7234
 6610,Vilimsky,for,ID,108952,6610
-7183,Vuolo,for,ID,108952,7183
+7183,Vuolo,for,EPP,108952,7183
 6976,Zambelli,for,ID,108952,6976
 6414,Zanni,for,ID,108952,6414
 6882,Zimniok,for,ID,108952,6882
-6468,Adinolfi Isabella,for,NI,108952,6468
-6411,Beghin,for,NI,108952,6411
+6468,Adinolfi Isabella,for,EPP,108952,6468
+6411,Beghin,for,NA,108952,6411
 7103,Bull,for,NI,108952,7103
 6748,Bullock,for,NI,108952,6748
-6446,Castaldo,for,NI,108952,6446
-6494,Corrao,for,Verts/ALE,108952,6494
-6472,D'Amato,for,Verts/ALE,108952,6472
+6446,Castaldo,for,NA,108952,6446
+6494,Corrao,for,Greens/EFA,108952,6494
+6472,D'Amato,for,Greens/EFA,108952,6472
 7144,Daubney,for,NI,108952,7144
 7118,De Lucy,for,NI,108952,7118
 6106,Dodds,for,NI,108952,6106
-6413,Evi,for,Verts/ALE,108952,6413
-6470,Ferrara,for,NI,108952,6470
-7091,Forman,for,NI,108952,7091
-7180,Furore,for,NI,108952,7180
-7179,Gemma,for,NI,108952,7179
-7189,Giarrusso,for,NI,108952,7189
+6413,Evi,for,Greens/EFA,108952,6413
+6470,Ferrara,for,NA,108952,6470
+7091,Forman,for,ECR,108952,7091
+7180,Furore,for,NA,108952,7180
+7179,Gemma,for,ECR,108952,7179
+7189,Giarrusso,for,NA,108952,7189
 6584,Gill Nathan,for,NI,108952,6584
 7134,Glancy,for,NI,108952,7134
-7243,Gyöngyösi,for,NI,108952,7243
+7243,Gyöngyösi,for,NA,108952,7243
 7194,Harris,for,ECR,108952,7194
 6993,Heaver,for,NI,108952,6993
 7136,Jordan,for,NI,108952,7136
-6836,Kolakušić,for,NI,108952,6836
-7123,Konstantinou,for,NI,108952,7123
-7119,Lagos,for,NI,108952,7119
+6836,Kolakušić,for,NA,108952,6836
+7123,Konstantinou,for,NA,108952,7123
+7119,Lagos,for,NA,108952,7119
 7192,Longworth,for,ECR,108952,7192
 7143,Lowe,for,NI,108952,7143
 7092,Monteith,for,NI,108952,7092
 6995,Mummery,for,NI,108952,6995
-7116,Nikolaou-Alavanos,for,NI,108952,7116
+7116,Nikolaou-Alavanos,for,NA,108952,7116
 7100,Overgaard Nielsen,for,NI,108952,7100
-6676,Papadakis Kostas,for,NI,108952,6676
+6676,Papadakis Kostas,for,NA,108952,6676
 7011,Patten,for,NI,108952,7011
-6482,Pedicini,for,Verts/ALE,108952,6482
+6482,Pedicini,for,Greens/EFA,108952,6482
 7101,Phillips Alexandra Lesley,for,NI,108952,7101
-7010,Pignedoli,for,NI,108952,7010
+7010,Pignedoli,for,NA,108952,7010
 7198,Pugh,for,NI,108952,7198
-7003,Rees-Mogg,for,NI,108952,7003
-7177,Rondinelli,for,NI,108952,7177
+7003,Rees-Mogg,for,ECR,108952,7003
+7177,Rondinelli,for,S&D,108952,7177
 7115,Rowland,for,NI,108952,7115
-6471,Sonneborn,for,NI,108952,6471
+6471,Sonneborn,for,NA,108952,6471
 7199,Stedman-Bryce,for,NI,108952,7199
 7093,Tennant,for,NI,108952,7093
-7147,Uhrík,for,NI,108952,7147
+7147,Uhrík,for,NA,108952,7147
 7141,Wells,for,NI,108952,7141
 7127,Widdecombe,for,NI,108952,7127
-6695,Zullo,for,NI,108952,6695
-6755,Ademov,for,PPE,108952,6755
-7219,Alexandrov Yordanov,for,PPE,108952,7219
-7129,Amaro,for,PPE,108952,7129
-5980,Arias Echeverría,for,PPE,108952,5980
-6594,Arimont,for,PPE,108952,6594
-6885,Arłukowicz,for,PPE,108952,6885
-7083,Asimakopoulou,for,PPE,108952,7083
-7060,Băsescu,for,PPE,108952,7060
-6927,Bellamy,for,PPE,108952,6927
-7067,Benjumea Benjumea,for,PPE,108952,7067
-6807,Bentele,for,PPE,108952,6807
-7162,Berendsen,for,PPE,108952,7162
-7037,Bernhuber,for,PPE,108952,7037
-7155,Bilčík,for,PPE,108952,7155
-7026,Blaga,for,PPE,108952,7026
-6343,Bocskor,for,PPE,108952,6343
-7025,Bogdan,for,PPE,108952,7025
-6613,Bogovič,for,PPE,108952,6613
-6617,Buda,for,PPE,108952,6617
-5729,Buşoi,for,PPE,108952,5729
-5388,Buzek,for,PPE,108952,5388
-6039,Carvalho,for,PPE,108952,6039
-5252,Casa,for,PPE,108952,5252
-5341,Caspary,for,PPE,108952,5341
-5508,del Castillo Vera,for,PPE,108952,5508
-5236,Christoforou,for,PPE,108952,5236
-6929,Colin-Oesterlé,for,PPE,108952,6929
-5981,van Dalen,for,PPE,108952,5981
-5921,Danjean,for,PPE,108952,5921
-6345,Deli,for,PPE,108952,6345
-5998,Deutsch,for,PPE,108952,5998
-6762,Didier,for,PPE,108952,6762
-6870,Doleschal,for,PPE,108952,6870
-5960,Dorfmann,for,PPE,108952,5960
-6903,Duda,for,PPE,108952,6903
-6810,Düpont,for,PPE,108952,6810
-7032,Edtstadler,for,PPE,108952,7032
-5348,Ehler,for,PPE,108952,5348
-5983,Estaràs Ferragut,for,PPE,108952,5983
-6928,Evren,for,PPE,108952,6928
-7038,Falcă,for,PPE,108952,7038
-3833,Ferber,for,PPE,108952,3833
-6068,Fernandes,for,PPE,108952,6068
-7108,Fitzgerald,for,PPE,108952,7108
-6813,Fourlas,for,PPE,108952,6813
-6906,Frankowski,for,PPE,108952,6906
-6852,Franssen,for,PPE,108952,6852
-4659,Gahler,for,PPE,108952,4659
-5280,Gál,for,PPE,108952,5280
-3980,García-Margallo y Marfil,for,PPE,108952,3980
-6441,Gieseke,for,PPE,108952,6441
-6632,González Pons,for,PPE,108952,6632
-6002,Győri,for,PPE,108952,6002
-5138,Gyürk,for,PPE,108952,5138
-6907,Halicki,for,PPE,108952,6907
-6777,Hansen,for,PPE,108952,6777
-7035,Hava,for,PPE,108952,7035
-6811,Herbst,for,PPE,108952,6811
-6534,Hetman,for,PPE,108952,6534
-6318,Hidvéghi,for,PPE,108952,6318
-5953,Hohlmeier,for,PPE,108952,5953
-6346,Hölvényi,for,PPE,108952,6346
-4987,Hortefeux,for,PPE,108952,4987
-5952,Hübner,for,PPE,108952,5952
-5945,Jahr,for,PPE,108952,5945
-6910,Jarubas,for,PPE,108952,6910
-7223,Juknevičienė,for,PPE,108952,7223
-5944,Kalinowski,for,PPE,108952,5944
-6095,Kalniete,for,PPE,108952,6095
-7222,Kanev,for,PPE,108952,7222
-4669,Karas,for,PPE,108952,4669
-6666,Kefalogiannis,for,PPE,108952,6666
-5855,Kelly,for,PPE,108952,5855
-6805,Kokalari,for,PPE,108952,6805
-6918,Kopacz,for,PPE,108952,6918
-6001,Kósa,for,PPE,108952,6001
-6196,Kovatchev,for,PPE,108952,6196
-7226,Kubilius,for,PPE,108952,7226
-7080,Kympouropoulos,for,PPE,108952,7080
-6662,Kyrtsos,for,PPE,108952,6662
-5727,de Lange,for,PPE,108952,5727
-6793,Lega,for,PPE,108952,6793
-6592,Lenaers,for,PPE,108952,6592
-5105,Lewandowski,for,PPE,108952,5105
-3855,Liese,for,PPE,108952,3855
-6442,Lins,for,PPE,108952,6442
-7161,López Gil,for,PPE,108952,7161
-5517,López-Istúriz White,for,PPE,108952,5517
-5964,Łukacijewska,for,PPE,108952,5964
-6855,Lutgen,for,PPE,108952,6855
-6440,McAllister,for,PPE,108952,6440
-5245,McGuinness,for,PPE,108952,5245
-7218,Maldeikienė,for,PPE,108952,7218
-4964,Manders,for,PPE,108952,4964
-6761,Mandl,for,PPE,108952,6761
-5646,Marinescu,for,PPE,108952,5646
-6465,Martusciello,for,PPE,108952,6465
-6483,Maydell,for,PPE,108952,6483
-7224,Mažylis,for,PPE,108952,7224
-7051,Meimarakis,for,PPE,108952,7051
-6121,Melo,for,PPE,108952,6121
-6297,Metsola,for,PPE,108952,6297
-7209,Milazzo,for,PPE,108952,7209
-5518,Millán Mon,for,PPE,108952,5518
-6366,Monteiro de Aguiar,for,PPE,108952,6366
-6368,Morano,for,PPE,108952,6368
-6825,Mortler,for,PPE,108952,6825
-7036,Motreanu,for,PPE,108952,7036
-6436,Mureşan,for,PPE,108952,6436
-4712,Niebler,for,PPE,108952,4712
-6332,Niedermayer,for,PPE,108952,6332
-6709,Novakov,for,PPE,108952,6709
-5407,Olbrycht,for,PPE,108952,5407
-5702,Patriciello,for,PPE,108952,5702
-6819,Peeters,for,PPE,108952,6819
-7120,Pereira Lídia,for,PPE,108952,7120
-5346,Pieper,for,PPE,108952,5346
-5788,Pietikäinen,for,PPE,108952,5788
-6335,Polčák,for,PPE,108952,6335
-6803,Polfjärd,for,PPE,108952,6803
-7149,Pollák,for,PPE,108952,7149
-6700,Pospíšil,for,PPE,108952,6700
-6488,Radev,for,PPE,108952,6488
-6750,Radtke,for,PPE,108952,6750
-6072,Rangel,for,PPE,108952,6072
-6812,Ressler,for,PPE,108952,6812
-6698,Salini,for,PPE,108952,6698
-6370,Sander,for,PPE,108952,6370
-6259,Sarvamaa,for,PPE,108952,6259
-7045,Schmiedtbauer,for,PPE,108952,7045
-6821,Schneider,for,PPE,108952,6821
-6636,Schreijer-Pierik,for,PPE,108952,6636
-6443,Schulze,for,PPE,108952,6443
-5345,Schwab,for,PPE,108952,5345
-6823,Seekatz,for,PPE,108952,6823
-6824,Simon,for,PPE,108952,6824
-6790,Skyttedal,for,PPE,108952,6790
-6341,Šojdrová,for,PPE,108952,6341
-6816,Sokol,for,PPE,108952,6816
-6663,Spyraki,for,PPE,108952,6663
-6547,Štefanec,for,PPE,108952,6547
-6301,Šuica,for,PPE,108952,6301
-5143,Szájer,for,PPE,108952,5143
-4482,Tajani,for,PPE,108952,4482
-7056,Thaler,for,PPE,108952,7056
-5949,Thun und Hohenstein,for,PPE,108952,5949
-7061,Tomac,for,PPE,108952,7061
-6681,Tomc,for,PPE,108952,6681
-6965,Tóth,for,PPE,108952,6965
-7241,Trócsányi,for,PPE,108952,7241
-5600,Vaidere,for,PPE,108952,5600
-5714,Vălean,for,PPE,108952,5714
-5930,Verheyen,for,PPE,108952,5930
-7062,Vincze,for,PPE,108952,7062
-6356,Virkkunen,for,PPE,108952,6356
-5934,Voss,for,PPE,108952,5934
-6664,Vozemberg-Vrionidi,for,PPE,108952,6664
-7233,Walsh,for,PPE,108952,7233
-6827,Walsmann,for,PPE,108952,6827
-6804,Warborn,for,PPE,108952,6804
-5351,Weber,for,PPE,108952,5351
-6908,Weiss,for,PPE,108952,6908
-4643,Wieland,for,PPE,108952,4643
-7153,Wiezik,for,PPE,108952,7153
-5782,Winkler,for,PPE,108952,5782
-7041,Winzig,for,PPE,108952,7041
-6820,Wiseler-Lima,for,PPE,108952,6820
-6997,Zarzalejos,for,PPE,108952,6997
-6344,Zdechovský,for,PPE,108952,6344
-7012,Zoido Álvarez,for,PPE,108952,7012
-6734,Zovko,for,PPE,108952,6734
-6094,Zver,for,PPE,108952,6094
+6695,Zullo,for,Renew,108952,6695
+6755,Ademov,for,EPP,108952,6755
+7219,Alexandrov Yordanov,for,EPP,108952,7219
+7129,Amaro,for,EPP,108952,7129
+5980,Arias Echeverría,for,EPP,108952,5980
+6594,Arimont,for,EPP,108952,6594
+6885,Arłukowicz,for,EPP,108952,6885
+7083,Asimakopoulou,for,EPP,108952,7083
+7060,Băsescu,for,EPP,108952,7060
+6927,Bellamy,for,EPP,108952,6927
+7067,Benjumea Benjumea,for,EPP,108952,7067
+6807,Bentele,for,EPP,108952,6807
+7162,Berendsen,for,EPP,108952,7162
+7037,Bernhuber,for,EPP,108952,7037
+7155,Bilčík,for,EPP,108952,7155
+7026,Blaga,for,EPP,108952,7026
+6343,Bocskor,for,NA,108952,6343
+7025,Bogdan,for,EPP,108952,7025
+6613,Bogovič,for,EPP,108952,6613
+6617,Buda,for,EPP,108952,6617
+5729,Buşoi,for,EPP,108952,5729
+5388,Buzek,for,EPP,108952,5388
+6039,Carvalho,for,EPP,108952,6039
+5252,Casa,for,EPP,108952,5252
+5341,Caspary,for,EPP,108952,5341
+5508,del Castillo Vera,for,EPP,108952,5508
+5236,Christoforou,for,EPP,108952,5236
+6929,Colin-Oesterlé,for,EPP,108952,6929
+5981,van Dalen,for,EPP,108952,5981
+5921,Danjean,for,EPP,108952,5921
+6345,Deli,for,NA,108952,6345
+5998,Deutsch,for,NA,108952,5998
+6762,Didier,for,EPP,108952,6762
+6870,Doleschal,for,EPP,108952,6870
+5960,Dorfmann,for,EPP,108952,5960
+6903,Duda,for,EPP,108952,6903
+6810,Düpont,for,EPP,108952,6810
+7032,Edtstadler,for,EPP,108952,7032
+5348,Ehler,for,EPP,108952,5348
+5983,Estaràs Ferragut,for,EPP,108952,5983
+6928,Evren,for,EPP,108952,6928
+7038,Falcă,for,EPP,108952,7038
+3833,Ferber,for,EPP,108952,3833
+6068,Fernandes,for,EPP,108952,6068
+7108,Fitzgerald,for,EPP,108952,7108
+6813,Fourlas,for,EPP,108952,6813
+6906,Frankowski,for,EPP,108952,6906
+6852,Franssen,for,EPP,108952,6852
+4659,Gahler,for,EPP,108952,4659
+5280,Gál,for,NA,108952,5280
+3980,García-Margallo y Marfil,for,EPP,108952,3980
+6441,Gieseke,for,EPP,108952,6441
+6632,González Pons,for,EPP,108952,6632
+6002,Győri,for,NA,108952,6002
+5138,Gyürk,for,NA,108952,5138
+6907,Halicki,for,EPP,108952,6907
+6777,Hansen,for,EPP,108952,6777
+7035,Hava,for,EPP,108952,7035
+6811,Herbst,for,EPP,108952,6811
+6534,Hetman,for,EPP,108952,6534
+6318,Hidvéghi,for,NA,108952,6318
+5953,Hohlmeier,for,EPP,108952,5953
+6346,Hölvényi,for,EPP,108952,6346
+4987,Hortefeux,for,EPP,108952,4987
+5952,Hübner,for,EPP,108952,5952
+5945,Jahr,for,EPP,108952,5945
+6910,Jarubas,for,EPP,108952,6910
+7223,Juknevičienė,for,EPP,108952,7223
+5944,Kalinowski,for,EPP,108952,5944
+6095,Kalniete,for,EPP,108952,6095
+7222,Kanev,for,EPP,108952,7222
+4669,Karas,for,EPP,108952,4669
+6666,Kefalogiannis,for,EPP,108952,6666
+5855,Kelly,for,EPP,108952,5855
+6805,Kokalari,for,EPP,108952,6805
+6918,Kopacz,for,EPP,108952,6918
+6001,Kósa,for,NA,108952,6001
+6196,Kovatchev,for,EPP,108952,6196
+7226,Kubilius,for,EPP,108952,7226
+7080,Kympouropoulos,for,EPP,108952,7080
+6662,Kyrtsos,for,Renew,108952,6662
+5727,de Lange,for,EPP,108952,5727
+6793,Lega,for,EPP,108952,6793
+6592,Lenaers,for,EPP,108952,6592
+5105,Lewandowski,for,EPP,108952,5105
+3855,Liese,for,EPP,108952,3855
+6442,Lins,for,EPP,108952,6442
+7161,López Gil,for,EPP,108952,7161
+5517,López-Istúriz White,for,EPP,108952,5517
+5964,Łukacijewska,for,EPP,108952,5964
+6855,Lutgen,for,EPP,108952,6855
+6440,McAllister,for,EPP,108952,6440
+5245,McGuinness,for,EPP,108952,5245
+7218,Maldeikienė,for,EPP,108952,7218
+4964,Manders,for,EPP,108952,4964
+6761,Mandl,for,EPP,108952,6761
+5646,Marinescu,for,EPP,108952,5646
+6465,Martusciello,for,EPP,108952,6465
+6483,Maydell,for,EPP,108952,6483
+7224,Mažylis,for,EPP,108952,7224
+7051,Meimarakis,for,EPP,108952,7051
+6121,Melo,for,EPP,108952,6121
+6297,Metsola,for,EPP,108952,6297
+7209,Milazzo,for,ECR,108952,7209
+5518,Millán Mon,for,EPP,108952,5518
+6366,Monteiro de Aguiar,for,EPP,108952,6366
+6368,Morano,for,EPP,108952,6368
+6825,Mortler,for,EPP,108952,6825
+7036,Motreanu,for,EPP,108952,7036
+6436,Mureşan,for,EPP,108952,6436
+4712,Niebler,for,EPP,108952,4712
+6332,Niedermayer,for,EPP,108952,6332
+6709,Novakov,for,EPP,108952,6709
+5407,Olbrycht,for,EPP,108952,5407
+5702,Patriciello,for,EPP,108952,5702
+6819,Peeters,for,EPP,108952,6819
+7120,Pereira Lídia,for,EPP,108952,7120
+5346,Pieper,for,EPP,108952,5346
+5788,Pietikäinen,for,EPP,108952,5788
+6335,Polčák,for,EPP,108952,6335
+6803,Polfjärd,for,EPP,108952,6803
+7149,Pollák,for,EPP,108952,7149
+6700,Pospíšil,for,EPP,108952,6700
+6488,Radev,for,EPP,108952,6488
+6750,Radtke,for,EPP,108952,6750
+6072,Rangel,for,EPP,108952,6072
+6812,Ressler,for,EPP,108952,6812
+6698,Salini,for,EPP,108952,6698
+6370,Sander,for,EPP,108952,6370
+6259,Sarvamaa,for,EPP,108952,6259
+7045,Schmiedtbauer,for,EPP,108952,7045
+6821,Schneider,for,EPP,108952,6821
+6636,Schreijer-Pierik,for,EPP,108952,6636
+6443,Schulze,for,EPP,108952,6443
+5345,Schwab,for,EPP,108952,5345
+6823,Seekatz,for,EPP,108952,6823
+6824,Simon,for,EPP,108952,6824
+6790,Skyttedal,for,EPP,108952,6790
+6341,Šojdrová,for,EPP,108952,6341
+6816,Sokol,for,EPP,108952,6816
+6663,Spyraki,for,EPP,108952,6663
+6547,Štefanec,for,EPP,108952,6547
+6301,Šuica,for,EPP,108952,6301
+5143,Szájer,for,EPP,108952,5143
+4482,Tajani,for,EPP,108952,4482
+7056,Thaler,for,EPP,108952,7056
+5949,Thun und Hohenstein,for,Renew,108952,5949
+7061,Tomac,for,EPP,108952,7061
+6681,Tomc,for,EPP,108952,6681
+6965,Tóth,for,NA,108952,6965
+7241,Trócsányi,for,NA,108952,7241
+5600,Vaidere,for,EPP,108952,5600
+5714,Vălean,for,EPP,108952,5714
+5930,Verheyen,for,EPP,108952,5930
+7062,Vincze,for,EPP,108952,7062
+6356,Virkkunen,for,EPP,108952,6356
+5934,Voss,for,EPP,108952,5934
+6664,Vozemberg-Vrionidi,for,EPP,108952,6664
+7233,Walsh,for,EPP,108952,7233
+6827,Walsmann,for,EPP,108952,6827
+6804,Warborn,for,EPP,108952,6804
+5351,Weber,for,EPP,108952,5351
+6908,Weiss,for,EPP,108952,6908
+4643,Wieland,for,EPP,108952,4643
+7153,Wiezik,for,Renew,108952,7153
+5782,Winkler,for,EPP,108952,5782
+7041,Winzig,for,EPP,108952,7041
+6820,Wiseler-Lima,for,EPP,108952,6820
+6997,Zarzalejos,for,EPP,108952,6997
+6344,Zdechovský,for,EPP,108952,6344
+7012,Zoido Álvarez,for,EPP,108952,7012
+6734,Zovko,for,EPP,108952,6734
+6094,Zver,for,EPP,108952,6094
 7230,Alieva-Veli,for,Renew,108952,7230
 6799,Al-Sahlani,for,Renew,108952,6799
 6327,Ansip,for,Renew,108952,6327
@@ -405,7 +405,7 @@ mepid,name,result,eugroup,identifier,vote_id
 6898,Decerle,for,Renew,108952,6898
 7081,Dhamija,for,Renew,108952,7081
 6340,Dlabajová,for,Renew,108952,6340
-6324,Durand,for,Renew,108952,6324
+6324,Durand,for,S&D,108952,6324
 6828,Eroglu,for,Renew,108952,6828
 6980,Farreng,for,Renew,108952,6980
 6601,Federley,for,Renew,108952,6601
@@ -428,7 +428,7 @@ mepid,name,result,eugroup,identifier,vote_id
 7139,Horwood,for,Renew,108952,7139
 6622,Huitema,for,Renew,108952,6622
 7014,Ijabs,for,Renew,108952,7014
-5385,in  't Veld,for,Renew,108952,5385
+5385,in 't Veld,for,Renew,108952,5385
 6844,Joveva,for,Renew,108952,6844
 6800,Karlsbro,for,Renew,108952,6800
 6766,Katainen,for,Renew,108952,6766
@@ -441,7 +441,7 @@ mepid,name,result,eugroup,identifier,vote_id
 6887,Loiseau,for,Renew,108952,6887
 5889,Løkkegaard,for,Renew,108952,5889
 7201,Long,for,Renew,108952,7201
-6915,Maxová,for,Renew,108952,6915
+6915,Maxová,for,S&D,108952,6915
 6957,Melchior,for,Renew,108952,6957
 6690,Mihaylova,for,Renew,108952,6690
 7196,Mohammed,for,Renew,108952,7196
@@ -467,14 +467,14 @@ mepid,name,result,eugroup,identifier,vote_id
 6817,Semedo,for,Renew,108952,6817
 7152,Šimečka,for,Renew,108952,7152
 7168,Solís Pérez,for,Renew,108952,7168
-7055,Ştefănuță,for,Renew,108952,7055
+7055,Ştefănuță,for,Greens/EFA,108952,7055
 7058,Strugariu,for,Renew,108952,7058
 6940,Tolleret,for,Renew,108952,6940
 6331,Toom,for,Renew,108952,6331
 6281,Torvalds,for,Renew,108952,6281
 6985,Trillet-Lenoir,for,Renew,108952,6985
 7054,Tudorache,for,Renew,108952,7054
-5879,Uspaskich,for,Renew,108952,5879
+5879,Uspaskich,for,NA,108952,5879
 6710,Vautmans,for,Renew,108952,6710
 6896,Vedrenne,for,Renew,108952,6896
 7132,Voaden,for,Renew,108952,7132
@@ -503,14 +503,14 @@ mepid,name,result,eugroup,identifier,vote_id
 6843,Brglez,for,S&D,108952,6843
 4690,Bullmann,for,S&D,108952,4690
 6838,Burkhardt,for,S&D,108952,6838
-7008,Calenda,for,S&D,108952,7008
+7008,Calenda,for,Renew,108952,7008
 7252,Carvalhais,for,S&D,108952,7252
 7030,Cerdas,for,S&D,108952,7030
 7166,Chahim,for,S&D,108952,7166
-6499,Chinnici,for,S&D,108952,6499
+6499,Chinnici,for,EPP,108952,6499
 6901,Cimoszewicz,for,S&D,108952,6901
 4628,Corbett,for,S&D,108952,4628
-6051,Cozzolino,for,S&D,108952,6051
+6051,Cozzolino,for,NA,108952,6051
 5661,Crețu,for,S&D,108952,5661
 6589,Dalli,for,S&D,108952,6589
 6570,Dance,for,S&D,108952,6570
@@ -522,7 +522,7 @@ mepid,name,result,eugroup,identifier,vote_id
 6014,Ertug,for,S&D,108952,6014
 6080,Fajon,for,S&D,108952,6080
 6652,Fernández,for,S&D,108952,6652
-6770,Ferrandino,for,S&D,108952,6770
+6770,Ferrandino,for,Renew,108952,6770
 6791,Fritzon,for,S&D,108952,6791
 6955,Fuglsang,for,S&D,108952,6955
 7090,Gálvez Muñoz,for,S&D,108952,7090
@@ -548,7 +548,7 @@ mepid,name,result,eugroup,identifier,vote_id
 6745,Howarth,for,S&D,108952,6745
 7229,Hristov,for,S&D,108952,7229
 6624,Jongerius,for,S&D,108952,6624
-6686,Kaili,for,S&D,108952,6686
+6686,Kaili,for,NA,108952,6686
 6884,Kaljurand,for,S&D,108952,6884
 6009,Kammerevert,for,S&D,108952,6009
 6571,Kirton-Darling,for,S&D,108952,6571
@@ -607,10 +607,10 @@ mepid,name,result,eugroup,identifier,vote_id
 6381,Silva Pereira,for,S&D,108952,6381
 6093,Sippel,for,S&D,108952,6093
 7176,Smeriglio,for,S&D,108952,7176
-6943,Spurek,for,Verts/ALE,108952,6943
+6943,Spurek,for,Greens/EFA,108952,6943
 6490,Stanishev,for,S&D,108952,6490
 6623,Tang,for,S&D,108952,6623
-5624,Tarabella,for,S&D,108952,5624
+5624,Tarabella,for,NA,108952,5624
 7140,Tax,for,S&D,108952,7140
 7044,Terheş,for,ECR,108952,7044
 6983,Tinagli,for,S&D,108952,6983
@@ -626,73 +626,73 @@ mepid,name,result,eugroup,identifier,vote_id
 7249,Wolters,for,S&D,108952,7249
 7225,Yoncheva,for,S&D,108952,7225
 6373,Zorrinho,for,S&D,108952,6373
-7084,Ainslie,for,Verts/ALE,108952,7084
-5924,Alfonsi,for,Verts/ALE,108952,5924
-7033,Allard,for,Verts/ALE,108952,7033
-6845,Andresen,for,Verts/ALE,108952,6845
-5291,Auken,for,Verts/ALE,108952,5291
-6905,Biteau,for,Verts/ALE,108952,6905
-6846,Bloss,for,Verts/ALE,108952,6846
-6837,Boeselager,for,Verts/ALE,108952,6837
-6829,Breyer,for,Verts/ALE,108952,6829
-6867,Bricmont,for,Verts/ALE,108952,6867
-6455,Buchner,for,Verts/ALE,108952,6455
-5913,Bütikofer,for,Verts/ALE,108952,5913
-6964,Carême,for,Verts/ALE,108952,6964
-7102,Chowns,for,Verts/ALE,108952,7102
-6897,Cormand,for,Verts/ALE,108952,6897
-7043,Cuffe,for,Verts/ALE,108952,7043
-6924,Delbos-Corfield,for,Verts/ALE,108952,6924
-6040,Delli,for,Verts/ALE,108952,6040
-6850,Deparnay-Grunenberg,for,Verts/ALE,108952,6850
-6868,De Sutter,for,Verts/ALE,108952,6868
-7004,Dowding,for,Verts/ALE,108952,7004
-5899,Eickhout,for,Verts/ALE,108952,5899
-4954,Evans,for,Verts/ALE,108952,4954
-6775,Franz,for,Verts/ALE,108952,6775
-6851,Freund,for,Verts/ALE,108952,6851
-6853,Geese,for,Verts/ALE,108952,6853
-5904,Giegold,for,Verts/ALE,108952,5904
-6942,Gregorová,for,Verts/ALE,108952,6942
-7034,Guerreiro,for,Verts/ALE,108952,7034
-5926,Häusling,for,Verts/ALE,108952,5926
-6856,Herzberger-Fofana,for,Verts/ALE,108952,6856
-6797,Holmgren,for,Verts/ALE,108952,6797
-5914,Jadot,for,Verts/ALE,108952,5914
-7220,Jakeliūnas,for,Verts/ALE,108952,7220
-6939,Kolaja,for,Verts/ALE,108952,6939
-6795,Kuhnke,for,Verts/ALE,108952,6795
-6857,Lagodinsky,for,Verts/ALE,108952,6857
-5838,Lamberts,for,Verts/ALE,108952,5838
-6858,Langensiepen,for,Verts/ALE,108952,6858
-7028,McLeod,for,Verts/ALE,108952,7028
-6859,Marquardt,for,Verts/ALE,108952,6859
-6776,Metz,for,Verts/ALE,108952,6776
-6861,Neumann,for,Verts/ALE,108952,6861
-6862,Nienaß,for,Verts/ALE,108952,6862
-7187,Niinistö,for,Verts/ALE,108952,7187
-7240,O'Sullivan,for,Verts/ALE,108952,7240
-6863,Paulus,for,Verts/ALE,108952,6863
-6932,Peksa,for,Verts/ALE,108952,6932
-6963,Peter-Hansen,for,Verts/ALE,108952,6963
-7098,Phillips Alexandra Louise Rosenfield,for,Verts/ALE,108952,7098
-6529,Reintke,for,Verts/ALE,108952,6529
-5917,Rivasi,for,Verts/ALE,108952,5917
-6900,Roose,for,Verts/ALE,108952,6900
-6694,Ropė,for,Verts/ALE,108952,6694
-6994,Rowett,for,Verts/ALE,108952,6994
-6893,Satouri,for,Verts/ALE,108952,6893
-6560,Scott Cato,for,Verts/ALE,108952,6560
-6822,Semsrott,for,Verts/ALE,108952,6822
-5571,Smith,for,Verts/ALE,108952,5571
-7156,Strik,for,Verts/ALE,108952,7156
-6591,Urtasun,for,Verts/ALE,108952,6591
-6551,Vana,for,Verts/ALE,108952,6551
-7237,Van Sparrentak,for,Verts/ALE,108952,7237
-6848,Von Cramon-Taubadel,for,Verts/ALE,108952,6848
-7064,Wiener,for,Verts/ALE,108952,7064
-6904,Yenbou,for,Verts/ALE,108952,6904
-5602,Ždanoka,for,Verts/ALE,108952,5602
+7084,Ainslie,for,Greens/EFA,108952,7084
+5924,Alfonsi,for,Greens/EFA,108952,5924
+7033,Allard,for,Greens/EFA,108952,7033
+6845,Andresen,for,Greens/EFA,108952,6845
+5291,Auken,for,Greens/EFA,108952,5291
+6905,Biteau,for,Greens/EFA,108952,6905
+6846,Bloss,for,Greens/EFA,108952,6846
+6837,Boeselager,for,Greens/EFA,108952,6837
+6829,Breyer,for,Greens/EFA,108952,6829
+6867,Bricmont,for,Greens/EFA,108952,6867
+6455,Buchner,for,Greens/EFA,108952,6455
+5913,Bütikofer,for,Greens/EFA,108952,5913
+6964,Carême,for,Greens/EFA,108952,6964
+7102,Chowns,for,Greens/EFA,108952,7102
+6897,Cormand,for,Greens/EFA,108952,6897
+7043,Cuffe,for,Greens/EFA,108952,7043
+6924,Delbos-Corfield,for,Greens/EFA,108952,6924
+6040,Delli,for,Greens/EFA,108952,6040
+6850,Deparnay-Grunenberg,for,Greens/EFA,108952,6850
+6868,De Sutter,for,Greens/EFA,108952,6868
+7004,Dowding,for,Greens/EFA,108952,7004
+5899,Eickhout,for,Greens/EFA,108952,5899
+4954,Evans,for,Greens/EFA,108952,4954
+6775,Franz,for,Greens/EFA,108952,6775
+6851,Freund,for,Greens/EFA,108952,6851
+6853,Geese,for,Greens/EFA,108952,6853
+5904,Giegold,for,Greens/EFA,108952,5904
+6942,Gregorová,for,Greens/EFA,108952,6942
+7034,Guerreiro,for,Greens/EFA,108952,7034
+5926,Häusling,for,Greens/EFA,108952,5926
+6856,Herzberger-Fofana,for,Greens/EFA,108952,6856
+6797,Holmgren,for,Greens/EFA,108952,6797
+5914,Jadot,for,Greens/EFA,108952,5914
+7220,Jakeliūnas,for,Greens/EFA,108952,7220
+6939,Kolaja,for,Greens/EFA,108952,6939
+6795,Kuhnke,for,Greens/EFA,108952,6795
+6857,Lagodinsky,for,Greens/EFA,108952,6857
+5838,Lamberts,for,Greens/EFA,108952,5838
+6858,Langensiepen,for,Greens/EFA,108952,6858
+7028,McLeod,for,Greens/EFA,108952,7028
+6859,Marquardt,for,Greens/EFA,108952,6859
+6776,Metz,for,Greens/EFA,108952,6776
+6861,Neumann,for,Greens/EFA,108952,6861
+6862,Nienaß,for,Greens/EFA,108952,6862
+7187,Niinistö,for,Greens/EFA,108952,7187
+7240,O'Sullivan,for,Greens/EFA,108952,7240
+6863,Paulus,for,Greens/EFA,108952,6863
+6932,Peksa,for,Greens/EFA,108952,6932
+6963,Peter-Hansen,for,Greens/EFA,108952,6963
+7098,Phillips Alexandra Louise Rosenfield,for,Greens/EFA,108952,7098
+6529,Reintke,for,Greens/EFA,108952,6529
+5917,Rivasi,for,Greens/EFA,108952,5917
+6900,Roose,for,Greens/EFA,108952,6900
+6694,Ropė,for,Greens/EFA,108952,6694
+6994,Rowett,for,Greens/EFA,108952,6994
+6893,Satouri,for,Greens/EFA,108952,6893
+6560,Scott Cato,for,Greens/EFA,108952,6560
+6822,Semsrott,for,Greens/EFA,108952,6822
+5571,Smith,for,Greens/EFA,108952,5571
+7156,Strik,for,Greens/EFA,108952,7156
+6591,Urtasun,for,Greens/EFA,108952,6591
+6551,Vana,for,Greens/EFA,108952,6551
+7237,Van Sparrentak,for,Greens/EFA,108952,7237
+6848,Von Cramon-Taubadel,for,Greens/EFA,108952,6848
+7064,Wiener,for,Greens/EFA,108952,7064
+6904,Yenbou,for,Renew,108952,6904
+5602,Ždanoka,for,NA,108952,5602
 6792,Incir,against,S&D,108952,6792
 7142,Jones,against,S&D,108952,7142
 7046,Ciuhodaru,abstention,S&D,108952,7046

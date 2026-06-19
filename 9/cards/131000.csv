@@ -621,7 +621,7 @@ mepid,name,result,eugroup,identifier,vote_id
 6914,Bompard,against,GUE/NGL,131000,6914
 6873,Botenga,against,GUE/NGL,131000,6873
 6922,Chaibi,against,GUE/NGL,131000,6922
-5886,Ferreira,against,The Left,131000,5886
+5886,Ferreira,against,GUE/NGL,131000,5886
 6354,Maurel,against,GUE/NGL,131000,6354
 6250,Omarjee,against,GUE/NGL,131000,6250
 6920,Pelletier,against,GUE/NGL,131000,6920
@@ -644,7 +644,7 @@ mepid,name,result,eugroup,identifier,vote_id
 7007,Conte,abstention,ID,131000,7007
 6999,Da Re,abstention,ID,131000,6999
 6869,De Man,abstention,ID,131000,6869
-7207,Donato,abstention,ID,131000,7207
+7207,Donato,abstention,NA,131000,7207
 7005,Dreosto,abstention,ID,131000,7005
 6972,Gancia,abstention,ID,131000,6972
 7184,Grant,abstention,ID,131000,7184
@@ -657,7 +657,7 @@ mepid,name,result,eugroup,identifier,vote_id
 7191,Tardino,abstention,ID,131000,7191
 6970,Tovaglieri,abstention,ID,131000,6970
 7234,Vandendriessche,abstention,ID,131000,7234
-7183,Vuolo,abstention,NA,131000,7183
+7183,Vuolo,abstention,EPP,131000,7183
 6976,Zambelli,abstention,ID,131000,6976
 6414,Zanni,abstention,ID,131000,6414
 6832,Buschmann,abstention,NA,131000,6832

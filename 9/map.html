@@ -1,0 +1,1117 @@
+
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta content="initial-scale=1, shrink-to-fit=no, width=device-width" name="viewport">
+
+    <!-- CSS --><link href="../dist/css/main.css" rel="stylesheet">
+<style>
+</style>
+                                            
+
+    <link rel="prefetch" href="./data/meps.csv" as="fetch"/>
+
+<link rel="alternate" type="application/json+oembed"
+  href="https://mepwatch.eu/9/oembed.json"
+  title="oEmbed Profile" />
+<style>
+
+span.form-control {border-bottom:0px;}
+
+#map svg {background: #bbdeea;border-radius:10px;}
+
+.rotated90 svg {background-color: rgba(255, 255, 255, 0.7);}
+.rotated90 .axis path {display:none;}
+.rotated90 .y {display:none;}
+
+#party rect.bar {
+  fill-opacity:0.3;
+}
+
+.stack .barLabel {
+  display:none;
+}
+.rotated90 svg>g {
+  transform: rotate(90deg);
+  transform-origin: 50% 50%;
+}
+
+html .bg-info {
+  background-image: linear-gradient(-20deg, #6e45e2 0%, #88d3ce 100%);
+}
+
+.table td._3 {
+  padding-top:0.3em;padding-bottom:0.3em; //column name
+}
+.wide-tip {min-width:270px}
+
+.wide-tip .icon {width:1.2em;height:1em;}
+
+.resetall button {padding:5px 0;min-width:3rem;font-size:0.9em}
+.glyphicon-sort:after{ content:'⇅';}
+.glyphicon-arrow-up:after{ content:'⤒';}
+.glyphicon-arrow-down:after{ content:'⤓';}
+
+
+aa.flag-icon,aa.country-flag {width:21px;height:16px;border:0.2px solid lightgrey}
+.country-flag img {width:20px;height:15px;border:0.2px solid lightgrey}
+
+img.face {width:40px;height:50px;border-radius:25px;position:relative;margin-left:-10px;margin-right:10px;}
+
+th .glyphicon {margin-left:5px;color:black;
+  font-size:1.3em;
+  border:1px solid grey;text-align:center;width:1.3em;border-radius:2px;display:inline-block;}
+
+th#country,th#eugroup,th#col_0,th#col_1,th#twitter {min-width:100px;
+  padding-right:0.75rem;padding-left: 0.75rem;}
+
+    .icon,
+    .eugroup
+    {
+      display: inline-block;
+      width: 25px;
+      height: 20px;
+      text-indent: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      background-size: cover;
+      background-position:center;
+    }
+
+    .ppe, .epp {
+      background-image: url("img/group/EPP.png");
+    }
+
+    .s-d {
+      background-image: url("img/group/S-D.png");
+    }
+
+    .renew {
+      background-image: url("img/group/Renew.png");
+    }
+    .alde {
+      background-image: url("img/group/ALDE.png");
+    }
+
+    .verts-ale, .greens-efa {
+      background-image: url("img/group/VERT.png");
+    }
+
+    .efdd {
+      background-image: url("img/group/EFDD.png");
+    }
+
+    .gue-ngl {
+      background-image: url("img/group/GUE.png");
+    }
+
+    .enf {
+      background-image: url("img/group/ENF.png");
+    }
+    
+    .id {
+      background-image: url("img/group/ID.png");
+    }
+
+    .ecr {
+      background-image: url("img/group/ECR.png");
+    }
+
+    .ni,
+    .na-ni {
+      background-image: url("img/group/NA.png");
+    }
+
+</style>
+  </head>
+  <body>
+
+    <main role="main">
+
+      <section class="jumbotron">
+        <div class="container"><div class="row">
+          <div class="col-sm-12" id="map">
+            <div class="graph"></div>
+          </div>
+          </div></div>
+      </section>
+     <div class="py-5 bg-light">
+        <div class="container">
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card box-shadow" id="country">
+                <div class="card-body">
+                  <h5 class="card-title text-muted text-right">
+                  <button type="button" class="btn-relative btn btn-primary" title="percentage of votes">Percentage</button>
+                  <button type="button" class="btn-absolute active btn btn-primary" title="Number of votes">Seats</button>
+                  </h5>
+                  <div class="graph"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+<div class="container" id="meps">
+          <div class="row">
+            <div class="col-md-12">
+<div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Vote</th>
+                  <th>Name</th>
+                  <th>Country</th>
+                  <th>Group</th>
+                  <th>Party</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td colspan="6" class="alert alert-info">Click on a graph to filter and display the list of MEPs, or <a href="#" onclick="graphs.table.redraw();return false;">display them all</a></td>
+              </tbody>
+            </table>
+<div class="table-responsive">
+            </div>
+          </div>
+</div>
+    </main>
+
+    <footer class="text-muted">
+      <div class="container">
+        <p class="float-right">
+          <a href="#">Back to top</a>
+        </p>
+      </div>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <script src="../dist/js/dcbundle.js"></script>
+    <script src="js/vote.js"></script>
+<script>
+  var voteid= urlParam("v");
+  var resultscolor= null;
+  var percentagecolor=null;
+  const isMobile = window.matchMedia('screen and (max-width: 768px)').matches;
+  
+  isMobile && document.querySelectorAll('table').forEach ( d => d.classList.add('table-sm'));
+
+
+  download(voteid,draw);
+
+  function draw(){
+
+    d3.select(".navbar-toggler").on("click",function(){
+      d3.select("#navbarHeader").classed("show",d3.select("#navbarHeader").classed("show"));
+    });
+    d3.select("h2").html(config.name == "CHANGE ME"? "":config.name);
+    d3.select(".navbar .rapporteur").html(config.rapporteur);
+    d3.select(".navbar .date").html(dateFormat(config.date));
+    d3.select(".navbar .report").html((config.url && config.ref) ? "<a class='btn btn-primary' href='"+config.url+"'>"+config.ref+"</a>" : config.ref);
+    d3.select(".navbar .app").attr("href","presentation/demo.html?v="+config.id);
+    d3.select(".navbar .graph").attr("href","graph.html?v="+config.id);
+    d3.select(".navbar .edit").attr("href","edit.html?v="+config.id);
+    d3.select("h3").html([config.title,config.description].join("<br>"));
+    var percentColors=["#e3e3e3","#27ae60","#C8E6C9","#d3a751","#ffcdd2","#d35400"];
+    if (config.goal && config.goal == "against") {
+      results[1] = results[0];
+      results[0] = config.goal;
+      d3.select("#icon-against path").attr("fill","#27ae60");
+      d3.select("#icon-for path").attr("fill","#c0392b");
+      percentColors=[
+        "#e3e3e3",
+        "#d35400",
+        "#ffcdd2",
+        "#d3a751",
+        "#C8E6C9",
+        "#27ae60"
+      ];
+    }
+    resultscolor= d3.scaleOrdinal()
+	    .domain(results)
+	    .range("#27ae60,#c0392b,#2980b9,#95a5a6,#34495e,#bdc3c7".split(","));
+
+    percentagecolor=d3.scaleLinear()
+    .domain([-1,0,49,50,51,100])
+    .range(percentColors)
+    .interpolate(d3.interpolateHcl);
+
+      d3.select(".nbmep .total").html("/" + config.nb);
+      if (config.goal) {
+        d3.select(".goal").classed("d-none", false);
+        d3.select(".goal .badge").html(iconify(config.goal));
+      }
+
+//    graphs.date=drawDate('#date div.graph');
+//    graphs.report=drawReport('#report div.graph');
+    graphs.country=drawCountry('#country div.graph');
+    graphs.map=drawMap('#map div.graph',graphs);
+//    graphs.party=drawParty('#voidparty div.graph');
+//    guessPartyLine("partyline");
+
+//	  graphs.eugroup=drawBarVotes('#eugroup div.graph',function(d){ return d.eugroup});
+//    guessLine("groupline",graphs.eugroup.group());
+//    graphs.eugroup.relative=false;
+//    graphs.party=drawBarVotes('#party div.graph',function(d){ return [d.country,d.party]});
+//    graphs.party.xAxis().tickFormat(function(d) { return d[1]; });
+
+/*    graphs.party
+      .elasticX(true)
+      .title(function(d) {
+        if (this.layer == 0) return "";
+        return d.key[1] +  " voting '"+ this.layer + "': " + d.value[this.layer].count +" ("+formatPercent(d.value[this.layer].count/d.value.nb.count)+")";
+        })
+//      .keyAccessor(function(d){return d.key[1]})
+    graphs.party.relative=false;
+    
+    graphs.party.margins({
+          top: 5,
+          right: 10,
+          bottom: 5,
+          left: 5
+        })
+        
+*/
+//    graphs.group=drawGroup('#eugroup div.graph');
+//    drawNumbers(graphs);
+//    graphs.result=drawResult('#result .graph');
+//    graphs.search=drawSearch("form#search .graph");
+
+  
+    var filter=urlParam("q");
+    if (filter) {
+      graphs.search.on("pretransition",function(){
+        graphs.search.on("pretransition",null);
+        d3.select(" .dc-text-filter-input").attr("value",filter).dispatch("input");
+      });
+    }
+    if (urlParam("country")) {
+      d3.select("#party").classed("d-none",false);
+    }
+
+    dc.renderAll();
+
+    graphs.table=drawTable('table.table');
+    setTimeout(function() { graphs.table.redraw(); }, 3000); //delay a bit the drawing of the table
+//graphs.grid=drawGrid('#grid');
+
+  }
+
+  function remove_empty_bins(source_group,cap) {
+      return {
+          all:function () {
+            source_group.top(Infinity);
+              var g=source_group.all().filter(function(d) {
+                  return d.value.nb.count !== 0; 
+              });
+              return g.slice(0,cap);
+          }
+      };
+  }
+
+  function guessPartyLine (store) {
+    var dim = ndx.dimension(function(d) {return d.party;});
+
+    var reducer = reductio();
+    reducer.value("nb").count(true);
+    results.forEach(function(r){
+      reducer.value(r).count(true).filter(function(d){ return d.vote == r});
+    });
+
+    var group = dim.group();
+    reducer(group);
+    guessLine(store,group);
+    ndx.all().forEach(function(mep){
+      var key= function (d) {return d.party};
+      if (["for","against","abstention"].indexOf(mep.vote) == -1)
+        return false; // you aren't a rebel when you are a noshow ;P
+      if (!config[store][key(mep)]){
+        mep.rebel= null; // we couldn't guess the party line
+        return;
+      }
+      if (config[store][key(mep)] !== mep.vote){
+        mep.rebel= true;
+      }
+    });
+    dim.dispose();
+  }
+
+
+  function drawGroup(dom) {
+    var graph = dc.pieChart(dom).innerRadius(20) //.radius(70);
+    var reducer = reductio();
+    var dim = ndx.dimension(function(d) {
+      return d.eugroup || "?";
+    });
+
+    var tip = d3.tip()
+    .attr('class', 'd3-tip wide-tip')
+    .offset([-10, 0])
+    .html(function (d) {
+      var t= "<h3 class='d-flex flex-row justify-content-between' ><span>"+ d.data.key + "</span><span class='d-inline-flex p-2 badge badge-primary ml-2'>"+d.data.value.count+"</span></h3>";
+      results.forEach(function(r){
+        if (d.data.value[r].count > 0){
+          t += "<div class='d-flex flex-row justify-content-between'><div class='p-2 bd-highlight mr-auto w-50'>"+r+"</div><div class='p-1 w-25'>"+d.data.value[r].count+"</div><div class='p-1 w-25'>"+formatPercent(d.data.value[r].count/d.data.value.count)+"</div></div>";
+        }
+      });
+      return t+"";
+    });
+
+    results.forEach(function(r){
+      reducer.value(r).count(true).filter(function(d){ return d.vote == r});
+    });
+    //reducer.value("nb").count(true);
+    reducer.count(true);
+
+    var group = dim.group();
+    reducer(group);
+
+//    var group = dim.group().reduceSum(function(d) {return 1;});
+    graph
+      .width(0)
+      .height(0)
+      .ordering(function(d){ 
+        return 0+groups.indexOf(d.key);
+      })
+      .colorAccessor(function(d){
+        var sum=d.value.for.count + d.value.against.count;
+        return 100*d.value.against.count/sum;
+      })
+      .colors(function(d){
+        return percentagecolor(d);
+      })
+      .valueAccessor(function(d){
+        return d.value.count;
+      })
+      .dimension(dim)
+      .group(group)
+      .externalLabels(-26)
+      .minAngleForLabel(0.2)
+      .on("renderlet.summary", function(){
+        guessLine("groupline",group);
+      }); 
+
+  graph.on('pretransition', function(chart) {
+    graph.selectAll('.pie-slice')
+    .call(tip)
+    .on('mouseover.tip', tip.show)
+    .on('mouseout.tip', tip.hide);
+  })
+
+//        .legend(dc.legend().horizontal(true).autoItemWidth(true).y(200));
+    return graph;
+  }
+
+  // try to guess what was the party/eu group line
+  function guessLine(store,group,key){
+    key=key || function (d) {return d.key};
+    if (config[store]) return; //already set
+    config[store] = {};
+    group.all().forEach(function(d){
+      var whip = 2/3;
+      config[store][key(d)]=null; //free vote, no instruction
+      ["for","against","abstention"].forEach(function(v){ 
+        var sum=d.value.for.count + d.value.against.count + d.value.abstention.count;
+        if (d.value[v].count/sum > whip)
+          config[store][key(d)]=v;
+      }); 
+    }); 
+  };
+
+  function isRebel (store,mep,key) {
+    key=key || function (d) {return d.eugroup};
+    if (["for","against","abstention"].indexOf(mep.vote) == -1)
+      return false; // you aren't a rebel when you are a noshow ;)
+    return store[key(mep)] && store[key(mep)] !== mep.vote;
+  }
+  function drawResult(dom) {
+    const radius=(window.screen.width-60) / 2;
+    var graph = dc.pieChart(dom).innerRadius(40) //.radius(radius);
+    var dim = ndx.dimension(function(d) {
+      return d.vote || "?";
+    });
+    var group = dim.group().reduceSum(function(d) {
+      return 1;
+    });
+    graph
+      .width(0)
+      .height(0)
+      .ordering(function(d){ return results.indexOf(d.key) >=0 ?  results.indexOf(d.key) : 1984})
+      .colors(resultscolor)
+/*      .colorCalculator(function(d, i) {
+        return eu_groups[d.key];
+        //return color(d.value.score/d.value.count);
+      })
+    */
+      .on("filtered", function(c){
+          var mode=(graphs.result.filters().length == 1 ? "absolute":"relative");
+          d3.select("#country .btn-"+mode).dispatch("click");
+        })
+      .dimension(dim)
+      .group(group)
+      .externalLabels(-26)
+      .minAngleForLabel(0.2);
+//        .legend(dc.legend().horizontal(true).autoItemWidth(true).y(200));
+    return graph;
+  }
+
+    function drawBarVotes (dom,dimension) {
+      //var dim = ndx.dimension(function(d) {return d[dimension]});
+      const width=isMobile ? window.screen.width-40 : 220;
+      var dim = ndx.dimension(dimension);
+      var reducer = reductio();
+      reducer.value("nb").count(true);
+      results.forEach(function(r){
+        reducer.value(r).count(true).filter(function(d){ return d.vote == r});
+      });
+
+      var group = dim.group();
+      reducer(group);
+
+      var graph = dc.barChart(dom);
+      graph.fixedSize=true;
+      graph.relative=true;
+
+      function getValue(result){
+        if (graph.relative)
+          return function(d){return d.value[result].count/d.value.nb.count*100; }
+        return function(d){
+          return d.value[result].count; }
+
+console.log("ismobile",isMobile,width);
+      }
+      graph
+        .width(width)
+        .height(width)
+//        .width(220)
+//        .height(220)
+        .outerPadding(0)
+        .gap(1)
+        .margins({
+          top: 5,
+          right: 10,
+          bottom: 60,
+          left: 5
+        })
+        .ordering(function(d){ return -d.value.nb.count})
+//        .label(function(d){return "aaa";d.data.key})
+        .x(d3.scaleBand())
+        .xUnits(dc.units.ordinal)
+        .colors(resultscolor)
+        .brushOn(false)
+        .title(function(d) {
+          if (this.layer == 0) return "";
+          return d.key +  " voting '"+ this.layer + "': " + d.value[this.layer].count +" ("+formatPercent(d.value[this.layer].count/d.value.nb.count)+")";
+        })
+
+        .elasticY(true)
+//        .elasticX(true)
+        //.yAxisLabel("MEPs")
+        .dimension(dim)
+        .group(remove_empty_bins(group,12), "", 0)
+        //.group(group, "", 0)
+        .on("renderlet", function(c) {
+          rotateBarChartLabels();
+/*          if (!d3.select(dom +" .axis.x use").empty()) return;
+          d3.select(dom + " .axis.x").selectAll(".tick")
+            .append("use").attr( "href",function(d){
+            return '#flag-'+d}).attr("width",24).attr("height",16)
+            .attr("transform","translate(-10,2)");
+          */
+        });
+      graph.xAxis().ticks(3);
+      graph.yAxis().ticks(3);
+      results.forEach(function(r){
+
+        graph.stack(remove_empty_bins(group,12), r, function(d){
+          return getValue(r)(d);
+        });
+      });
+
+      return graph;
+
+      function rotateBarChartLabels() {
+        d3.selectAll(dom + ' .axis.x line').remove();
+        d3.selectAll(dom + ' .axis.x text')
+          .text(function(d){return d;})
+          .style("text-anchor", "start")
+          .attr("transform", function(d) {
+            var left = -1 * (graph.margins().bottom) + 10;
+            return "rotate(-90, -4, 9), translate("+left+",0) ";
+          });
+      }
+
+      function toggleMode (){
+        d3.selectAll("#country h5 button").on("click",function(){
+          var b=d3.select(this);
+          if (!b.classed("active")) return;
+          graph.relative= b.classed("btn-relative");
+          b.classed("active",false);
+          d3.select("#country .btn-"+(graph.relative?"absolute":"relative")).classed("active",true);
+          graph.yAxisLabel((graph.relative?"%":"#")+"MEPs")
+          graph.redraw();
+        });
+      }
+    }
+
+function drawMap(dom,graphs){
+  var europe = null;
+
+    var tip = d3.tip()
+    .attr('class', 'd3-tip wide-tip')
+    .offset(function(){
+      return [0,this.getBBox().x < 10 ? 60: 0]}
+    )
+    .html(function (d) {
+      var iso=d.id;
+      graphs.map.data().forEach(function(c){
+        if (c.key == iso)
+          d = c;
+      });
+      if (d.id) return d.id + " is not in EU";
+      var t= "<h3 class='d-flex flex-row justify-content-between' >"+iconify(d.key.toLowerCase(),"flag")+"<span>"+ countries[d.key.toLowerCase()] + "</span><span class='d-inline-flex p-2 badge badge-primary ml-2'>"+d.value.count+"</span></h3>";
+      results.forEach(function(r){
+        if (d.value[r].count > 0){
+          t += "<div class='d-flex flex-row justify-content-between'><div class='p-1 bd-highlight mr-auto w-50'>"
+            +iconify(r)
+            +r+"</div><div class='p-1 w-25'>"+d.value[r].count+"</div><div class='p-1 w-25'>"+formatPercent(d.value[r].count/d.value.count)+"</div></div>";
+        }
+      });
+      return t+"";
+    });
+
+
+  function drawMap (dom) {
+    //var width=450;
+    const width=isMobile ? window.screen.width-60: 450;
+    europe.objects.countries.geometries.forEach(function(d){
+      d.id = d.id.toLowerCase();
+    });
+    var geojson=topojson.feature(europe,europe.objects.countries);
+    
+    var projection = d3.geoEquirectangular()
+//      .center([37,47]) //theorically, 50°7′2.23″N 9°14′51.97″E but this works
+      .scale(width*1.3)
+    .fitExtent([[0, 0], [width*1.3,width/1.3]], geojson);
+
+    var graph = dc.geoChoroplethChart(dom)
+    .height(width*.8)
+    .width(width)
+    .dimension(graphs.country.dimension())
+    .group(graphs.country.group())
+    .projection(projection)
+    .colorAccessor(function(value){
+      if (value && value.count) {
+        var sum=value.for.count + value.against.count;
+        return 100*value.against.count/sum;
+      };
+      return -1; // non EU
+    })
+    .colors(percentagecolor)
+    .overlayGeoJson(geojson.features,"countries",function(d){
+       return d.id;
+    })
+    .title(function (v) {return null;})
+    ;
+
+    graph.fixedSize=true;
+
+    graph.on("renderlet.top", function(c) {
+      const graph=c.select("svg").node();
+      const viewBox=[0,0,graph.width.baseVal.value,graph.height.baseVal.value];
+      graph.viewBox = viewBox.join(" ");
+//      graph.width="100%";
+//      graph.height=null;
+//console.log(graph.width.baseVal.value, graph.height.baseVal.value);
+          c.selectAll(".countries")
+            .call(tip)
+            .on("mouseover.tip", tip.show)
+            .on("mouseout.tip", tip.hide)
+            .on("click",function(d){
+              graphs.country.filter(d.id);
+            });
+      });
+      
+      
+    return graph;
+
+  };
+
+  //d3.json("data/europe-simple.json").
+  d3.json("data/europe.json").
+    then(function(json) {
+    europe=json;
+    graphs.map=drawMap(dom);
+    graphs.map.render();
+  });
+}
+
+    function drawCountry(dom) {
+      let heigth = 186;
+      let width = 0;
+      var dim = ndx.dimension(function(d) {return d.country;});
+      var reducer = reductio();
+      var res=results.slice();
+      reducer.count(true);
+     // reducer.value("nb").count(true);
+      res.forEach(function(r){
+        reducer.value(r).count(true).filter(function(d){ return d.vote == r});
+      });
+
+      var group = dim.group();
+      reducer(group);
+
+      var graph = dc.barChart(dom);
+      graph.relative=true;
+
+      if (isMobile) {
+        heigth= window.screen.width-80;
+//        width=900;
+        document.getElementById("country").className += " rotated90";
+      }
+
+      function getValue(result){
+        if (graph.relative)
+          return function(d){return d.value[result].count/d.value.count*100; }
+        return function(d){
+          return d.value[result].count; }
+      }
+
+      graph
+        .width(width)
+        .height(heigth)
+        .outerPadding(0)
+        .gap(0)
+        .margins({
+          top: 0,
+          right: 10,
+          bottom: 20,
+          left: 30
+        })
+        .ordering(function(d){ 
+          if (config.goal && config.goal == "against")
+            return -d.value.against.count/d.value.count;
+
+          return -d.value.for.count/d.value.count
+        })
+        .label(function(d){return countries[d.country]})
+        .x(d3.scaleBand())
+        .xUnits(dc.units.ordinal)
+        .colors(resultscolor)
+        .brushOn(false)
+        .title(function(d) {
+          if (this.layer == 0) return "";
+          return countries[d.key] +  " voting '"+ this.layer + "': " + d.value[this.layer].count +" ("+formatPercent(d.value[this.layer].count/d.value.count)+")";
+        })
+
+        .elasticY(true)
+        .yAxisLabel("%MEPs")
+        .dimension(dim)
+//        .group(group, "for", getValue("for")) bug: doesn't switch properly between absolute and relative
+        .group(group, "", 0)
+        .on("renderlet", function(c) {
+          //!isMobile && 
+          rotateBarChartLabels();
+          if (!d3.select("#country .axis.x use").empty()) return;
+          d3.select("#country .axis.x").selectAll(".tick")
+            .append("use").attr( "href",function(d){
+            return '#flag-'+d}).attr("width",24).attr("height",16)
+            .attr("transform","translate(-10,2)");
+        });
+      graph.xAxis().ticks(3);
+//      res.shift();
+      res.forEach(function(r){
+        graph.stack(group, r, function(d){
+          return getValue(r)(d);
+        });
+      });
+
+      toggleMode ();
+
+      return graph;
+
+      function rotateBarChartLabels() {
+        d3.selectAll(dom + ' .axis.x line').remove();
+        d3.selectAll(dom + ' .axis.x text')
+          .text(function(d){return countries[d];})
+          .style("text-anchor", "start")
+          .attr("transform", function(d) {
+            return "rotate(-90, -4, 9), translate(10,0) ";
+          });
+      }
+
+      function toggleMode (){
+        d3.selectAll("#country h5 button").on("click",function(){
+          var b=d3.select(this);
+          if (!b.classed("active")) return;
+          graph.relative= b.classed("btn-relative");
+          b.classed("active",false);
+          d3.select("#country .btn-"+(graph.relative?"absolute":"relative")).classed("active",true);
+          graph.yAxisLabel((graph.relative?"%":"#")+"MEPs")
+          graph.redraw();
+        });
+      }
+    }
+
+  function drawNumbers(graphs) {
+    var dim = ndx.dimension(function(d) {
+      return true;
+    });
+
+    var reducer = reductio();
+    reducer.value("nb").count(true);
+//    reducer.value("woman").count(true).filter(function(d) {return d.Gender == "F;});
+
+      reducer.value("nb").count(true);
+    results.forEach(function(r){
+      reducer.value(r).count(true).filter(function(d){ return d.vote == r});
+    });
+
+    var group = dim.group();
+    reducer(group);
+
+
+    graphs.total = dc.numberDisplay(".nbmep .nb")
+      .group(group)
+      .valueAccessor(function(d) {return d.value.nb.count})
+      .formatNumber(d3.format("d"))
+      .on("renderlet.linked",function(){
+        var d=group.top(1)[0].value.nb.count;
+        d3.select(".nbmep button").classed("disabled",d == config.nb);
+        d3.select(".nbmep .total").classed("d-none",d == config.nb);
+
+      });
+    d3.select(".resetall").on("click",function(){
+      dc.filterAll();
+      dc.renderAll();
+    });
+
+    graphs.total = dc.numberDisplay(".nbvoted .nb")
+      .group(group)
+      .valueAccessor(function(d) {return d.value.for.count+d.value.against.count+d.value.abstention.count})
+      .formatNumber(d3.format("d"))
+      .on("renderlet.linked",function(){
+        var d=group.top(1)[0];
+        d3.select(".result .nb").html(function(){
+          if (!config.goal || (d.value.for.count + d.value.against.count == 0)) return "";
+          if (d.value.nb.count != config.nb) {
+            return "filtered ";
+          }
+
+          if (config.goal == "for") {
+            return d.value.for.count > d.value.against.count  ? "😊" : "😞";
+          } else {
+            return d.value.for.count < d.value.against.count  ? "😊" : "😞";
+          };
+        });
+        d3.select(".result .badge").html(function(){
+          var sum=d.value.for.count + d.value.against.count;
+          if (sum == 0) return "";
+          return ""
+          + formatPercent(Math.max(d.value.for.count,d.value.against.count) / sum) + "&nbsp;" 
+          + iconify (d.value.for.count > d.value.against.count ? "for" : "against");
+        })
+        .style("background-color",function(){
+          var sum=d.value.for.count + d.value.against.count;
+          return percentagecolor(100*d.value.against.count/sum);
+        });
+        d3.select(".nbvoted .badge").html(function(){
+          var sum=d.value.for.count + d.value.against.count + d.value.abstention.count;
+          if (sum == 0 || sum == d.value.nb.count) return "";
+          return formatPercent(sum / d.value.nb.count);
+        });
+      });
+  }
+
+  function drawReport(dom){
+    var dim = ndx.dimension(function(d) {
+      return d.epid;
+    });
+
+
+    var tip = d3.tip()
+      .attr('class', 'd3-tip')
+      .offset([0, 10])
+      .direction("e")
+      .html(function(d) {
+        return docs[d.key]? "<h3>"+docs[d.key].rapporteur+"</h3>"+docs[d.key].title +":"+ d.value: d.value;
+//        return abbr(d.key) + "<br><b>" + d.value + " MEPs</b>&nbsp;<i>" + formatPercent(d.value/summary.total) +"</i>";
+      });
+
+    //var dim = ndx.dimension(function(d) {return d.report?d.report:"?";}, true);
+    var dim = ndx.dimension(function(d) {return d.report? d.report : "?";});
+    var group = dim.group().reduceSum(function(d) {
+      return 1;
+    });
+
+    var graph = dc.rowChart(dom)
+      .width(0)
+      .height(300)
+      //      .rowsCap(18)
+//      .ordering(function(d) {  return -d.key      })
+      .cap(10)
+      .label (function(d){return docs[d.key]? docs[d.key].rapporteur : d.key})
+      .renderTitle(false)
+      .margins({
+        top: 0,
+        right: 0,
+        bottom: 20,
+        left: 0
+      })
+//      .ordinalColors([committee_color])
+      .gap(0)
+      .elasticX(true)
+      .dimension(dim)
+      .group(group)
+      .on("renderlet.top", function(c) {
+          c.selectAll("g.row")
+            .call(tip)
+            .on("mouseover.tip", tip.show)
+            .on("mouseout.tip", tip.hide);
+      });
+    graph.xAxis().ticks(3);
+
+    return graph;
+  }
+
+  function drawSearch(dom){
+    var dim=ndx.dimension(function(d) {
+      if (!d.firstname) console.log(d);
+      return d.firstname.toLowerCase()+" "+ d.lastname.toLowerCase() + " " +d.party.toLowerCase() });
+    var filter = function (query) {
+//        query = _normalize(query);
+        return function (d) {
+            return d.indexOf(query.toLowerCase()) !== -1;
+        };
+    };
+    var chart=dc.textFilterWidget(dom)
+      .placeHolder("search by name")
+      .filterFunctionFactory(filter)
+      .dimension(dim)
+      .on("renderlet",function(){
+        d3.select(dom+ " .dc-text-filter-input").classed("form-control",true).on('input.seturl', function () {
+          urlParam("q",this.value);
+        });
+      });
+    return chart;
+  }
+
+  function drawGrid(dom){
+    var dim = ndx.dimension(function(d) {
+      return d.epid;
+    });
+    var template=d3.selectAll(".mep").html();
+    var tpl = function(d){
+      var str=template;
+        for (var key in d) {
+            return str.replace(/({([^}]+)})/g, function(i) {
+                var key = i.replace(/{/, '').replace(/}/, '');
+                if (!d[key]) {
+                    return i;
+                }
+
+                return d[key];
+            });
+        }
+//      "firstname,lastname,country,eugroup,party,vote,id".split(",").forEach(function(f){});
+    };
+    var graph = dc.dataGrid(dom)
+      .dimension(dim)
+      .size(1000)
+      .sortBy(function(d) {
+        return d.date;
+      })
+      .order (d3.descending)
+      .html(tpl)
+      .group(function(d) {
+        return "";
+      })
+      .on("renderlet.t",function(){
+        d3.selectAll(".dc-grid-item").attr("class","grid mep");
+        d3.selectAll(".dc-grid-top").attr("class","row");
+      })
+    ;
+    return graph;
+  }
+  function drawTable(dom){
+    var dim = ndx.dimension(function(d) {
+      return d.lastname;
+    });
+    var graph = dc.dataTable(dom)
+      .dimension(dim)
+      .size(1000)
+      .sortBy(function(d) {
+        return results.indexOf(d.vote);
+      })
+      .order (d3.ascending)
+      .showSections(false)
+      .on("preRedraw", function(){
+//        graph.compact = graphs.total.data() > 400;
+      })
+      .columns([
+        function(d){
+          return iconify(d.vote);
+        }
+        ,function(d) {
+          var t=d.firstname + " " + d.lastname;
+          if (!graph.compact) 
+            t = "<img class='face' src='https://www.europarl.europa.eu/mepphoto/"+d.epid+".jpg' />" +t;
+          return t;
+        }
+        ,function(d) {
+          return "<span title='" + d.country + "' class='img-rounded country-flag'><img src='img/country/" + d.country + ".svg' /></span>";
+          //TOFIX for no reason, it's dog slow to use svg use here
+//          return iconify(d.country,"flag");
+//          return "<svg class='img-rounded flag-icon'><use href='#flag-" + d.country + "'/><title>" + d.country + "</title></svg>";
+          }
+        ,function(d) {
+            return "<span title='" + d.eugroup + "' class='img-rounded text-filter eugroup " + d.eugroup.replace(/&|\/|car/g, "-").toLowerCase() + "'>" + d.eugroup + "</span>";
+          }
+        ,function(d){ return d.party;}
+    ]);
+
+//    drawPagination();
+    sortable(graph);
+
+    
+    graph.on('pretransition', function(chart) {
+      graph.selectAll('tr.dc-table-row')
+//      .call(tip)
+      .on('click', tweet);
+    });
+
+    return graph;
+
+    function tweet(d){
+      if (d.twitter) {
+        var url="https://twitter.com/intent/tweet?text="+encodeURIComponent("Why did you vote that way? @"+d.twitter)+"&via=mepwatch";
+//        url = url.replace(/#/g, '%23');
+        var win=window.open(url,'_blank');
+      };
+    };
+
+    function sortable(chart){
+      var th = [
+        {attr:function(d){return results.indexOf(d.vote)}}
+        //,{attr:function(d){return isRebel(config.partyline,d,function(d){return d.party})}}
+        ,{attr:"twitter"}
+        ,{attr:"last_name"}
+        ,{attr:"country"}
+        ,{attr:"eugroup"}
+        ,{attr:function (d){return d.rebel == true}}
+        ,{attr:"party"}
+      ];
+      d3.selectAll("th")
+        .data(th)
+        .attr("class",function(d) {if (d.attr) return "sortable";})
+        .attr("id",function(d,i){ return (d.attr && typeof d.attr != "function"? d.attr : "col_"+i)});
+
+      d3.selectAll("th.sortable")
+      .on("click", function(d) {
+        var icon=d3.select(this).select("i.glyphicon");
+        var up=icon.classed("glyphicon-arrow-up");
+        d3.selectAll("th.sortable .glyphicon").attr("class","glyphicon glyphicon-sort");
+        if (!up) {
+          icon.attr("class","glyphicon glyphicon-arrow-up");
+          chart.order (d3.ascending);
+        } else {
+          icon.attr("class","glyphicon glyphicon-arrow-down");
+          chart.order (d3.descending);
+        }
+        if (typeof d.attr == "function") {
+          chart.sortBy(d.attr);
+        } else {
+          chart.sortBy(function (e){return e[d.attr];});
+        }
+        chart.redraw();
+      })
+     .append("i").attr('class','glyphicon glyphicon-sort');
+
+     d3.select("th#col_0 i").attr("class","glyphicon glyphicon-arrow-down");
+   }
+}
+
+function urlParam(name,value) {
+  if (typeof value == "string") {
+    var uri=window.location.href;
+    value=encodeURIComponent(value);
+    var re = new RegExp("([?&])" + name + "=.*?(&|#|$)", "i");
+    if (uri.match(re)) {
+    uri=uri.replace(re, '$1' + name + "=" + value + '$2');
+    } else {
+      var hash =  '';
+      if( uri.indexOf('#') !== -1 ){
+        hash = uri.replace(/.*#/, '#');
+        uri = uri.replace(/#.*/, '');
+      }
+      var separator = uri.indexOf('?') !== -1 ? "&" : "?";
+      uri= uri + separator + name + "=" + value + hash;
+    }
+    history.pushState({q:value},"search for "+value,uri);
+    return uri;
+  } else {
+    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+    if (results == null) {
+      return null;
+    } else {
+      return decodeURIComponent(results[1]) || 0;
+    }
+  }
+};
+
+</script>
+
+<svg class="d-none" id="icons">
+    <defs>
+      <filter id="glow">
+        <feGaussianBlur stdDeviation="3.5" result="coloredBlur">
+          <feMerge in="SourceGraphic">
+            <feMergeNode in="coloredBlur">
+            </feMergeNode>
+          </feMerge>
+        </feGaussianBlur>
+      </filter>
+    </defs>
+  <symbol id="menu" viewBox="0 0 24 24">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+</symbol>
+<symbol id="icon-twitter" viewBox="0 0 24 24">
+<path fill="#1DA1F2" d="M23.954 4.569c-.885.389-1.83.654-2.825.775 1.014-.611 1.794-1.574 2.163-2.723-.951.555-2.005.959-3.127 1.184-.896-.959-2.173-1.559-3.591-1.559-2.717 0-4.92 2.203-4.92 4.917 0 .39.045.765.127 1.124C7.691 8.094 4.066 6.13 1.64 3.161c-.427.722-.666 1.561-.666 2.475 0 1.71.87 3.213 2.188 4.096-.807-.026-1.566-.248-2.228-.616v.061c0 2.385 1.693 4.374 3.946 4.827-.413.111-.849.171-1.296.171-.314 0-.615-.03-.916-.086.631 1.953 2.445 3.377 4.604 3.417-1.68 1.319-3.809 2.105-6.102 2.105-.39 0-.779-.023-1.17-.067 2.189 1.394 4.768 2.209 7.557 2.209 9.054 0 13.999-7.496 13.999-13.986 0-.209 0-.42-.015-.63.961-.689 1.8-1.56 2.46-2.548l-.047-.02z"/>
+</symbol>
+  <symbol id="icon-against" viewBox="0 0 24 24">
+    <path fill="#c0392b" d="M19,15H23V3H19M15,3H6C5.17,3 4.46,3.5 4.16,4.22L1.14,11.27C1.05,11.5 1,11.74 1,12V14A2,2 0 0,0 3,16H9.31L8.36,20.57C8.34,20.67 8.33,20.77 8.33,20.88C8.33,21.3 8.5,21.67 8.77,21.94L9.83,23L16.41,16.41C16.78,16.05 17,15.55 17,15V5C17,3.89 16.1,3 15,3Z" />
+  </symbol>
+  <symbol id="icon-for" viewBox="0 0 24 24">
+    <path fill="#27ae60" d="M23,10C23,8.89 22.1,8 21,8H14.68L15.64,3.43C15.66,3.33 15.67,3.22 15.67,3.11C15.67,2.7 15.5,2.32 15.23,2.05L14.17,1L7.59,7.58C7.22,7.95 7,8.45 7,9V19A2,2 0 0,0 9,21H18C18.83,21 19.54,20.5 19.84,19.78L22.86,12.73C22.95,12.5 23,12.26 23,12V10M1,21H5V9H1V21Z" />
+  </symbol>
+  <symbol id="icon-abstention" viewBox="0 0 24 24">
+    <path transform="rotate(240 12 12)" fill="#2980b9" d="M23,10C23,8.89 22.1,8 21,8H14.68L15.64,3.43C15.66,3.33 15.67,3.22 15.67,3.11C15.67,2.7 15.5,2.32 15.23,2.05L14.17,1L7.59,7.58C7.22,7.95 7,8.45 7,9V19A2,2 0 0,0 9,21H18C18.83,21 19.54,20.5 19.84,19.78L22.86,12.73C22.95,12.5 23,12.26 23,12V10M1,21H5V9H1V21Z" />
+  </symbol>
+<symbol id="icon-rebel" viewBox="0 0 24 24"><path d="M23 5.5V20c0 2.2-1.8 4-4 4h-7.3c-1.08 0-2.1-.43-2.85-1.19L1 14.83s1.26-1.23 1.3-1.25c.22-.19.49-.29.79-.29.22 0 .42.06.6.16.04.01 4.31 2.46 4.31 2.46V4c0-.83.67-1.5 1.5-1.5S11 3.17 11 4v7h1V1.5c0-.83.67-1.5 1.5-1.5S15 .67 15 1.5V11h1V2.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5V11h1V5.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5z"/></symbol> 
+  <symbol id="logo" viewBox="0 0 24 24"><path d="M6 13c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0 4c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0-8c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm-3 .5c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zM6 5c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm15 5.5c.28 0 .5-.22.5-.5s-.22-.5-.5-.5-.5.22-.5.5.22.5.5.5zM14 7c.55 0 1-.45 1-1s-.45-1-1-1-1 .45-1 1 .45 1 1 1zm0-3.5c.28 0 .5-.22.5-.5s-.22-.5-.5-.5-.5.22-.5.5.22.5.5.5zm-11 10c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zm7 7c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zm0-17c.28 0 .5-.22.5-.5s-.22-.5-.5-.5-.5.22-.5.5.22.5.5.5zM10 7c.55 0 1-.45 1-1s-.45-1-1-1-1 .45-1 1 .45 1 1 1zm0 5.5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm8 .5c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0 4c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0-8c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0-4c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm3 8.5c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zM14 17c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0 3.5c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zm-4-12c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm0 8.5c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm4-4.5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm0-4c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5z"/></symbol>
+</svg>
+<style>
+.mep .card {width:200px}
+.card-img-top img {width:160px}
+</style>
+        <div class="mep col d-none">
+                <div class="card">
+                  <div class="d-flex">
+                    <div class="mr-auto card-img-top">
+                      <img src="img/person.svg" data-src="http://www.europarl.europa.eu/mepphoto/{epid}.jpg">
+                    </div>
+                    <div class="p-2 m-2">
+                      <svg class="icon"><use href="#icon-{vote}" /></svg>
+                      <svg class="icon"><use href="#flag-{country}" /></svg>
+                    </div>
+                  </div>
+                  <h5 class="card-title">{firstname} {lastname}</h5>
+                  <div class="card-text">{party}</div>
+                </div>
+        </div>
+
+  </body>
+</html>

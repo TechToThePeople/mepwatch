@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+  <style>
+    /* Animate the radius of Circle 2 */
+
+    svg:hover path {
+      stroke-width:4px;
+
+    }
+    path {
+      _animation: radiusAnimation 1s ease-in 2 alternate;
+      stroke-width:2px;
+      transition: stroke-width 1s;
+    }
+    svg path:hover {
+ transition: stroke-width 1s ease-out;
+      stroke-width:10px;
+    }
+    /* Define the CSS animation */
+    @keyframes radiusAnimation {
+      0% {
+        stroke-width: 1px;
+      }
+      100% {
+        stroke-width: 6px;
+      }
+    }
+  </style>
+
+  <div id="svgLogo">
+    <object type="image/svg+xml" data="logo.svg" height="200"></object>
+  </div>
+  <script>
+        function loadSVG(url, containerId) {
+          fetch(url)
+            .then((response) => response.text())
+            .then((data) => {
+              // Inject the SVG content into the container
+              const container = document.getElementById(containerId);
+              container.innerHTML = data;
+
+      })
+
+        }
+
+        // Load the SVG
+        loadSVG("./logo.svg", "svgLogo");
+  </script>
+</html>

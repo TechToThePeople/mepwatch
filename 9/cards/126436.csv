@@ -31,10 +31,10 @@ mepid,name,result,eugroup,identifier,vote_id
 7174,Baldassarre,for,ID,126436,7174
 6988,Bardella,for,ID,126436,6988
 7001,Basso,for,ID,126436,7001
-6394,Bay,for,ID,126436,6394
+6394,Bay,for,NA,126436,6394
 6874,Beck,for,ID,126436,6874
 7068,Beigneux,for,ID,126436,7068
-6875,Berg,for,ID,126436,6875
+6875,Berg,for,ECR,126436,6875
 6405,Bilde,for,ID,126436,6405
 6179,Bizzotto,for,ID,126436,6179
 6954,Blaško,for,ID,126436,6954
@@ -46,25 +46,25 @@ mepid,name,result,eugroup,identifier,vote_id
 7181,Casanova,for,ID,126436,7181
 7170,Ceccardi,for,ID,126436,7170
 6731,Ciocca,for,ID,126436,6731
-7071,Collard,for,ID,126436,7071
+7071,Collard,for,NA,126436,7071
 7007,Conte,for,ID,126436,7007
 6999,Da Re,for,ID,126436,6999
 6949,David,for,ID,126436,6949
-7207,Donato,for,ID,126436,7207
+7207,Donato,for,NA,126436,7207
 7005,Dreosto,for,ID,126436,7005
 6877,Fest,for,ID,126436,6877
 6972,Gancia,for,ID,126436,6972
 7018,Garraud,for,ID,126436,7018
-6630,de Graaff,for,ID,126436,6630
+6630,de Graaff,for,NA,126436,6630
 7184,Grant,for,ID,126436,7184
 7019,Griset,for,ID,126436,7019
 7246,Haider,for,ID,126436,7246
-6989,Hakkarainen,for,ID,126436,6989
-6986,Huhtasaari,for,ID,126436,6986
+6989,Hakkarainen,for,ECR,126436,6989
+6986,Huhtasaari,for,NI,126436,6986
 6404,Jalkh,for,ID,126436,6404
 6751,Jamet,for,ID,126436,6751
 7017,Joron,for,ID,126436,7017
-7016,Juvin,for,ID,126436,7016
+7016,Juvin,for,NA,126436,7016
 6960,Kofod,for,ID,126436,6960
 6878,Krah,for,ID,126436,6878
 6879,Kuhs,for,ID,126436,6879
@@ -77,225 +77,225 @@ mepid,name,result,eugroup,identifier,vote_id
 7013,Mariani,for,ID,126436,7013
 6627,Mayer,for,ID,126436,6627
 6399,Mélin,for,ID,126436,6399
-6759,Meuthen,for,ID,126436,6759
+6759,Meuthen,for,NA,126436,6759
 7075,Olivier,for,ID,126436,7075
 6979,Panza,for,ID,126436,6979
-7020,Pirbakas,for,ID,126436,7020
-7175,Regimenti,for,ID,126436,7175
+7020,Pirbakas,for,NA,126436,7020
+7175,Regimenti,for,EPP,126436,7175
 6881,Reil,for,ID,126436,6881
 7171,Rinaldi,for,ID,126436,7171
-7006,Rivière,for,ID,126436,7006
+7006,Rivière,for,NA,126436,7006
 7078,Rougé,for,ID,126436,7078
 6968,Sardone,for,ID,126436,6968
-7262,Sofo,for,ID,126436,7262
+7262,Sofo,for,ECR,126436,7262
 7191,Tardino,for,ID,126436,7191
 6970,Tovaglieri,for,ID,126436,6970
 7234,Vandendriessche,for,ID,126436,7234
 6610,Vilimsky,for,ID,126436,6610
-7183,Vuolo,for,ID,126436,7183
+7183,Vuolo,for,EPP,126436,7183
 6976,Zambelli,for,ID,126436,6976
 6414,Zanni,for,ID,126436,6414
 6882,Zimniok,for,ID,126436,6882
-7182,Caroppo,for,NI,126436,7182
-7243,Gyöngyösi,for,NI,126436,7243
-7123,Konstantinou,for,NI,126436,7123
-7119,Lagos,for,NI,126436,7119
-7148,Radačovský,for,NI,126436,7148
-7242,Sinčić,for,NI,126436,7242
-7147,Uhrík,for,NI,126436,7147
-6927,Bellamy,for,PPE,126436,6927
-6929,Colin-Oesterlé,for,PPE,126436,6929
-5921,Danjean,for,PPE,126436,5921
-6762,Didier,for,PPE,126436,6762
-4987,Hortefeux,for,PPE,126436,4987
-6805,Kokalari,for,PPE,126436,6805
-6793,Lega,for,PPE,126436,6793
-6368,Morano,for,PPE,126436,6368
-6803,Polfjärd,for,PPE,126436,6803
-6370,Sander,for,PPE,126436,6370
-6341,Šojdrová,for,PPE,126436,6341
-6801,Tobé,for,PPE,126436,6801
-6804,Warborn,for,PPE,126436,6804
+7182,Caroppo,for,EPP,126436,7182
+7243,Gyöngyösi,for,NA,126436,7243
+7123,Konstantinou,for,NA,126436,7123
+7119,Lagos,for,NA,126436,7119
+7148,Radačovský,for,NA,126436,7148
+7242,Sinčić,for,NA,126436,7242
+7147,Uhrík,for,NA,126436,7147
+6927,Bellamy,for,EPP,126436,6927
+6929,Colin-Oesterlé,for,EPP,126436,6929
+5921,Danjean,for,EPP,126436,5921
+6762,Didier,for,EPP,126436,6762
+4987,Hortefeux,for,EPP,126436,4987
+6805,Kokalari,for,EPP,126436,6805
+6793,Lega,for,EPP,126436,6793
+6368,Morano,for,EPP,126436,6368
+6803,Polfjärd,for,EPP,126436,6803
+6370,Sander,for,EPP,126436,6370
+6341,Šojdrová,for,EPP,126436,6341
+6801,Tobé,for,EPP,126436,6801
+6804,Warborn,for,EPP,126436,6804
 6953,Pekkarinen,for,Renew,126436,6953
-7150,Ďuriš Nicholsonová,against,ECR,126436,7150
-7173,Melbārde,against,ECR,126436,7173
-6468,Adinolfi Isabella,against,NI,126436,6468
-6411,Beghin,against,NI,126436,6411
-6832,Buschmann,against,NI,126436,6832
-6446,Castaldo,against,NI,126436,6446
-7258,Comín i Oliveres,against,NI,126436,7258
-6470,Ferrara,against,NI,126436,6470
-7180,Furore,against,NI,126436,7180
-7179,Gemma,against,NI,126436,7179
-7189,Giarrusso,against,NI,126436,7189
-7010,Pignedoli,against,NI,126436,7010
-7276,Ponsatí Obiols,against,NI,126436,7276
-7257,Puigdemont i Casamajó,against,NI,126436,7257
-7177,Rondinelli,against,NI,126436,7177
-7278,Rookmaker,against,NI,126436,7278
-6471,Sonneborn,against,NI,126436,6471
-6695,Zullo,against,NI,126436,6695
-6883,Adamowicz,against,PPE,126436,6883
-6755,Ademov,against,PPE,126436,6755
-7219,Alexandrov Yordanov,against,PPE,126436,7219
-5980,Arias Echeverría,against,PPE,126436,5980
-6594,Arimont,against,PPE,126436,6594
-6885,Arłukowicz,against,PPE,126436,6885
-7083,Asimakopoulou,against,PPE,126436,7083
-7060,Băsescu,against,PPE,126436,7060
-7067,Benjumea Benjumea,against,PPE,126436,7067
-6807,Bentele,against,PPE,126436,6807
-7162,Berendsen,against,PPE,126436,7162
-6809,Berger,against,PPE,126436,6809
-4806,Berlusconi,against,PPE,126436,4806
-7155,Bilčík,against,PPE,126436,7155
-7026,Blaga,against,PPE,126436,7026
-6343,Bocskor,against,PPE,126436,6343
-7025,Bogdan,against,PPE,126436,7025
-6617,Buda,against,PPE,126436,6617
-5729,Buşoi,against,PPE,126436,5729
-5388,Buzek,against,PPE,126436,5388
-6039,Carvalho,against,PPE,126436,6039
-5252,Casa,against,PPE,126436,5252
-5341,Caspary,against,PPE,126436,5341
-5508,del Castillo Vera,against,PPE,126436,5508
-5236,Christoforou,against,PPE,126436,5236
-6600,Clune,against,PPE,126436,6600
-5981,van Dalen,against,PPE,126436,5981
-7261,De Meo,against,PPE,126436,7261
-6345,Deli,against,PPE,126436,6345
-5998,Deutsch,against,PPE,126436,5998
-6870,Doleschal,against,PPE,126436,6870
-6903,Duda,against,PPE,126436,6903
-6810,Düpont,against,PPE,126436,6810
-5348,Ehler,against,PPE,126436,5348
-5983,Estaràs Ferragut,against,PPE,126436,5983
-6928,Evren,against,PPE,126436,6928
-7038,Falcă,against,PPE,126436,7038
-3833,Ferber,against,PPE,126436,3833
-6068,Fernandes,against,PPE,126436,6068
-7108,Fitzgerald,against,PPE,126436,7108
-6813,Fourlas,against,PPE,126436,6813
-6906,Frankowski,against,PPE,126436,6906
-6852,Franssen,against,PPE,126436,6852
-4659,Gahler,against,PPE,126436,4659
-5280,Gál,against,PPE,126436,5280
-3980,García-Margallo y Marfil,against,PPE,126436,3980
-6441,Gieseke,against,PPE,126436,6441
-7253,Glavak,against,PPE,126436,7253
-6632,González Pons,against,PPE,126436,6632
-6002,Győri,against,PPE,126436,6002
-5138,Gyürk,against,PPE,126436,5138
-6907,Halicki,against,PPE,126436,6907
-6777,Hansen,against,PPE,126436,6777
-7035,Hava,against,PPE,126436,7035
-6811,Herbst,against,PPE,126436,6811
-6534,Hetman,against,PPE,126436,6534
-6318,Hidvéghi,against,PPE,126436,6318
-5953,Hohlmeier,against,PPE,126436,5953
-6346,Hölvényi,against,PPE,126436,6346
-5952,Hübner,against,PPE,126436,5952
-5945,Jahr,against,PPE,126436,5945
-5271,Járóka,against,PPE,126436,5271
-6910,Jarubas,against,PPE,126436,6910
-7223,Juknevičienė,against,PPE,126436,7223
-5944,Kalinowski,against,PPE,126436,5944
-6095,Kalniete,against,PPE,126436,6095
-7222,Kanev,against,PPE,126436,7222
-6666,Kefalogiannis,against,PPE,126436,6666
-5855,Kelly,against,PPE,126436,5855
-6918,Kopacz,against,PPE,126436,6918
-6001,Kósa,against,PPE,126436,6001
-6196,Kovatchev,against,PPE,126436,6196
-7226,Kubilius,against,PPE,126436,7226
-7080,Kympouropoulos,against,PPE,126436,7080
-6662,Kyrtsos,against,PPE,126436,6662
-5727,de Lange,against,PPE,126436,5727
-6592,Lenaers,against,PPE,126436,6592
-5105,Lewandowski,against,PPE,126436,5105
-7264,Lexmann,against,PPE,126436,7264
-3855,Liese,against,PPE,126436,3855
-6442,Lins,against,PPE,126436,6442
-7161,López Gil,against,PPE,126436,7161
-5517,López-Istúriz White,against,PPE,126436,5517
-5964,Łukacijewska,against,PPE,126436,5964
-6855,Lutgen,against,PPE,126436,6855
-6440,McAllister,against,PPE,126436,6440
-7218,Maldeikienė,against,PPE,126436,7218
-4964,Manders,against,PPE,126436,4964
-5646,Marinescu,against,PPE,126436,5646
-7284,Markey,against,PPE,126436,7284
-6465,Martusciello,against,PPE,126436,6465
-6096,Mato,against,PPE,126436,6096
-6483,Maydell,against,PPE,126436,6483
-7224,Mažylis,against,PPE,126436,7224
-7051,Meimarakis,against,PPE,126436,7051
-6121,Melo,against,PPE,126436,6121
-6297,Metsola,against,PPE,126436,6297
-7209,Milazzo,against,PPE,126436,7209
-5518,Millán Mon,against,PPE,126436,5518
-6366,Monteiro de Aguiar,against,PPE,126436,6366
-7099,Montserrat,against,PPE,126436,7099
-6825,Mortler,against,PPE,126436,6825
-7036,Motreanu,against,PPE,126436,7036
-6436,Mureşan,against,PPE,126436,6436
-4712,Niebler,against,PPE,126436,4712
-6332,Niedermayer,against,PPE,126436,6332
-7255,Nistor,against,PPE,126436,7255
-5413,Novak,against,PPE,126436,5413
-6709,Novakov,against,PPE,126436,6709
-6935,Ochojska,against,PPE,126436,6935
-5407,Olbrycht,against,PPE,126436,5407
-5702,Patriciello,against,PPE,126436,5702
-7120,Pereira Lídia,against,PPE,126436,7120
-5346,Pieper,against,PPE,126436,5346
-5788,Pietikäinen,against,PPE,126436,5788
-6335,Polčák,against,PPE,126436,6335
-7149,Pollák,against,PPE,126436,7149
-6700,Pospíšil,against,PPE,126436,6700
-6488,Radev,against,PPE,126436,6488
-6750,Radtke,against,PPE,126436,6750
-6072,Rangel,against,PPE,126436,6072
-6812,Ressler,against,PPE,126436,6812
-6698,Salini,against,PPE,126436,6698
-6259,Sarvamaa,against,PPE,126436,6259
-7286,Schaller-Baross,against,PPE,126436,7286
-6821,Schneider,against,PPE,126436,6821
-6636,Schreijer-Pierik,against,PPE,126436,6636
-6443,Schulze,against,PPE,126436,6443
-5345,Schwab,against,PPE,126436,5345
-6823,Seekatz,against,PPE,126436,6823
-6941,Sikorski,against,PPE,126436,6941
-6824,Simon,against,PPE,126436,6824
-6816,Sokol,against,PPE,126436,6816
-6663,Spyraki,against,PPE,126436,6663
-6547,Štefanec,against,PPE,126436,6547
-4482,Tajani,against,PPE,126436,4482
-7277,Terras,against,PPE,126436,7277
-7061,Tomac,against,PPE,126436,7061
-6681,Tomc,against,PPE,126436,6681
-6965,Tóth,against,PPE,126436,6965
-7241,Trócsányi,against,PPE,126436,7241
-5600,Vaidere,against,PPE,126436,5600
-5930,Verheyen,against,PPE,126436,5930
-7062,Vincze,against,PPE,126436,7062
-6356,Virkkunen,against,PPE,126436,6356
-5934,Voss,against,PPE,126436,5934
-6664,Vozemberg-Vrionidi,against,PPE,126436,6664
-7233,Walsh,against,PPE,126436,7233
-6827,Walsmann,against,PPE,126436,6827
-5351,Weber,against,PPE,126436,5351
-6908,Weiss,against,PPE,126436,6908
-4643,Wieland,against,PPE,126436,4643
-7153,Wiezik,against,PPE,126436,7153
-5782,Winkler,against,PPE,126436,5782
-6820,Wiseler-Lima,against,PPE,126436,6820
-6665,Zagorakis,against,PPE,126436,6665
-6997,Zarzalejos,against,PPE,126436,6997
-6344,Zdechovský,against,PPE,126436,6344
-7012,Zoido Álvarez,against,PPE,126436,7012
-6734,Zovko,against,PPE,126436,6734
-6094,Zver,against,PPE,126436,6094
+7150,Ďuriš Nicholsonová,against,Renew,126436,7150
+7173,Melbārde,against,EPP,126436,7173
+6468,Adinolfi Isabella,against,EPP,126436,6468
+6411,Beghin,against,NA,126436,6411
+6832,Buschmann,against,NA,126436,6832
+6446,Castaldo,against,NA,126436,6446
+7258,Comín i Oliveres,against,NA,126436,7258
+6470,Ferrara,against,NA,126436,6470
+7180,Furore,against,NA,126436,7180
+7179,Gemma,against,ECR,126436,7179
+7189,Giarrusso,against,NA,126436,7189
+7010,Pignedoli,against,NA,126436,7010
+7276,Ponsatí Obiols,against,NA,126436,7276
+7257,Puigdemont i Casamajó,against,NA,126436,7257
+7177,Rondinelli,against,S&D,126436,7177
+7278,Rookmaker,against,ECR,126436,7278
+6471,Sonneborn,against,NA,126436,6471
+6695,Zullo,against,Renew,126436,6695
+6883,Adamowicz,against,EPP,126436,6883
+6755,Ademov,against,EPP,126436,6755
+7219,Alexandrov Yordanov,against,EPP,126436,7219
+5980,Arias Echeverría,against,EPP,126436,5980
+6594,Arimont,against,EPP,126436,6594
+6885,Arłukowicz,against,EPP,126436,6885
+7083,Asimakopoulou,against,EPP,126436,7083
+7060,Băsescu,against,EPP,126436,7060
+7067,Benjumea Benjumea,against,EPP,126436,7067
+6807,Bentele,against,EPP,126436,6807
+7162,Berendsen,against,EPP,126436,7162
+6809,Berger,against,EPP,126436,6809
+4806,Berlusconi,against,EPP,126436,4806
+7155,Bilčík,against,EPP,126436,7155
+7026,Blaga,against,EPP,126436,7026
+6343,Bocskor,against,NA,126436,6343
+7025,Bogdan,against,EPP,126436,7025
+6617,Buda,against,EPP,126436,6617
+5729,Buşoi,against,EPP,126436,5729
+5388,Buzek,against,EPP,126436,5388
+6039,Carvalho,against,EPP,126436,6039
+5252,Casa,against,EPP,126436,5252
+5341,Caspary,against,EPP,126436,5341
+5508,del Castillo Vera,against,EPP,126436,5508
+5236,Christoforou,against,EPP,126436,5236
+6600,Clune,against,EPP,126436,6600
+5981,van Dalen,against,EPP,126436,5981
+7261,De Meo,against,EPP,126436,7261
+6345,Deli,against,NA,126436,6345
+5998,Deutsch,against,NA,126436,5998
+6870,Doleschal,against,EPP,126436,6870
+6903,Duda,against,EPP,126436,6903
+6810,Düpont,against,EPP,126436,6810
+5348,Ehler,against,EPP,126436,5348
+5983,Estaràs Ferragut,against,EPP,126436,5983
+6928,Evren,against,EPP,126436,6928
+7038,Falcă,against,EPP,126436,7038
+3833,Ferber,against,EPP,126436,3833
+6068,Fernandes,against,EPP,126436,6068
+7108,Fitzgerald,against,EPP,126436,7108
+6813,Fourlas,against,EPP,126436,6813
+6906,Frankowski,against,EPP,126436,6906
+6852,Franssen,against,EPP,126436,6852
+4659,Gahler,against,EPP,126436,4659
+5280,Gál,against,NA,126436,5280
+3980,García-Margallo y Marfil,against,EPP,126436,3980
+6441,Gieseke,against,EPP,126436,6441
+7253,Glavak,against,EPP,126436,7253
+6632,González Pons,against,EPP,126436,6632
+6002,Győri,against,NA,126436,6002
+5138,Gyürk,against,NA,126436,5138
+6907,Halicki,against,EPP,126436,6907
+6777,Hansen,against,EPP,126436,6777
+7035,Hava,against,EPP,126436,7035
+6811,Herbst,against,EPP,126436,6811
+6534,Hetman,against,EPP,126436,6534
+6318,Hidvéghi,against,NA,126436,6318
+5953,Hohlmeier,against,EPP,126436,5953
+6346,Hölvényi,against,EPP,126436,6346
+5952,Hübner,against,EPP,126436,5952
+5945,Jahr,against,EPP,126436,5945
+5271,Járóka,against,NA,126436,5271
+6910,Jarubas,against,EPP,126436,6910
+7223,Juknevičienė,against,EPP,126436,7223
+5944,Kalinowski,against,EPP,126436,5944
+6095,Kalniete,against,EPP,126436,6095
+7222,Kanev,against,EPP,126436,7222
+6666,Kefalogiannis,against,EPP,126436,6666
+5855,Kelly,against,EPP,126436,5855
+6918,Kopacz,against,EPP,126436,6918
+6001,Kósa,against,NA,126436,6001
+6196,Kovatchev,against,EPP,126436,6196
+7226,Kubilius,against,EPP,126436,7226
+7080,Kympouropoulos,against,EPP,126436,7080
+6662,Kyrtsos,against,Renew,126436,6662
+5727,de Lange,against,EPP,126436,5727
+6592,Lenaers,against,EPP,126436,6592
+5105,Lewandowski,against,EPP,126436,5105
+7264,Lexmann,against,EPP,126436,7264
+3855,Liese,against,EPP,126436,3855
+6442,Lins,against,EPP,126436,6442
+7161,López Gil,against,EPP,126436,7161
+5517,López-Istúriz White,against,EPP,126436,5517
+5964,Łukacijewska,against,EPP,126436,5964
+6855,Lutgen,against,EPP,126436,6855
+6440,McAllister,against,EPP,126436,6440
+7218,Maldeikienė,against,EPP,126436,7218
+4964,Manders,against,EPP,126436,4964
+5646,Marinescu,against,EPP,126436,5646
+7284,Markey,against,EPP,126436,7284
+6465,Martusciello,against,EPP,126436,6465
+6096,Mato,against,EPP,126436,6096
+6483,Maydell,against,EPP,126436,6483
+7224,Mažylis,against,EPP,126436,7224
+7051,Meimarakis,against,EPP,126436,7051
+6121,Melo,against,EPP,126436,6121
+6297,Metsola,against,EPP,126436,6297
+7209,Milazzo,against,ECR,126436,7209
+5518,Millán Mon,against,EPP,126436,5518
+6366,Monteiro de Aguiar,against,EPP,126436,6366
+7099,Montserrat,against,EPP,126436,7099
+6825,Mortler,against,EPP,126436,6825
+7036,Motreanu,against,EPP,126436,7036
+6436,Mureşan,against,EPP,126436,6436
+4712,Niebler,against,EPP,126436,4712
+6332,Niedermayer,against,EPP,126436,6332
+7255,Nistor,against,EPP,126436,7255
+5413,Novak,against,EPP,126436,5413
+6709,Novakov,against,EPP,126436,6709
+6935,Ochojska,against,EPP,126436,6935
+5407,Olbrycht,against,EPP,126436,5407
+5702,Patriciello,against,EPP,126436,5702
+7120,Pereira Lídia,against,EPP,126436,7120
+5346,Pieper,against,EPP,126436,5346
+5788,Pietikäinen,against,EPP,126436,5788
+6335,Polčák,against,EPP,126436,6335
+7149,Pollák,against,EPP,126436,7149
+6700,Pospíšil,against,EPP,126436,6700
+6488,Radev,against,EPP,126436,6488
+6750,Radtke,against,EPP,126436,6750
+6072,Rangel,against,EPP,126436,6072
+6812,Ressler,against,EPP,126436,6812
+6698,Salini,against,EPP,126436,6698
+6259,Sarvamaa,against,EPP,126436,6259
+7286,Schaller-Baross,against,NA,126436,7286
+6821,Schneider,against,EPP,126436,6821
+6636,Schreijer-Pierik,against,EPP,126436,6636
+6443,Schulze,against,EPP,126436,6443
+5345,Schwab,against,EPP,126436,5345
+6823,Seekatz,against,EPP,126436,6823
+6941,Sikorski,against,EPP,126436,6941
+6824,Simon,against,EPP,126436,6824
+6816,Sokol,against,EPP,126436,6816
+6663,Spyraki,against,EPP,126436,6663
+6547,Štefanec,against,EPP,126436,6547
+4482,Tajani,against,EPP,126436,4482
+7277,Terras,against,EPP,126436,7277
+7061,Tomac,against,EPP,126436,7061
+6681,Tomc,against,EPP,126436,6681
+6965,Tóth,against,NA,126436,6965
+7241,Trócsányi,against,NA,126436,7241
+5600,Vaidere,against,EPP,126436,5600
+5930,Verheyen,against,EPP,126436,5930
+7062,Vincze,against,EPP,126436,7062
+6356,Virkkunen,against,EPP,126436,6356
+5934,Voss,against,EPP,126436,5934
+6664,Vozemberg-Vrionidi,against,EPP,126436,6664
+7233,Walsh,against,EPP,126436,7233
+6827,Walsmann,against,EPP,126436,6827
+5351,Weber,against,EPP,126436,5351
+6908,Weiss,against,EPP,126436,6908
+4643,Wieland,against,EPP,126436,4643
+7153,Wiezik,against,Renew,126436,7153
+5782,Winkler,against,EPP,126436,5782
+6820,Wiseler-Lima,against,EPP,126436,6820
+6665,Zagorakis,against,EPP,126436,6665
+6997,Zarzalejos,against,EPP,126436,6997
+6344,Zdechovský,against,EPP,126436,6344
+7012,Zoido Álvarez,against,EPP,126436,7012
+6734,Zovko,against,EPP,126436,6734
+6094,Zver,against,EPP,126436,6094
 7230,Alieva-Veli,against,Renew,126436,7230
 6799,Al-Sahlani,against,Renew,126436,6799
 7260,Andrews,against,Renew,126436,7260
@@ -320,7 +320,7 @@ mepid,name,result,eugroup,identifier,vote_id
 6458,Danti,against,Renew,126436,6458
 6898,Decerle,against,Renew,126436,6898
 6987,Donáth,against,Renew,126436,6987
-6324,Durand,against,Renew,126436,6324
+6324,Durand,against,S&D,126436,6324
 6828,Eroglu,against,Renew,126436,6828
 6980,Farreng,against,Renew,126436,6980
 6818,Flego,against,Renew,126436,6818
@@ -340,7 +340,7 @@ mepid,name,result,eugroup,identifier,vote_id
 7154,Hojsík,against,Renew,126436,7154
 6622,Huitema,against,Renew,126436,6622
 7014,Ijabs,against,Renew,126436,7014
-5385,in  't Veld,against,Renew,126436,5385
+5385,in 't Veld,against,Renew,126436,5385
 6844,Joveva,against,Renew,126436,6844
 6975,Karleskind,against,Renew,126436,6975
 6800,Karlsbro,against,Renew,126436,6800
@@ -351,7 +351,7 @@ mepid,name,result,eugroup,identifier,vote_id
 6504,Kyuchyuk,against,Renew,126436,6504
 6887,Loiseau,against,Renew,126436,6887
 5889,Løkkegaard,against,Renew,126436,5889
-6915,Maxová,against,Renew,126436,6915
+6915,Maxová,against,S&D,126436,6915
 6957,Melchior,against,Renew,126436,6957
 6690,Mihaylova,against,Renew,126436,6690
 7285,Mituța,against,Renew,126436,7285
@@ -372,7 +372,7 @@ mepid,name,result,eugroup,identifier,vote_id
 6817,Semedo,against,Renew,126436,6817
 7152,Šimečka,against,Renew,126436,7152
 7168,Solís Pérez,against,Renew,126436,7168
-7055,Ştefănuță,against,Renew,126436,7055
+7055,Ştefănuță,against,Greens/EFA,126436,7055
 7058,Strugariu,against,Renew,126436,7058
 7259,Søgaard-Lidell,against,Renew,126436,7259
 6940,Tolleret,against,Renew,126436,6940
@@ -414,11 +414,11 @@ mepid,name,result,eugroup,identifier,vote_id
 7252,Carvalhais,against,S&D,126436,7252
 7030,Cerdas,against,S&D,126436,7030
 7166,Chahim,against,S&D,126436,7166
-6499,Chinnici,against,S&D,126436,6499
+6499,Chinnici,against,EPP,126436,6499
 6901,Cimoszewicz,against,S&D,126436,6901
 7046,Ciuhodaru,against,S&D,126436,7046
 7145,Číž,against,S&D,126436,7145
-6051,Cozzolino,against,S&D,126436,6051
+6051,Cozzolino,against,NA,126436,6051
 5661,Crețu,against,S&D,126436,5661
 6794,Cutajar,against,S&D,126436,6794
 6806,Danielsson,against,S&D,126436,6806
@@ -429,7 +429,7 @@ mepid,name,result,eugroup,identifier,vote_id
 6014,Ertug,against,S&D,126436,6014
 6080,Fajon,against,S&D,126436,6080
 6652,Fernández,against,S&D,126436,6652
-6770,Ferrandino,against,S&D,126436,6770
+6770,Ferrandino,against,Renew,126436,6770
 6791,Fritzon,against,S&D,126436,6791
 6955,Fuglsang,against,S&D,126436,6955
 7090,Gálvez Muñoz,against,S&D,126436,7090
@@ -453,7 +453,7 @@ mepid,name,result,eugroup,identifier,vote_id
 6792,Incir,against,S&D,126436,6792
 6263,Jerković,against,S&D,126436,6263
 6624,Jongerius,against,S&D,126436,6624
-6686,Kaili,against,S&D,126436,6686
+6686,Kaili,against,NA,126436,6686
 6884,Kaljurand,against,S&D,126436,6884
 6009,Kammerevert,against,S&D,126436,6009
 6916,Kohut,against,S&D,126436,6916
@@ -513,7 +513,7 @@ mepid,name,result,eugroup,identifier,vote_id
 7176,Smeriglio,against,S&D,126436,7176
 6490,Stanishev,against,S&D,126436,6490
 6623,Tang,against,S&D,126436,6623
-5624,Tarabella,against,S&D,126436,5624
+5624,Tarabella,against,NA,126436,5624
 7140,Tax,against,S&D,126436,7140
 6983,Tinagli,against,S&D,126436,6983
 5459,Toia,against,S&D,126436,5459
@@ -540,7 +540,7 @@ mepid,name,result,eugroup,identifier,vote_id
 6024,Ernst,against,GUE/NGL,126436,6024
 6597,Flanagan,against,GUE/NGL,126436,6597
 6815,Georgiou,against,GUE/NGL,126436,6815
-7204,Georgoulis,against,GUE/NGL,126436,7204
+7204,Georgoulis,against,NA,126436,7204
 7133,Gusmão,against,GUE/NGL,126436,7133
 6628,Hazekamp,against,GUE/NGL,126436,6628
 6814,Kizilyürek,against,GUE/NGL,126436,6814
@@ -564,74 +564,74 @@ mepid,name,result,eugroup,identifier,vote_id
 6715,Urbán Crespo,against,GUE/NGL,126436,6715
 7212,Villanueva Ruiz,against,GUE/NGL,126436,7212
 6961,Villumsen,against,GUE/NGL,126436,6961
-7263,Alametsä,against,Verts/ALE,126436,7263
-5924,Alfonsi,against,Verts/ALE,126436,5924
-6845,Andresen,against,Verts/ALE,126436,6845
-5291,Auken,against,Verts/ALE,126436,5291
-6905,Biteau,against,Verts/ALE,126436,6905
-6846,Bloss,against,Verts/ALE,126436,6846
-6829,Breyer,against,Verts/ALE,126436,6829
-6867,Bricmont,against,Verts/ALE,126436,6867
-5913,Bütikofer,against,Verts/ALE,126436,5913
-6964,Carême,against,Verts/ALE,126436,6964
-6847,Cavazzini,against,Verts/ALE,126436,6847
-6897,Cormand,against,Verts/ALE,126436,6897
-6494,Corrao,against,Verts/ALE,126436,6494
-7043,Cuffe,against,Verts/ALE,126436,7043
-6472,D'Amato,against,Verts/ALE,126436,6472
-6924,Delbos-Corfield,against,Verts/ALE,126436,6924
-6040,Delli,against,Verts/ALE,126436,6040
-6850,Deparnay-Grunenberg,against,Verts/ALE,126436,6850
-5899,Eickhout,against,Verts/ALE,126436,5899
-6413,Evi,against,Verts/ALE,126436,6413
-6775,Franz,against,Verts/ALE,126436,6775
-6851,Freund,against,Verts/ALE,126436,6851
-6853,Geese,against,Verts/ALE,126436,6853
-5904,Giegold,against,Verts/ALE,126436,5904
-6942,Gregorová,against,Verts/ALE,126436,6942
-7274,Gruffat,against,Verts/ALE,126436,7274
-7034,Guerreiro,against,Verts/ALE,126436,7034
-6854,Hahn Henrike,against,Verts/ALE,126436,6854
-5926,Häusling,against,Verts/ALE,126436,5926
-4535,Hautala,against,Verts/ALE,126436,4535
-6856,Herzberger-Fofana,against,Verts/ALE,126436,6856
-6797,Holmgren,against,Verts/ALE,126436,6797
-5914,Jadot,against,Verts/ALE,126436,5914
-7220,Jakeliūnas,against,Verts/ALE,126436,7220
-5908,Keller Ska,against,Verts/ALE,126436,5908
-6939,Kolaja,against,Verts/ALE,126436,6939
-6795,Kuhnke,against,Verts/ALE,126436,6795
-6857,Lagodinsky,against,Verts/ALE,126436,6857
-5838,Lamberts,against,Verts/ALE,126436,5838
-6858,Langensiepen,against,Verts/ALE,126436,6858
-6859,Marquardt,against,Verts/ALE,126436,6859
-7281,Matthieu,against,Verts/ALE,126436,7281
-6776,Metz,against,Verts/ALE,126436,6776
-6861,Neumann,against,Verts/ALE,126436,6861
-6862,Nienaß,against,Verts/ALE,126436,6862
-7187,Niinistö,against,Verts/ALE,126436,7187
-7240,O'Sullivan,against,Verts/ALE,126436,7240
-6863,Paulus,against,Verts/ALE,126436,6863
-6482,Pedicini,against,Verts/ALE,126436,6482
-6932,Peksa,against,Verts/ALE,126436,6932
-6963,Peter-Hansen,against,Verts/ALE,126436,6963
-6529,Reintke,against,Verts/ALE,126436,6529
-7217,Riba i Giner,against,Verts/ALE,126436,7217
-6900,Roose,against,Verts/ALE,126436,6900
-6694,Ropė,against,Verts/ALE,126436,6694
-6893,Satouri,against,Verts/ALE,126436,6893
-6822,Semsrott,against,Verts/ALE,126436,6822
-6738,Solé,against,Verts/ALE,126436,6738
-6943,Spurek,against,Verts/ALE,126436,6943
-7156,Strik,against,Verts/ALE,126436,7156
-6894,Toussaint,against,Verts/ALE,126436,6894
-6591,Urtasun,against,Verts/ALE,126436,6591
-6551,Vana,against,Verts/ALE,126436,6551
-6848,Von Cramon-Taubadel,against,Verts/ALE,126436,6848
-6757,Waitz,against,Verts/ALE,126436,6757
-7064,Wiener,against,Verts/ALE,126436,7064
-6904,Yenbou,against,Verts/ALE,126436,6904
-5602,Ždanoka,against,Verts/ALE,126436,5602
+7263,Alametsä,against,Greens/EFA,126436,7263
+5924,Alfonsi,against,Greens/EFA,126436,5924
+6845,Andresen,against,Greens/EFA,126436,6845
+5291,Auken,against,Greens/EFA,126436,5291
+6905,Biteau,against,Greens/EFA,126436,6905
+6846,Bloss,against,Greens/EFA,126436,6846
+6829,Breyer,against,Greens/EFA,126436,6829
+6867,Bricmont,against,Greens/EFA,126436,6867
+5913,Bütikofer,against,Greens/EFA,126436,5913
+6964,Carême,against,Greens/EFA,126436,6964
+6847,Cavazzini,against,Greens/EFA,126436,6847
+6897,Cormand,against,Greens/EFA,126436,6897
+6494,Corrao,against,Greens/EFA,126436,6494
+7043,Cuffe,against,Greens/EFA,126436,7043
+6472,D'Amato,against,Greens/EFA,126436,6472
+6924,Delbos-Corfield,against,Greens/EFA,126436,6924
+6040,Delli,against,Greens/EFA,126436,6040
+6850,Deparnay-Grunenberg,against,Greens/EFA,126436,6850
+5899,Eickhout,against,Greens/EFA,126436,5899
+6413,Evi,against,Greens/EFA,126436,6413
+6775,Franz,against,Greens/EFA,126436,6775
+6851,Freund,against,Greens/EFA,126436,6851
+6853,Geese,against,Greens/EFA,126436,6853
+5904,Giegold,against,Greens/EFA,126436,5904
+6942,Gregorová,against,Greens/EFA,126436,6942
+7274,Gruffat,against,Greens/EFA,126436,7274
+7034,Guerreiro,against,Greens/EFA,126436,7034
+6854,Hahn Henrike,against,Greens/EFA,126436,6854
+5926,Häusling,against,Greens/EFA,126436,5926
+4535,Hautala,against,Greens/EFA,126436,4535
+6856,Herzberger-Fofana,against,Greens/EFA,126436,6856
+6797,Holmgren,against,Greens/EFA,126436,6797
+5914,Jadot,against,Greens/EFA,126436,5914
+7220,Jakeliūnas,against,Greens/EFA,126436,7220
+5908,Keller Ska,against,Greens/EFA,126436,5908
+6939,Kolaja,against,Greens/EFA,126436,6939
+6795,Kuhnke,against,Greens/EFA,126436,6795
+6857,Lagodinsky,against,Greens/EFA,126436,6857
+5838,Lamberts,against,Greens/EFA,126436,5838
+6858,Langensiepen,against,Greens/EFA,126436,6858
+6859,Marquardt,against,Greens/EFA,126436,6859
+7281,Matthieu,against,Greens/EFA,126436,7281
+6776,Metz,against,Greens/EFA,126436,6776
+6861,Neumann,against,Greens/EFA,126436,6861
+6862,Nienaß,against,Greens/EFA,126436,6862
+7187,Niinistö,against,Greens/EFA,126436,7187
+7240,O'Sullivan,against,Greens/EFA,126436,7240
+6863,Paulus,against,Greens/EFA,126436,6863
+6482,Pedicini,against,Greens/EFA,126436,6482
+6932,Peksa,against,Greens/EFA,126436,6932
+6963,Peter-Hansen,against,Greens/EFA,126436,6963
+6529,Reintke,against,Greens/EFA,126436,6529
+7217,Riba i Giner,against,Greens/EFA,126436,7217
+6900,Roose,against,Greens/EFA,126436,6900
+6694,Ropė,against,Greens/EFA,126436,6694
+6893,Satouri,against,Greens/EFA,126436,6893
+6822,Semsrott,against,Greens/EFA,126436,6822
+6738,Solé,against,Greens/EFA,126436,6738
+6943,Spurek,against,Greens/EFA,126436,6943
+7156,Strik,against,Greens/EFA,126436,7156
+6894,Toussaint,against,Greens/EFA,126436,6894
+6591,Urtasun,against,Greens/EFA,126436,6591
+6551,Vana,against,Greens/EFA,126436,6551
+6848,Von Cramon-Taubadel,against,Greens/EFA,126436,6848
+6757,Waitz,against,Greens/EFA,126436,6757
+7064,Wiener,against,Greens/EFA,126436,7064
+6904,Yenbou,against,Renew,126436,6904
+5602,Ždanoka,against,NA,126436,5602
 5112,Bielan,abstention,ECR,126436,5112
 6864,Bourgeois,abstention,ECR,126436,6864
 6895,Brudziński,abstention,ECR,126436,6895
@@ -664,18 +664,18 @@ mepid,name,result,eugroup,identifier,vote_id
 6962,Zalewska,abstention,ECR,126436,6962
 5598,Zīle,abstention,ECR,126436,5598
 6522,Złotowski,abstention,ECR,126436,6522
-6836,Kolakušić,abstention,NI,126436,6836
-7037,Bernhuber,abstention,PPE,126436,7037
-5960,Dorfmann,abstention,PPE,126436,5960
-6761,Mandl,abstention,PPE,126436,6761
-7266,Sagartz,abstention,PPE,126436,7266
-7045,Schmiedtbauer,abstention,PPE,126436,7045
-7056,Thaler,abstention,PPE,126436,7056
-7041,Winzig,abstention,PPE,126436,7041
+6836,Kolakušić,abstention,NA,126436,6836
+7037,Bernhuber,abstention,EPP,126436,7037
+5960,Dorfmann,abstention,EPP,126436,5960
+6761,Mandl,abstention,EPP,126436,6761
+7266,Sagartz,abstention,EPP,126436,7266
+7045,Schmiedtbauer,abstention,EPP,126436,7045
+7056,Thaler,abstention,EPP,126436,7056
+7041,Winzig,abstention,EPP,126436,7041
 6339,Charanzová,abstention,Renew,126436,6339
 6340,Dlabajová,abstention,Renew,126436,6340
 6919,Hlaváček,abstention,Renew,126436,6919
 6921,Knotek,abstention,Renew,126436,6921
 6917,Kovařík,abstention,Renew,126436,6917
 5039,Konečná,abstention,GUE/NGL,126436,5039
-7280,Ripa,abstention,Verts/ALE,126436,7280
+7280,Ripa,abstention,Greens/EFA,126436,7280

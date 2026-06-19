@@ -30,7 +30,7 @@
         },
         "ecr": {
             "description": "Národní konzervativci",
-            "code": "ecr",
+            "code": "ECR",
             "name": "ECR"
         },
         "id": {
@@ -48,6 +48,26 @@
         "ppe": {
             "description": "Křesťanští demokraté",
             "name": "EPP"
+        },
+        "sd": {
+            "description": "Socialisté a demokraté",
+            "name": "S&D"
+        },
+        "guengl": {
+            "name": "GUE/NGL",
+            "description": "Evropská sjednocená levice a Severská zelená levice"
+        },
+        "greensefa": {
+            "description": "Zelení, Regionalisté a Piráti",
+            "name": "Zelení/EFA"
+        },
+        "theleft": {
+            "name": "Levice",
+            "description": "Evropská levice/Severská zelená levice"
+        },
+        "vertsale": {
+            "name": "Zelení/Evropská svobodná aliance",
+            "description": "Zelení, Regionalisté a Piráti"
         }
     },
     "result": {

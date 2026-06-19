@@ -1,0 +1,41 @@
+ [   {
+      "name": "European People's Party",
+      "acronym": "EPP",
+      "eugroup": "EPP"
+    },
+    {
+      "name": "Party of European Socialists",
+      "acronym": "PES",
+      "eugroup": "S&D"
+    },
+    {
+      "name": "Renew Europe",
+      "acronym": "Renew",
+      "eugroup": "Renew"
+    },
+    {
+      "name": "European Greens/European Free Alliance",
+      "acronym": "Greens/EFA",
+      "eugroup": "Greens/EFA"
+    },
+    {
+      "name": "European United Left/Nordic Green Left",
+      "acronym": "GUE/NGL",
+      "eugroup": "GUE/NGL"
+    },
+    {
+      "name": "European Conservatives and Reformists",
+      "acronym": "ECR",
+      "eugroup": "ECR"
+    },
+    {
+      "name": "Identity and Democracy",
+      "acronym": "ID",
+      "eugroup": "ID"
+    },
+    {
+      "name": "Non-Inscrits",
+      "acronym": "NI",
+      "eugroup": "NA"
+    }
+]

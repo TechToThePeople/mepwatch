@@ -1,0 +1,388 @@
+body {
+  font-family:
+    "Twemoji Country Flags",
+    Roboto,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Helvetica Neue",
+    Arial,
+    sans-serif,
+    "Apple Color Emoji",
+    "Segoe UI Emoji",
+    "Segoe UI Symbol";
+}
+span.form-control {
+  border-bottom: 0px;
+}
+
+.rotated90 svg {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+.rotated90 .axis path {
+  display: none;
+}
+.rotated90 .y {
+  display: none;
+}
+
+#party {
+  background-color: white;
+}
+#party text {
+  stroke: white;
+  stroke-width: 3px;
+  paint-order: stroke fill;
+}
+
+.stack .barLabel {
+  display: none;
+}
+.rotated90 svg > g {
+  transform: rotate(90deg);
+  transform-origin: 50% 50%;
+}
+
+html .bg-info {
+  background-image: linear-gradient(-20deg, #6e45e2 0%, #88d3ce 100%);
+}
+
+.wide-tip {
+  min-width: 370px;
+}
+
+.wide-tip .icon {
+  width: 1.2em;
+  height: 1em;
+}
+
+.resetall button {
+  padding: 5px 0;
+  min-width: 3rem;
+  font-size: 0.9em;
+}
+.glyphicon-sort:after {
+  content: "⇅";
+}
+.glyphicon-arrow-up:after {
+  content: "⤒";
+}
+.glyphicon-arrow-down:after {
+  content: "⤓";
+}
+
+.flag-icon,
+.country-flag {
+  font-family: "Twemoji Country Flags" !important;
+  font-size: 1.4em !important;
+}
+
+img.face {
+  width: 40px;
+  height: 50px;
+  border-radius: 25px;
+  position: relative;
+  margin-left: -10px;
+  margin-right: 10px;
+}
+
+th .glyphicon {
+  margin-left: 5px;
+  color: black;
+  font-size: 1.3em;
+  border: 1px solid grey;
+  text-align: center;
+  width: 1.3em;
+  border-radius: 2px;
+  display: inline-block;
+}
+
+th#country,
+th#eugroup,
+th#col_0,
+th#col_1,
+th#twitter {
+  min-width: 100px;
+  padding-right: 0.75rem;
+  padding-left: 0.75rem;
+}
+
+.icon,
+.eugroup {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+}
+
+svg.icon-against use, svg.icon-against {
+  color: #c0392b;
+}
+svg.icon-abstention * {
+  color: #2980b9;
+}
+svg.icon-for *, svg.icon-for {
+  color: #27ae60;
+}
+
+svg.icon-attended * {
+  color: #6699cc;
+}
+.pie-slice use {
+  color: #fff;
+}
+
+.patriots {
+  background-image: url("img/eugroups/patriots.png");
+}
+.esn {
+  background-image: url("img/eugroups/esn.png");
+}
+
+.ppe,
+.epp {
+  background-image: url("img/eugroups/epp.png");
+}
+
+.s-d {
+  background-image: url("img/eugroups/sd.png");
+}
+
+.renew {
+  background-image: url("img/eugroups/renew.png");
+}
+
+.verts-ale,
+.greens-efa {
+  background-image: url("img/eugroups/greensefa.png");
+}
+
+.the-left,
+.gue-ngl {
+  background-image: url("img/eugroups/leftgue.png");
+}
+
+.ecr {
+  background-image: url("img/eugroups/ecr.png");
+}
+
+
+#gridmeps h1 {
+  font-size: 1rem;
+}
+#gridmeps h3 {
+  margin: 10px 0 20px 0;
+  text-align: center;
+  color: #eee;
+}
+#gridmeps {
+  width: 1600px;
+  height: 900px;
+  -background: linear-gradient(45deg, #3dae5c 0%, #0c6154 100%);
+  background: linear-gradient(210deg, #6e45e2 10%, #88d3ce 100%);
+}
+
+#gridmeps .graph {
+  _background: pink;
+  width: 1580px;
+  height: 800px;
+  column-count: 5; /* Number of columns */
+  column-gap: 10px; /* Gap between columns */
+}
+
+#gridmeps {
+}
+
+.dc-grid-top .party {
+  display: flex;
+  align-items: center;
+  width: 100%;
+box-shadow: 
+    2px 2px 3px rgba(0, 0, 0, 0.3);
+  background-color: rgba(255,255,255,1);
+  padding:1px;
+  border-radius: 20px;
+  margin: -5px 0 10px 0;
+  overflow: hidden;
+}
+
+.party .logo {
+height:30px;
+border-radius: 15px;
+}
+
+.party img,
+.party svg {
+  max-width: 30px;
+}
+
+.party {
+  break-after: avoid-column;
+}
+
+.party span.img-rounded {
+  max-width: 30px;
+}
+
+.party span.text {
+  flex: 1; /* Allow text to take up remaining space */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+
+#face {
+  width: 20px;
+  height: 25px;
+  padding-right: 10px;
+}
+#face img {
+  width: 100%;
+
+  border-radius: 25px;
+}
+.column-2 #face {
+  width: 60px;
+  height: 70px;
+}
+.column-3 #face {
+  width: 50px;
+  height: 50px;
+}
+.xcolumn-4 #face {
+  width: 30px;
+  height: 40px;
+}
+.xcolumn-5 #face {
+  width: 30px;
+  height: 40px;
+}
+.column-4 #face {
+  display: none;
+}
+.column-5 #face {
+  display: none;
+}
+.column-6 #face,
+.column-7 #face {
+  display: none;
+}
+
+#name {
+  width: 100%;
+}
+.column-7 #name {
+  width: 180px;
+}
+.column-6 #name {
+  width: 220px;
+}
+.column-5 #name {
+  width: 260px;
+}
+.column-4 #name {
+  width: 320px;
+}
+.column-3 #name {
+  width: 420px;
+  font-size: 1.5em;
+}
+.column-2 #name {
+  width: 420px;
+  font-size: 1.6em;
+}
+
+.column-5 #position svg {
+  width: 20px;
+}
+.column-6 #position svg {
+  width: 20px;
+}
+#position svg {
+  width: 30px;
+}
+
+#gridmeps .graph {
+  margin: 10px;
+}
+.dc-grid-top {
+  box-shadow:
+    0 0 4px 0 rgba(0, 0, 0, 0.14),
+    0 3px 4px 0 rgba(0, 0, 0, 0.12),
+    0 1px 5px 0 rgba(0, 0, 0, 0.2);
+  padding: 10px 10px;
+  background-color: rgba(255,255,255,0.9);
+  margin-bottom: 10px;
+  border-radius: 10px;
+  break-inside: auto;
+  _box-decoration-break: clone;
+  position: relative;
+}
+
+
+.cloned, .avoid-break {
+  break-inside: avoid;
+}
+.cgradient {
+}
+.gradient {
+  display:none;
+  position: absolute; /* Crucial for positioning within each rect */
+  left: 0;
+  right: 0;
+  height: 10px;
+  pointer-events: none;
+}
+
+
+.cloned_0 {
+  border-radius: 10px 10px 0 0;
+}
+
+.cloned_1 {
+  border-radius:  0  0 10px 10px;
+  padding-top: 0;
+}
+
+__.gradient.bottom {
+  bottom: -20px;
+  height: 20px;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 255),
+    #2e975a
+  )!important;
+}
+
+__.gradient.top {
+  top: -2px;
+  background-image: linear-gradient(
+    to bottom,
+    #1d7c57,
+    rgba(255, 255, 255, 255)
+  )!important;
+}
+
+.dc-grid-item {
+}
+
+.dc-grid-item table {
+  width: 100%;
+}
+.column-item {
+  break-inside: avoid; /* Prevent breaking inside the column */
+  height: 100%; /* Ensure it fits the column */
+  overflow: hidden; /* Hide overflowing content */
+}
+
+.truncate {
+  display: block;
+  white-space: nowrap; /* Prevent wrapping to the next line */
+  overflow: hidden; /* Hide overflowing text */
+  text-overflow: ellipsis; /* Add ellipsis (...) for truncated text */
+}

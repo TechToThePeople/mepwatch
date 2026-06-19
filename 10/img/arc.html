@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<body>
+<style>
+svg, img {position:absolute; top:10px; left: 10px,width:1000px}
+svg,img {opacity: 0.5}
+img:hover {opacity:0}
+</style>
+  <img src="./European_parliament_Strasbourg.svg" />
+  <svg viewBox="-110 -110 220 220">
+<g id="arcs" stroke="pink" stroke-width="4" stroke-linecap="round" fill="none">
+<path d="M -19.648942747264822 4.934447963589011 A 9 7.2 0 0 1 19.64 4.93" />
+</g>
+
+</svg>
+  <script>
+    function _createArc(startAngle, endAngle, radius, strokeWidth, color) {
+      // Convert angles to radians and adjust for SVG coordinate system
+      const startRad = (startAngle - 90) * Math.PI / 180;
+      const endRad = (endAngle - 90) * Math.PI / 180;
+      
+      // Calculate start and end points
+      const startX = radius * Math.cos(startRad);
+      const startY = radius * Math.sin(startRad);
+      const endX = radius * Math.cos(endRad);
+      const endY = radius * Math.sin(endRad);
+      
+      // Determine if we need to use the large arc flag
+      const largeArcFlag = endAngle - startAngle > 180 ? 1 : 0;
+      
+      // Create the path element
+      const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+      path.setAttribute("d", `M ${startX} ${startY} A ${radius} ${radius} 0 ${largeArcFlag} 1 ${endX} ${endY}`);
+      
+      return path;
+    }
+
+function createArc(centerX, centerY, startAngle, endAngle, radius, strokeWidth, color) {
+  // Convert angles to radians and adjust for SVG coordinate system
+  const startRad = (startAngle - 90) * Math.PI / 180;
+  const endRad = (endAngle - 90) * Math.PI / 180;
+
+  // Calculate start and end points relative to the center
+  const startX = centerX + radius * Math.cos(startRad);
+  const startY = centerY + radius * Math.sin(startRad);
+  const endX = centerX + radius * Math.cos(endRad);
+  const endY = centerY + radius * Math.sin(endRad);
+
+  // Determine if we need to use the large arc flag
+  const largeArcFlag = endAngle - startAngle > 180 ? 1 : 0;
+
+  // Create the path element
+  const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+  path.setAttribute("d", `M ${startX} ${startY} A ${radius} ${radius} 0 ${largeArcFlag} 1 ${endX} ${endY}`);
+
+  return path;
+}
+function center(x,y) {
+const svgns = "http://www.w3.org/2000/svg";
+    const svg = document.getElementById("arcs");
+        const circle = document.createElementNS(svgns, 'circle');
+        circle.setAttributeNS(null, 'cx', x);
+        circle.setAttributeNS(null, 'cy', y);
+        circle.setAttributeNS(null, 'r', 1);
+        circle.setAttributeNS(null, 'style', 'fill: none; stroke: blue; stroke-width: 1px;' );
+        svg.appendChild(circle);
+}
+   
+    function drawArcs(x,y,startAngle,endAngle) {  
+    const numArcs = 14;
+    const maxRadius = 94;
+    const svg = document.getElementById("arcs");
+    const group = document.createElementNS("http://www.w3.org/2000/svg", "g");
+    svg.appendChild(group);
+    // Calculate decrements for each arc
+    const radiusStep = maxRadius / numArcs;
+    const opacity = 1 / numArcs;
+    
+    // Create arcs from largest to smallest
+    for (let i = 0; i < numArcs-1; i++) {
+      const radius = maxRadius - (i * radiusStep);
+      const arc = createArc(x,y,
+        startAngle,
+        endAngle,
+        radius
+      );
+      group.appendChild(arc);
+
+    }
+    center(x,y);
+    }
+    drawArcs(0,-5,-19,19);
+    drawArcs(9,-2,18,54);
+    drawArcs(-9,-2,-54,-18);
+//    drawArcs(20,3,54,100);
+    drawArcs(13,4,56,98);
+    drawArcs(-13,4,-98,-56);
+
+  </script>
+</body>
+</html>

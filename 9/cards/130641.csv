@@ -642,7 +642,7 @@ mepid,name,result,eugroup,identifier,vote_id
 7007,Conte,against,ID,130641,7007
 6999,Da Re,against,ID,130641,6999
 6949,David,against,ID,130641,6949
-7207,Donato,against,ID,130641,7207
+7207,Donato,against,NA,130641,7207
 7005,Dreosto,against,ID,130641,7005
 6877,Fest,against,ID,130641,6877
 6972,Gancia,against,ID,130641,6972
@@ -678,7 +678,7 @@ mepid,name,result,eugroup,identifier,vote_id
 6968,Sardone,against,ID,130641,6968
 7191,Tardino,against,ID,130641,7191
 6970,Tovaglieri,against,ID,130641,6970
-7183,Vuolo,against,NA,130641,7183
+7183,Vuolo,against,EPP,130641,7183
 6976,Zambelli,against,ID,130641,6976
 6414,Zanni,against,ID,130641,6414
 6882,Zimniok,against,ID,130641,6882
@@ -695,5 +695,5 @@ mepid,name,result,eugroup,identifier,vote_id
 6610,Vilimsky,abstention,ID,130641,6610
 6836,Kolakušić,abstention,NA,130641,6836
 7242,Sinčić,abstention,NA,130641,7242
-5886,Ferreira,abstention,The Left,130641,5886
+5886,Ferreira,abstention,GUE/NGL,130641,5886
 7138,Pereira Sandra,abstention,GUE/NGL,130641,7138
