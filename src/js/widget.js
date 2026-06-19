@@ -1,5 +1,8 @@
 'use strict';
 
+// Bundle iframe-resizer so it's available as a global
+require('iframe-resizer');
+
 if (!String.prototype.startsWith) {
   String.prototype.startsWith = function(searchString, position){
     position = position || 0;
@@ -7,18 +10,17 @@ if (!String.prototype.startsWith) {
   };
 }
 
-  const urlParam = function(name){
-    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-    if (results==null){
-      return null;
-    }
-    else{
-      return decodeURI(results[1]) || 0;
-    }
-  };
+const urlParam = function(name){
+  var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+  if (results==null){
+    return null;
+  }
+  else{
+    return decodeURI(results[1]) || 0;
+  }
+};
 
 (function(){
-
 
   var defaults = {
     url: "https://mepwatch.eu/9",
@@ -33,7 +35,7 @@ if (!String.prototype.startsWith) {
     style.appendChild(document.createTextNode(".mepwatch-act iframe {width:100%;min-width:100%;border:0px;overflow:hidden;}"));
     style.appendChild(document.createTextNode(".mepwatch-graph iframe {width:100%;min-width:1000px;border:0px;overflow:hidden;}"));
     document.head.appendChild(style);
-  }
+  };
 
   var iframe = function () {
     var target = document.querySelector(".mepwatch-act");
@@ -44,8 +46,7 @@ if (!String.prototype.startsWith) {
     iframe.src = defaults.url + 'widget-act.html?v='+vote;
     iframe.scrolling= 'no';
     target.appendChild(iframe);
-
-  }
+  };
 
   var iframeGraph = function () {
     var targets = document.querySelectorAll(".mepwatch-graph");
@@ -58,30 +59,18 @@ if (!String.prototype.startsWith) {
       iframe.src = defaults.url + 'embed.html?v='+vote;
       target.appendChild(iframe);
     });
-
-  }
-
+  };
 
   var iframeresizer = function(){
-
     iFrameResize({
       log:false,
       checkOrigin:false,
       minHeight:500,
-      //heightCalculationMethod:'documentElementOffset',
-      //heightCalculationMethod:'taggedElement',
       messageCallback : function(d){
         if (d.message.name) {
           document.title=d.message.name;
         }
       }
-    });
-  };
-
-  var urlParams = function(opts) {
-    opts.params.forEach(function(e){
-      if (urlParam(e))
-        opts[e] = $.urlParam(e);
     });
   };
 

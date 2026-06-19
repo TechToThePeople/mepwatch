@@ -26,6 +26,7 @@ td a {color:rgb(33, 150, 243);}
 
 .navbar-brand svg {
   width:2em;
+  height:2em;
   fill:white;
   animation: pulse 3s 9s;
 }
@@ -81,7 +82,7 @@ td a {color:rgb(33, 150, 243);}
             
           </a>
 
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
             <svg class="icon"><use href="#menu" /></svg>
 
           </button>
@@ -120,7 +121,7 @@ td a {color:rgb(33, 150, 243);}
             <div class="col-md-12">
               <div class="card box-shadow" id="date">
                 <div class="card-body">
-                  <h5 class="card-title text-muted text-right"><span class="nb"></span> Plenary days</h5>
+                  <h5 class="card-title text-muted text-end"><span class="nb"></span> Plenary days</h5>
                   <p class="card-text d-none">
                   All the plenary sessions with at least one rollcall</p>
                   <div class="graph"></div>
@@ -153,7 +154,7 @@ td a {color:rgb(33, 150, 243);}
 
     <footer class="text-muted">
       <div class="container">
-        <p class="float-right">
+        <p class="float-end">
           <a href="#">Back to top</a>
         </p>
       </div>
@@ -330,7 +331,7 @@ td a {color:rgb(33, 150, 243);}
     .offset([-10, 0])
     .html(function (d) {
       return "<h5>"+dayFormat(d.key)+"</h5><div>Rollcalls"
-        + "<span class='p-2 badge badge-primary ml-2'>"
+        + "<span class='p-2 badge text-bg-primary ms-2'>"
         +d.value 
         + "</span></div>";
     });

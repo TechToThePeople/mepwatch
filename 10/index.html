@@ -25,8 +25,12 @@
         background: #ffbc2d !important;
       }
 
-      .card-header .nav-tabs {
-        margin-bottom: -1rem;
+      .card-header.nav-tabs-scrollable {
+        padding: 0;
+        border-bottom: none;
+      }
+      .card-header.nav-tabs-scrollable .nav-tabs {
+        margin-bottom: 0;
       }
 
       td span.committee {
@@ -34,6 +38,10 @@
       }
       td a {
         color: rgb(33, 150, 243);
+      }
+      .report-title {
+        color: #6c757d;
+        font-size: 0.85em;
       }
 
       .icon {
@@ -49,6 +57,7 @@
 
       .navbar-brand svg {
         width: 2em;
+        height: 2em;
         fill: white;
         animation: pulse 3s 9s;
       }
@@ -110,18 +119,18 @@
 
           <form id="search" class="form-inline my-2 my-lg-0">
             <input
-              class="form-control mr-sm-2"
+              class="form-control me-sm-2"
               type="search"
               placeholder="Search"
               aria-label="Search"
             />
           </form>
-          <a class="resetall">&olarr;</a>
+          <a class="resetall btn btn-outline-light btn-sm" title="Clear all filters">✕ Clear</a>
           <button
             class="navbar-toggler"
             type="button"
-            data-toggle="collapse"
-            data-target="#navbarHeader"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarHeader"
             aria-controls="navbarHeader"
             aria-expanded="false"
             aria-label="Toggle navigation"
@@ -149,14 +158,14 @@
           <div class="card-header nav-tabs-scrollable">
             <ul class="nav nav-tabs nav-justified" role="tablist">
               <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#plenary" role="tab"
+                <a class="nav-link" data-bs-toggle="tab" href="#plenary" role="tab"
                   ><span class="nb_plenary"></span> Plenaries</a
                 >
               </li>
               <li class="nav-item">
                 <a
                   class="nav-link active"
-                  data-toggle="tab"
+                  data-bs-toggle="tab"
                   href="#report"
                   role="tab"
                   ><span class="nb_text"></span> Texts Tabled</a
@@ -165,7 +174,7 @@
               <li class="nav-item">
                 <a
                   class="nav-link"
-                  data-toggle="tab"
+                  data-bs-toggle="tab"
                   href="#rollcall"
                   role="tab"
                   ><span class="nb_rollcall"></span> RollCalls</a
@@ -339,7 +348,30 @@
 
         drawNumbers(graphs);
 
+        // Track whether any filter is active for the reset button
+        var _reportFilterActive = false;
+        function updateResetButton() {
+          var hasFilter = _reportFilterActive
+            || dc.chartRegistry.list().some(function (c) { return c.hasFilter(); });
+          d3.select(".resetall").classed("disabled", !hasFilter);
+        }
+
+        dc.chartRegistry.list().forEach(function (c) {
+          c.on("filtered.updateReset", updateResetButton);
+        });
+
         dc.renderAll();
+        updateResetButton();
+
+        // Restore ?report= from URL on page load
+        var reportParam = urlParam("report");
+        if (reportParam && graphs.report) {
+          _reportFilterActive = true;
+          graphs.report.dim.filter(reportParam);
+          new bootstrap.Tab(document.querySelector('a[href="#rollcall"]')).show();
+          dc.redrawAll();
+          updateResetButton();
+        }
       }
 
       function drawNumbers(graphs) {
@@ -380,9 +412,15 @@
           .formatNumber(d3.format("d"));
 
         d3.select(".resetall").on("click", function () {
+          _reportFilterActive = false;
           graphs.report.dim.filterAll();
           dc.filterAll();
           dc.renderAll();
+          // Remove report param from URL
+          var u = new URL(window.location);
+          u.searchParams.delete('report');
+          history.replaceState({}, '', u.toString());
+          updateResetButton();
         });
       }
 
@@ -429,7 +467,7 @@
           function (d) {
             return (
               docs[d.key] &&
-              "<a title='view on oeil' class='badge badge-secondary' href='" +
+              "<a title='view on oeil' class='badge text-bg-secondary' href='" +
                 docs[d.key].oeil +
                 "' target='oeil'>👁</a>"
             );
@@ -464,9 +502,12 @@
             g.selectAll("tr.dc-table-row").on("click", function (d) {
               var id = d3.select(this).datum().key;
               console.log(id);
+              _reportFilterActive = true;
               graphs.report.dim.filter(id);
-              $('a[href="#rollcall"]').tab("show");
+              urlParam("report", id);
+              new bootstrap.Tab(document.querySelector('a[href="#rollcall"]')).show();
               dc.redrawAll();
+              updateResetButton();
             });
           });
 
@@ -501,7 +542,7 @@
               "<h5>" +
               dayFormat(d.key) +
               "</h5><div>Rollcalls" +
-              "<span class='p-2 badge badge-primary ml-2'>" +
+              "<span class='p-2 badge text-bg-primary ms-2'>" +
               d.value +
               "</span></div>"
             );
@@ -623,39 +664,20 @@
               );
             },
             function (d) {
-              var r = "";
               var f = "";
-              var url = null;
-              var s = d.report.match(/^A(\d)-(\d+)\/(\d+)$/); // A8-1234/2018
-              if (s && s.length == 4)
-                url =
-                  "http://www.europarl.europa.eu/doceo/document/A-" +
-                  s[1] +
-                  "-" +
-                  s[3] +
-                  "-" +
-                  s[2] +
-                  "_EN.html?redirect";
               if (docs[d.report]) {
                 f =
                   "<div class='rapporteur'>" +
                   docs[d.report].rapporteur +
                   "</div>";
-                if (!url) url = docs[d.report].oeil;
               }
-
-              return (
-                f +
-                (url ? "<a href='" + url + "'>" + d.report + "</a>" : d.report)
-              );
+              return f + d.report;
             },
             function (d) {
               return docs[d.report]
-                ? "<a href='" +
-                    docs[d.report].oeil +
-                    "' target='oeil'>" +
+                ? "<span class='report-title'>" +
                     docs[d.report].title +
-                    "</a>&nbsp;" +
+                    "</span>&nbsp;" +
                     d.title
                 : d.title;
             },
