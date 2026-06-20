@@ -475,7 +475,7 @@
         guessLine("groupline", graphs.eugroup.group());
         graphs.eugroup.relative = false;
         graphs.party = drawBarVotes("#party div.graph", function (d) {
-          return [d.country, d.party];
+          return d.party;
         });
 
         //graphs.party.xAxis().tickFormat(function(d) { return d[1]; });
@@ -483,7 +483,7 @@
         graphs.party.elasticX(true).title(function (d) {
           if (this.layer == 0) return "";
           return (
-            d.key[1] +
+            d.key +
             " voting '" +
             this.layer +
             "': " +
@@ -495,11 +495,20 @@
         });
         //      .keyAccessor(function(d){return d.key[1]})
         graphs.party.relative = false;
+        // Order parties by their eugroup's position in groupOrder
+        graphs.party.ordering(function (d) {
+          // Get the current country filter from the country chart
+          var cc = graphs.country && graphs.country.filters();
+          var country = Array.isArray(cc) ? cc[0] : (cc || "");
+          var eugroup = partyGroupMap[country + "|" + d.key];
+          var idx = groupOrder.indexOf(eugroup);
+          return idx >= 0 ? idx : 999;
+        });
 
         graphs.party.margins({
           top: 5,
           right: 10,
-          bottom: 5,
+          bottom: 100,
           left: 30,
         });
 

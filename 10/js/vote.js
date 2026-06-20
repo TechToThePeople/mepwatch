@@ -22,6 +22,8 @@ const groupOrder = [
   "ESN",
   "NA",
 ];
+// Map key = "country|party" → eugroup, built from meps data on load
+let partyGroupMap = {};
 
 const flag = (isoCode) => {
   const offset = 127397;
@@ -209,6 +211,10 @@ console.log ("download...");
       }
       votes = null;
 
+      // Build party→eugroup lookup for ordering
+      meps.forEach(function (m) {
+        partyGroupMap[m.country + "|" + m.party] = m.eugroup;
+      });
       config.nb = meps.length;
       ndx = crossfilter(meps);
       meps = null;
