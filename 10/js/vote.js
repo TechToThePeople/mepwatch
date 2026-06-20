@@ -11,6 +11,18 @@ let voteid = urlParam("v");
 //const results = "for,against,abstention,no show,excused,attended".split(",");
 const results = "for,against,abstention,attended,no show,excused".split(",");
 
+const groupOrder = [
+  "The Left",
+  "Greens/EFA",
+  "S&D",
+  "Renew",
+  "EPP",
+  "ECR",
+  "Patriots",
+  "ESN",
+  "NA",
+];
+
 const flag = (isoCode) => {
   const offset = 127397;
   return isoCode

@@ -246,9 +246,12 @@
               <form id="search">
                 <div class="input-group mb-3">
                   <span class="graph form-control"></span>
-                  <div class="input-group-append">
-                    <a href="#meps" class="btn btn-info">MEP</a>
-                  </div>
+                  <a href="#meps" class="btn btn-info">
+                    <svg width="1.2em" height="1.2em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="11" cy="11" r="8"/>
+                      <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>
+                  </a>
                 </div>
               </form>
               <ul class="list-group">
@@ -285,10 +288,10 @@
             <div class="col-md" id="result">
               <div class="graph"></div>
             </div>
-            <div class="col-md rotated90" id="eugroup">
+            <div class="col-md" id="eugroup">
               <div class="graph"></div>
             </div>
-            <div class="col-md rotated90 d-none" id="party">
+            <div class="col-md d-none" id="party">
               <div class="graph"></div>
             </div>
           </div>
@@ -497,7 +500,7 @@
           top: 5,
           right: 10,
           bottom: 5,
-          left: 5,
+          left: 30,
         });
 
         //    graphs.group=drawGroup('#eugroup div.graph');
@@ -838,13 +841,18 @@
 
             if (minAngle < 0.2) return;
 
+            // Move icon inward — 55% of centroid distance from center
+            const ix = x * 0.75;
+            const iy = y * 0.75;
+
             d3.select(this)
               .append("use")
               .attr("width", 20)
               .attr("height", 20)
-              .attr("x", x - 10) // Adjust to centre the icon
-              .attr("y", y - 10)
-              .attr("href", `#icon-${d.data.key}`);
+              .attr("x", ix - 10) // Adjust to centre the icon
+              .attr("y", iy - 10)
+              .attr("href", `#icon-${d.data.key}`)
+              .style("color", "#fff");
           });
           /*            .call(tip)
             .on("mouseover.tip", tip.show)
@@ -896,10 +904,11 @@
             top: 5,
             right: 10,
             bottom: 66,
-            left: 5,
+            left: 50,
           })
           .ordering(function (d) {
-            return -d.value.nb.count;
+            var idx = groupOrder ? groupOrder.indexOf(d.key) : -1;
+            return idx >= 0 ? idx : 999;
           })
           //        .label(function(d){return "aaa";d.data.key})
           .x(d3.scaleBand())
@@ -951,11 +960,8 @@
             .text(function (d) {
               return d;
             })
-            .style("text-anchor", "start")
-            .attr("transform", function (d) {
-              var left = -1 * graph.margins().bottom + 10;
-              return "rotate(-90, -4, 9), translate(" + left + ",0) ";
-            });
+            .style("text-anchor", "end")
+            .attr("transform", "rotate(-35, -4, 9)");
         }
 
         function toggleMode() {
@@ -1115,7 +1121,7 @@
         if (isMobile) {
           heigth = window.screen.width - 80;
           //        width=900;
-          document.getElementById("country").className += " rotated90";
+          // country chart no longer uses rotated90
         }
 
         function getValue(result) {
@@ -1136,8 +1142,8 @@
           .margins({
             top: 0,
             right: 10,
-            bottom: 20,
-            left: 30,
+          bottom: 20,
+          left: 50,
           })
           .ordering(function (d) {
             if (config.goal && config.goal == "against")
@@ -1173,8 +1179,11 @@
           .group(group, "", 0)
           .on("renderlet", function (c) {
             //!isMobile &&
-            if (!d3.select("#country .axis.x .tick text.country-flag").empty())
+            if (!d3.select("#country .axis.x .tick text.country-flag").empty()) {
+              // On redraw, dc.js recreates default labels — remove them
+              d3.selectAll("#country .axis.x .tick text:not(.country-flag)").remove();
               return;
+            }
             rotateBarChartLabels();
             d3.select("#country .axis.x")
               .selectAll(".tick")
@@ -1206,15 +1215,8 @@
         return graph;
 
         function rotateBarChartLabels() {
+          d3.selectAll(dom + " .axis.x text").remove();
           d3.selectAll(dom + " .axis.x line").remove();
-          d3.selectAll(dom + " .axis.x text")
-            .text(function (d) {
-              return countries[d];
-            })
-            .style("text-anchor", "start")
-            .attr("transform", function (d) {
-              return "rotate(-90, -4, 9), translate(10,0) ";
-            });
         }
 
         function toggleMode() {

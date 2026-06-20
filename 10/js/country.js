@@ -89,17 +89,6 @@ console.log("error",e);
   });
 };
 
-const groupOrder = [
-  "The Left",
-  "Greens/EFA",
-  "S&D",
-  "Renew",
-  "EPP",
-  "ECR",
-  "Patriots",
-  "ESN",
-  "NA",
-];
 let country = urlParam("country");
 voteid = urlParam("v");
 const aliasPosition = {
