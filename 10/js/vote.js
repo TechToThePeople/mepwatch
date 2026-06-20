@@ -6,6 +6,12 @@ const graphs = {};
 let meps = [];
 let votes = [];
 let config = {};
+let parties = [];
+const getParty = (name, country) => {
+  const party = parties.find((d) => d.party === name && d.country === country);
+  return party;
+};
+window.getParty = getParty;
 
 let voteid = urlParam("v");
 //const results = "for,against,abstention,no show,excused,attended".split(",");
@@ -22,8 +28,59 @@ const groupOrder = [
   "ESN",
   "NA",
 ];
+window.groupOrder = groupOrder;
 // Map key = "country|party" → eugroup, built from meps data on load
 let partyGroupMap = {};
+window.partyGroupMap = partyGroupMap;
+
+// Generic tooltip HTML for vote breakdown charts
+// d: data object with value having total count and per-result counts
+// headerLabel: function(d) returning header label string (can include HTML)
+// totalKey: property name for total count (e.g. "count" or "nb.count")
+const voteTipHtml = (d, headerLabel, totalKey) => {
+  var total = totalKey.split(".").reduce(function (o, k) { return o && o[k]; }, d.value);
+  var t = "<h3 class='d-flex flex-row justify-content-between'>" +
+    headerLabel(d) +
+    "<span class='d-inline-flex p-2 badge text-bg-primary ms-2'>" +
+    total +
+    "</span></h3>";
+  results.forEach(function (r) {
+    var c = d.value[r] ? d.value[r].count : 0;
+    if (c > 0) {
+      var colorMap = { for: "#27ae60", against: "#c0392b", abstention: "#2980b9" };
+      t += "<div class='d-flex flex-row justify-content-between'><div class='p-1 bd-highlight me-auto w-50'><svg class='icon' width='16' height='16' style='color:" +
+        (colorMap[r] || "inherit") +
+        "'><use href='#icon-" +
+        r +
+        "'/></svg> " +
+        r +
+        "</div><div class='p-1 w-25'>" +
+        c +
+        "</div><div class='p-1 w-25'>" +
+        formatPercent(c / total) +
+        "</div></div>";
+    }
+  });
+  return t;
+};
+window.voteTipHtml = voteTipHtml;
+
+// Map eugroup name to logo filename (for img src)
+const groupLogoFile = (name) => {
+  const map = {
+    "The Left": "leftgue",
+    "Greens/EFA": "greensefa",
+    "S&D": "sd",
+    Renew: "renew",
+    EPP: "epp",
+    ECR: "ecr",
+    Patriots: "patriots",
+    ESN: "esn",
+    NA: "ni",
+  };
+  return "img/eugroups/" + (map[name] || name) + ".png";
+};
+window.groupLogoFile = groupLogoFile;
 
 const flag = (isoCode) => {
   const offset = 127397;
@@ -156,10 +213,12 @@ console.log ("download...");
   q.defer(dl_meps)
     .defer(dl_details)
     .defer(dl_votes)
+    .defer(dl_parties)
     .awaitAll(function (error, r) {
       if (error) throw error;
       let length = votes.length;
       meps = r[0].filter(isActive); //first deferred download is the list of all meps, only keep the active during the vote
+      parties = r[3] || []; // parties data
       for (let j = 0; j < meps.length; j++) {
         let m = meps[j];
         if (groupAlias[m.eugroup]) {
@@ -304,16 +363,11 @@ function dl_meps(callback) {
 }
 
 function dl_parties(callback) {
-  return d3.csv(dataUrl("data/parties.csv"), function (d) {
-//    if (!d.mepid) return null;
-//    d.mepid = +d.mepid;
-//    d.vote_id = +d.vote_id;
-//    d.identifier = +d.identifier;
-//    if (groupAlias[d.eugroup]) {
-//      d.eugroup = groupAlias[d.eugroup];
-//    }
+  d3.csv(dataUrl("data/parties.csv"), function (d) {
     return d;
-  })
+  }).then(function (d) {
+    callback(null, d);
+  });
 }
 
 

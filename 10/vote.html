@@ -60,6 +60,25 @@
                   .wide-tip {
                     min-width: 370px;
                   }
+                  .d3-tip.wide-tip {
+                    padding: 8px;
+                    font-size: 0.9em;
+                    line-height: 1.4;
+                  }
+                  .d3-tip.wide-tip h3 {
+                    font-size: 1.1em;
+                    margin-bottom: 6px;
+                    align-items: center;
+                  }
+                  .d3-tip.wide-tip .icon {
+                    width: 16px;
+                    height: 16px;
+                    vertical-align: middle;
+                    margin-right: 4px;
+                  }
+                  .d3-tip.wide-tip .icon use { color: inherit; }
+                  .d3-tip.wide-tip svg use { color: inherit; }
+
 
                   .wide-tip .icon {
                     width: 1.2em;
@@ -84,7 +103,7 @@
                   .flag-icon,
                   .country-flag {
             font-family: "Twemoji Country Flags"!important;
-                    font-size: 1.4em!important;
+                    font-size: 1em !important;
                   }
 
 
@@ -97,16 +116,15 @@
                     margin-left: -10px;
                     margin-right: 10px;
                   }
+                  .logo {
+                    vertical-align: middle;
+                    border-radius: 3px;
+                  }
 
                   th .glyphicon {
-                    margin-left: 5px;
-                    color: black;
-                    font-size: 1.3em;
-                    border: 1px solid grey;
-                    text-align: center;
-                    width: 1.3em;
-                    border-radius: 2px;
-                    display: inline-block;
+                    margin-left: 4px;
+                    font-size: 0.85em;
+                    opacity: 0.5;
                   }
 
                   th#country,
@@ -465,6 +483,25 @@
         //    graphs.date=drawDate('#date div.graph');
         //    graphs.report=drawReport('#report div.graph');
         graphs.country = drawCountry("#country div.graph");
+        // Styled tooltip for country bar chart
+        (function () {
+          var tip = d3
+            .tip()
+            .attr("class", "d3-tip wide-tip")
+            .offset([-10, 0])
+            .html(function (d) {
+              var dd = d.data || d;
+              return voteTipHtml({ value: dd.value, key: dd.key }, function (dd2) {
+                return flag(dd2.key) + " " + (countries[dd2.key.toLowerCase()] || dd2.key);
+              }, "count");
+            });
+          graphs.country.on("renderlet.ctip", function (c) {
+            c.selectAll("rect.bar")
+              .call(tip)
+              .on("mouseover.tip", tip.show)
+              .on("mouseout.tip", tip.hide);
+          });
+        })();
         graphs.map = drawMap("#map div.graph", graphs);
         //    graphs.party=drawParty('#voidparty div.graph');
         guessPartyLine("partyline");
@@ -474,6 +511,43 @@
         });
         guessLine("groupline", graphs.eugroup.group());
         graphs.eugroup.relative = false;
+        // Styled tooltip for eugroup bar chart
+        (function () {
+          var tip = d3
+            .tip()
+            .attr("class", "d3-tip wide-tip")
+            .offset([-10, 0])
+            .html(function (d) {
+              // Bar rect datum wraps data in d.data
+              var dd = d.data || d;
+              return voteTipHtml({ value: dd.value, key: dd.key }, function (dd2) {
+                return "<img src='" + groupLogoFile(dd2.key) + "' height='25' style='margin-right:6px'> " + dd2.key;
+              }, "nb.count");
+            });
+          graphs.eugroup.on("renderlet.tip", function (c) {
+            c.selectAll("rect.bar")
+              .call(tip)
+              .on("mouseover.tip", tip.show)
+              .on("mouseout.tip", tip.hide);
+          });
+        })();
+
+
+        // Replace x-axis labels with group logos
+        graphs.eugroup.on("renderlet.logos", function (c) {
+          c.selectAll(".axis.x .tick").each(function () {
+            var textEl = d3.select(this).select("text");
+            var group = textEl.text();
+            textEl.remove();
+            d3.select(this)
+              .append("svg:image")
+              .attr("href", groupLogoFile(group))
+              .attr("width", 25)
+              .attr("height", 25)
+              .attr("x", -12)
+              .attr("y", 4);
+          });
+        });
         graphs.party = drawBarVotes("#party div.graph", function (d) {
           return d.party;
         });
@@ -873,7 +947,7 @@
 
       function drawBarVotes(dom, dimension) {
         //var dim = ndx.dimension(function(d) {return d[dimension]});
-        const width = isMobile ? window.screen.width - 40 : 220;
+        const width = isMobile ? window.screen.width - 40 : 350;
         var dim = ndx.dimension(dimension);
         var reducer = reductio();
         reducer.value("nb").count(true);
@@ -924,19 +998,7 @@
           .xUnits(dc.units.ordinal)
           .colors(resultscolor)
           .brushOn(false)
-          .title(function (d) {
-            if (this.layer == 0) return "";
-            return (
-              d.key +
-              " voting '" +
-              (aliasPosition[this.layer] || this.layer) +
-              "': " +
-              d.value[this.layer].count +
-              " (" +
-              formatPercent(d.value[this.layer].count / d.value.nb.count) +
-              ")"
-            );
-          })
+          .title(function () { return ""; })
 
           .elasticY(true)
           //        .elasticX(true)
@@ -1003,28 +1065,9 @@
               if (c.key == iso) d = c;
             });
             if (d.id) return d.id + " is not in EU";
-            var t =
-              "<h3 class='d-flex flex-row justify-content-between' >" +
-              iconify(d.key.toLowerCase(), "flag") +
-              "<span>" +
-              countries[d.key.toLowerCase()] +
-              "</span><span class='d-inline-flex p-2 badge text-bg-primary ms-2'>" +
-              d.value.count +
-              "</span></h3>";
-            results.forEach(function (r) {
-              if (d.value[r].count > 0) {
-                t +=
-                  "<div class='d-flex flex-row justify-content-between'><div class='p-1 bd-highlight me-auto w-50'>" +
-                  iconify(r) +
-                  (aliasPosition[r] || r) +
-                  "</div><div class='p-1 w-25'>" +
-                  d.value[r].count +
-                  "</div><div class='p-1 w-25'>" +
-                  formatPercent(d.value[r].count / d.value.count) +
-                  "</div></div>";
-              }
-            });
-            return t + "";
+            return voteTipHtml({ value: d.value, key: d.key }, function (dd) {
+              return iconify(dd.key.toLowerCase(), "flag") + "<span>" + countries[dd.key.toLowerCase()] + "</span>";
+            }, "count") + "";
           });
 
         function drawMap(dom) {
@@ -1167,19 +1210,7 @@
           .xUnits(dc.units.ordinal)
           .colors(resultscolor)
           .brushOn(false)
-          .title(function (d) {
-            if (this.layer == 0) return "";
-            return (
-              countries[d.key] +
-              " voting '" +
-              (aliasPosition[this.layer] || this.layer) +
-              "': " +
-              d.value[this.layer].count +
-              " (" +
-              formatPercent(d.value[this.layer].count / d.value.count) +
-              ")"
-            );
-          })
+          .title(function () { return ""; })
 
           .elasticY(true)
           .yAxisLabel("%MEPs")
@@ -1508,7 +1539,7 @@
             function (d) {
               return (
                 '<span class="country-flag" title="' +
-                d.country +
+                (countries[d.country.toLowerCase()] || d.country) +
                 '">' +
                 iconify(d.country, "flag") +
                 "</span>"
@@ -1543,7 +1574,16 @@
               if (d.rebel) return iconify("rebel");
             },
             function (d) {
-              return d.party;
+              var full = getParty(d.party, d.country);
+              var label = (full && full.acronym) || d.party;
+              return full && full.twitter
+                ? "<img class='logo' crossorigin='anonymous' src='https://pics.mepwatch.eu/parties/" +
+                    full.twitter.toLowerCase() +
+                    ".jpg' title='" +
+                    full.party +
+                    "' height='20'> " +
+                    label
+                : label;
             },
           ]);
 

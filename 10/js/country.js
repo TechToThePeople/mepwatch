@@ -7,7 +7,10 @@ const inlineSVGRefs = (element) => {
       if (href) {
         const referenceElement = document.querySelector(href);
         if (referenceElement) {
-         const newSVG = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+          const newSVG = document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "svg",
+          );
           const clonedContent = referenceElement.cloneNode(true);
           Array.from(svg.attributes).forEach((attr) => {
             if (attr.name !== "class") {
@@ -30,62 +33,62 @@ const clickifyPrint = (dom) => {
   dom.addEventListener("click", async (e) => {
     e.preventDefault();
     try {
-    const element = document.getElementById("gridmeps");
-    //      const originalTransform = element.style.transform;
-    //      element.style.transform = 'none';
-//    inlineSVGRefs(element);
-    const link = document.createElement('a');
-console.log("start");
-    modernScreenshot.domToPng(element,{
-//    htmlToImage
-//      .toPng(element, {
-        width: 1600,
-        height: 900,
-        pixelRatio: 2, // Force 1:1 pixel ratio
-        _style: {
-          transform: "none",
-          // Force the element to render at the specified dimensions
-          width: "1600px",
-          height: "900px",
-          display: "block",
-          position: "fixed", // Prevents layout shifts
-        },
-        _filter: (node) => {
-          if (
-            node.style?.display === "none" ||
-            node.style?.visibility === "hidden" ||
-            node.hidden
-          ) {
-            return false;
-          }
-          // Exclude images that fail to load
-          if (node.tagName === "IMG") {
-            const img = node;
-            return img.complete && img.naturalWidth !== 0;
-          }
-          return true; // Include all other nodes
-        },
-        _fetch: {
-          requestInit: { cache: 'only-if-cached'}
-        }
-      })
-      .then(function (dataUrl) {
-console.log("generated");
-        const element = document.getElementById("preview");
-        element.src = dataUrl;
-        const link = document.createElement("a");
-        link.download = "vote"+voteid+".png";
-        link.href = dataUrl;
-        link.click();
-        //        element.style.transform = originalTransform;
-      })
-      .catch (e => {
-console.log("catch error",e);
-      });
-
-      } catch (e) {
-console.log("error",e);
-};
+      const element = document.getElementById("gridmeps");
+      //      const originalTransform = element.style.transform;
+      //      element.style.transform = 'none';
+      //    inlineSVGRefs(element);
+      const link = document.createElement("a");
+      console.log("start");
+      modernScreenshot
+        .domToPng(element, {
+          //    htmlToImage
+          //      .toPng(element, {
+          width: 1600,
+          height: 900,
+          pixelRatio: 2, // Force 1:1 pixel ratio
+          _style: {
+            transform: "none",
+            // Force the element to render at the specified dimensions
+            width: "1600px",
+            height: "900px",
+            display: "block",
+            position: "fixed", // Prevents layout shifts
+          },
+          _filter: (node) => {
+            if (
+              node.style?.display === "none" ||
+              node.style?.visibility === "hidden" ||
+              node.hidden
+            ) {
+              return false;
+            }
+            // Exclude images that fail to load
+            if (node.tagName === "IMG") {
+              const img = node;
+              return img.complete && img.naturalWidth !== 0;
+            }
+            return true; // Include all other nodes
+          },
+          _fetch: {
+            requestInit: { cache: "only-if-cached" },
+          },
+        })
+        .then(function (dataUrl) {
+          console.log("generated");
+          const element = document.getElementById("preview");
+          element.src = dataUrl;
+          const link = document.createElement("a");
+          link.download = "vote" + voteid + ".png";
+          link.href = dataUrl;
+          link.click();
+          //        element.style.transform = originalTransform;
+        })
+        .catch((e) => {
+          console.log("catch error", e);
+        });
+    } catch (e) {
+      console.log("error", e);
+    }
   });
 };
 
@@ -95,13 +98,7 @@ const aliasPosition = {
   attended: "present at the plenary, but didn't vote",
   "no show": "not present at the plenary",
 };
-let parties = [];
 var percentagecolor = null;
-
-const getParty = (name, country) => {
-  const party = parties.find((d) => d.party === name && d.country === country);
-  return party;
-};
 
 const updateHtml = () => {
   d3.select(".navbar-toggler").on("click", function () {
@@ -186,7 +183,7 @@ async function draw() {
   //    graphs.party=drawParty('#voidparty div.graph');
   guessPartyLine("partyline");
 
-  graphs.eugroup = drawBarVotes("#eugroup div.graph", d => d.eugroup);
+  graphs.eugroup = drawBarVotes("#eugroup div.graph", (d) => d.eugroup);
   guessLine("groupline", graphs.eugroup.group());
   graphs.eugroup.relative = false;
   graphs.party = drawBarVotes("#party div.graph", (d) => {
@@ -226,10 +223,9 @@ async function draw() {
   if (urlParam("country")) {
     d3.select("#party").classed("d-none", false);
   } else {
-console.log("filter by country");
-   urlParam("country","de");
-    
-  } 
+    console.log("filter by country");
+    urlParam("country", "de");
+  }
   ["eugroup", "country"].forEach(function (d) {
     if (!graphs[d]) return;
     graphs[d].on("filtered", function (graph) {
@@ -1023,13 +1019,13 @@ function addGradients() {
     const paddingLeft = parseFloat(getComputedStyle(item).paddingLeft);
     const rects = Array.from(item.getClientRects());
     if (rects.length > 1) {
-//      console.log("split in columns", item.firstChild?.firstChild, rects);
+      //      console.log("split in columns", item.firstChild?.firstChild, rects);
       rects.forEach((rect, index) => {
         const cloned = cloneRect(item, rect.left + paddingLeft);
         //cloned.id = "cloned_" + index;
-        cloned.classList.add("cloned_"+index);
+        cloned.classList.add("cloned_" + index);
         //        container.insertBefore(cloned, item);
-/*        const gradient = document.createElement("div");
+        /*        const gradient = document.createElement("div");
         if (index === 0) {
           gradient.classList.add("gradient", "bottom");
           cloned.insertBefore(gradient, cloned.firstChild);
@@ -1042,8 +1038,8 @@ function addGradients() {
       });
       //      container.removeChild(item);
     } else {
-//      console.log("in a single column", item.firstChild?.firstChild, rects);
-        item.classList.add("cloned_full");
+      //      console.log("in a single column", item.firstChild?.firstChild, rects);
+      item.classList.add("cloned_full");
       clonedItems.push(item.cloneNode(true));
     }
   });
@@ -1091,7 +1087,9 @@ function drawGrid(dom) {
       const eugroup = group.replace(/&|\/| |car/g, "-").toLowerCase();
       if (full) {
         return (
-          "<div class='party h"+eugroup+"'>" +
+          "<div class='party h" +
+          eugroup +
+          "'>" +
           (full.picture &&
             "<img class='logo' crossorigin='anonymous' src='https://pics.mepwatch.eu/parties/" +
               full.twitter?.toLowerCase() +
@@ -1103,9 +1101,12 @@ function drawGrid(dom) {
           "</span>" +
           "<span title='" +
           group +
-          "' class='img-rounded text-filter _eugroup " + eugroup + 
+          "' class='img-rounded text-filter _eugroup " +
+          eugroup +
           "'>" +
-          "<img crossorigin='anonymous' src='https://mepwatch.eu/10/img/eugroupsl/"+eugroup+".png' />" +
+          "<img crossorigin='anonymous' src='https://mepwatch.eu/10/img/eugroupsl/" +
+          eugroup +
+          ".png' />" +
           "</span></div>"
         );
       }
@@ -1150,23 +1151,21 @@ function drawGrid(dom) {
       [2, 3, 4, 5, 6, 7].forEach((i) =>
         grid.classed("column-" + i, i === column),
       );
-  setTimeout(() => {
-      d3
-        .selectAll(".dc-grid-top")
-        .each(function () {
+      setTimeout(() => {
+        d3.selectAll(".dc-grid-top").each(function () {
           const element = d3.select(this);
           const rects = Array.from(element.node().getClientRects());
-          rects.forEach( rect => { 
-          if (rect.left > 1600) {
-            console.log("overflow TODO, get column",rect.left, column);
-            // increase column
-//      d3.select(chart.anchor()).style("column-count", column +1);
-//      [2, 3, 4, 5, 6, 7].forEach((i) => grid.classed("column-" + i, i === column + 1),);
-          }
-          })
-         });
-    addGradients();
-  }, 100);
+          rects.forEach((rect) => {
+            if (rect.left > 1600) {
+              console.log("overflow TODO, get column", rect.left, column);
+              // increase column
+              //      d3.select(chart.anchor()).style("column-count", column +1);
+              //      [2, 3, 4, 5, 6, 7].forEach((i) => grid.classed("column-" + i, i === column + 1),);
+            }
+          });
+        });
+        addGradients();
+      }, 100);
     });
   return graph;
 }
