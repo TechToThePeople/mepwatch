@@ -8,7 +8,8 @@ let votes = [];
 let config = {};
 let parties = [];
 const getParty = (name, country) => {
-  const party = parties.find((d) => d.party === name && d.country === country);
+  const c = (country || "").toLowerCase();
+  const party = parties.find((d) => d.party === name && d.country.toLowerCase() === c);
   return party;
 };
 window.getParty = getParty;

@@ -536,8 +536,8 @@
         // Replace x-axis labels with group logos
         graphs.eugroup.on("renderlet.logos", function (c) {
           c.selectAll(".axis.x .tick").each(function () {
-            var textEl = d3.select(this).select("text");
-            var group = textEl.text();
+            const textEl = d3.select(this).select("text");
+            const group = textEl.text();
             textEl.remove();
             d3.select(this)
               .append("svg:image")
@@ -551,22 +551,52 @@
         graphs.party = drawBarVotes("#party div.graph", function (d) {
           return d.party;
         });
+        // Replace x-axis labels with party logos (or acronym fallback)
+        graphs.party.on("renderlet.partylogos", function (chart) {
+          if (d3.select("#party").classed("d-none")) return;
+          const cc = graphs.country && graphs.country.filters();
+          const country = Array.isArray(cc) ? cc[0] : (cc || "");
+          chart.selectAll(".axis.x .tick").each(function () {
+            const textEl = d3.select(this).select("text");
+            const partyName = textEl.text();
+            if (!partyName) return;
+            const full = window.getParty(partyName, country);
+            if (full && full.twitter) {
+              textEl.style("display", "none");
+              d3.select(this)
+                .append("svg:image")
+                .attr("href", "https://pics.mepwatch.eu/parties/" + full.twitter.toLowerCase() + ".jpg")
+                .attr("width", 24).attr("height", 24)
+                .attr("x", -12).attr("y", 2);
+            } else {
+              const label = (full && full.acronym) || partyName;
+              textEl.text(label);
+            }
+          });
+        });
+        // Styled tooltip for party bar chart
+        (function () {
+          var tip = d3
+            .tip()
+            .attr("class", "d3-tip wide-tip")
+            .offset([-10, 0])
+            .html(function (d) {
+              var dd = d.data || d;
+              return voteTipHtml({ value: dd.value, key: dd.key }, function (dd2) {
+                return dd2.key;
+              }, "nb.count");
+            });
+          graphs.party.on("renderlet.ptip", function (c) {
+            c.selectAll("rect.bar")
+              .call(tip)
+              .on("mouseover.tip", tip.show)
+              .on("mouseout.tip", tip.hide);
+          });
+        })();
 
         //graphs.party.xAxis().tickFormat(function(d) { return d[1]; });
 
-        graphs.party.elasticX(true).title(function (d) {
-          if (this.layer == 0) return "";
-          return (
-            d.key +
-            " voting '" +
-            this.layer +
-            "': " +
-            d.value[this.layer].count +
-            " (" +
-            formatPercent(d.value[this.layer].count / d.value.nb.count) +
-            ")"
-          );
-        });
+        graphs.party.elasticX(true).title(function () { return ""; });
         //      .keyAccessor(function(d){return d.key[1]})
         graphs.party.relative = false;
         // Order parties by their eugroup's position in groupOrder
