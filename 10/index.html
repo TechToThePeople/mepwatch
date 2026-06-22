@@ -482,12 +482,13 @@
           .size(10000)
           .section(function (d) {
             return (
-              "<h3>" +
-              "<span class='badge badge-light'>" +
+              "<h3 class='d-flex justify-content-between'>" +
+              "<span>week " +
+              week(d.value.max) +
+              "</span>" +
+              "<span class='badge text-bg-secondary'>" +
               dayFormat(d.value.max) +
               "</span>" +
-              "week " +
-              week(d.value.max) +
               "</h3>"
             );
           })
