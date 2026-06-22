@@ -657,7 +657,7 @@
                 "&secondRef=SIT&language=EN#TF2'>" +
                 dayFormat(d.date) +
                 "</a>" +
-                (!isMobile && docs[d.report]
+                (!isMobile && docs[d.report] && docs[d.report].committee
                   ? "<span class='committee'>" +
                     docs[d.report].committee +
                     "</span>"
@@ -675,12 +675,18 @@
               return f + d.report;
             },
             function (d) {
-              return docs[d.report]
-                ? "<span class='report-title'>" +
+              if (docs[d.report]) {
+                // For the main resolution vote (not amendments), show report
+                // title in the normal vote-name style and hide the vote name.
+                if (d.title.indexOf("Proposition de résolution") !== -1) {
+                  return docs[d.report].title;
+                }
+                return "<span class='report-title'>" +
                     docs[d.report].title +
                     "</span>&nbsp;" +
-                    d.title
-                : d.title;
+                    d.title;
+              }
+              return d.title;
             },
             function (d) {
               return d.for > d.against ? "<b>" + d.for + "</b>" : d.for;
