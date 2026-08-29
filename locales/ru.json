@@ -1,11 +1,29 @@
 {
     "eugroups": {
         "ni": {
-            "description": "Не аффилированные"
+            "description": "Не аффилированные",
+            "name": "NI"
         },
         "renew": {
             "description": "Либералы",
             "name": "Обновить"
+        },
+        "ppe": {
+            "name": "EPP",
+            "description": "Христианские демократы"
+        },
+        "id": {
+            "name": "ID",
+            "description": "Крайне правые"
+        },
+        "ecr": {
+            "name": "ECR",
+            "code": "ECR",
+            "description": "Национальные консерваторы"
+        },
+        "vertsale": {
+            "name": "Зеленые/УЕФА",
+            "description": "Зеленые, регионалисты и пираты"
         }
     },
     "result": {

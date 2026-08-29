@@ -1,7 +1,7 @@
 {
     "eugroups": {
         "na": {
-            "description": "Neovisni",
+            "description": "Nezavisni",
             "name": "--"
         },
         "greens/efa": {
@@ -10,7 +10,7 @@
         },
         "epp": {
             "description": "Kršćanski demokrati",
-            "name": "Europska pučka stranka"
+            "name": "EPP"
         },
         "gue/ngl": {
             "description": "Europska ljevica/Nordijsko zelena ljevica",
@@ -30,20 +30,20 @@
         },
         "ecr": {
             "description": "Nacionalni konzervativci",
-            "code": "Europski konzervativci i reformisti",
-            "name": "Europski konzervativci i reformisti"
+            "code": "ECR",
+            "name": "ECR"
         },
         "id": {
             "description": "Krajnja desnica",
-            "name": "Identifikacija"
+            "name": "ID"
         },
         "ni": {
-            "description": "Neovisni",
-            "name": "Neovisni"
+            "description": "Nezavisni",
+            "name": "NI"
         },
         "renew": {
             "description": "Liberali",
-            "name": "Obnovi"
+            "name": "Renew"
         },
         "ppe": {
             "description": "Kršćanski demokrati",
@@ -55,19 +55,19 @@
         },
         "guengl": {
             "description": "Europska ljevica/Nordijska zelena ljevica",
-            "name": "Europska ljevica/Nordijska zelena ljevica"
+            "name": "GUE/NGL"
         },
         "sd": {
             "description": "Socijalisti i demokrati",
-            "name": "Socijalisti i demokrati"
+            "name": "S&D"
         },
         "vertsale": {
-            "name": "Zeleni/Europski slobodni savez",
+            "name": "Zeleni/EFA",
             "description": "Zeleni, regionalisti i pirati"
         },
         "greensefa": {
             "description": "Zeleni, regionalisti i pirati",
-            "name": "Zeleni/Europski slobodni savez"
+            "name": "Zeleni/EFA"
         }
     },
     "result": {
