@@ -1,0 +1,290 @@
+---
+  0 debug pnpm:package-json: 
+    initial: 
+      name: "material"
+      version: "1.0.0"
+      description: "sudo -H pip install autocrop npm install gulp"
+      main: "index.js"
+      scripts: 
+        js-compile: "rollup --config build/rollup2.config.js --sourcemap"
+        test: "echo \"Error: no test specified\" && exit 1"
+      author: ""
+      license: "ISC"
+      devDependencies: 
+        bootstrap: "^4.1.1"
+        crossfilter2: "^1.4.6"
+        d3: "^5.5.0"
+        d3-tip: "^0.9.1"
+        daemonite-material: "^4.1.1"
+        dc: "^3.0.4"
+        dot: "^1.1.2"
+        gulp: "^3.9.1"
+        gulp-clean-css: "^3.9.4"
+        gulp-concat: "^2.6.1"
+        gulp-rename: "^1.3.0"
+        gulp-sourcemaps: "^2.6.4"
+        gulp-svgmin: "^1.2.4"
+        gulp-svgstore: "^6.1.1"
+        gulp-uglify: "^3.0.0"
+        iframe-resizer: "^3.6.2"
+        jquery: "^3.3.1"
+        popper.js: "^1.14.3"
+        reductio: "^0.6.3"
+        topojson: "^3.0.2"
+      dependencies: 
+        @mdi/svg: "^2.6.95"
+        csv-parser: "^1.12.1"
+        csv-write-stream: "^2.0.0"
+        d3-queue: "^3.0.7"
+        d3-scale-chromatic: "^1.3.0"
+        gulp-download: "0.0.1"
+        gulp-google-webfonts: "^2.0.0"
+        gulp-gzip: "^1.4.2"
+        lozad: "^1.6.0"
+        stream-chain: "^2.0.3"
+        stream-json: "^1.1.1"
+        stream-to-promise: "^2.2.0"
+        xz: "^1.2.2"
+      readme: "#install\nsudo -H pip install autocrop\nnpm install\ngulp\n\n\n#pictures\ngulp face\nautocrop -i tmp/mepphoto -o img/mepphoto -w50 -H50 --facePercent=100\n\nprocess manually the non detected faces\n\n\n# data and geo\nhttps://ec.europa.eu/eurostat/web/gisco/geodata\nhttps://raw.githubusercontent.com/leakyMirror/map-of-europe/master/TopoJSON/europe.topojson\n\nndjson-cat europe.geojson | ndjson-split 'd.features' > europe.ndjson\nndjson-map 'd.id = d.properties.ISO2,d' < europe.ndjson > europe-id.ndjson\nndjson-map 'd.properties = {pop:d.properties.POP2005},d' < europe-id.ndjson > europe-idprop.ndjson\nndjson-reduce < europe-idprop.ndjson | ndjson-map '{type: \"FeatureCollection\", features: d}' > europe-id.geojson\ngeo2topo countries=europe-id.geojson > europe.topojson\n\n"
+      readmeFilename: "readme.md"
+      gitHead: "4e80e63de8c386d4661909ee1e539caa5e94f47b"
+      _id: "material@1.0.0"
+  1 debug pnpm:stage: "resolution_started"
+  2 debug pnpm:progress: 
+    pkg: 
+      name: "topojson"
+      rawSpec: "topojson"
+    status: "installing"
+  3 debug pnpm:progress: 
+    status: "resolved"
+    pkgId: "registry.npmjs.org/topojson/3.0.2"
+    pkg: 
+      name: "topojson"
+      rawSpec: "topojson"
+  4 debug pnpm:progress: 
+    pkgId: "registry.npmjs.org/topojson/3.0.2"
+    pkgVersion: "3.0.2"
+    status: "downloaded_manifest"
+  5 debug pnpm:progress: 
+    pkgId: "registry.npmjs.org/topojson/3.0.2"
+    status: "resolving_content"
+  6 debug pnpm:progress: 
+    pkg: 
+      dependentId: "registry.npmjs.org/topojson/3.0.2"
+      name: "topojson-client"
+      rawSpec: "topojson-client@3.0.0"
+    status: "installing"
+  7 debug pnpm:progress: 
+    pkg: 
+      dependentId: "registry.npmjs.org/topojson/3.0.2"
+      name: "topojson-server"
+      rawSpec: "topojson-server@3.0.0"
+    status: "installing"
+  8 debug pnpm:progress: 
+    pkg: 
+      dependentId: "registry.npmjs.org/topojson/3.0.2"
+      name: "topojson-simplify"
+      rawSpec: "topojson-simplify@3.0.2"
+    status: "installing"
+  9 debug pnpm:progress: 
+    status: "resolved"
+    pkgId: "registry.npmjs.org/topojson-client/3.0.0"
+    pkg: 
+      dependentId: "registry.npmjs.org/topojson/3.0.2"
+      name: "topojson-client"
+      rawSpec: "topojson-client@3.0.0"
+  10 debug pnpm:progress: 
+    pkgId: "registry.npmjs.org/topojson-client/3.0.0"
+    pkgVersion: "3.0.0"
+    status: "downloaded_manifest"
+  11 debug pnpm:progress: 
+    pkgId: "registry.npmjs.org/topojson-client/3.0.0"
+    status: "resolving_content"
+  12 debug pnpm:progress: 
+    pkg: 
+      dependentId: "registry.npmjs.org/topojson-client/3.0.0"
+      name: "commander"
+      rawSpec: "commander@2"
+    status: "installing"
+  13 debug pnpm:progress: 
+    status: "resolved"
+    pkgId: "registry.npmjs.org/topojson-server/3.0.0"
+    pkg: 
+      dependentId: "registry.npmjs.org/topojson/3.0.2"
+      name: "topojson-server"
+      rawSpec: "topojson-server@3.0.0"
+  14 debug pnpm:progress: 
+    pkgId: "registry.npmjs.org/topojson-server/3.0.0"
+    pkgVersion: "3.0.0"
+    status: "downloaded_manifest"
+  15 debug pnpm:progress: 
+    pkgId: "registry.npmjs.org/topojson-server/3.0.0"
+    status: "resolving_content"
+  16 debug pnpm:progress: 
+    pkg: 
+      dependentId: "registry.npmjs.org/topojson-server/3.0.0"
+      name: "commander"
+      rawSpec: "commander@2"
+    status: "installing"
+  17 debug pnpm:progress: 
+    status: "resolved"
+    pkgId: "registry.npmjs.org/topojson-simplify/3.0.2"
+    pkg: 
+      dependentId: "registry.npmjs.org/topojson/3.0.2"
+      name: "topojson-simplify"
+      rawSpec: "topojson-simplify@3.0.2"
+  18 debug pnpm:progress: 
+    pkgId: "registry.npmjs.org/topojson-simplify/3.0.2"
+    pkgVersion: "3.0.2"
+    status: "downloaded_manifest"
+  19 debug pnpm:progress: 
+    pkgId: "registry.npmjs.org/topojson-simplify/3.0.2"
+    status: "resolving_content"
+  20 debug pnpm:progress: 
+    pkg: 
+      dependentId: "registry.npmjs.org/topojson-simplify/3.0.2"
+      name: "commander"
+      rawSpec: "commander@2"
+    status: "installing"
+  21 debug pnpm:progress: 
+    pkg: 
+      dependentId: "registry.npmjs.org/topojson-simplify/3.0.2"
+      name: "topojson-client"
+      rawSpec: "topojson-client@3"
+    status: "installing"
+  22 debug pnpm:progress: 
+    pkgId: "registry.npmjs.org/topojson/3.0.2"
+    status: "found_in_store"
+  23 debug pnpm:progress: 
+    pkgId: "registry.npmjs.org/topojson-client/3.0.0"
+    status: "found_in_store"
+  24 debug pnpm:progress: 
+    pkgId: "registry.npmjs.org/topojson-server/3.0.0"
+    status: "found_in_store"
+  25 debug pnpm:progress: 
+    pkgId: "registry.npmjs.org/topojson-simplify/3.0.2"
+    status: "found_in_store"
+  26 debug pnpm:progress: 
+    status: "resolved"
+    pkgId: "registry.npmjs.org/commander/2.18.0"
+    pkg: 
+      dependentId: "registry.npmjs.org/topojson-client/3.0.0"
+      name: "commander"
+      rawSpec: "commander@2"
+  27 debug pnpm:progress: 
+    pkgId: "registry.npmjs.org/commander/2.18.0"
+    pkgVersion: "2.18.0"
+    status: "downloaded_manifest"
+  28 debug pnpm:progress: 
+    pkgId: "registry.npmjs.org/commander/2.18.0"
+    status: "resolving_content"
+  29 debug pnpm:progress: 
+    pkgId: "registry.npmjs.org/commander/2.18.0"
+    status: "found_in_store"
+  30 debug pnpm:progress: 
+    status: "resolved"
+    pkgId: "registry.npmjs.org/commander/2.18.0"
+    pkg: 
+      dependentId: "registry.npmjs.org/topojson-server/3.0.0"
+      name: "commander"
+      rawSpec: "commander@2"
+  31 debug pnpm:progress: 
+    pkgId: "registry.npmjs.org/commander/2.18.0"
+    pkgVersion: "2.18.0"
+    status: "downloaded_manifest"
+  32 debug pnpm:progress: 
+    status: "resolved"
+    pkgId: "registry.npmjs.org/commander/2.18.0"
+    pkg: 
+      dependentId: "registry.npmjs.org/topojson-simplify/3.0.2"
+      name: "commander"
+      rawSpec: "commander@2"
+  33 debug pnpm:progress: 
+    pkgId: "registry.npmjs.org/commander/2.18.0"
+    pkgVersion: "2.18.0"
+    status: "downloaded_manifest"
+  34 debug pnpm:progress: 
+    status: "resolved"
+    pkgId: "registry.npmjs.org/topojson-client/3.0.0"
+    pkg: 
+      dependentId: "registry.npmjs.org/topojson-simplify/3.0.2"
+      name: "topojson-client"
+      rawSpec: "topojson-client@3"
+  35 debug pnpm:progress: 
+    pkgId: "registry.npmjs.org/topojson-client/3.0.0"
+    pkgVersion: "3.0.0"
+    status: "downloaded_manifest"
+  36 debug pnpm:stage: "resolution_done"
+  37 debug pnpm:package-json: 
+    updated: 
+      name: "material"
+      version: "1.0.0"
+      description: ""
+      main: "index.js"
+      scripts: 
+        js-compile: "rollup --config build/rollup2.config.js --sourcemap"
+        test: "echo \"Error: no test specified\" && exit 1"
+      author: ""
+      license: "ISC"
+      devDependencies: 
+        bootstrap: "^4.1.1"
+        crossfilter2: "^1.4.6"
+        d3: "^5.5.0"
+        d3-tip: "^0.9.1"
+        daemonite-material: "^4.1.1"
+        dc: "^3.0.4"
+        dot: "^1.1.2"
+        gulp: "^3.9.1"
+        gulp-clean-css: "^3.9.4"
+        gulp-concat: "^2.6.1"
+        gulp-rename: "^1.3.0"
+        gulp-sourcemaps: "^2.6.4"
+        gulp-svgmin: "^1.2.4"
+        gulp-svgstore: "^6.1.1"
+        gulp-uglify: "^3.0.0"
+        iframe-resizer: "^3.6.2"
+        jquery: "^3.3.1"
+        popper.js: "^1.14.3"
+        reductio: "^0.6.3"
+        topojson: "^3.0.2"
+      dependencies: 
+        @mdi/svg: "^2.6.95"
+        csv-parser: "^1.12.1"
+        csv-write-stream: "^2.0.0"
+        d3-queue: "^3.0.7"
+        d3-scale-chromatic: "^1.3.0"
+        gulp-download: "0.0.1"
+        gulp-google-webfonts: "^2.0.0"
+        gulp-gzip: "^1.4.2"
+        lozad: "^1.6.0"
+        stream-chain: "^2.0.3"
+        stream-json: "^1.1.1"
+        stream-to-promise: "^2.2.0"
+        xz: "^1.2.2"
+  38 info pnpm:root: 
+    removed: 
+      dependencyType: "prod"
+      name: "post-robot"
+  39 info pnpm:root: 
+    removed: 
+      dependencyType: "dev"
+      name: "postmate"
+  40 debug pnpm:stats: 
+    prefix: "/var/www/mepwatch"
+    removed: 5
+  41 debug pnpm:stage: "importing_started"
+  42 debug pnpm:stats: 
+    added: 5
+    prefix: "/var/www/mepwatch"
+  43 debug pnpm:stage: "importing_done"
+  44 error pnpm: 
+    message: 
+      errno: -2
+      code: "ENOENT"
+      syscall: "lstat"
+      path: "/var/www/mepwatch/node_modules/.registry.npmjs.org/topojson/3.0.2/node_modules/topojson/node_modules/topojson-server"
+    err: 
+      name: "Error"
+      message: "ENOENT: no such file or directory, lstat '/var/www/mepwatch/node_modules/.registry.npmjs.org/topojson/3.0.2/node_modules/topojson/node_modules/topojson-server'"
+      code: "ENOENT"
+      stack: "Error: ENOENT: no such file or directory, lstat '/var/www/mepwatch/node_modules/.registry.npmjs.org/topojson/3.0.2/node_modules/topojson/node_modules/topojson-server'"

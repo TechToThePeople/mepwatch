@@ -1,0 +1,239 @@
+{
+  "language": "en",
+  "organization": {
+    "title": "10 engagements",
+    "description": "",
+    "link": "https://www.acvc-ces.be",
+    "logo": ""
+  },
+  "score": {
+    "title": "10 engagements",
+    "description": "",
+    "link": "https://www.hetacv.be",
+    "background": "https://www.hetacv.be/images/default-source/acv-csc-sitemap/3980-actualiteit-actualite/3985-campagnes-campagnes/elections-sociales---sociale-verkiezingen-2024/documenten-bestellen-cover.jpg",
+    "logo": "ihttps://www.hetacv.be/images/default-source/acv-csc-sitemap/5000-over-het-acv-a-propos-de-la-csc/5220-internationaal-international/acv-csci/acv-csci_logo.png",
+    "limits": [
+      {
+        "upper": 20,
+        "text": " ",
+        "color": "red"
+      },
+      {
+        "upper": 40,
+        "text": " ",
+        "color": "orange"
+      },
+      {
+        "upper": 60,
+        "text": " ",
+        "color": "yellow"
+      },
+      {
+        "upper": 90,
+        "text": " ",
+        "color": "palegreen"
+      },
+      {
+        "upper": 100,
+        "text": " ",
+        "color": "lightgreen"
+      }
+    ]
+  },
+  "topics": [
+    {
+      "order": 1,
+      "title": "",
+      "description": "",
+      "weight": 1,
+      "image": "",
+      "paused": [
+        {
+          "dbid": 189597,
+          "id": "A10-0048/2026",
+          "recommendation": -1,
+          "url": "https://www.europarl.europa.eu/doceo/document/A-10-2026-0048_EN.html",
+          "date": "2026-03-26",
+          "title": "Return Regulation",
+          "description": "Malik Azmani - Décision d'engager des négociations interinstitutionnelles"
+        },
+        {
+          "dbid": 183122,
+          "id": "A10-0261/2025",
+          "url": "https://www.europarl.europa.eu/doceo/document/A-10-2025-0261_EN.html",
+          "recommendation": 1,
+          "date": "2026-01-20",
+          "title": "Just transition",
+          "description": "Jana Toom - Proposition de résolution (ensemble du texte)"
+        },
+        {
+          "dbid": 183160,
+          "id": "A10-0269/2025",
+          "url": "https://www.europarl.europa.eu/doceo/document/A-10-2025-0269_EN.html",
+          "date": "2026-01-20",
+          "recommendation": 1,
+          "title": "René Repasi - Proposition de résolution (ensemble du texte)"
+        },
+        {
+          "dbid": 183160,
+          "id": "A10-0269/2025",
+          "url": "https://www.europarl.europa.eu/doceo/document/A-10-2025-0269_EN.html",
+          "date": "2026-01-20",
+          "recommendation": 1,
+          "title": "René Repasi - Proposition de résolution (ensemble du texte)"
+        },
+        {
+          "dbid": 184106,
+          "id": "A10-0006/2026",
+          "recommendation": 1,
+          "url": "https://www.europarl.europa.eu/doceo/document/A-10-2026-0006_EN.html",
+          "date": "2026-02-11",
+          "title": "Nicolae Ștefănuță - Proposition de résolution (ensemble du texte)"
+        },
+        {
+          "dbid": 184187,
+          "id": "A10-0256/2025",
+          "recommendation": 1,
+          "url": "https://www.europarl.europa.eu/doceo/document/A-10-2025-0256_EN.html",
+          "date": "2026-02-12",
+          "title": "subcontracting",
+          "description": "Johan Danielsson - Proposition de résolution (ensemble du texte)"
+        },
+        {
+          "dbid": 174634,
+          "id": "A10-0042/2025",
+          "recommendation": -1,
+          "url": "https://www.europarl.europa.eu/doceo/document/A-10-2025-0042_EN.html",
+          "date": "2025-04-02",
+          "title": "Andrzej Halicki - Après le § 26 - Am 70"
+        },
+        {
+          "dbid": 189384,
+          "recommendation": -1,
+          "id": "A10-0073/2026",
+          "url": "https://www.europarl.europa.eu/doceo/document/A-10-2026-0073_EN.html",
+          "date": "2026-03-26",
+          "title": "AI - Omnibus",
+          "description": "Arba Kokalari, Michael McNamara - Proposition de la Commission"
+        },
+        {
+          "dbid": 186516,
+          "recommendation": 1,
+          "id": "A10-0007/2026",
+          "url": "https://www.europarl.europa.eu/doceo/document/A-10-2026-0007_EN.html",
+          "date": "2026-03-11",
+          "title": "AI - Rights",
+          "description": "José Cepeda, Paulo Cunha - Projet de décision du Conseil"
+        },
+        {
+          "dbid": 182797,
+          "id": "A10-0244/2025",
+          "recommendation": 1,
+          "url": "https://www.europarl.europa.eu/doceo/document/A-10-2025-0244_EN.html",
+          "date": "2025-12-17",
+          "title": "Andrzej Buła - Proposition de résolution (ensemble du texte)"
+        },
+        {
+          "dbid": 181544,
+          "id": "A10-0185/2025",
+          "url": "https://www.europarl.europa.eu/doceo/document/A-10-2025-0185_EN.html",
+          "recommendation": -1,
+          "date": "2025-11-26",
+          "title": "Jorge Martín Frías - Proposition de résolution (ensemble du texte)"
+        },
+        {
+          "dbid": 178384,
+          "id": "A10-0147/2025",
+          "url": "https://www.europarl.europa.eu/doceo/document/A-10-2025-0147_EN.html",
+          "date": "2025-09-09",
+          "recommendation": 1,
+          "title": "Public Procurement",
+          "description": "Piotr Müller - Proposition de résolution (ensemble du texte)"
+        }
+      ],
+      "votings": [
+        {
+          "dbid": 184393,
+          "recommendation": 1,
+          "title": "Fight Against Poverty",
+          "description": "João Oliveira - Proposition de résolution (ensemble du texte)",
+          "id": "A10-0260/2025",
+          "url": "https://www.europarl.europa.eu/doceo/document/A-10-2025-0260_EN.html",
+          "date": "2026-02-12"
+        },
+        {
+          "dbid": 178653,
+          "recommendation": 1,
+          "id": "A10-0147/2025",
+          "url": "https://www.europarl.europa.eu/doceo/document/A-10-2025-0147_EN.html",
+          "date": "2025-09-09",
+          "title": "Public Procurement",
+          "description": "Piotr Müller - Après le § 64 - Am 25"
+        },
+        {
+          "dbid": 171364,
+          "recommendation": 1,
+          "id": "A10-0029/2024",
+          "url": "https://www.europarl.europa.eu/doceo/document/A-10-2024-0029_EN.html",
+          "date": "2024-12-19",
+          "title": "European Works Councils",
+          "description": "Dennis Radtke - Décision d'engager des négociations interinstitutionnelles"
+        },
+        {
+          "dbid": 184187,
+          "recommendation": 1,
+          "id": "A10-0256/2025",
+          "url": "https://www.europarl.europa.eu/doceo/document/A-10-2025-0256_EN.html",
+          "date": "2026-02-12",
+          "title": "Subcontracting",
+          "description": "Johan Danielsson - Proposition de résolution (ensemble du texte)"
+        },
+        {
+          "dbid": 190026,
+          "recommendation": 1,
+          "id": "A10-0105/2026",
+          "url": "https://www.europarl.europa.eu/doceo/document/A-10-2026-0105_EN.html",
+          "date": "2026-04-28",
+          "title": "MFF 2028-234",
+          "description": "– Siegfried Mureşan, Carla Tavares – Motion for a resolution (as a whole)"
+        },
+        {
+          "dbid": 183122,
+          "description": "Jana Toom - Proposition de résolution (ensemble du texte)",
+          "recommendation": 1,
+          "id": "A10-0261/2025",
+          "url": "https://www.europarl.europa.eu/doceo/document/A-10-2025-0261_EN.html",
+          "date": "2026-01-20",
+          "title": "Just Transition"
+        },
+        {
+          "dbid": 182797,
+          "recommendation": 1,
+          "id": "A10-0244/2025",
+          "url": "https://www.europarl.europa.eu/doceo/document/A-10-2025-0244_EN.html",
+          "date": "2025-12-17",
+          "description": "Andrzej Buła - Proposition de résolution (ensemble du texte)",
+          "title": "AI at work"
+        },
+        {
+          "dbid": 174634,
+          "id": "A10-0042/2025",
+          "recommendation": -1,
+          "url": "https://www.europarl.europa.eu/doceo/document/A-10-2025-0042_EN.html",
+          "date": "2025-04-02",
+          "title": "European DOGE",
+          "description": "Andrzej Halicki - Après le § 26 - Am 70"
+        },
+        {
+          "dbid": 182518,
+          "id": "A10-0197/2025",
+          "recommendation": -1,
+          "url": "https://www.europarl.europa.eu/doceo/document/A-10-2025-0197_EN.html",
+          "date": "2025-12-16",
+          "title": "Omnibus I on Due Diligence",
+          "description": "Jörgen Warborn - Accord provisoire - Am 401"
+        }
+      ]
+    }
+  ]
+}
