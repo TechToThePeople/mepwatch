@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .column-container {
+      columns: 3;
+      column-gap: 20px;
+      padding: 20px;
+      background: #f5f5f5;
+      height: 800px; /* Fixed height needed for column distribution */
+      position: relative;
+    }
+
+    .content-box {
+      break-inside: avoid;
+      padding: 15px;
+      background: white;
+      border-radius: 4px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      margin-bottom: 20px; /* This will get adjusted by JS */
+    }
+
+    @media (max-width: 768px) {
+      .column-container {
+        columns: 2;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .column-container {
+        columns: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="column-container" id="container">
+    <div class="content-box">
+      <h3>Box 1</h3>
+      <p>Some content here.</p>
+    </div>
+    <div class="content-box">
+      <h3>Box 2</h3>
+      <p>This is a shorter box.</p>
+    </div>
+    <div class="content-box">
+      <h3>Box 3</h3>
+      <p>Content flows automatically.</p>
+    </div>
+    <div class="content-box">
+      <h3>Box 4</h3>
+      <p>Another content box.</p>
+    </div>
+    <div class="content-box">
+      <h3>Box 5</h3>
+      <p>More content here.</p>
+    </div>
+    <div class="content-box">
+      <h3>Box 6</h3>
+      <p>Short content.</p>
+    </div>
+    <div class="content-box">
+      <h3>Box 7</h3>
+      <p>Content flowing naturally.</p>
+    </div>
+    <div class="content-box">
+      <h3>Box 8</h3>
+      <p>Another box.</p>
+    </div>
+    <div class="content-box">
+      <h3>Box 9</h3>
+      <p>Final box.</p>
+    </div>
+  </div>
+
+  <script>
+    // Function to justify content vertically within columns
+    function justifyColumns() {
+      const container = document.getElementById('container');
+      const boxes = Array.from(container.children);
+      const columnCount = getComputedStyle(container).columnCount;
+      const containerHeight = container.offsetHeight;
+      
+      // First, reset margins to calculate natural positions
+      boxes.forEach(box => box.style.marginBottom = '20px');
+      
+      // Wait for layout to settle
+      setTimeout(() => {
+        // Get boxes in each column
+        const columns = Array(parseInt(columnCount)).fill().map(() => []);
+        let currentColumn = 0;
+        
+        boxes.forEach(box => {
+          const rect = box.getBoundingClientRect();
+          const columnIndex = Math.floor((rect.left - container.getBoundingClientRect().left) / (container.offsetWidth / parseInt(columnCount)));
+          columns[columnIndex]?.push(box);
+        });
+console.log(boxes);        
+        // Adjust spacing in each column
+        columns.forEach(columnBoxes => {
+          if (columnBoxes.length > 1) {
+            const firstBox = columnBoxes[0];
+            const lastBox = columnBoxes[columnBoxes.length - 1];
+            const totalCurrentHeight = lastBox.getBoundingClientRect().bottom - firstBox.getBoundingClientRect().top;
+            const extraSpace = containerHeight - totalCurrentHeight;
+            const spacing = extraSpace / (columnBoxes.length - 1) -30;
+console.log(spacing);            
+            // Apply adjusted margins
+            columnBoxes.forEach((box, index) => {
+              if (index < columnBoxes.length - 1) {
+                box.style.marginBottom = `${spacing + 20}px`;
+              }
+            });
+          }
+        });
+      }, 0);
+    }
+
+    // Run on load and resize
+    window.addEventListener('load', justifyColumns);
+    window.addEventListener('resize', justifyColumns);
+  </script>
+</body>
+</html>

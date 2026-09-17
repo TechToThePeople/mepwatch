@@ -1,0 +1,194 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 571 308" height="100%" >
+  <defs>
+    <linearGradient id="myGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="cyan" />
+      <stop offset="100%" stop-color="purple" />
+    </linearGradient>
+    <g id="a"  r="20">
+      <circle cx="244.2" cy="226.9" r="3"/>
+      <circle cx="252.1" cy="225.7" r="3"/>
+      <circle cx="260" cy="225.7" r="3"/>
+      <circle cx="267.8" cy="226.9" r="3"/>
+      <circle cx="244.4" cy="209.7" r="3"/>
+      <circle cx="252.2" cy="208.8" r="3"/>
+      <circle cx="260" cy="208.8" r="3"/>
+      <circle cx="267.8" cy="209.7" r="3"/>
+      <circle cx="240.4" cy="193.2" r="3"/>
+      <circle cx="248.2" cy="192.1" r="3"/>
+      <circle cx="256.1" cy="191.8" r="3"/>
+      <circle cx="264" cy="192.2" r="3"/>
+      <circle cx="271.8" cy="193.2" r="3"/>
+      <circle cx="232.6" cy="178.2" r="3"/>
+      <circle cx="240.3" cy="176.7" r="3"/>
+      <circle cx="248.2" cy="175.8" r="3"/>
+      <circle cx="256.1" cy="175.5" r="3"/>
+      <circle cx="264" cy="175.9" r="3"/>
+      <circle cx="271.8" cy="176.7" r="3"/>
+      <circle cx="279.5" cy="178.2" r="3"/>
+      <circle cx="228.8" cy="161.8" r="3"/>
+      <circle cx="236.5" cy="160.3" r="3"/>
+      <circle cx="244.3" cy="159.2" r="3"/>
+      <circle cx="252.1" cy="158.8" r="3"/>
+      <circle cx="260" cy="158.8" r="3"/>
+      <circle cx="267.8" cy="159.3" r="3"/>
+      <circle cx="275.6" cy="160.3" r="3"/>
+      <circle cx="283.3" cy="161.8" r="3"/>
+      <circle cx="224.9" cy="145.4" r="3"/>
+      <circle cx="232.6" cy="143.8" r="3"/>
+      <circle cx="240.4" cy="142.7" r="3"/>
+      <circle cx="248.3" cy="142.1" r="3"/>
+      <circle cx="256.1" cy="141.9" r="3"/>
+      <circle cx="264" cy="142.1" r="3"/>
+      <circle cx="271.8" cy="142.8" r="3"/>
+      <circle cx="279.6" cy="143.9" r="3"/>
+      <circle cx="287.4" cy="145.4" r="3"/>
+      <circle cx="217.2" cy="129.5" r="3"/>
+      <circle cx="224.8" cy="127.7" r="3"/>
+      <circle cx="232.6" cy="126.3" r="3"/>
+      <circle cx="240.4" cy="125.3" r="3"/>
+      <circle cx="248.2" cy="124.7" r="3"/>
+      <circle cx="256.1" cy="124.5" r="3"/>
+      <circle cx="263.9" cy="124.7" r="3"/>
+      <circle cx="271.8" cy="125.3" r="3"/>
+      <circle cx="279.6" cy="126.3" r="3"/>
+      <circle cx="287.3" cy="127.7" r="3"/>
+      <circle cx="295" cy="129.5" r="3"/>
+      <circle cx="213.4" cy="112.8" r="3"/>
+      <circle cx="221" cy="111" r="3"/>
+      <circle cx="228.7" cy="109.6" r="3"/>
+      <circle cx="236.5" cy="108.5" r="3"/>
+      <circle cx="244.3" cy="107.8" r="3"/>
+      <circle cx="252.1" cy="107.5" r="3"/>
+      <circle cx="260" cy="107.5" r="3"/>
+      <circle cx="267.8" cy="107.9" r="3"/>
+      <circle cx="275.6" cy="108.5" r="3"/>
+      <circle cx="283.4" cy="109.6" r="3"/>
+      <circle cx="291.1" cy="111" r="3"/>
+      <circle cx="298.8" cy="112.8" r="3"/>
+      <circle cx="205.8" cy="97.1" r="3"/>
+      <circle cx="213.4" cy="95.2" r="3"/>
+      <circle cx="221" cy="93.6" r="3"/>
+      <circle cx="228.7" cy="92.3" r="3"/>
+      <circle cx="236.5" cy="91.3" r="3"/>
+      <circle cx="244.3" cy="90.7" r="3"/>
+      <circle cx="252.2" cy="90.4" r="3"/>
+      <circle cx="260" cy="90.4" r="3"/>
+      <circle cx="267.8" cy="90.7" r="3"/>
+      <circle cx="275.6" cy="91.3" r="3"/>
+      <circle cx="283.4" cy="92.3" r="3"/>
+      <circle cx="291.1" cy="93.6" r="3"/>
+      <circle cx="298.8" cy="95.2" r="3"/>
+      <circle cx="306.4" cy="97.1" r="3"/>
+      <circle cx="201.8" cy="80.5" r="3"/>
+      <circle cx="209.5" cy="78.6" r="3"/>
+      <circle cx="217.2" cy="77" r="3"/>
+      <circle cx="224.9" cy="75.6" r="3"/>
+      <circle cx="232.7" cy="74.6" r="3"/>
+      <circle cx="240.6" cy="73.8" r="3"/>
+      <circle cx="248.4" cy="73.4" r="3"/>
+      <circle cx="256.2" cy="73.3" r="3"/>
+      <circle cx="264.1" cy="73.4" r="3"/>
+      <circle cx="272" cy="73.9" r="3"/>
+      <circle cx="279.8" cy="74.6" r="3"/>
+      <circle cx="287.6" cy="75.7" r="3"/>
+      <circle cx="295.3" cy="77" r="3"/>
+      <circle cx="303" cy="78.6" r="3"/>
+      <circle cx="310.6" cy="80.6" r="3"/>
+      <circle cx="198.2" cy="64.2" r="3"/>
+      <circle cx="205.8" cy="62.3" r="3"/>
+      <circle cx="213.4" cy="60.7" r="3"/>
+      <circle cx="221.1" cy="59.4" r="3"/>
+      <circle cx="228.9" cy="58.3" r="3"/>
+      <circle cx="236.6" cy="57.5" r="3"/>
+      <circle cx="244.5" cy="56.9" r="3"/>
+      <circle cx="252.3" cy="56.6" r="3"/>
+      <circle cx="260.1" cy="56.7" r="3"/>
+      <circle cx="267.9" cy="57" r="3"/>
+      <circle cx="275.7" cy="57.5" r="3"/>
+      <circle cx="283.5" cy="58.3" r="3"/>
+      <circle cx="291.3" cy="59.4" r="3"/>
+      <circle cx="299" cy="60.8" r="3"/>
+      <circle cx="306.6" cy="62.4" r="3"/>
+      <circle cx="314.2" cy="64.3" r="3"/>
+      <circle cx="190.3" cy="47.5" r="3"/>
+      <circle cx="197.9" cy="45.4" r="3"/>
+      <circle cx="205.5" cy="43.7" r="3"/>
+      <circle cx="213.2" cy="42.2" r="3"/>
+      <circle cx="220.9" cy="40.9" r="3"/>
+      <circle cx="228.7" cy="39.9" r="3"/>
+      <circle cx="236.5" cy="39.2" r="3"/>
+      <circle cx="244.3" cy="38.6" r="3"/>
+      <circle cx="252.1" cy="38.4" r="3"/>
+      <circle cx="260" cy="38.4" r="3"/>
+      <circle cx="267.8" cy="38.6" r="3"/>
+      <circle cx="275.6" cy="39.2" r="3"/>
+      <circle cx="283.4" cy="39.9" r="3"/>
+      <circle cx="291.2" cy="40.9" r="3"/>
+      <circle cx="298.9" cy="42.2" r="3"/>
+      <circle cx="306.6" cy="43.7" r="3"/>
+      <circle cx="314.2" cy="45.4" r="3"/>
+      <circle cx="321.8" cy="47.5" r="3"/>
+      <circle cx="186.5" cy="30.7" r="3"/>
+      <circle cx="194" cy="28.7" r="3"/>
+      <circle cx="201.7" cy="26.9" r="3"/>
+      <circle cx="209.4" cy="25.4" r="3"/>
+      <circle cx="217.1" cy="24.1" r="3"/>
+      <circle cx="224.8" cy="23.1" r="3"/>
+      <circle cx="232.6" cy="22.2" r="3"/>
+      <circle cx="240.4" cy="21.6" r="3"/>
+      <circle cx="248.2" cy="21.3" r="3"/>
+      <circle cx="256.1" cy="21.1" r="3"/>
+      <circle cx="263.9" cy="21.3" r="3"/>
+      <circle cx="271.7" cy="21.6" r="3"/>
+      <circle cx="279.5" cy="22.2" r="3"/>
+      <circle cx="287.3" cy="23.1" r="3"/>
+      <circle cx="295" cy="24.1" r="3"/>
+      <circle cx="302.8" cy="25.4" r="3"/>
+      <circle cx="310.5" cy="26.9" r="3"/>
+      <circle cx="318" cy="28.7" r="3"/>
+      <circle cx="325.6" cy="30.7" r="3"/>
+      <circle cx="179" cy="14.6" r="3"/>
+      <circle cx="186.6" cy="12.6" r="3"/>
+      <circle cx="194.1" cy="10.7" r="3"/>
+      <circle cx="201.8" cy="9.1" r="3"/>
+      <circle cx="209.5" cy="7.6" r="3"/>
+      <circle cx="217.2" cy="6.4" r="3"/>
+      <circle cx="225" cy="5.4" r="3"/>
+      <circle cx="232.8" cy="4.6" r="3"/>
+      <circle cx="240.6" cy="4.1" r="3"/>
+      <circle cx="248.4" cy="3.8" r="3"/>
+      <circle cx="256.2" cy="3.7" r="3"/>
+      <circle cx="264.1" cy="3.8" r="3"/>
+      <circle cx="271.9" cy="4.1" r="3"/>
+      <circle cx="279.7" cy="4.7" r="3"/>
+      <circle cx="287.5" cy="5.4" r="3"/>
+      <circle cx="295.2" cy="6.5" r="3"/>
+      <circle cx="303" cy="7.7" r="3"/>
+      <circle cx="310.7" cy="9.1" r="3"/>
+      <circle cx="318.3" cy="10.8" r="3"/>
+      <circle cx="325.9" cy="12.7" r="3"/>
+      <circle cx="333.5" cy="14.8" r="3"/>
+    </g>
+<g id="l" transform="translate(28, 10)">
+  <use href="#a" />
+  <use href="#a" transform="rotate(38 257 272)" />
+  <use href="#a" transform="rotate(-38 255 272)"/>
+  <use href="#a" transform="rotate(76 256 273)"/>
+  <use href="#a" transform="rotate(-76 256 273)"/>
+</g>
+<mask id="mask">
+  <use href="#l" fill="white" />
+</mask>
+  </defs>
+<svg viewBox="-13 0 540 272" xmlns="http://www.w3.org/2000/svg">
+  <path 
+    d="M 0 272 Q 10 15 258 0 Q 501 20 512 272 L 260 253" 
+    fill="rgba(255,255,255,0.7)" 
+    stroke="none"/>
+</svg>
+
+ <rect width="564" height="308" fill="url(#myGradient)" mask="url(#mask)" />
+<circle cx="236.4" cy="283.3" fill="white" r="3.1" class="m"/>
+<circle cx="331.6" cy="283.3" fill="white" r="3.1" class="m"/>
+</svg>
+
