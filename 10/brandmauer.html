@@ -100,6 +100,27 @@
         letter-spacing: 0.04em;
         font-size: 0.8rem;
       }
+
+      .methodology-body h1 {
+        font-size: 1.6rem;
+        margin-bottom: 0.5rem;
+      }
+      .methodology-body h2 {
+        font-size: 1.25rem;
+        margin-top: 1.5rem;
+        margin-bottom: 0.5rem;
+        color: #6c757d;
+      }
+      .methodology-body p,
+      .methodology-body li {
+        line-height: 1.6;
+      }
+      .methodology-body ul {
+        padding-left: 1.25rem;
+      }
+      .methodology-body code {
+        color: #9c27b0;
+      }
     </style>
 
     <script src="../dist/js/flexsearch.bundle.min.js"></script>
@@ -143,6 +164,16 @@
           </form>
           <a class="resetall btn btn-outline-light btn-sm" title="Clear all filters">✕ Clear</a>
           <button
+            type="button"
+            id="methodology-btn"
+            class="btn btn-outline-light btn-sm"
+            data-bs-toggle="modal"
+            data-bs-target="#methodology-modal"
+            title="About this analysis"
+          >
+            Methodology
+          </button>
+          <button
             class="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
@@ -175,7 +206,7 @@
             <div class="card h-100">
               <div class="card-body kpi">
                 <div class="value"><span class="nbreports"></span></div>
-                <div class="label">Reports flagged</div>
+                <div class="label">Rollcalls flagged</div>
               </div>
             </div>
           </div>
@@ -183,7 +214,7 @@
             <div class="card h-100">
               <div class="card-body kpi">
                 <div class="value"><span class="nbtotal"></span></div>
-                <div class="label">Total votes in common</div>
+                <div class="label">Reports</div>
               </div>
             </div>
           </div>
@@ -191,7 +222,7 @@
             <div class="card h-100">
               <div class="card-body kpi">
                 <div class="value"><span class="nbmax"></span></div>
-                <div class="label">Highest single report</div>
+                <div class="label">Voted against</div>
               </div>
             </div>
           </div>
@@ -199,7 +230,7 @@
 
         <div class="card row mt-4">
           <div class="card-header">
-            Votes together, per report
+            Roll calls by week number and day of week
           </div>
           <div class="card-body">
             <div id="cordon-chart"></div>
@@ -208,7 +239,7 @@
 
         <div class="card row mt-4">
           <div class="card-header">
-            Roll-call votes, grouped by report
+            Cordon roll calls, grouped by report
           </div>
           <div class="card-body">
             <div class="table-responsive">
@@ -216,16 +247,7 @@
                 <thead>
                   <tr>
                     <th>Date</th>
-                    <th>Vote</th>
-                    <th title="for">
-                      <svg class="icon"><use href="#icon-for" /></svg>
-                    </th>
-                    <th title="against">
-                      <svg class="icon"><use href="#icon-against" /></svg>
-                    </th>
-                    <th title="abstention">
-                      <svg class="icon"><use href="#icon-abstention" /></svg>
-                    </th>
+                    <th>Far-right / EPP position</th>
                   </tr>
                 </thead>
                 <tbody></tbody>
@@ -236,6 +258,32 @@
       </div>
     </main>
 
+    <!-- Methodology modal -->
+    <div
+      class="modal fade"
+      id="methodology-modal"
+      tabindex="-1"
+      aria-labelledby="methodology-title"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-scrollable modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="methodology-title">Methodology</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body methodology-body" id="methodology-content">
+            <p class="text-muted">Loading…</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <footer class="text-muted"></footer>
 
     <!-- Optional JavaScript -->
@@ -244,11 +292,10 @@
     <script>
       "use strict";
 
-      var ndx = null;      // crossfilter over cordon-report.csv
-      var votesNdx = null; // crossfilter over item_rollcall.csv (enriched)
+      var ndx = null;      // crossfilter over cordon.csv
 
-      var dateParse = d3.timeParse("%Y-%m-%d");
-      var dayFormat = d3.timeFormat("%Y-%m-%d");
+      var dateParse = d3.utcParse("%Y-%m-%d");
+      var dayFormat = d3.utcFormat("%Y-%m-%d");
 
       function pad(n, w) {
         n = String(n);
@@ -257,129 +304,139 @@
       }
 
       function draw() {
-        var q = d3.queue();
-        q.defer(function (cb) {
-          d3.csv("data/cordon-report.csv", function (d) {
-            return {
-              votes_together: +d.votes_together || 0,
-              reference: d.reference || "",
-              report_title: d.report_title || "",
-            };
-          }).then(function (data) {
-            ndx = crossfilter(data);
-            cb(null, data);
-          });
-        });
-        q.defer(function (cb) {
-          d3.csv("data/item_rollcall.csv", function (d) {
-            return {
-              identifier: d.identifier,
-              date: dateParse((d.date || "").substring(0, 10)),
-              report: d.report || "",
-              title: d.title || d.desc || "",
-              for: +d.for || 0,
-              against: +d.against || 0,
-              abstention: +d.abstention || 0,
-            };
-          }).then(function (data) {
-            cb(null, data);
-          });
-        });
-        q.awaitAll(function (error, results) {
-          if (error) {
-            console.error(error);
-            return;
-          }
-          var reports = results[0];   // cordon-report rows
-          var rollcalls = results[1]; // item_rollcall rows
-
-          // Build reference -> report metadata lookup.
-          var reportMap = {};
-          reports.forEach(function (r) {
-            reportMap[r.reference] = r;
-          });
-
-          // Enrich each rollcall with report metadata so the single table can
-          // group and label by report.
-          var latestDateByReport = {};
-          rollcalls.forEach(function (d) {
-            var meta = reportMap[d.report] || {};
-            d.report_title = meta.report_title || "";
-            d.votes_together = meta.votes_together || 0;
-            // Track the latest (most recent) vote date per report for sorting.
-            if (d.date) {
-              var t = d.date.getTime();
-              if (!latestDateByReport[d.report] || t > latestDateByReport[d.report]) {
-                latestDateByReport[d.report] = t;
-              }
-            }
-          });
-
-          votesNdx = crossfilter(rollcalls);
-          render(latestDateByReport);
+        d3.csv("data/cordon.csv", function (d) {
+          return {
+            rollcall: d.rollcall || "",
+            date: dateParse((d.date || "").substring(0, 10)),
+            position: d.far_right_epp_position || "",
+            report_title: d.report_title || "",
+          };
+        }).then(function (data) {
+          ndx = crossfilter(data);
+          render();
         });
       }
 
-      function render(latestDateByReport) {
-        // ---------- KPIs (from cordon-report.csv) ----------
+      function render() {
+        // ---------- KPIs (from cordon.csv) ----------
         var allDim = ndx.dimension(function () {
           return true;
         });
 
-        var reportsGroup = allDim.group().reduceCount();
+        // Rollcalls flagged = total rows.
+        var totalGroup = allDim.group().reduceCount();
         dc.numberDisplay(".nbreports")
-          .group(reportsGroup)
-          .formatNumber(d3.format("d"));
-
-        var totalGroup = allDim.group().reduceSum(function (d) {
-          return d.votes_together;
-        });
-        dc.numberDisplay(".nbtotal")
           .group(totalGroup)
-          .valueAccessor(function (d) {
-            return d;
-          })
           .formatNumber(d3.format("d"));
 
-        var maxGroup = allDim.group().reduce(
+        // Distinct reports = distinct report_title count.
+        var reportsGroup = allDim.group().reduce(
           function (p, v) {
-            return Math.max(p, v.votes_together);
+            p[v.report_title] = 1;
+            return p;
           },
           function (p, v) {
             return p;
           },
           function () {
-            return 0;
+            return {};
           }
         );
+        dc.numberDisplay(".nbtotal")
+          .group(reportsGroup)
+          .valueAccessor(function (d) {
+            return Object.keys(d).length;
+          })
+          .formatNumber(d3.format("d"));
+
+        // Voted against = count of position === "against".
+        var againstGroup = allDim.group().reduceSum(function (d) {
+          return d.position === "against" ? 1 : 0;
+        });
         dc.numberDisplay(".nbmax")
-          .group(maxGroup)
+          .group(againstGroup)
           .valueAccessor(function (d) {
             return d;
           })
           .formatNumber(d3.format("d"));
 
-        // ---------- Bar chart: distribution of votes_together ----------
-        var valueDim = ndx.dimension(function (d) {
-          return d.votes_together;
+        // ---------- Heatmap: week (x) vs day of week (y) ----------
+        // Mirrors index.html's drawDate: x = year-week (label shows the year
+        // only when it changes), y = day of week.
+        var week = d3.timeFormat("%V");
+        var lasttick = "";
+        var dim = ndx.dimension(function (d) {
+          return d.date;
         });
-        var valueGroup = valueDim.group().reduceCount();
+        var group = dim.group().reduceSum(function (d) {
+          return 1;
+        });
 
-        dc.barChart("#cordon-chart")
-          .dimension(valueDim)
-          .group(valueGroup)
-          .width(600)
-          .height(300)
-          .x(d3.scaleLinear().domain([0, d3.max(ndx.all(), function (d) {
-            return d.votes_together;
-          }) + 1]))
-          .elasticY(true)
-          .renderLabel(true)
-          .label(function (d) {
-            return d.value;
+        // Day labels, y axis (rows): Sat..Sun top-to-bottom.
+        var day = ["Sat", "Fri", "Thu", "Wed", "Tue", "Mon", "Sun"];
+
+        // Colour domain driven by the actual maximum cell count so the
+        // hottest day always reaches the brightest colour.
+        var maxCount = d3.max(group.all(), function (g) {
+          return g.value;
+        }) || 1;
+        var color = d3
+          .scaleLinear()
+          .domain([0, 1, maxCount])
+          .range(["white", "lightgrey", "#7b2253"]);
+
+        var tip = d3
+          .tip()
+          .attr("class", "d3-tip wide-tip")
+          .offset([-10, 0])
+          .html(function (d) {
+            return (
+              "<h5>" +
+              dayFormat(d.key) +
+              "</h5><div>Rollcalls" +
+              "<span class='p-2 badge text-bg-primary ms-2'>" +
+              d.value +
+              "</span></div>"
+            );
           });
 
-        // ---------- Single table: all roll calls, sectioned by report ----------
+        var graph = dc
+          .heatMap("#cordon-chart")
+          .dimension(dim)
+          .group(group)
+          .width(800)
+          .height(150)
+          .rowsLabel(function (d) {
+            return day[d];
+          })
+          .colsLabel(function (d) {
+            var t = Math.floor(d / 100000);
+            if (lasttick !== t) {
+              lasttick = t;
+              return t;
+            }
+            return "";
+          })
+          .keyAccessor(function (d) {
+            return 1000 * d.key.getFullYear() + week(d.key);
+          })
+          .valueAccessor(function (d) {
+            return 6 - d.key.getDay();
+          })
+          .colorAccessor(function (d) {
+            return +d.value;
+          })
+          .colors(color);
+
+        graph.on("pretransition", function (chart) {
+          graph
+            .selectAll(".heat-box")
+            .call(tip)
+            .on("mouseover.tip", tip.show)
+            .on("mouseout.tip", tip.hide);
+        });
+
+        // ---------- Single table: roll calls, sectioned by report ----------
         var isMobile = window.matchMedia(
           "screen and (max-width: 768px)"
         ).matches;
@@ -391,23 +448,32 @@
             });
         }
 
-        // Dimension over rollcall rows (one key per roll call).
-        var rcvDim = votesNdx.dimension(function (d) {
-          return d.identifier;
+        // One row per roll call. Group by report title as the section.
+        var tableDim = ndx.dimension(function (d) {
+          return d.rollcall;
         });
 
-        // Section key: ordered by the report's most recent vote date, newest
-        // first. The key is a fixed-width timestamp so that descending string
-        // sort === descending date sort. Reports sharing a date fall back to
-        // their reference for a stable tie-break. The readable label is
-        // rebuilt in the renderlet below.
+        // Section key: sortable, most recent date first. The key is a
+        // fixed-width timestamp (descending sort => newest first), with the
+        // report title appended for a stable tie-break. But grouping must be
+        // by report, so use the report's latest date as the section prefix.
+        var latestByReport = {};
+        ndx.all().forEach(function (d) {
+          var t = d.date ? d.date.getTime() : 0;
+          if (!latestByReport[d.report_title] || t > latestByReport[d.report_title]) {
+            latestByReport[d.report_title] = t;
+          }
+        });
+
         function sectionKey(d) {
-          var t = latestDateByReport[d.report] || 0;
-          return pad(t, 13) + "|" + (d.report || "?") + "|" + (d.report_title || "");
+          var t = latestByReport[d.report_title] || 0;
+          // Invert so that a larger timestamp sorts first under descending
+          // order is handled by descending string sort; keep timestamp as-is.
+          return pad(t, 13) + "|" + (d.report_title || "?");
         }
 
         var rcvTable = dc.dataTable("#rcv-table")
-          .dimension(rcvDim)
+          .dimension(tableDim)
           .section(sectionKey)
           .size(Infinity)
           .columns([
@@ -415,16 +481,7 @@
               return dayFormat(d.date);
             },
             function (d) {
-              return d.title;
-            },
-            function (d) {
-              return d.for > d.against ? "<b>" + d.for + "</b>" : d.for;
-            },
-            function (d) {
-              return d.against > d.for ? "<b>" + d.against + "</b>" : d.against;
-            },
-            function (d) {
-              return d.abstention;
+              return d.position;
             },
           ])
           .sortBy(function (d) {
@@ -432,24 +489,24 @@
           })
           .order(d3.descending)
           .on("renderlet", function (g) {
-            // Restyle section headers into a readable label. The section
-            // <td> is bound to the nest() entry {key, values}; read the first
-            // rollcall row for the report metadata.
+            // Restyle the section header label.
             g.selectAll("tr.dc-table-section td.dc-table-label").each(function () {
               var el = d3.select(this);
               var entry = el.datum();
               var rows = entry && entry.values ? entry.values : [];
               var first = rows[0] || {};
-              var ref = first.report || "";
-              var title = first.report_title || "";
-              var votes = first.votes_together || 0;
+              var title = first.report_title || "(no title)";
               el.html(
                 "<span class='badge text-bg-secondary me-2'>" + rows.length +
-                " RCV</span>" +
-                "<b>" + ref + "</b>" +
-                (votes ? " · " + votes + " votes together" : "") +
-                (title ? " — " + title : "")
+                " RCV</span>" + title
               );
+            });
+            // Open the roll-call detail in a new tab on row click.
+            g.selectAll("tr.dc-table-row").on("click", function (d) {
+              var rec = d3.select(this).datum();
+              if (rec && rec.rollcall) {
+                window.open("./vote.html?v=" + rec.rollcall, "_blank");
+              }
             });
           });
 
@@ -474,7 +531,94 @@
         updateReset();
       }
 
+      // ---------- Methodology (Markdown -> HTML, zero new dependencies) ----------
+      // Renders the small, well-defined subset of Markdown used in
+      // brandmauer.md: ATX headings, **bold**, *italic* / _italic_, and
+      // unordered lists. Text is HTML-escaped first to keep output safe.
+      function escapeHtml(s) {
+        return String(s)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;");
+      }
+
+      function inlineMd(s) {
+        s = escapeHtml(s);
+        s = s.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+        s = s.replace(/(^|[^*])\*([^*\n]+)\*/g, "$1<em>$2</em>");
+        s = s.replace(/_([^_\n]+)_/g, "<em>$1</em>");
+        return s;
+      }
+
+      function renderMarkdown(md) {
+        var lines = md.split(/\r?\n/);
+        var html = [];
+        var listOpen = false;
+        var i;
+        var line;
+        var m;
+
+        function closeList() {
+          if (listOpen) {
+            html.push("</ul>");
+            listOpen = false;
+          }
+        }
+
+        for (i = 0; i < lines.length; i++) {
+          line = lines[i];
+
+          // Blank line closes any open list.
+          if (!line.trim()) {
+            closeList();
+            continue;
+          }
+
+          // ATX headings.
+          m = line.match(/^(#{1,6})\s+(.*)$/);
+          if (m) {
+            closeList();
+            var level = m[1].length;
+            var text = inlineMd(m[2]);
+            html.push("<h" + level + ">" + text + "</h" + level + ">");
+            continue;
+          }
+
+          // Unordered list items.
+          m = line.match(/^\s*[-*+]\s+(.*)$/);
+          if (m) {
+            if (!listOpen) {
+              html.push("<ul>");
+              listOpen = true;
+            }
+            html.push("<li>" + inlineMd(m[1]) + "</li>");
+            continue;
+          }
+
+          // Paragraph (otherwise).
+          closeList();
+          html.push("<p>" + inlineMd(line) + "</p>");
+        }
+
+        closeList();
+        return html.join("\n");
+      }
+
+      function loadMethodology() {
+        d3.text("brandmauer.md").then(function (md) {
+          var html = renderMarkdown(md);
+          d3.select("#methodology-content").html(html);
+        }).catch(function (err) {
+          console.error("Failed to load brandmauer.md", err);
+          d3.select("#methodology-content").html(
+            "<p class='text-danger'>Could not load the methodology text.</p>"
+          );
+        });
+      }
+
       draw();
+      loadMethodology();
     </script>
 
     <svg class="d-none">
