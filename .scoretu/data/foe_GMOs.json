@@ -1,0 +1,69 @@
+{
+    "language": "en", 
+    "organization": {
+        "title": "Friends of the Earth Europe",
+        "description": "Friends of the Earth Europe is the largest grassroots environmental network in Europe, uniting more than 30 national organisations with thousands of local groups. We campaign on today's most urgent environmental and social issues. We challenge the current model of economic and corporate globalization, and promote solutions that will help to create environmentally sustainable and socially just societies.",
+        "link": "http://www.foeeurope.org/",
+        "logo": "http://www.foei.org/en/images/logos/foe-europe-logo/image_view_fullscreen"
+    },
+    "score": {
+        "title": "How did your MEP vote on GMOs?",
+        "description": "",
+        "link": "http://www.foeeurope.org/gmos",
+        "logo": "",
+        "limits": [
+            {"upper": 20,  "text": " likes GMOs.", "color": "red"},
+            {"upper": 40,  "text": " has supported GMOs.", "color" : "orange" }, 
+            {"upper": 60,  "text": " is undecided on GMOs.", "color": "yellow"},
+            {"upper": 90,  "text": " is rather sceptical of GMOs.", "color": "palegreen"},
+            {"upper": 100, "text": " is firmly anti-GMOs.", "color": "lightgreen"} 
+        ]
+    },
+    "topics": [
+        {
+        "order": 1,
+        "title": "Genetically Modified Organisms in Europe",
+        "description": "Genetically modified (GM) crops bring unnecessary risks to both humans and nature. They increase the corporate control of the food chain, whilst placing heavy economic burdens upon conventional and organic food sectors aiming to avoid contamination.Friends of the Earth Europe campaigns for food and farming free from GM crops. We push for solutions that provide livelihoods and healthy food for people, protect our biodiversity, and don't pollute the environment. We aim to make sure GMOs and big business stay out of our food chain and our fields.",
+        "weight": 1,
+        "image": "http://www.foeeurope.org/sites/default/files/styles/node_header_640/public/drill4all_8web_1.jpg",
+        "votings": [
+                {
+                    "id": "A7-0170/2011|AM 1",
+                    "dbid": 2039,
+                    "weight": 1,
+                    "title": "Legal certainty for national GMO regulation",
+                    "description": "The amendment strengthens the ability of national governments to regulate GMOs. Government can assess GMOs according to the environmental or health impacts linked to their cultivation.",
+                    "recommendation": 1,
+                    "link": "http://www.votewatch.eu/en/possibility-for-member-states-to-restrict-or-prohibit-the-cultivation-of-gmos-in-their-territory-dra.html"
+                },
+                {
+                    "id": "A7-0170/2011|AM 41",
+                    "dbid": 2041,
+                    "weight": 1,
+                    "title": "Reasonable grounds for national GMO restrictions",
+                    "description": "Local communities and regional authorities should be given the right to reject GMO cultivation on their territory. The amendment gives communities greater freedom to reject GMOs for social and environmental reasons.",
+                    "recommendation": 1,
+                    "link": "http://www.votewatch.eu/en/possibility-for-member-states-to-restrict-or-prohibit-the-cultivation-of-gmos-in-their-territory-dra-3.html"
+                },
+				{
+                    "id": "A7-0170/2011|AM 44",
+                    "dbid": 2043,
+                    "weight": 1,
+                    "title": "Stronger risk assessment for GMOs",
+                    "description": "The European Commission is asked to assess the long-term environmental effects of GMO cultivation and the associated use of herbicides. The Commission is also asked to ensure that all research is carried out independently.",
+                    "recommendation": 1,
+                    "link": "http://www.votewatch.eu/en/possibility-for-member-states-to-restrict-or-prohibit-the-cultivation-of-gmos-in-their-territory-dra-5.html"
+                },
+				{
+                    "id": "B7-0007/2014",
+                    "dbid": 5428,
+                    "weight": 1,
+                    "title": "Resolution to reject GMO authorisation in Europe",
+                    "description": "The resolution rejects the authorisation of the GM maize 1507 by the European Commission. The toxins used in the cultivation of maize 1507 could lead to reduction on biodiversity.",
+                    "recommendation": 1,
+                    "link": "http://www.votewatch.eu/en/motion-for-a-resolution-pursuant-to-rule-88-2-and-3-of-the-rules-of-procedure-on-the-proposal-for-a-.html"
+                },
+    ]
+
+
+}

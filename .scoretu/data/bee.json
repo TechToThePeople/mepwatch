@@ -1,0 +1,165 @@
+{
+  "language": "en",
+  "organization": {
+    "title": "bee-life",
+    "description": "",
+    "link": "https://www.bee-life.eu",
+    "logo": ""
+  },
+  "score": {
+    "title": "",
+    "description": "",
+    "link": "",
+    "logo": "",
+    "limits": [
+      {
+        "upper": 20,
+        "text": " ",
+        "color": "red"
+      },
+      {
+        "upper": 40,
+        "text": " ",
+        "color": "orange"
+      },
+      {
+        "upper": 60,
+        "text": " ",
+        "color": "yellow"
+      },
+      {
+        "upper": 90,
+        "text": " ",
+        "color": "palegreen"
+      },
+      {
+        "upper": 100,
+        "text": " ",
+        "color": "lightgreen"
+      }
+    ]
+  },
+  "topics": [
+    {
+      "order": 1,
+      "title": "",
+      "description": "",
+      "weight": 1,
+      "image": "",
+      "votings": [
+        {
+          "dbid": 110894,
+          "recommendation": 1,
+          "title": "EU Pollinators Initiative (B9-0233/2019 - Am 6)",
+          "description": "This initiative aimed at putting in place several actions to stop the pollinator crisis observed in Europe. We are FOR this specific vote because the proposal aimed to harmonise European procedures for pesticide risk assessment on bees, whose scientific methodology had been updated by EFSA.",
+          "date": "2019-12-18",
+          "id": "B9-0233/2019",
+          "url": "https://oeil.secure.europarl.europa.eu/oeil//popups/ficheprocedure.do?reference=2019/2803(RSP)&amp;l=en"
+        },
+        {
+          "dbid": 162046,
+          "recommendation": -1,
+          "title": "Revised EU Pollinator Initiative - Understanding the role of agriculture for bees and pollinators (B9-0463/2023 - Am 2)",
+          "description": "This amendment removed the references to relevant legislations regulating pesticides and biocides and their links to pollinators. Voting AGAINST this amendment means that  the EU and national authorities need to take the responsibility of precautionary and safety actions to protect pollinators from pollutants.",
+          "date": "2023-11-23",
+          "id": "B9-0463/2023",
+          "url": "https://oeil.secure.europarl.europa.eu/oeil//popups/ficheprocedure.do?reference=2023/2720(RSP)&amp;l=en"
+        },
+        {
+          "dbid": 157420,
+          "recommendation": 1,
+          "title": "Nature Restoration Law - creating an EU law for protecting nature and us (A9-0220/2023)",
+          "description": "The Nature Restoration Law (NRL) is meant to be a concretisation of Green Deal ambitions with regards to nature conservation, following the scientific assessment of the status of natural resources in Europe (very poor and worsening), The NRL aims to integrate legal targets for stopping the situation to worsen, and reverting the negative trends. This vote recognised the need to create a Nature Restoration Law. Voting FOR involved the recognition of the necessity of the NRL in Europe.",
+          "date": "2023-07-12",
+          "id": "A9-0220/2023",
+          "url": "https://oeil.secure.europarl.europa.eu/oeil//popups/ficheprocedure.do?reference=2022/0195(COD)&amp;l=en"
+        },
+        {
+          "dbid": 157271,
+          "recommendation": -1,
+          "title": "Nature Restoration Law - establishment of legally binding recovery targets (A9-0220/2023 - Am 21)",
+          "description": "This amendment involved the blurring of the legal responsibility of Member States to enforce measures for nature conservation, avoiding to make Green Deal targets legally binding and restricting the efforts of nature conservation only to Natura 2000 areas  (26% of the EU territory according to Eurostat). We are AGAINST this vote because the Member States are the responsible entities to act. We also understand that, if no legally binding targets are set, no country will take their enforcement seriously and no accountability will exist. It also restricts all actions to be done only to Natura 200 areas, instead of the complete EU territory.",
+          "date": "2023-07-12",
+          "id": "A9-0220/2023",
+          "url": "https://oeil.secure.europarl.europa.eu/oeil//popups/ficheprocedure.do?reference=2022/0195(COD)&amp;l=en"
+        },
+        {
+          "dbid": 157321,
+          "recommendation": -1,
+          "title": "Nature Restoration Law - Helping agriculture be environmentally friendly (A9-0220/2023 - Am 34S&47S)",
+          "description": "This amendment deleted an article describing the restoration measures to be done in agricultural ecosystems, which included: (1) measures necessary to enhance biodiversity in agricultural ecosystems; (2) achieve an increasing trend at national level of biodiversity indicators such as the grassland butterfly index, the bird index, the stock of organic carbon in cropland, or the share of agricultural land with high-diversity landscape features (trees, edges, ponds, etc.); (3) measures to rewet drained peatland in agricultural use. We are AGAINST this vote because it is in agricultural ecosystems where the greatest efforts need to be made, given the existing field assessments.",
+          "date": "2023-07-12",
+          "id": "A9-0220/2023",
+          "url": "https://oeil.secure.europarl.europa.eu/oeil//popups/ficheprocedure.do?reference=2022/0195(COD)&amp;l=en"
+        },
+        {
+          "dbid": 168864,
+          "recommendation": 1,
+          "title": "Common Agricultural Policy - Back steps to maintain industrial agriculture and avoid supporting farmers in their transition to pollinators-friendly farming practices (C9-0120/2024 - Am 13= 23=)",
+          "id": "C9-0120/2024",
+          "description": "The CAP 2023-2030 potentiates the transition of farming to be more climate resilient, less impactful on natural resources and have better food safety. This amendment rejected the watering down of the good agro-ecological farming already included in the CAP. We are FOR the rejection.",
+          "date": "2024-04-24",
+          "url": "https://oeil.secure.europarl.europa.eu/oeil//popups/ficheprocedure.do?reference=2024/0073(COD)&amp;l=en"
+        },
+        {
+          "dbid": 109166,
+          "recommendation": 1,
+          "title": "Evaluation of pesticide risk to bees and pollinators (B9-0149/2019)",
+          "description": "This Resolution requested the Commission and Member States to decide on pesticide risk assessment and authorisation on the basis of their acute and chronic toxicity of honey bees and that in adults and larvae, and in acute toxicity of bumble bees, risks already proven by science. We are FOR the consideration of these toxicological effects because in nature, insects and we are exposed to pesticides often during a long time via the food they consume.",
+          "date": "2019-10-23",
+          "id": "B9-0149/2019",
+          "url": "https://oeil.secure.europarl.europa.eu/oeil//popups/ficheprocedure.do?reference=2019/2776(RPS)&amp;l=en"
+        },
+        {
+          "dbid": 160818,
+          "recommendation": -1,
+          "title": "Sustainable Use of pesticides Regulation - Reducing pesticide use and risk for consumers, farmers and the environment (A9-0339/2023 - Am 631)",
+          "description": "The Sustainable Use of Pesticide Regulation (SUR) has been a conflicting dossier within the European Parliament (chemically-based agriculture vs low-impact agriculture). The proposal aimed to transform the existing Directive (2009/128/EC) into a Regulation which would be directly binding and uniformly applicable to all Member States, which is not the case today. This specific vote rejected the Commission's legislative proposal. We are AGAINST this vote because the SUR was a key legislation to achieve the pesticide reduction targets identified to imprint European food production with the needed sustainability.",
+          "date": "2023-11-22",
+          "id": "A9-0339/2023",
+          "url": "https://oeil.secure.europarl.europa.eu/oeil//popups/ficheprocedure.do?reference=2022/0196(COD)&amp;l=en"
+        },
+        {
+          "dbid": 160956,
+          "recommendation": 1,
+          "title": "Sustainable Use of pesticides - Protecting EU farmers from unloyal competition from imports (A9-0339/2023 - Am 376/2)",
+          "description": "Voting FOR this amendment involves the establishment of explicit rules for imported agricultural and agri-food products from third countries, which should follow the same pesticide use standards and safety as EU farmers. This avoids unloyal competition with EU farmers, which has been one of the main claims of the farming community in the latest mobilisations.",
+          "date": "2023-11-22",
+          "id": "A9-0339/2023",
+          "url": "https://oeil.secure.europarl.europa.eu/oeil//popups/ficheprocedure.do?reference=2022/0196(COD)&amp;l=en"
+        },
+        {
+          "dbid": 164096,
+          "recommendation": 1,
+          "title": "New Genomic Technics (New GMOs) - Deregulating the market at the expense of consumer rights (A9-0014/2024 - Am 109= 137=)",
+          "description": "This specific vote rejected the Commission's legislative proposal, and our recommendation is to vote FOR. BeeLife, agreeing with the French agency for food safety, consider the Commission proposal lacks scientific background, is not based on the precautionary principle, nor does it allow for the implementation of the principle. This does not involve that we disregard the potential of these techniques, but we would avoid deregulating the presence of plants produced from New Genomic Techniques (New-GMOs).",
+          "date": "2024-02-07",
+          "id": "A9-0014/2024",
+          "url": "https://oeil.secure.europarl.europa.eu/oeil//popups/ficheprocedure.do?reference=2023/0226(COD)&amp;l=en"
+        },
+
+        {
+          "dbid": 164186,
+          "recommendation": -1,
+          "title": "New Genomic Technics (New GMOs) - Unscientific categorisation  (A9-0014/2024 - Considérant 8 - Am 4)",
+          "description": "We are AGAINST. Voting For this amendment involves deregulating more than 85% of the new-GM plant varieties generated by genomic techniques currently under development. This means that these synthetic organisms would neither be subject to risk assessment nor to traceability or labelling, violating the precautionary principle and avoiding the consumers' right to know how their food is produced.",
+          "date": "2024-02-07",
+          "id": "A9-0014/2024",
+          "url": "https://oeil.secure.europarl.europa.eu/oeil//popups/ficheprocedure.do?reference=2023/0226(COD)&amp;l=en"
+        },
+
+
+
+        {
+          "dbid": 162314,
+          "recommendation": 1,
+          "title": "Honey Directive - Protecting the EU honey market from fake imports (A9-0385/2023)",
+          "description": "The revision of the Honey Directive was highly awaited by the beekeeping sector in Europe. Key elements are included in this vote: transparency regarding the origin of blended honey, traceability, and the fight against fraud at the international level to protect European beekeepers and consumers. Voting FOR supports the EU beekeeping community and provides consumers the right to know the quality of their food.",
+          "date": "2023-12-12",
+          "id": "A9-0385/2023",
+          "url": "https://oeil.secure.europarl.europa.eu/oeil//popups/ficheprocedure.do?reference=2023/0105(COD)&amp;l=en"
+        }
+      ]
+    }
+  ]
+}

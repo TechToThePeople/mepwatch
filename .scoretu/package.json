@@ -1,0 +1,20 @@
+{
+  "name": "scorebee",
+  "version": "1.0.0",
+  "description": "Take the votes, rate the meps and parties based on these votes",
+  "main": "build.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "AGPL",
+  "devDependencies": {
+    "@eslint/js": "^9.3.0",
+    "csv-parse": "^5.5.6",
+    "csv-stringify": "^6.5.0"
+  },
+  "dependencies": {
+    "bulma": "^1.0.4",
+    "lucide": "^1.7.0"
+  }
+}

@@ -1,0 +1,96 @@
+{
+    "language": "en", 
+    "organization": {
+        "title": "ILGA-Europe",
+        "description": "",
+        "link": "http://www.ilga-europe.org/",
+        "logo": ""
+    },
+    "score": {
+        "title": "",
+        "description": "",
+        "link": "",
+        "logo": "",
+        "limits": [
+            {"upper": 20,  "text": " ", "color": "red"},
+            {"upper": 40,  "text": " ", "color" : "orange" }, 
+            {"upper": 60,  "text": " ", "color": "yellow"},
+            {"upper": 90,  "text": " ", "color": "palegreen"},
+            {"upper": 100, "text": " ", "color": "lightgreen"} 
+        ]
+    },
+    "topics": [
+        {
+        "order": 1,
+        "title": "",
+        "description": "",
+        "weight": 1,
+        "image": "",
+        "votings": [
+                {
+                    "v_id": "A7-0383/2012",
+                    "v_dbid": 3485,
+                    "v_weight": 1,
+                    "v_title": "",
+                    "v_description": "",
+                    "v_recommendation": 1,
+                    "v_link": "http://www.votewatch.eu/en/fundamental-rights-in-the-european-union-2010-2011-motion-for-a-resolution-vote-resolution-as-a-whol.html"
+                },
+                {
+                    "v_id": "RC-B7-0234/2012",
+                    "v_dbid": 3301,
+                    "v_weight": 1,
+                    "v_title": "",
+                    "v_description": "",
+                    "v_recommendation": 1,
+                    "v_link": "http://www.votewatch.eu/en/fight-against-homophobia-in-europe-joint-motion-for-a-resolution-vote-resolution-as-a-whole.html"
+                },
+				{
+                    "v_id": "A7-0418/2013| 116/1",
+                    "v_dbid": 5327,
+                    "v_weight": 1,
+                    "v_title": "",
+                    "v_description": "",
+                    "v_recommendation": 1,
+                    "v_link": "http://www.votewatch.eu/en/human-rights-in-the-world-2012-and-eu-policy-on-the-matter-motion-for-resolution-paragraph-116-1.html"
+                },
+				{
+                    "v_id": "B7-0523/2011",
+                    "v_dbid": 2171,
+                    "v_weight": 1,
+                    "v_title": "",
+                    "v_description": "",
+                    "v_recommendation": 1,
+                    "v_link": "http://www.votewatch.eu/en/sexual-orientation-and-gender-identity-at-the-un-human-rights-council-motion-for-a-resolution-vote-r.html"
+                },
+				{
+                    "v_id": "A7-0047/2012|AM 1  - AM 1/1",
+                    "v_dbid": 2691,
+                    "v_weight": 1,
+                    "v_title": "",
+                    "v_description": "",
+                    "v_recommendation": 1,
+                    "v_link": "http://www.votewatch.eu/en/eu-citizenship-report-2010-motion-for-a-resolution-am-1-amendment-1-1.html"
+                },
+				{
+                    "v_id": "A7-0009/2014|AM 2",
+                    "v_dbid": 5579,
+                    "v_weight": 1,
+                    "v_title": "",
+                    "v_description": "",
+                    "v_recommendation": 1,
+                    "v_link": "http://www.votewatch.eu/en/homophobia-and-discrimination-on-grounds-of-sexual-orientation-and-gender-identity-motion-for-resolu-2.html"
+                },
+				{
+                    "v_id": "A7-0426/2013|AM 2rev",
+                    "v_dbid": 5297,
+                    "v_weight": 1,
+                    "v_title": "",
+                    "v_description": "",
+                    "v_recommendation": -1,
+                    "v_link": "http://www.votewatch.eu/en/sexual-and-reproductive-health-and-rights-motion-for-resolution-alternative-motion-for-a-resolution-.html"
+                },
+    ]
+
+
+}
