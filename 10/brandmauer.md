@@ -1,7 +1,7 @@
 # Brandmauer
 ## Detecting Cordon Sanitaire Breaks in European Parliament Votes
 
-*"Brandmauer" (literally "firewall") is the German term used for the cordon sanitaire — the informal political convention by which mainstream parties refuse to cooperate with or lend a majority to the far right.*
+*"Brandmauer"* (literally "firewall") is the German term used for the cordon sanitaire *(political convention by which mainstream parties refuse to cooperate with or lend a majority to the far right)*.
 
 ## The core problem: collusion is not directly observable
 
@@ -28,11 +28,13 @@ Put together, a row in the result represents a roll call where:
 - ECR, PfE, and EPP had clear (non-null) majority positions and they matched each other, **and**
 - Either S&D or Renew (or both) had a clear majority position that diverged from that ECR–PfE–EPP position.
 
-This is a proxy for "the traditional Brandmauer alignment (center-left + center-right + liberals against the far right) did not hold, and the EPP ended up on the far right's side of a real division." It's a statistical signature of the pattern, aggregated per legislative file, not a causal or intentional claim.
+This is a proxy for "the traditional Brandmauer alignment (center-left + center-right + liberals against the far right) did not hold, and the EPP ended up on the far right's side of a real division." It's a statistical signature of the pattern, not a causal or intentional claim.
 
 ## Known limitations
 
-- **No measure of internal group cohesion.** A "majority" position with a 51/49 internal split counts identically to a unanimous one. If cohesion data is available, it may be worth weighting or flagging low-cohesion cases.
+- **No use of internal group cohesion.** A "majority" position with a 51/49 internal split counts identically to a unanimous one.
 - **No magnitude of divergence.** We only know S&D or Renew's majority differed — not by how much (e.g., 90% vs. 55% of the group dissenting).
-- **Null-handling asymmetry.** ECR, PfE, and EPP must have valid majorities to count; S&D and Renew only need one of the two to have a valid, divergent majority. This is intentional (either one breaking off is enough to signal disunity) but should be stated explicitly.
-- **This is descriptive, not diagnostic.** The list of flagged votes is a starting point for qualitative review (reading what each report is actually about), not a finished claim about political strategy or intent.
+- **No analysis of the ESN** in practice, if ECR and PfE votes together, the ESN is voting with them too.
+- **No analysis of the S&D/Greens** in practice, some parties or MEPs might vote with the far right, but not the majority of their group
+- **This is descriptive, not diagnostic.** The list of flagged votes is a starting point for qualitative review (reading what each amendment is actually about), not a finished claim about political strategy or intent.
+- **this isn't a campaign tool** (yet). we have a plan to let you use this data directly on your website to let your supporters take action and contact their MEPs

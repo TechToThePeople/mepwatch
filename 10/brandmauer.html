@@ -121,6 +121,19 @@
       .methodology-body code {
         color: #9c27b0;
       }
+
+      .methodology-link {
+        margin-left: 0.25rem;
+        vertical-align: baseline;
+        --bs-btn-color: #9c27b0;
+        --bs-btn-border-color: #9c27b0;
+        --bs-btn-hover-color: #fff;
+        --bs-btn-hover-bg: #9c27b0;
+        --bs-btn-hover-border-color: #9c27b0;
+        --bs-btn-active-color: #fff;
+        --bs-btn-active-bg: #9c27b0;
+        --bs-btn-active-border-color: #9c27b0;
+      }
     </style>
 
     <script src="../dist/js/flexsearch.bundle.min.js"></script>
@@ -154,25 +167,7 @@
             <svg><use href="#logo" /></svg>MEP Watch
           </a>
 
-          <form id="search" class="form-inline my-2 my-lg-0">
-            <input
-              class="form-control me-sm-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-          </form>
           <a class="resetall btn btn-outline-light btn-sm" title="Clear all filters">✕ Clear</a>
-          <button
-            type="button"
-            id="methodology-btn"
-            class="btn btn-outline-light btn-sm"
-            data-bs-toggle="modal"
-            data-bs-target="#methodology-modal"
-            title="About this analysis"
-          >
-            Methodology
-          </button>
           <button
             class="navbar-toggler"
             type="button"
@@ -191,11 +186,18 @@
     <main role="main">
       <section class="jumbotron text-center">
         <div class="container">
-          <h1 class="jumbotron-heading">Brandmauer</h1>
+          <h1 class="jumbotron-heading">Brandmauer on fire</h1>
           <p class="lead text-muted">
-            Detecting cordon sanitaire breaks in European Parliament votes —
-            reports where the EPP sided with the far right (ECR/PfE) against
-            part of the traditional pro-European coalition (S&amp;D or Renew).
+            An analysis of every European Parliament vote where the EPP broke
+            its own rule against allying with the far right.
+            <a
+              href="#"
+              id="methodology-btn"
+              class="btn btn-sm btn-outline-primary methodology-link"
+              data-bs-toggle="modal"
+              data-bs-target="#methodology-modal"
+              title="About this analysis"
+            >methodology</a>
           </p>
         </div>
       </section>
@@ -222,7 +224,7 @@
             <div class="card h-100">
               <div class="card-body kpi">
                 <div class="value"><span class="nbmax"></span></div>
-                <div class="label">Voted against</div>
+                <div class="label">Far right won</div>
               </div>
             </div>
           </div>
@@ -247,7 +249,18 @@
                 <thead>
                   <tr>
                     <th>Date</th>
-                    <th>Far-right / EPP position</th>
+                    <th>Vote</th>
+                    <th>Position</th>
+                    <th title="EPP group cohesion (0–100)">EPP cohesion</th>
+                    <th title="for">
+                      <svg class="icon"><use href="#icon-for" /></svg>
+                    </th>
+                    <th title="against">
+                      <svg class="icon"><use href="#icon-against" /></svg>
+                    </th>
+                    <th title="abstention">
+                      <svg class="icon"><use href="#icon-abstention" /></svg>
+                    </th>
                   </tr>
                 </thead>
                 <tbody></tbody>
@@ -310,6 +323,12 @@
             date: dateParse((d.date || "").substring(0, 10)),
             position: d.far_right_epp_position || "",
             report_title: d.report_title || "",
+            reference: d.reference || "",
+            name: d.name || "",
+            for: +d.for || 0,
+            against: +d.against || 0,
+            abstention: +d.abstention || 0,
+            epp_cohesion: +d.epp_cohesion || 0,
           };
         }).then(function (data) {
           ndx = crossfilter(data);
@@ -329,36 +348,29 @@
           .group(totalGroup)
           .formatNumber(d3.format("d"));
 
-        // Distinct reports = distinct report_title count.
-        var reportsGroup = allDim.group().reduce(
-          function (p, v) {
-            p[v.report_title] = 1;
-            return p;
-          },
-          function (p, v) {
-            return p;
-          },
-          function () {
-            return {};
-          }
-        );
-        dc.numberDisplay(".nbtotal")
-          .group(reportsGroup)
-          .valueAccessor(function (d) {
-            return Object.keys(d).length;
-          })
-          .formatNumber(d3.format("d"));
-
-        // Voted against = count of position === "against".
-        var againstGroup = allDim.group().reduceSum(function (d) {
-          return d.position === "against" ? 1 : 0;
+        // Distinct reports = distinct reference count. Crossfilter groups
+        // don't do distinct-count natively, so compute it directly from the
+        // rows and push the value into the KPI span.
+        var distinctReports = {};
+        ndx.all().forEach(function (d) {
+          if (d.reference) distinctReports[d.reference] = 1;
         });
-        dc.numberDisplay(".nbmax")
-          .group(againstGroup)
-          .valueAccessor(function (d) {
-            return d;
-          })
-          .formatNumber(d3.format("d"));
+        d3.select(".nbtotal").text(d3.format("d")(Object.keys(distinctReports).length));
+
+        // "Far right won" = share of roll calls where the EPP+ECR+PfE bloc's
+        // position matched the winning side (winner of the overall vote).
+        var farRightWon = 0;
+        var farRightTotal = 0;
+        ndx.all().forEach(function (d) {
+          var f = d.for;
+          var a = d.against;
+          var winner = f > a ? "for" : a > f ? "against" : null;
+          if (!winner) return; // tie, no winner
+          farRightTotal++;
+          if (d.position === winner) farRightWon++;
+        });
+        var pct = farRightTotal ? (100 * farRightWon) / farRightTotal : 0;
+        d3.select(".nbmax").text(d3.format(".0f")(pct) + "%");
 
         // ---------- Heatmap: week (x) vs day of week (y) ----------
         // Mirrors index.html's drawDate: x = year-week (label shows the year
@@ -455,21 +467,19 @@
 
         // Section key: sortable, most recent date first. The key is a
         // fixed-width timestamp (descending sort => newest first), with the
-        // report title appended for a stable tie-break. But grouping must be
-        // by report, so use the report's latest date as the section prefix.
+        // report reference appended for a stable tie-break. Grouping is by
+        // reference (reliable report identity); the title is only for display.
         var latestByReport = {};
         ndx.all().forEach(function (d) {
           var t = d.date ? d.date.getTime() : 0;
-          if (!latestByReport[d.report_title] || t > latestByReport[d.report_title]) {
-            latestByReport[d.report_title] = t;
+          if (!latestByReport[d.reference] || t > latestByReport[d.reference]) {
+            latestByReport[d.reference] = t;
           }
         });
 
         function sectionKey(d) {
-          var t = latestByReport[d.report_title] || 0;
-          // Invert so that a larger timestamp sorts first under descending
-          // order is handled by descending string sort; keep timestamp as-is.
-          return pad(t, 13) + "|" + (d.report_title || "?");
+          var t = latestByReport[d.reference] || 0;
+          return pad(t, 13) + "|" + (d.reference || d.report_title || "?");
         }
 
         var rcvTable = dc.dataTable("#rcv-table")
@@ -481,7 +491,26 @@
               return dayFormat(d.date);
             },
             function (d) {
-              return d.position;
+              return d.name;
+            },
+            function (d) {
+              var icon =
+                d.position === "against" ? "#icon-against" : "#icon-for";
+              return (
+                "<svg class='icon'><use href='" + icon + "' /></svg>"
+              );
+            },
+            function (d) {
+              return d.epp_cohesion ? d.epp_cohesion + "%" : "—";
+            },
+            function (d) {
+              return d.for > d.against ? "<b>" + d.for + "</b>" : d.for;
+            },
+            function (d) {
+              return d.against > d.for ? "<b>" + d.against + "</b>" : d.against;
+            },
+            function (d) {
+              return d.abstention;
             },
           ])
           .sortBy(function (d) {
@@ -495,10 +524,12 @@
               var entry = el.datum();
               var rows = entry && entry.values ? entry.values : [];
               var first = rows[0] || {};
-              var title = first.report_title || "(no title)";
+              var ref = first.reference || "(no ref)";
+              var title = first.report_title || "";
               el.html(
                 "<span class='badge text-bg-secondary me-2'>" + rows.length +
-                " RCV</span>" + title
+                " RCV</span><b>" + ref + "</b>" +
+                (title ? " — " + title : "")
               );
             });
             // Open the roll-call detail in a new tab on row click.
