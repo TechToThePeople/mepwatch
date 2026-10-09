@@ -25,7 +25,7 @@
     "lozad": "^1.6.0",
     "reductio": "^0.6.3",
     "stream-chain": "^2.0.3",
-    "stream-json": "^1.1.1",
+    "stream-json": "^3.5.0",
     "stream-to-promise": "^2.2.0",
     "topojson": "^3.0.2"
   },
