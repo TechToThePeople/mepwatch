@@ -36,6 +36,20 @@
       td span.committee {
         display: block;
       }
+      td span.author,
+      td span.requested-by {
+        display: block;
+        font-size: 0.8em;
+        color: #495057;
+      }
+      td span.requested-by {
+        font-size: 0.75em;
+        color: #6c757d;
+      }
+      td span.outcome {
+        font-size: 0.8em;
+        color: #495057;
+      }
       td a {
         color: rgb(33, 150, 243);
       }
@@ -209,7 +223,7 @@
                     <thead>
                       <tr>
                         <th>Ref</th>
-                        <th class="d-none d-lg-block">Committee</th>
+                        <th class="d-none d-lg-block">Author</th>
                         <th>Title</th>
                         <th>Rollcalls</th>
                       </tr>
@@ -279,7 +293,7 @@
         limit: 9999,
         id: "id",
         tokenize: "forward",
-        index: ["title", "report", "committee"],
+        index: ["title", "report", "author"],
       });
 
       const yymmdd = d3.timeFormat("%Y%m%d");
@@ -313,6 +327,9 @@
           needle.forEach(function (n) {
             d.title = d.title.replace(n, map[n]);
           });
+          // text_tabled.csv still heads this column "committee", but it holds
+          // the committee *or* the groups that tabled the report.
+          d.author = d.committee;
           docs[d.reference] = d;
         }).then(function (d) {
           callback();
@@ -344,7 +361,7 @@
         ndx.all().forEach((d) => {
           let t = { id: d.identifier, title: d.title };
           if (docs[d.report]) {
-            t.committee = docs[d.report].committee;
+            t.author = docs[d.report].author;
             t.report = docs[d.report].title;
           }
           flex.add(t);
@@ -462,7 +479,7 @@
         const mobileColumns = [1, 3];
         const columns = [
           (d) => d.key,
-          (d) => docs[d.key] && docs[d.key].committee,
+          (d) => docs[d.key] && docs[d.key].author,
           (d) => docs[d.key] && docs[d.key].title,
           function (d) {
             return (
@@ -657,9 +674,9 @@
                 "&secondRef=SIT&language=EN#TF2'>" +
                 dayFormat(d.date) +
                 "</a>" +
-                (!isMobile && docs[d.report] && docs[d.report].committee
-                  ? "<span class='committee'>" +
-                    docs[d.report].committee +
+                (d.requested_by
+                  ? "<span class='requested-by' title='group(s) that requested the roll-call'>" +
+                    d.requested_by +
                     "</span>"
                   : "")
               );
@@ -672,7 +689,15 @@
                   docs[d.report].rapporteur +
                   "</div>";
               }
-              return f + d.report;
+              return (
+                f +
+                d.report +
+                (!isMobile && docs[d.report] && docs[d.report].author
+                  ? "<span class='author' title='author of the report, group or committee'>" +
+                    docs[d.report].author +
+                    "</span>"
+                  : "")
+              );
             },
             function (d) {
               if (docs[d.report]) {
@@ -689,12 +714,23 @@
               return d.title;
             },
             function (d) {
+              // Hand votes (and some roll-calls) publish no counts at all, only
+              // an outcome; show that instead of three empty cells.
+              if (d.outcome && (d.for === "" || d.for === undefined)) {
+                return (
+                  "<span class='outcome' title='result of the vote, no counts published'>" +
+                  d.outcome +
+                  "</span>"
+                );
+              }
               return d.for > d.against ? "<b>" + d.for + "</b>" : d.for;
             },
             function (d) {
+              if (d.outcome && (d.for === "" || d.for === undefined)) return "";
               return d.against > d.for ? "<b>" + d.against + "</b>" : d.against;
             },
             function (d) {
+              if (d.outcome && (d.for === "" || d.for === undefined)) return "";
               return d.abstention;
             },
           ])
