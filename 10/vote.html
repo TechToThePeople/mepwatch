@@ -120,6 +120,35 @@
                     vertical-align: middle;
                     border-radius: 3px;
                   }
+                  .navbar .committee {
+                    font-size: 0.75em;
+                    padding: 2px 6px;
+                    border-radius: 3px;
+                    background: rgba(255, 255, 255, 0.2);
+                  }
+                  .navbar .requested {
+                    font-size: 0.75em;
+                    opacity: 0.85;
+                  }
+                  h3 span.outcome {
+                    font-weight: 400;
+                    font-size: 0.8em;
+                    color: #6c757d;
+                  }
+                  .navbar .method {
+                    font-size: 0.75em;
+                    padding: 2px 6px;
+                    border-radius: 3px;
+                    background: rgba(255, 255, 255, 0.2);
+                  }
+                  #explanation {
+                    margin-top: 1rem;
+                    font-size: 0.95em;
+                    color: #495057;
+                  }
+                  #explanation p {
+                    margin-bottom: 0.75rem;
+                  }
 
                   th .glyphicon {
                     margin-left: 4px;
@@ -227,6 +256,9 @@
           </a>
           <span class="date">YYYY-mm-DD</span>
           <span class="report">A10-XXXX/20YY</span>
+          <span class="method"></span>
+          <span class="committee"></span>
+          <span class="requested"></span>
 
           <button
             class="navbar-toggler"
@@ -250,6 +282,7 @@
             <div class="col-sm-12 col-md-6">
               <h2 class="jumbotron-heading">Loading...</h2>
               <h3 class="jumbotron-heading"></h3>
+              <div id="explanation"></div>
             </div>
             <div class="col-sm-12 col-md-6" id="map">
               <div class="graph"></div>
@@ -429,6 +462,11 @@
         d3.select("h2").html(config.name == "CHANGE ME" ? "" : config.name);
         d3.select(".navbar .rapporteur").html(config.rapporteur);
         d3.select(".navbar .date").html(dateFormat(config.date));
+        d3.select(".navbar .method").html(config.method || "");
+        d3.select(".navbar .committee").html(config.committee || "");
+        d3.select(".navbar .requested").html(
+          config.requested_by ? "asked by " + config.requested_by : "",
+        );
         d3.select(".navbar .report").html(
           config.url && config.ref
             ? "<a class='btn btn-outline-light btn-sm' href='" +
@@ -444,7 +482,14 @@
         );
         d3.select(".navbar .graph").attr("href", "graph.html?v=" + config.id);
         d3.select(".navbar .edit").attr("href", "edit.html?v=" + config.id);
-        d3.select("h3").html([config.title, config.description].join("<br>"));
+        // hand votes publish no counts, only an outcome
+        var outcome =
+          config.for === null && config.outcome
+            ? "<br><span class='outcome'>" + config.outcome + "</span>"
+            : "";
+        d3.select("h3").html(
+          [config.title, config.description].filter(Boolean).join("<br>") + outcome,
+        );
         var percentColors = [
           "#e3e3e3",
           "#27ae60",

@@ -7,6 +7,9 @@ let meps = [];
 let votes = [];
 let config = {};
 let parties = [];
+// fetched once: explains why a non-roll-call vote has no per-MEP data
+let explanations = {};
+let cardPromise = null;
 const getParty = (name, country) => {
   const c = (country || "").toLowerCase();
   const party = parties.find((d) => d.party === name && d.country.toLowerCase() === c);
@@ -215,8 +218,10 @@ console.log ("download...");
     .defer(dl_details)
     .defer(dl_votes)
     .defer(dl_parties)
+    .defer(dl_explanation)
     .awaitAll(function (error, r) {
       if (error) throw error;
+      renderExplanation();
       let length = votes.length;
       meps = r[0].filter(isActive); //first deferred download is the list of all meps, only keep the active during the vote
       parties = r[3] || []; // parties data
@@ -284,7 +289,8 @@ console.log ("download...");
 
 
 function dl_details(callback) {
-  d3.json(dataUrl("cards/" + voteid + ".json"))
+  cardPromise = d3.json(dataUrl("cards/" + voteid + ".json"));
+  cardPromise
     .then(function (d) {
       document.title =
         (d.name == "CHANGE ME" ? "" : d.name) +
@@ -324,6 +330,22 @@ function dl_details(callback) {
     });
 }
 function dl_votes(callback) {
+  // Hand/electronic/secret votes have no per-MEP record; the card json is the
+  // only source of the vote type, so wait for it instead of fetching a csv that
+  // does not exist.
+  (cardPromise || Promise.resolve(null)).then(function (meta) {
+    if (meta && meta.method && meta.method !== "RCV") {
+      votes = [];
+      console.log("not a roll-call vote (" + meta.method + "), no per-MEP data");
+      return callback(null);
+    }
+    dl_votes_csv(callback);
+  }, function () {
+    dl_votes_csv(callback);
+  });
+}
+
+function dl_votes_csv(callback) {
   d3.csv(dataUrl("cards/" + voteid + ".csv"), function (d) {
     if (!d.mepid) return null;
     d.mepid = +d.mepid;
@@ -337,6 +359,39 @@ function dl_votes(callback) {
     votes = d;
     callback(null);
   });
+}
+
+function dl_explanation(callback) {
+  d3.json(dataUrl("data/explanation.json"))
+    .then(function (d) {
+      explanations = d || {};
+      callback(null);
+    })
+    .catch(function () {
+      explanations = {};
+      callback(null);
+    });
+}
+
+// A hand/electronic/secret vote has no per-MEP data at all: say so instead of
+// showing empty charts.
+function renderExplanation() {
+  const method = config.method;
+  if (!method || method === "RCV") return;
+  const text = explanations[method] || explanations.default || "";
+  if (!text) return;
+  d3.select("#explanation").html(
+    "<h4>This was not a roll-call vote (" +
+      method.toLowerCase() +
+      ")</h4>" +
+      text
+        .split("\n\n")
+        .map(function (par) {
+          return "<p>" + par + "</p>";
+        })
+        .join(""),
+  );
+  d3.select("#map").classed("d-none", true);
 }
 
 function dl_meps(callback) {

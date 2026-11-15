@@ -1,5 +1,5 @@
 epid,firstname,lastname,active,start,end,birthdate,country,gender,eugroup,party,email,twitter,term,voteid
-280663,Balázs,ORBÁN,,2026-09-18,,,hu,,PfE,Fidesz-Magyar Polgári Szövetség-Kereszténydemokrata Néppárt,,,10,280663
+280663,Balázs,ORBÁN,,2026-09-18,,,hu,,Patriots,Fidesz-Magyar Polgári Szövetség-Kereszténydemokrata Néppárt,,,10,280663
 278815,Ufuk,KÂHYA,,2026-06-30,,1988-01-19,nl,,Greens/EFA,Progressief Nederland,,,10,278815
 278406,Norbert,HERHAMMER,,2026-06-11,,1975-04-08,de,,EPP,Christlich Demokratische Union Deutschlands,,,10,278406
 277777,Csaba,BOGDÁN,,2026-05-22,,,hu,,EPP,Tisztelet és Szabadság Párt,,,10,277777
@@ -248,7 +248,7 @@ epid,firstname,lastname,active,start,end,birthdate,country,gender,eugroup,party,
 256925,Laurence,TROCHU,,2024-07-02,,1973-07-04,fr,,ECR,Identité Libertés,,,10,
 256924,Sarah,KNAFO,,2024-07-02,,,fr,,ESN,Reconquête!,,,10,
 256922,Marion,MARÉCHAL,,2024-07-02,,1989-12-10,fr,,ECR,Identité Libertés,,,10,
-256921,Laurent,CASTILLO,,2024-07-02,,1962-03-12,fr,,Patriots,Union des droites pour la République,,,10,
+256921,Laurent,CASTILLO,,2024-07-16,2026-09-26,1962-03-12,fr,,PfE,Union des droites pour la République,,,10,
 256920,Isabelle,LE CALLENNEC,,2024-07-02,,1966-10-14,fr,,EPP,Les Républicains,,,10,
 256919,Christophe,GOMART,,2024-07-02,,1960-06-20,fr,,EPP,Les Républicains,,,10,
 256918,Céline,IMART,,2024-07-02,,1982-08-24,fr,,EPP,Les Républicains,,,10,
@@ -383,6 +383,7 @@ epid,firstname,lastname,active,start,end,birthdate,country,gender,eugroup,party,
 204333,Salvatore,DE MEO,,2024-07-02,,1971-10-27,it,,EPP,Forza Italia,,,10,
 204332,Barry,ANDREWS,,2024-07-02,,1967-05-16,ie,,Renew,Fianna Fáil Party,,,10,
 204129,Nikolina,BRNJAC,,2024-07-02,,1978-07-11,hr,,EPP,Hrvatska demokratska zajednica,,,10,
+202352,Antoni,COMÍN I OLIVERES,,2026-10-22,,1971-03-07,es,,NA,Junts i Lliures per Europa,,,10,202352
 202073,Marc,ANGEL,,2024-07-02,,1963-03-12,lu,,S&D,Parti ouvrier socialiste luxembourgeois,,,10,
 202036,Sunčana,GLAVAK,,2024-07-02,,1968-12-09,hr,,EPP,Hrvatska demokratska zajednica,,,10,
 201945,Virginijus,SINKEVIČIUS,,2024-07-02,,1990-11-04,lt,,Greens/EFA,Demokratų sąjunga „Vardan Lietuvos“,,,10,
@@ -730,6 +731,7 @@ epid,firstname,lastname,active,start,end,birthdate,country,gender,eugroup,party,
 22418,Esther,HERRANZ GARCÍA,,2024-07-02,,1969-07-03,es,,EPP,Partido Popular,,,10,
 5736,Alexandre,VARAUT,,2024-07-02,,1966-01-18,fr,,Patriots,Rassemblement national,,,10,
 5729,Kathleen,VAN BREMPT,,2024-07-02,,1969-11-18,be,,S&D,Vooruit,,,10,
+5565,Brice,HORTEFEUX,,2026-10-08,,1958-05-11,fr,,EPP,Les Républicains,,,10,5565
 5392,Lara,WOLTERS,,2024-07-02,,1986-04-12,nl,,S&D,GroenLinks-PvdA,,,10,
 4746,Sergio,BERLATO,,2024-07-02,,1959-07-27,it,,ECR,FRATELLI D' ITALIA,,,10,
 4395,Mario,MANTOVANI,,2024-07-02,,1950-07-28,it,,ECR,FRATELLI D' ITALIA,,,10,
