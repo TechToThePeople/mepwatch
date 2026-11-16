@@ -43,6 +43,7 @@
         color: #495057;
       }
       td span.requested-by {
+        display: block;
         font-size: 0.75em;
         color: #6c757d;
       }
@@ -71,6 +72,15 @@
       }
       #transparency .explanations p {
         max-width: 60em;
+      }
+      td span.doc-ref {
+        display: block;
+        font-size: 0.7em;
+        color: #6c757d;
+      }
+      td span.doc-ref a {
+        color: inherit;
+        text-decoration: underline dotted;
       }
       td span.vote-committee {
         display: inline-block;
@@ -808,6 +818,38 @@
         return missing.length ? missing.join(", ") : "";
       }
 
+      // "asked by" is not always a roll-call request: a separate or split vote
+      // can be taken by show of hands (200482 is a separate vote by RAISE_HAND).
+      // Rows without a vote_request marker never had a request recorded: their
+      // requested_by is the decisions API's responsible_organization_label,
+      // i.e. who tabled the amendment ("original text" for the committee's own).
+      function requestTitle(d) {
+        if (d.requested_source !== "remarks")
+          return "who tabled this amendment (no request is recorded for it)";
+        const kind = String(d.vote_request || "");
+        if (/^\d+(\/|$)/.test(kind) || kind === "split")
+          return "group(s) that requested the split vote";
+        if (kind === "sep") return "group(s) that requested the separate vote";
+        if (/RCV|split|\//.test(kind))
+          return "group(s) that requested the roll-call";
+        return "group(s) that requested this vote";
+      }
+
+      // Motion rows (an individual motion of a joint resolution) have no
+      // roll-call request: requested_by holds the group that tabled the motion,
+      // so show it as the author instead of the joint motion's co-sponsors.
+      function votesAuthor(d) {
+        if (d.doc_ref && d.requested_by)
+          return { name: d.requested_by, title: "group that tabled this motion" };
+        const doc = docs[d.report];
+        if (doc && doc.author)
+          return {
+            name: doc.author,
+            title: "author of the report, group or committee",
+          };
+        return null;
+      }
+
       function drawTable(dom) {
         var dim = ndx.dimension(function (d) {
           return d.identifier;
@@ -831,8 +873,11 @@
                 "&secondRef=SIT&language=EN#TF2'>" +
                 dayFormat(d.date) +
                 "</a>" +
-                (d.requested_by
-                  ? "<span class='requested-by' title='group(s) that requested the roll-call'>" +
+                (d.requested_by && !d.doc_ref
+                  ? "<span class='requested-by' title='" +
+                    requestTitle(d) +
+                    "'>" +
+                    (d.requested_source === "remarks" ? "" : "tabled by ") +
                     d.requested_by +
                     "</span>"
                   : "")
@@ -849,14 +894,27 @@
               return (
                 f +
                 d.report +
+                (d.doc_ref
+                  ? "<span class='doc-ref' title='the specific motion or amendment this vote is about'>" +
+                    (docs[d.doc_ref] && docs[d.doc_ref].oeil
+                      ? "<a target='doceo' href='" +
+                        docs[d.doc_ref].oeil +
+                        "'>" +
+                        d.doc_ref +
+                        "</a>"
+                      : d.doc_ref) +
+                    "</span>"
+                  : "") +
                 (votesCommitteeExtra(d)
                   ? "<span class='vote-committee' title='committee responsible for the voted item'>" +
                     votesCommitteeExtra(d) +
                     "</span>"
                   : "") +
-                (!isMobile && docs[d.report] && docs[d.report].author
-                  ? "<span class='author' title='author of the report, group or committee'>" +
-                    docs[d.report].author +
+                (!isMobile && votesAuthor(d)
+                  ? "<span class='author' title='" +
+                    votesAuthor(d).title +
+                    "'>" +
+                    votesAuthor(d).name +
                     "</span>"
                   : "")
               );
@@ -868,10 +926,16 @@
                 if (d.title.indexOf("Proposition de résolution") !== -1) {
                   return docs[d.report].title;
                 }
+                // An individual motion repeats the subject in its name
+                // ("B10-0501/2026 (ECR) – <subject>"), which the report title
+                // already shows: keep only the motion + group part.
+                const label = d.doc_ref
+                  ? d.title.split(" – ")[0]
+                  : d.title;
                 return "<span class='report-title'>" +
                     docs[d.report].title +
                     "</span>&nbsp;" +
-                    d.title;
+                    label;
               }
               return d.title;
             },
@@ -880,7 +944,11 @@
               // an outcome; show that instead of three empty cells.
               if (d.outcome && (d.for === "" || d.for === undefined)) {
                 return (
-                  "<span class='outcome' title='result of the vote, no counts published'>" +
+                  "<span class='outcome' title='" +
+                  (d.outcome === "LAPSED" && d.doc_ref
+                    ? "lapsed: the joint motion on the same subject was adopted first"
+                    : "result of the vote, no counts published") +
+                  "'>" +
                   d.outcome +
                   "</span>"
                 );

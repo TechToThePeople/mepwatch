@@ -477,7 +477,7 @@ mepid,result,eugroup,identifier
 197580,attended,Patriots,169406
 197589,attended,Renew,169406
 197591,attended,S&D,169406
-197618,attended,S&D,169406
+197618,attended,Renew,169406
 197621,attended,EPP,169406
 197646,attended,EPP,169406
 197649,attended,EPP,169406
@@ -515,7 +515,7 @@ mepid,result,eugroup,identifier
 229839,attended,S&D,169406
 244571,attended,S&D,169406
 245770,attended,GUE/NGL,169406
-249982,attended,NA,169406
+249982,attended,ESN,169406
 251324,attended,EPP,169406
 256803,attended,S&D,169406
 256808,attended,ESN,169406
@@ -525,7 +525,7 @@ mepid,result,eugroup,identifier
 256841,attended,Renew,169406
 256843,attended,Patriots,169406
 256844,attended,Patriots,169406
-256850,attended,Patriots,169406
+256850,attended,PfE,169406
 256858,attended,NA,169406
 256859,attended,Patriots,169406
 256872,attended,Patriots,169406
@@ -537,7 +537,7 @@ mepid,result,eugroup,identifier
 256891,attended,Renew,169406
 256893,attended,Patriots,169406
 256899,attended,S&D,169406
-256900,attended,ECR,169406
+256900,attended,NA,169406
 256902,attended,S&D,169406
 256905,attended,S&D,169406
 256916,attended,Greens/EFA,169406
@@ -575,8 +575,8 @@ mepid,result,eugroup,identifier
 257015,attended,Greens/EFA,169406
 257019,attended,NA,169406
 257020,attended,Renew,169406
-257021,attended,NA,169406
-257022,attended,NA,169406
+257021,attended,ECR,169406
+257022,attended,ECR,169406
 257024,attended,Patriots,169406
 257026,attended,EPP,169406
 257030,attended,EPP,169406
@@ -601,7 +601,7 @@ mepid,result,eugroup,identifier
 257065,attended,EPP,169406
 257067,attended,NA,169406
 257068,attended,EPP,169406
-257069,attended,ESN,169406
+257069,attended,Patriots,169406
 257072,attended,Patriots,169406
 257075,attended,S&D,169406
 257078,attended,EPP,169406
@@ -634,7 +634,7 @@ mepid,result,eugroup,identifier
 257160,attended,S&D,169406
 257163,attended,ECR,169406
 257255,attended,ESN,169406
-257256,attended,Renew,169406
+257256,attended,ECR,169406
 257258,attended,ECR,169406
 257259,attended,Renew,169406
 257260,attended,ESN,169406

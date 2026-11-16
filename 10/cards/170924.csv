@@ -612,7 +612,7 @@ mepid,result,eugroup,identifier
 256863,attended,EPP,170924
 256864,attended,EPP,170924
 256866,attended,EPP,170924
-256900,attended,ECR,170924
+256900,attended,NA,170924
 256912,attended,GUE/NGL,170924
 256943,attended,EPP,170924
 256947,attended,EPP,170924
@@ -620,7 +620,7 @@ mepid,result,eugroup,identifier
 256954,attended,Patriots,170924
 256985,attended,EPP,170924
 256986,attended,ECR,170924
-257021,attended,NA,170924
+257021,attended,ECR,170924
 257054,attended,Patriots,170924
 257095,attended,ECR,170924
 257130,excused,Greens/EFA,170924

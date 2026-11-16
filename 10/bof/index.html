@@ -36,6 +36,10 @@
       td span.committee {
         display: block;
       }
+      td span.asked-by {
+        font-size: 0.85em;
+        color: #495057;
+      }
       td a {
         color: rgb(33, 150, 243);
       }
@@ -250,6 +254,9 @@
                   <tr>
                     <th>Date</th>
                     <th>Vote</th>
+                    <th title="who asked for this vote (roll-call, separate or split request)">
+                      Asked by
+                    </th>
                     <th>Position</th>
                     <th title="EPP group cohesion (0–100)">EPP cohesion</th>
                     <th title="for">
@@ -329,6 +336,9 @@
             against: +d.against || 0,
             abstention: +d.abstention || 0,
             epp_cohesion: +d.epp_cohesion || 0,
+            requested_by: d.requested_by || "",
+            requested_source: d.requested_source || "",
+            vote_request: d.vote_request || "",
           };
         }).then(function (data) {
           ndx = crossfilter(data);
@@ -492,6 +502,27 @@
             },
             function (d) {
               return d.name;
+            },
+            function (d) {
+              if (!d.requested_by) return "";
+              var tabled = d.requested_source !== "remarks";
+              var kind =
+                d.vote_request === "sep"
+                  ? " (separate vote)"
+                  : /^\d+(\/|$)/.test(d.vote_request || "")
+                    ? " (split vote)"
+                    : "";
+              return (
+                "<span class='asked-by' title='" +
+                (tabled
+                  ? "who tabled the amendment: no request is recorded for this vote"
+                  : "group(s) that requested this vote") +
+                "'>" +
+                (tabled ? "tabled by " : "") +
+                d.requested_by +
+                kind +
+                "</span>"
+              );
             },
             function (d) {
               var icon =

@@ -126,6 +126,7 @@
                     border-radius: 3px;
                     background: rgba(255, 255, 255, 0.2);
                   }
+
                   .navbar .requested {
                     font-size: 0.75em;
                     opacity: 0.85;
@@ -134,6 +135,10 @@
                     font-weight: 400;
                     font-size: 0.8em;
                     color: #6c757d;
+                  }
+                  .navbar .docref {
+                    font-size: 0.75em;
+                    opacity: 0.85;
                   }
                   .navbar .method {
                     font-size: 0.75em;
@@ -256,6 +261,7 @@
           </a>
           <span class="date">YYYY-mm-DD</span>
           <span class="report">A10-XXXX/20YY</span>
+          <span class="docref"></span>
           <span class="method"></span>
           <span class="committee"></span>
           <span class="requested"></span>
@@ -445,6 +451,15 @@
       download(voteid, draw);
       let resultscolor = null;
 
+      // "asked by X" alone would read as a roll-call request, but a separate or
+      // split vote can be taken by show of hands (or electronically).
+      function requestedKind() {
+        const kind = String(config.vote_request || "");
+        if (/^\d+(\/|$)/.test(kind) || kind === "split") return " (split vote)";
+        if (kind === "sep") return " (separate vote)";
+        return "";
+      }
+
       function draw() {
 
         resultscolor = d3
@@ -462,11 +477,17 @@
         d3.select("h2").html(config.name == "CHANGE ME" ? "" : config.name);
         d3.select(".navbar .rapporteur").html(config.rapporteur);
         d3.select(".navbar .date").html(dateFormat(config.date));
+        d3.select(".navbar .docref").html(config.doc_ref || "");
         d3.select(".navbar .method").html(config.method || "");
         d3.select(".navbar .committee").html(config.committee || "");
         d3.select(".navbar .requested").html(
-          config.requested_by ? "asked by " + config.requested_by : "",
+          config.requested_by
+            ? (config.requested_source === "remarks" ? "asked by " : "tabled by ") +
+              config.requested_by +
+              requestedKind()
+            : "",
         );
+
         d3.select(".navbar .report").html(
           config.url && config.ref
             ? "<a class='btn btn-outline-light btn-sm' href='" +
