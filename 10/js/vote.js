@@ -389,6 +389,11 @@ function renderVotedText() {
         ? ", " + (ordinals[config.part] || config.part + "th") + " part"
         : "");
 
+  // the summary is written in light markdown: "- " bullets and **bold** labels
+  function inline(text) {
+    return text.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+  }
+
   var body;
   if (config.part_kind === "summary") {
     // a paragraph, then bullet points
@@ -398,8 +403,8 @@ function renderVotedText() {
         var t = line.trim();
         if (!t) return "";
         if (/^[-*]\s/.test(t))
-          return "<li>" + t.replace(/^[-*]\s+/, "") + "</li>";
-        return "<p>" + t + "</p>";
+          return "<li>" + inline(t.replace(/^[-*]\s+/, "")) + "</li>";
+        return "<p>" + inline(t) + "</p>";
       })
       .join("")
       .replace(/(<li>.*<\/li>)+/g, function (list) {
