@@ -466,7 +466,7 @@
               var id = d3.select(this).datum().key;
               console.log(id);
               graphs.report.dim.filter(id);
-              $('a[href="#rollcall"]').tab("show");
+              document.querySelector('a[href="#rollcall"]').click();
               dc.redrawAll();
             });
           });

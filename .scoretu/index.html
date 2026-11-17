@@ -1,0 +1,178 @@
+<html lang="en" dir="ltr" id="scorecard" data-theme="light">
+    <head>
+    <meta name="color-scheme" content="light">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>10 engagements</title>
+
+        <link rel="stylesheet" type="text/css" href="node_modules/bulma/css/bulma.min.css"/>
+        <link rel="stylesheet" type="text/css" href="dc.css"/>
+        <link rel="stylesheet" type="text/css" href="style.css"/>
+<style>
+    :root {
+        --bulma-body-background-color: #f5f5f5;
+}
+    </style>
+    </head>
+    <body>
+
+        <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crossfilter/1.3.7/crossfilter.min.js"></script>
+        <script type="text/javascript" src="js/dc.min.js"></script>
+        <script src="js/d3-tip.min.js"></script>
+        <script src="node_modules/lucide/dist/umd/lucide.min.js"></script>
+        <script src="scorecard.js"></script>
+
+        <script>
+            var topic = {};
+            let votes = [];
+        </script>
+
+        <nav class="navbar is-light" role="navigation" aria-label="main navigation" style="border-top: 5px solid #3eb249; box-shadow: 0 2px 3px rgba(10,10,10,0.1);">
+            <div class="container">
+                <div class="navbar-brand">
+                    <a class="navbar-item has-text-weight-bold has-text-dark" href="/">
+                        Scoring the European Parliament:
+                    </a>
+                    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                    </a>
+                </div>
+
+                <div id="navbarBasicExample" class="navbar-menu">
+                    <div class="navbar-end">
+                        <a class="navbar-item" href="./methodology.html">
+                            Methodology
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <section class="hero is-light is-bold" style="background-image: url('ep.jpg'); background-size: cover; background-position: center;">
+            <div class="hero-body" style="background-color: rgba(255,255,255,0.75);">
+                <div class="container">
+                    <div class="columns is-vcentered">
+                        <div class="column is-8">
+                            <h1 class="title is-1 has-text-dark">10 engagements</h1>
+                            <p class="subtitle mt-2 has-text-grey-darker">Analyse voting records of Members of the European Parliament on policies relevant to Workers' right.</p>
+                            
+                            <div class="field has-addons mt-4">
+                                <div class="control is-expanded">
+                                    <input class="input is-large" type="text" id="search-input" placeholder="Search MEPs by name or party...">
+                                </div>
+                                <div class="control">
+                                    <button class="button is-large is-static">
+                                        <i data-lucide="search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <p class="help has-text-grey-dark">
+                                Filter MEPs by name and party. Click on the bar chart for countries.
+                                <button class="button is-small is-danger is-pulled-right resetall">Reset All</button>
+                            </p>
+                        </div>
+
+                        <div class="column is-4 has-text-centered frontpage_score" style="background-color: rgba(255,255,255,0.9); border-radius: 15px; color: #333; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                            <div class="dc-data-count">
+                                <div class="bar_score">
+                                    <h2 class="title is-4 has-text-dark pt-4">Scores of <span class="filter-count"></span> MEPs</h2>
+                                    <div id="avg_score" class="has-text-weight-bold has-text-primary" style="font-size: 80px; line-height: 1;"></div>
+                                </div>
+                            </div>    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div id="eplist">
+                    <div class="has-text-centered mb-6">
+                        <h2 class="title is-4 country has-text-dark">Select your country by clicking on the bar chart</h2>
+                    </div>
+
+                    <div class="card mb-6" style="box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                        <header class="card-header" style="cursor: pointer;" data-toggle="collapse" data-target="#collapseOne">
+                            <p class="card-header-title has-text-grey">
+                                More filters
+                            </p>
+                            <button class="card-header-icon" aria-label="more options">
+                                <span class="icon">
+                                    <i data-lucide="chevron-down"></i>
+                                </span>
+                            </button>
+                        </header>
+                        <div id="collapseOne" class="card-content is-hidden">
+                            <div class="columns is-multiline">
+                                <div class="column is-6 has-text-centered">
+                                    <div class="party">
+                                        <h2 class="title is-5 has-text-dark">National party</h2>
+                                        <p class="is-size-7 mb-4 has-text-grey-dark">Select a national party to see just their MEPs. Higher bubbles mean more votes attended, further right means better votes.</p>
+                                    </div>
+                                </div>
+                                <div class="column is-3 has-text-centered">
+                                    <div class="group">
+                                        <h2 class="title is-5 has-text-dark">European Party</h2>
+                                        <p class="is-size-7 mb-4 has-text-grey-dark">Select which European party the MEPs belong to and see their scores</p>
+                                    </div>
+                                </div>
+                                <div class="column is-3 has-text-centered">
+                                    <div class="gender">
+                                        <h2 class="title is-5 has-text-dark">Gender</h2>
+                                        <p class="is-size-7 mb-4 has-text-grey-dark">Select MEPs by their gender</p>
+                                    </div>
+                                </div>
+                                <div class="column is-12 age" style="display:none"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="columns is-multiline">
+                    <div class="column is-12">
+                        <div class="nokparty"></div>
+                        <div class="dc-data-grid content mt-4">
+                            <h4 class="has-text-grey"><i>Click on the MEP for their voting record</i></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modal -->
+        <div id="infobox" class="modal">
+            <!-- Populated by scorecard.js -->
+        </div>
+
+        <script>
+            let card = null;
+            let meps = [];
+            let mepvotes = [];
+
+            const awaitd3 = (type,file) => new Promise( (resolve, reject) => {
+                d3[type](file, (error, request) => {
+                    if(error) {
+                       reject(error);
+                    } else {
+                       resolve(request);
+                    }
+                 });
+             });
+
+            (async () => {
+               const r = await awaitd3 ("json","data/10engagement.json");
+              card=scoreCard (r.topics[0].votings);
+              meps =  await awaitd3("csv","../10/data/meps.csv");
+              const rcv = await awaitd3("csv","data/10engagement.csv");
+              card.vote.setRollCall (rcv);
+              card.grid ("#eplist");
+            })();      
+        </script>
+
+    </body>
+</html>

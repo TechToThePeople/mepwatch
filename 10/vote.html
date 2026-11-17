@@ -53,13 +53,32 @@
                     transform-origin: 50% 50%;
                   }
 
-                  html .bg-info {
-                    background-image: linear-gradient(-20deg, #6e45e2 0%, #88d3ce 100%);
+                  .bg-info {
+                    --bs-info-rgb: 222, 212, 230;
                   }
 
                   .wide-tip {
                     min-width: 370px;
                   }
+                  .d3-tip.wide-tip {
+                    padding: 8px;
+                    font-size: 0.9em;
+                    line-height: 1.4;
+                  }
+                  .d3-tip.wide-tip h3 {
+                    font-size: 1.1em;
+                    margin-bottom: 6px;
+                    align-items: center;
+                  }
+                  .d3-tip.wide-tip .icon {
+                    width: 16px;
+                    height: 16px;
+                    vertical-align: middle;
+                    margin-right: 4px;
+                  }
+                  .d3-tip.wide-tip .icon use { color: inherit; }
+                  .d3-tip.wide-tip svg use { color: inherit; }
+
 
                   .wide-tip .icon {
                     width: 1.2em;
@@ -84,7 +103,7 @@
                   .flag-icon,
                   .country-flag {
             font-family: "Twemoji Country Flags"!important;
-                    font-size: 1.4em!important;
+                    font-size: 1em !important;
                   }
 
 
@@ -97,16 +116,44 @@
                     margin-left: -10px;
                     margin-right: 10px;
                   }
+                  .logo {
+                    vertical-align: middle;
+                    border-radius: 3px;
+                  }
+                  .navbar .committee {
+                    font-size: 0.75em;
+                    padding: 2px 6px;
+                    border-radius: 3px;
+                    background: rgba(255, 255, 255, 0.2);
+                  }
+                  .navbar .requested {
+                    font-size: 0.75em;
+                    opacity: 0.85;
+                  }
+                  h3 span.outcome {
+                    font-weight: 400;
+                    font-size: 0.8em;
+                    color: #6c757d;
+                  }
+                  .navbar .method {
+                    font-size: 0.75em;
+                    padding: 2px 6px;
+                    border-radius: 3px;
+                    background: rgba(255, 255, 255, 0.2);
+                  }
+                  #explanation {
+                    margin-top: 1rem;
+                    font-size: 0.95em;
+                    color: #495057;
+                  }
+                  #explanation p {
+                    margin-bottom: 0.75rem;
+                  }
 
                   th .glyphicon {
-                    margin-left: 5px;
-                    color: black;
-                    font-size: 1.3em;
-                    border: 1px solid grey;
-                    text-align: center;
-                    width: 1.3em;
-                    border-radius: 2px;
-                    display: inline-block;
+                    margin-left: 4px;
+                    font-size: 0.85em;
+                    opacity: 0.5;
                   }
 
                   th#country,
@@ -209,6 +256,9 @@
           </a>
           <span class="date">YYYY-mm-DD</span>
           <span class="report">A10-XXXX/20YY</span>
+          <span class="method"></span>
+          <span class="committee"></span>
+          <span class="requested"></span>
 
           <button
             class="navbar-toggler"
@@ -232,6 +282,7 @@
             <div class="col-sm-12 col-md-6">
               <h2 class="jumbotron-heading">Loading...</h2>
               <h3 class="jumbotron-heading"></h3>
+              <div id="explanation"></div>
             </div>
             <div class="col-sm-12 col-md-6" id="map">
               <div class="graph"></div>
@@ -242,13 +293,16 @@
       <div class="py-5 bg-info">
         <div class="container">
           <div class="row">
-            <div class="col-md-3">
+            <div class="col-md">
               <form id="search">
                 <div class="input-group mb-3">
                   <span class="graph form-control"></span>
-                  <div class="input-group-append">
-                    <a href="#meps" class="btn btn-info">MEP</a>
-                  </div>
+                  <a href="#meps" class="btn btn-info">
+                    <svg width="1.2em" height="1.2em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="11" cy="11" r="8"/>
+                      <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>
+                  </a>
                 </div>
               </form>
               <ul class="list-group">
@@ -272,7 +326,7 @@
                 </li>
                 <li class="list-group-item result">
                   <span
-                    class="percent badge text-bg-primary rounded-pill float-end"
+                    class="percent badge bg-secondary text-white rounded-pill float-end"
                   ></span
                   ><span class="nb"></span> result
                 </li>
@@ -282,13 +336,13 @@
                 </li>
               </ul>
             </div>
-            <div class="col-md-3" id="result">
+            <div class="col-md" id="result">
               <div class="graph"></div>
             </div>
-            <div class="col-md-3 rotated90" id="eugroup">
+            <div class="col-md" id="eugroup">
               <div class="graph"></div>
             </div>
-            <div class="col-md-3 rotated90 d-none" id="party">
+            <div class="col-md d-none" id="party">
               <div class="graph"></div>
             </div>
           </div>
@@ -408,6 +462,11 @@
         d3.select("h2").html(config.name == "CHANGE ME" ? "" : config.name);
         d3.select(".navbar .rapporteur").html(config.rapporteur);
         d3.select(".navbar .date").html(dateFormat(config.date));
+        d3.select(".navbar .method").html(config.method || "");
+        d3.select(".navbar .committee").html(config.committee || "");
+        d3.select(".navbar .requested").html(
+          config.requested_by ? "asked by " + config.requested_by : "",
+        );
         d3.select(".navbar .report").html(
           config.url && config.ref
             ? "<a class='btn btn-outline-light btn-sm' href='" +
@@ -423,7 +482,14 @@
         );
         d3.select(".navbar .graph").attr("href", "graph.html?v=" + config.id);
         d3.select(".navbar .edit").attr("href", "edit.html?v=" + config.id);
-        d3.select("h3").html([config.title, config.description].join("<br>"));
+        // hand votes publish no counts, only an outcome
+        var outcome =
+          config.for === null && config.outcome
+            ? "<br><span class='outcome'>" + config.outcome + "</span>"
+            : "";
+        d3.select("h3").html(
+          [config.title, config.description].filter(Boolean).join("<br>") + outcome,
+        );
         var percentColors = [
           "#e3e3e3",
           "#27ae60",
@@ -462,6 +528,25 @@
         //    graphs.date=drawDate('#date div.graph');
         //    graphs.report=drawReport('#report div.graph');
         graphs.country = drawCountry("#country div.graph");
+        // Styled tooltip for country bar chart
+        (function () {
+          var tip = d3
+            .tip()
+            .attr("class", "d3-tip wide-tip")
+            .offset([-10, 0])
+            .html(function (d) {
+              var dd = d.data || d;
+              return voteTipHtml({ value: dd.value, key: dd.key }, function (dd2) {
+                return flag(dd2.key) + " " + (countries[dd2.key.toLowerCase()] || dd2.key);
+              }, "count");
+            });
+          graphs.country.on("renderlet.ctip", function (c) {
+            c.selectAll("rect.bar")
+              .call(tip)
+              .on("mouseover.tip", tip.show)
+              .on("mouseout.tip", tip.hide);
+          });
+        })();
         graphs.map = drawMap("#map div.graph", graphs);
         //    graphs.party=drawParty('#voidparty div.graph');
         guessPartyLine("partyline");
@@ -471,33 +556,109 @@
         });
         guessLine("groupline", graphs.eugroup.group());
         graphs.eugroup.relative = false;
-        graphs.party = drawBarVotes("#party div.graph", function (d) {
-          return [d.country, d.party];
+        // Styled tooltip for eugroup bar chart
+        (function () {
+          var tip = d3
+            .tip()
+            .attr("class", "d3-tip wide-tip")
+            .offset([-10, 0])
+            .html(function (d) {
+              // Bar rect datum wraps data in d.data
+              var dd = d.data || d;
+              return voteTipHtml({ value: dd.value, key: dd.key }, function (dd2) {
+                return "<img src='" + groupLogoFile(dd2.key) + "' height='25' style='margin-right:6px'> " + dd2.key;
+              }, "nb.count");
+            });
+          graphs.eugroup.on("renderlet.tip", function (c) {
+            c.selectAll("rect.bar")
+              .call(tip)
+              .on("mouseover.tip", tip.show)
+              .on("mouseout.tip", tip.hide);
+          });
+        })();
+
+
+        // Replace x-axis labels with group logos
+        graphs.eugroup.on("renderlet.logos", function (c) {
+          c.selectAll(".axis.x .tick").each(function () {
+            const textEl = d3.select(this).select("text");
+            const group = textEl.text();
+            textEl.remove();
+            d3.select(this)
+              .append("svg:image")
+              .attr("href", groupLogoFile(group))
+              .attr("width", 25)
+              .attr("height", 25)
+              .attr("x", -12)
+              .attr("y", 4);
+          });
         });
+        graphs.party = drawBarVotes("#party div.graph", function (d) {
+          return d.party;
+        });
+        // Replace x-axis labels with party logos (or acronym fallback)
+        graphs.party.on("renderlet.partylogos", function (chart) {
+          if (d3.select("#party").classed("d-none")) return;
+          const cc = graphs.country && graphs.country.filters();
+          const country = Array.isArray(cc) ? cc[0] : (cc || "");
+          chart.selectAll(".axis.x .tick").each(function () {
+            const textEl = d3.select(this).select("text");
+            const partyName = textEl.text();
+            if (!partyName) return;
+            const full = window.getParty(partyName, country);
+            if (full && full.twitter) {
+              textEl.style("display", "none");
+              d3.select(this)
+                .append("svg:image")
+                .attr("href", "https://pics.mepwatch.eu/parties/" + full.twitter.toLowerCase() + ".jpg")
+                .attr("width", 24).attr("height", 24)
+                .attr("x", -12).attr("y", 2);
+            } else {
+              const label = (full && full.acronym) || partyName;
+              textEl.text(label);
+            }
+          });
+        });
+        // Styled tooltip for party bar chart
+        (function () {
+          var tip = d3
+            .tip()
+            .attr("class", "d3-tip wide-tip")
+            .offset([-10, 0])
+            .html(function (d) {
+              var dd = d.data || d;
+              return voteTipHtml({ value: dd.value, key: dd.key }, function (dd2) {
+                return dd2.key;
+              }, "nb.count");
+            });
+          graphs.party.on("renderlet.ptip", function (c) {
+            c.selectAll("rect.bar")
+              .call(tip)
+              .on("mouseover.tip", tip.show)
+              .on("mouseout.tip", tip.hide);
+          });
+        })();
 
         //graphs.party.xAxis().tickFormat(function(d) { return d[1]; });
 
-        graphs.party.elasticX(true).title(function (d) {
-          if (this.layer == 0) return "";
-          return (
-            d.key[1] +
-            " voting '" +
-            this.layer +
-            "': " +
-            d.value[this.layer].count +
-            " (" +
-            formatPercent(d.value[this.layer].count / d.value.nb.count) +
-            ")"
-          );
-        });
+        graphs.party.elasticX(true).title(function () { return ""; });
         //      .keyAccessor(function(d){return d.key[1]})
         graphs.party.relative = false;
+        // Order parties by their eugroup's position in groupOrder
+        graphs.party.ordering(function (d) {
+          // Get the current country filter from the country chart
+          var cc = graphs.country && graphs.country.filters();
+          var country = Array.isArray(cc) ? cc[0] : (cc || "");
+          var eugroup = partyGroupMap[country + "|" + d.key];
+          var idx = groupOrder.indexOf(eugroup);
+          return idx >= 0 ? idx : 999;
+        });
 
         graphs.party.margins({
           top: 5,
           right: 10,
-          bottom: 5,
-          left: 5,
+          bottom: 100,
+          left: 30,
         });
 
         //    graphs.group=drawGroup('#eugroup div.graph');
@@ -838,13 +999,18 @@
 
             if (minAngle < 0.2) return;
 
+            // Move icon inward — 55% of centroid distance from center
+            const ix = x * 0.75;
+            const iy = y * 0.75;
+
             d3.select(this)
               .append("use")
               .attr("width", 20)
               .attr("height", 20)
-              .attr("x", x - 10) // Adjust to centre the icon
-              .attr("y", y - 10)
-              .attr("href", `#icon-${d.data.key}`);
+              .attr("x", ix - 10) // Adjust to centre the icon
+              .attr("y", iy - 10)
+              .attr("href", `#icon-${d.data.key}`)
+              .style("color", "#fff");
           });
           /*            .call(tip)
             .on("mouseover.tip", tip.show)
@@ -856,7 +1022,7 @@
 
       function drawBarVotes(dom, dimension) {
         //var dim = ndx.dimension(function(d) {return d[dimension]});
-        const width = isMobile ? window.screen.width - 40 : 220;
+        const width = isMobile ? window.screen.width - 40 : 350;
         var dim = ndx.dimension(dimension);
         var reducer = reductio();
         reducer.value("nb").count(true);
@@ -896,29 +1062,18 @@
             top: 5,
             right: 10,
             bottom: 66,
-            left: 5,
+            left: 50,
           })
           .ordering(function (d) {
-            return -d.value.nb.count;
+            var idx = groupOrder ? groupOrder.indexOf(d.key) : -1;
+            return idx >= 0 ? idx : 999;
           })
           //        .label(function(d){return "aaa";d.data.key})
           .x(d3.scaleBand())
           .xUnits(dc.units.ordinal)
           .colors(resultscolor)
           .brushOn(false)
-          .title(function (d) {
-            if (this.layer == 0) return "";
-            return (
-              d.key +
-              " voting '" +
-              (aliasPosition[this.layer] || this.layer) +
-              "': " +
-              d.value[this.layer].count +
-              " (" +
-              formatPercent(d.value[this.layer].count / d.value.nb.count) +
-              ")"
-            );
-          })
+          .title(function () { return ""; })
 
           .elasticY(true)
           //        .elasticX(true)
@@ -951,11 +1106,8 @@
             .text(function (d) {
               return d;
             })
-            .style("text-anchor", "start")
-            .attr("transform", function (d) {
-              var left = -1 * graph.margins().bottom + 10;
-              return "rotate(-90, -4, 9), translate(" + left + ",0) ";
-            });
+            .style("text-anchor", "end")
+            .attr("transform", "rotate(-35, -4, 9)");
         }
 
         function toggleMode() {
@@ -988,28 +1140,9 @@
               if (c.key == iso) d = c;
             });
             if (d.id) return d.id + " is not in EU";
-            var t =
-              "<h3 class='d-flex flex-row justify-content-between' >" +
-              iconify(d.key.toLowerCase(), "flag") +
-              "<span>" +
-              countries[d.key.toLowerCase()] +
-              "</span><span class='d-inline-flex p-2 badge text-bg-primary ms-2'>" +
-              d.value.count +
-              "</span></h3>";
-            results.forEach(function (r) {
-              if (d.value[r].count > 0) {
-                t +=
-                  "<div class='d-flex flex-row justify-content-between'><div class='p-1 bd-highlight me-auto w-50'>" +
-                  iconify(r) +
-                  (aliasPosition[r] || r) +
-                  "</div><div class='p-1 w-25'>" +
-                  d.value[r].count +
-                  "</div><div class='p-1 w-25'>" +
-                  formatPercent(d.value[r].count / d.value.count) +
-                  "</div></div>";
-              }
-            });
-            return t + "";
+            return voteTipHtml({ value: d.value, key: d.key }, function (dd) {
+              return iconify(dd.key.toLowerCase(), "flag") + "<span>" + countries[dd.key.toLowerCase()] + "</span>";
+            }, "count") + "";
           });
 
         function drawMap(dom) {
@@ -1115,7 +1248,7 @@
         if (isMobile) {
           heigth = window.screen.width - 80;
           //        width=900;
-          document.getElementById("country").className += " rotated90";
+          // country chart no longer uses rotated90
         }
 
         function getValue(result) {
@@ -1136,8 +1269,8 @@
           .margins({
             top: 0,
             right: 10,
-            bottom: 20,
-            left: 30,
+          bottom: 20,
+          left: 50,
           })
           .ordering(function (d) {
             if (config.goal && config.goal == "against")
@@ -1152,19 +1285,7 @@
           .xUnits(dc.units.ordinal)
           .colors(resultscolor)
           .brushOn(false)
-          .title(function (d) {
-            if (this.layer == 0) return "";
-            return (
-              countries[d.key] +
-              " voting '" +
-              (aliasPosition[this.layer] || this.layer) +
-              "': " +
-              d.value[this.layer].count +
-              " (" +
-              formatPercent(d.value[this.layer].count / d.value.count) +
-              ")"
-            );
-          })
+          .title(function () { return ""; })
 
           .elasticY(true)
           .yAxisLabel("%MEPs")
@@ -1173,8 +1294,11 @@
           .group(group, "", 0)
           .on("renderlet", function (c) {
             //!isMobile &&
-            if (!d3.select("#country .axis.x .tick text.country-flag").empty())
+            if (!d3.select("#country .axis.x .tick text.country-flag").empty()) {
+              // On redraw, dc.js recreates default labels — remove them
+              d3.selectAll("#country .axis.x .tick text:not(.country-flag)").remove();
               return;
+            }
             rotateBarChartLabels();
             d3.select("#country .axis.x")
               .selectAll(".tick")
@@ -1206,15 +1330,8 @@
         return graph;
 
         function rotateBarChartLabels() {
+          d3.selectAll(dom + " .axis.x text").remove();
           d3.selectAll(dom + " .axis.x line").remove();
-          d3.selectAll(dom + " .axis.x text")
-            .text(function (d) {
-              return countries[d];
-            })
-            .style("text-anchor", "start")
-            .attr("transform", function (d) {
-              return "rotate(-90, -4, 9), translate(10,0) ";
-            });
         }
 
         function toggleMode() {
@@ -1497,7 +1614,7 @@
             function (d) {
               return (
                 '<span class="country-flag" title="' +
-                d.country +
+                (countries[d.country.toLowerCase()] || d.country) +
                 '">' +
                 iconify(d.country, "flag") +
                 "</span>"
@@ -1532,7 +1649,16 @@
               if (d.rebel) return iconify("rebel");
             },
             function (d) {
-              return d.party;
+              var full = getParty(d.party, d.country);
+              var label = (full && full.acronym) || d.party;
+              return full && full.twitter
+                ? "<img class='logo' crossorigin='anonymous' src='https://pics.mepwatch.eu/parties/" +
+                    full.twitter.toLowerCase() +
+                    ".jpg' title='" +
+                    full.party +
+                    "' height='20'> " +
+                    label
+                : label;
             },
           ]);
 

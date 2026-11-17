@@ -36,6 +36,51 @@
       td span.committee {
         display: block;
       }
+      td span.author,
+      td span.requested-by {
+        display: block;
+        font-size: 0.8em;
+        color: #495057;
+      }
+      td span.requested-by {
+        font-size: 0.75em;
+        color: #6c757d;
+      }
+      td span.outcome {
+        font-size: 0.8em;
+        color: #495057;
+      }
+      #transparency .pie {
+        text-align: center;
+        margin: 1rem 0;
+      }
+      #transparency .pie text.pie-label {
+        fill: #fff;
+        font-size: 0.85em;
+        pointer-events: none;
+      }
+      #transparency .method-dot {
+        display: inline-block;
+        width: 0.7em;
+        height: 0.7em;
+        border-radius: 50%;
+        margin-right: 0.35em;
+      }
+      #transparency .explanations h4 {
+        margin-top: 1.25rem;
+      }
+      #transparency .explanations p {
+        max-width: 60em;
+      }
+      td span.vote-committee {
+        display: inline-block;
+        margin-top: 2px;
+        padding: 0 4px;
+        border-radius: 3px;
+        background: #e9ecef;
+        color: #495057;
+        font-size: 0.7em;
+      }
       td a {
         color: rgb(33, 150, 243);
       }
@@ -164,6 +209,15 @@
               </li>
               <li class="nav-item">
                 <a
+                  class="nav-link"
+                  data-bs-toggle="tab"
+                  href="#transparency"
+                  role="tab"
+                  ><span class="pct_transparent"></span>% transparent</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
                   class="nav-link active"
                   data-bs-toggle="tab"
                   href="#report"
@@ -177,7 +231,7 @@
                   data-bs-toggle="tab"
                   href="#rollcall"
                   role="tab"
-                  ><span class="nb_rollcall"></span> RollCalls</a
+                  ><span class="nb_rollcall"></span> Votes</a
                 >
               </li>
             </ul>
@@ -199,6 +253,22 @@
                 </div>
               </div>
               <div
+                class="tab-pane fade"
+                id="transparency"
+                role="tabpanel"
+                aria-labelledby="transparency-tab"
+              >
+                <div class="card-body" id="transparency-content">
+                  <p class="card-text">
+                    Not every vote in the European Parliament is a roll-call:
+                    only those are published with the name of each MEP next to
+                    their vote.
+                  </p>
+                  <div class="pie"></div>
+                  <div class="explanations"></div>
+                </div>
+              </div>
+              <div
                 class="tab-pane fade show active"
                 id="report"
                 role="tabpanel"
@@ -209,7 +279,7 @@
                     <thead>
                       <tr>
                         <th>Ref</th>
-                        <th class="d-none d-lg-block">Committee</th>
+                        <th class="d-none d-lg-block">Author</th>
                         <th>Title</th>
                         <th>Rollcalls</th>
                       </tr>
@@ -263,7 +333,15 @@
     <script>
       "use strict";
       var docs = {};
+      var typeExplanations = {};
       var _reportFilterActive = false;
+      function updateResetButton() {
+        var hasFilter = _reportFilterActive
+          || dc.chartRegistry.list().some(function (c) { return c.hasFilter(); });
+        if (d3.select(".resetall").size()) {
+          d3.select(".resetall").classed("disabled", !hasFilter);
+        }
+      }
       docs.get = function (reference) {
         docs[reference] ? docs[reference] : "";
       };
@@ -272,7 +350,7 @@
         limit: 9999,
         id: "id",
         tokenize: "forward",
-        index: ["title", "report", "committee"],
+        index: ["title", "report", "author"],
       });
 
       const yymmdd = d3.timeFormat("%Y%m%d");
@@ -290,9 +368,22 @@
       const q = d3.queue();
       q.defer(dl_votes)
         .defer(dl_doc)
+        .defer(dl_explanation)
         .awaitAll(function (error, results) {
           draw();
         });
+
+      function dl_explanation(callback) {
+        d3.json("data/explanation.json")
+          .then(function (d) {
+            typeExplanations = d || {};
+            callback(null);
+          })
+          .catch(function () {
+            typeExplanations = {};
+            callback(null);
+          });
+      }
 
       function dl_doc(callback) {
         var map = {
@@ -306,6 +397,9 @@
           needle.forEach(function (n) {
             d.title = d.title.replace(n, map[n]);
           });
+          // text_tabled.csv still heads this column "committee", but it holds
+          // the committee *or* the groups that tabled the report.
+          d.author = d.committee;
           docs[d.reference] = d;
         }).then(function (d) {
           callback();
@@ -333,11 +427,87 @@
         });
       }
 
+      // Share of the votes that are roll-calls, and what the other types are.
+      // The pie is a plain dc.js pieChart on the same crossfilter, so it takes
+      // part in the filters like the other graphs.
+      function drawTransparency() {
+        const all = ndx.all();
+        const counts = {};
+        all.forEach(function (d) {
+          const type = d.method || "unknown";
+          counts[type] = (counts[type] || 0) + 1;
+        });
+        const total = all.length;
+        const types = Object.keys(counts).sort(function (a, b) {
+          return counts[b] - counts[a];
+        });
+        const rcv = counts.RCV || 0;
+        d3.select(".pct_transparent").text(Math.round((100 * rcv) / total));
+
+        const color = d3
+          .scaleOrdinal()
+          .domain(types)
+          .range(["#27ae60", "#95a5a6", "#2980b9", "#34495e", "#d3a751"]);
+
+        const dim = ndx.dimension(function (d) {
+          return d.method || "unknown";
+        });
+        graphs.transparency = dc
+          // no chart group: must share the default group with the other charts,
+          // otherwise clicking a slice only redraws this pie
+          .pieChart("#transparency .pie")
+          .dimension(dim)
+          .group(dim.group())
+          .innerRadius(0)
+          .width(420)
+          .height(260)
+          .colors(color)
+          // labels inside the slices; anything under ~0.3% would be unreadable
+          // there, so it gets no label (the tooltip and the legend below do)
+          .minAngleForLabel(0.02)
+          .label(function (d) {
+            return d.key;
+          })
+          .title(function (d) {
+            return d.key + ": " + d.value + " votes";
+          })
+          .ordering(function (d) {
+            return -d.value;
+          })
+          .render();
+
+        const list = types
+          .map(function (type) {
+            const pct = Math.round((100 * counts[type]) / total);
+            return (
+              "<h4>" +
+              "<span class='method-dot' style='background:" +
+              color(type) +
+              "'></span>" +
+              type +
+              " — " +
+              d3.format(",")(counts[type]) +
+              " votes (" +
+              pct +
+              "%)</h4>" +
+              (typeExplanations[type] || typeExplanations.default || "")
+                .split("\n\n")
+                .map(function (par) {
+                  return "<p>" + par + "</p>";
+                })
+                .join("")
+            );
+          })
+          .join("");
+        d3.select("#transparency .explanations").html(list);
+      }
+
       function draw() {
+        drawTransparency();
         ndx.all().forEach((d) => {
           let t = { id: d.identifier, title: d.title };
           if (docs[d.report]) {
-            t.committee = docs[d.report].committee;
+            t.author = docs[d.report].author;
             t.report = docs[d.report].title;
           }
           flex.add(t);
@@ -348,13 +518,6 @@
         graphs.search = drawSearch("form#search");
 
         drawNumbers(graphs);
-
-        // Track whether any filter is active for the reset button
-        function updateResetButton() {
-          var hasFilter = _reportFilterActive
-            || dc.chartRegistry.list().some(function (c) { return c.hasFilter(); });
-          d3.select(".resetall").classed("disabled", !hasFilter);
-        }
 
         dc.chartRegistry.list().forEach(function (c) {
           c.on("filtered.updateReset", updateResetButton);
@@ -462,7 +625,7 @@
         const mobileColumns = [1, 3];
         const columns = [
           (d) => d.key,
-          (d) => docs[d.key] && docs[d.key].committee,
+          (d) => docs[d.key] && docs[d.key].author,
           (d) => docs[d.key] && docs[d.key].title,
           function (d) {
             return (
@@ -482,12 +645,13 @@
           .size(10000)
           .section(function (d) {
             return (
-              "<h3>" +
-              "<span class='badge badge-light'>" +
+              "<h3 class='d-flex justify-content-between'>" +
+              "<span class='badge text-bg-secondary'>" +
               dayFormat(d.value.max) +
               "</span>" +
-              "week " +
+              "<span>week " +
               week(d.value.max) +
+              "</span>" +
               "</h3>"
             );
           })
@@ -633,6 +797,17 @@
         return chart;
       }
 
+      // The report's author line already lists its committee(s) when the report
+      // was written there; only show the voted item's committee when it adds
+      // something (typically for motions tabled by groups).
+      function votesCommitteeExtra(d) {
+        if (!d.committee) return "";
+        var author = docs[d.report] ? docs[d.report].author || "" : "";
+        var codes = d.committee.split(",").map((c) => c.trim());
+        var missing = codes.filter((c) => author.indexOf(c) === -1);
+        return missing.length ? missing.join(", ") : "";
+      }
+
       function drawTable(dom) {
         var dim = ndx.dimension(function (d) {
           return d.identifier;
@@ -656,9 +831,9 @@
                 "&secondRef=SIT&language=EN#TF2'>" +
                 dayFormat(d.date) +
                 "</a>" +
-                (!isMobile && docs[d.report]
-                  ? "<span class='committee'>" +
-                    docs[d.report].committee +
+                (d.requested_by
+                  ? "<span class='requested-by' title='group(s) that requested the roll-call'>" +
+                    d.requested_by +
                     "</span>"
                   : "")
               );
@@ -671,23 +846,53 @@
                   docs[d.report].rapporteur +
                   "</div>";
               }
-              return f + d.report;
+              return (
+                f +
+                d.report +
+                (votesCommitteeExtra(d)
+                  ? "<span class='vote-committee' title='committee responsible for the voted item'>" +
+                    votesCommitteeExtra(d) +
+                    "</span>"
+                  : "") +
+                (!isMobile && docs[d.report] && docs[d.report].author
+                  ? "<span class='author' title='author of the report, group or committee'>" +
+                    docs[d.report].author +
+                    "</span>"
+                  : "")
+              );
             },
             function (d) {
-              return docs[d.report]
-                ? "<span class='report-title'>" +
+              if (docs[d.report]) {
+                // For the main resolution vote (not amendments), show report
+                // title in the normal vote-name style and hide the vote name.
+                if (d.title.indexOf("Proposition de résolution") !== -1) {
+                  return docs[d.report].title;
+                }
+                return "<span class='report-title'>" +
                     docs[d.report].title +
                     "</span>&nbsp;" +
-                    d.title
-                : d.title;
+                    d.title;
+              }
+              return d.title;
             },
             function (d) {
+              // Hand votes (and some roll-calls) publish no counts at all, only
+              // an outcome; show that instead of three empty cells.
+              if (d.outcome && (d.for === "" || d.for === undefined)) {
+                return (
+                  "<span class='outcome' title='result of the vote, no counts published'>" +
+                  d.outcome +
+                  "</span>"
+                );
+              }
               return d.for > d.against ? "<b>" + d.for + "</b>" : d.for;
             },
             function (d) {
+              if (d.outcome && (d.for === "" || d.for === undefined)) return "";
               return d.against > d.for ? "<b>" + d.against + "</b>" : d.against;
             },
             function (d) {
+              if (d.outcome && (d.for === "" || d.for === undefined)) return "";
               return d.abstention;
             },
           ])

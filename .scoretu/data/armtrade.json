@@ -1,0 +1,130 @@
+{
+    "language": "en", 
+    "organization": {
+        "title": "Vredes Actie & Campagne tegen Wapenhandel",
+        "description": "",
+        "link": "",
+        "logo": ""
+    },
+    "score": {
+        "title": "",
+        "description": "",
+        "link": "",
+        "logo": "",
+        "limits": [
+            {"upper": 20,  "text": " ", "color": "red"},
+            {"upper": 40,  "text": " ", "color" : "orange" }, 
+            {"upper": 60,  "text": " ", "color": "yellow"},
+            {"upper": 90,  "text": " ", "color": "palegreen"},
+            {"upper": 100, "text": " ", "color": "lightgreen"} 
+        ]
+    },
+    "topics": [
+        {
+        "order": 1,
+        "title": "",
+        "description": "",
+        "weight": 1,
+        "image": "",
+        "votings": [
+                {
+                    "v_id": "A7-0358/2013",
+                    "v_dbid": 5249,
+                    "v_weight": 1,
+                    "v_title": "Stimulate the arms industry with subsidies and favourable policy",
+                    "v_description": "The European Commission repeatedly invited arms industry representatives to explain in detail how it can help to make the industry more profitable. The resulting proposals? Among others: new subsidies, tax shelters, promoting arms sales world-wide.",
+                    "v_recommendation": -1,
+                    "v_link": "http://www.votewatch.eu/en/european-defence-technological-and-industrial-base-motion-for-resolution-vote-resolution-as-a-whole.html"
+                },
+                {
+                    "v_id": "RC-B7-0258/2013",
+                    "v_dbid": 4462,
+                    "v_weight": 1,
+                    "v_title": "Draw lessons from the Arab Spring",
+                    "v_description": "European weapon technology was used for repression during the Arab Spring. This should provide lessons for future arms trade with repressive and undemocratic regimes.",
+                    "v_recommendation": 1,
+                    "v_link": "http://www.votewatch.eu/en/arms-exports-implementation-of-council-common-position-2008-944-cfsp-s-d-greens-efa-gue-ngl-joint-mo-12.html"
+                },
+				{
+                    "v_id": "A7-0360/2013|§ 53 - AM 8D",
+                    "v_dbid": 5216,
+                    "v_weight": 1,
+                    "v_title": "No civil research subsidies for the development of weapon technology",
+                    "v_description": "On paper, EU subsidies for research are for civil applications only. In reality the arms industry has received millions of Euros to develop military technology.",
+                    "v_recommendation": 1,
+                    "v_link": "http://www.votewatch.eu/en/implementation-of-the-common-security-and-defence-policy-motion-for-resolution-paragraph-53-amendmen.html"
+                },
+				{
+                    "v_id": "A7-0360/2013",
+                    "v_dbid": 5217,
+                    "v_weight": 1,
+                    "v_title": "Support for militarisation of EU policy",
+                    "v_description": "In a report the European Parliament calls for a permanent military headquarters, for the development of new weapon technology, promotes military instruments to secure trade and energy supply and wants increase of subsidies to strengthen the European arms industry.",
+                    "v_recommendation": -1,
+                    "v_link": "http://www.votewatch.eu/en/implementation-of-the-common-security-and-defence-policy-motion-for-resolution-vote-resolution-as-a-.html"
+                },
+				{
+                    "v_id": "A7-0205/2013|§ 35",
+                    "v_dbid": 4662,
+                    "v_weight": 1,
+                    "v_title": "Invest in the development of military drones",
+                    "v_description": "The European Parliament has “expressed its grave concern over the use of armed drones”. Nevertheless it repeatedly stressed the need to develop military drones, without specifying their intended use.",
+                    "v_recommendation": -1,
+                    "v_link": "http://www.votewatch.eu/en/eu-s-military-structures-state-of-play-and-future-prospects-motion-for-resolution-paragraph-35.html"
+                },
+				{
+                    "v_id": "RC-B7-0258/2013|§ 8",
+                    "v_dbid": 4447,
+                    "v_weight": 1,
+                    "v_title": "Independent control on compliance of arms export with EU criteria",
+                    "v_description": "There are currently no consequences for violation of the eight criteria on human rights and democracy in the Common Position on Arms Export. Parliamentary bodies and civil society should be allowed to carry out effective oversight.",
+                    "v_recommendation": 1,
+                    "v_link": "http://www.votewatch.eu/en/arms-exports-implementation-of-council-common-position-2008-944-cfsp-s-d-greens-efa-gue-ngl-joint-mo-19.html"
+                },
+				{
+                    "v_id": "A7-0358/2013|§ 29",
+                    "v_dbid": 5227,
+                    "v_weight": 1,
+                    "v_title": "Universities need to cooperate more with the arms industry",
+                    "v_description": "The development of weapon technology is not a task of universities. The use of university personnel, laboratories and equipment for defence research diverts tax payer money from civil to military applications and is a hidden increase of the defence budget.",
+                    "v_recommendation": -1,
+                    "v_link": "http://www.votewatch.eu/en/european-defence-technological-and-industrial-base-motion-for-resolution-paragraph-29.html"
+                },
+				{
+                    "v_id": "A7-0358/2013|§ 47",
+                    "v_dbid": 5243,
+                    "v_weight": 1,
+                    "v_title": "A new budget for the development of weapon technology",
+                    "v_description": "The European Commission proposes a new EU budget to subsidize the development of weapon technology, to strengthen the European arms industry. ",
+                    "v_recommendation": -1,
+                    "v_link": "http://www.votewatch.eu/en/european-defence-technological-and-industrial-base-motion-for-resolution-paragraph-47.html"
+                },
+				{
+                    "v_id": "RC-B7-0258/2013|Recital E",
+                    "v_dbid": 4458,
+                    "v_weight": 1,
+                    "v_title": "Arms exports: human rights are more important than commercial interests",
+                    "v_description": "Do human rights and democracy take precedence over economic, commercial and industrial interests? A narrow majority of MEPs think so. In practice, industrial interests have a growing influence on arms export policy.",
+                    "v_recommendation": 1,
+                    "v_link": "http://www.votewatch.eu/en/arms-exports-implementation-of-council-common-position-2008-944-cfsp-s-d-greens-efa-gue-ngl-joint-mo-3.html"
+                },
+				{
+                    "v_id": "A7-0205/2013|§ 5",
+                    "v_dbid": 4657,
+                    "v_weight": 1,
+                    "v_title": "Lowering the defence budgets is irresponsible",
+                    "v_description": "The combined EU countries spend more on defence than Russia, China and Japan together. What is more irresponsible in times of austerity: increasing or decreasing defence expenditures?",
+                    "v_recommendation": -1,
+                    "v_link": "http://www.votewatch.eu/en/eu-s-military-structures-state-of-play-and-future-prospects-motion-for-resolution-paragraph-5.html"
+                },
+				{
+                    "v_id": "A7-0205/2013|§ 34",
+                    "v_dbid": 4661,
+                    "v_weight": 1,
+                    "v_title": "EU battlegroups can partly be funded from the civil EU budget",
+                    "v_description": "The use of the general EU budget for funding battlegroups diverts tax payer money from civil to military purposes and is a hidden increase of the defence budget. It blurs the line between civil and military spending.",
+                    "v_recommendation": -1,
+                    "v_link": "http://www.votewatch.eu/en/eu-s-military-structures-state-of-play-and-future-prospects-motion-for-resolution-paragraph-34.html"
+                }
+    ]
+}
