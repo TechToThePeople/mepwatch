@@ -146,6 +146,21 @@
                     border-radius: 3px;
                     background: rgba(255, 255, 255, 0.2);
                   }
+                  #voted-text {
+                    margin-top: 1rem;
+                  }
+                  #voted-text h4 {
+                    font-size: 1rem;
+                    color: #6c757d;
+                    margin-bottom: 0.25rem;
+                  }
+                  #voted-text blockquote {
+                    margin: 0;
+                    padding-left: 0.75rem;
+                    border-left: 3px solid #dee2e6;
+                    font-size: 0.95em;
+                    color: #212529;
+                  }
                   #explanation {
                     margin-top: 1rem;
                     font-size: 0.95em;
@@ -288,6 +303,7 @@
             <div class="col-sm-12 col-md-6">
               <h2 class="jumbotron-heading">Loading...</h2>
               <h3 class="jumbotron-heading"></h3>
+              <div id="voted-text"></div>
               <div id="explanation"></div>
             </div>
             <div class="col-sm-12 col-md-6" id="map">
@@ -508,6 +524,7 @@
           config.for === null && config.outcome
             ? "<br><span class='outcome'>" + config.outcome + "</span>"
             : "";
+        renderVotedText();
         d3.select("h3").html(
           [config.title, config.description].filter(Boolean).join("<br>") + outcome,
         );

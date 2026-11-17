@@ -375,6 +375,46 @@ function dl_explanation(callback) {
 
 // A hand/electronic/secret vote has no per-MEP data at all: say so instead of
 // showing empty charts.
+// The text the vote was about, when it was on part of a text (a split part of a
+// resolution), or the report summary when it was on the whole text.
+function renderVotedText() {
+  if (!config.part_text) return;
+  var ordinals = ["", "first", "second", "third", "fourth", "fifth", "sixth"];
+  var heading;
+  if (config.part_kind === "summary") heading = "What the report changes";
+  else
+    heading =
+      (config.section || "the text") +
+      (config.part
+        ? ", " + (ordinals[config.part] || config.part + "th") + " part"
+        : "");
+
+  var body;
+  if (config.part_kind === "summary") {
+    // a paragraph, then bullet points
+    body = config.part_text
+      .split(/\n/)
+      .map(function (line) {
+        var t = line.trim();
+        if (!t) return "";
+        if (/^[-*]\s/.test(t))
+          return "<li>" + t.replace(/^[-*]\s+/, "") + "</li>";
+        return "<p>" + t + "</p>";
+      })
+      .join("")
+      .replace(/(<li>.*<\/li>)+/g, function (list) {
+        return "<ul>" + list + "</ul>";
+      });
+  } else {
+    body = "<blockquote>" + config.part_text + "</blockquote>";
+    if (config.part_kind === "without-words" || config.part_kind === "with-words")
+      body +=
+        "<p class='text-muted small'>This part is that paragraph of the text with those words removed or kept.</p>";
+  }
+
+  d3.select("#voted-text").html("<h4>" + heading + "</h4>" + body);
+}
+
 function renderExplanation() {
   const method = config.method;
   if (!method || method === "RCV") return;
