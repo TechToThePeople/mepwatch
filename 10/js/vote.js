@@ -381,7 +381,7 @@ function renderVotedText() {
   if (!config.part_text) return;
   var ordinals = ["", "first", "second", "third", "fourth", "fifth", "sixth"];
   var heading;
-  if (config.part_kind === "summary") heading = "What the report changes";
+  if (config.part_kind === "summary") heading = ""; // the summary needs no title
   else
     heading =
       (config.section || "the text") +
@@ -417,7 +417,9 @@ function renderVotedText() {
         "<p class='text-muted small'>This part is that paragraph of the text with those words removed or kept.</p>";
   }
 
-  d3.select("#voted-text").html("<h4>" + heading + "</h4>" + body);
+  d3.select("#voted-text").html(
+    (heading ? "<h4>" + heading + "</h4>" : "") + body,
+  );
 }
 
 function renderExplanation() {
