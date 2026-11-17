@@ -653,7 +653,7 @@ mepid,result,eugroup,identifier
 96697,attended,ECR,169342
 96709,attended,Renew,169342
 118859,attended,EPP,169342
-118949,attended,Patriots,169342
+118949,attended,PfE,169342
 122978,excused,S&D,169342
 124813,attended,GUE/NGL,169342
 125052,attended,Patriots,169342
@@ -666,14 +666,14 @@ mepid,result,eugroup,identifier
 202036,attended,EPP,169342
 204414,attended,Patriots,169342
 210480,attended,S&D,169342
-220908,attended,EPP,169342
+220908,attended,NA,169342
 256820,excused,EPP,169342
 256831,attended,EPP,169342
-256850,attended,Patriots,169342
+256850,attended,PfE,169342
 256869,attended,Renew,169342
 256870,attended,Renew,169342
 256879,attended,Renew,169342
-256900,attended,ECR,169342
+256900,attended,NA,169342
 256904,attended,S&D,169342
 256909,attended,Patriots,169342
 256916,attended,Greens/EFA,169342
@@ -687,8 +687,8 @@ mepid,result,eugroup,identifier
 256966,attended,NA,169342
 257015,attended,Greens/EFA,169342
 257019,attended,NA,169342
-257021,attended,NA,169342
-257022,attended,NA,169342
+257021,attended,ECR,169342
+257022,attended,ECR,169342
 257024,attended,Patriots,169342
 257029,attended,Patriots,169342
 257035,attended,EPP,169342

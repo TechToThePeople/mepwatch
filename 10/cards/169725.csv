@@ -456,7 +456,7 @@ mepid,result,eugroup,identifier
 112747,attended,S&D,169725
 112748,attended,S&D,169725
 118859,attended,EPP,169725
-118949,attended,Patriots,169725
+118949,attended,PfE,169725
 119652,attended,S&D,169725
 122978,excused,S&D,169725
 124691,attended,S&D,169725
@@ -467,7 +467,7 @@ mepid,result,eugroup,identifier
 124836,attended,S&D,169725
 124866,attended,Renew,169725
 124867,attended,S&D,169725
-124875,attended,Patriots,169725
+124875,attended,PfE,169725
 124984,attended,GUE/NGL,169725
 124985,attended,GUE/NGL,169725
 125001,attended,Patriots,169725
@@ -508,7 +508,7 @@ mepid,result,eugroup,identifier
 197589,attended,Renew,169725
 197591,attended,S&D,169725
 197607,attended,ECR,169725
-197618,attended,S&D,169725
+197618,attended,Renew,169725
 197621,attended,EPP,169725
 197646,attended,EPP,169725
 197649,attended,EPP,169725
@@ -527,18 +527,18 @@ mepid,result,eugroup,identifier
 197829,attended,Patriots,169725
 197831,attended,Patriots,169725
 197840,attended,EPP,169725
-197842,attended,Renew,169725
+197842,attended,ECR,169725
 197845,attended,S&D,169725
 198176,attended,Patriots,169725
 198490,attended,ECR,169725
 202036,attended,EPP,169725
 204129,attended,EPP,169725
 220897,attended,Patriots,169725
-249982,attended,NA,169725
+249982,attended,ESN,169725
 256804,attended,EPP,169725
 256811,attended,ECR,169725
 256830,attended,S&D,169725
-256850,attended,Patriots,169725
+256850,attended,PfE,169725
 256851,attended,NA,169725
 256858,attended,NA,169725
 256863,attended,EPP,169725
@@ -564,7 +564,7 @@ mepid,result,eugroup,identifier
 256977,attended,EPP,169725
 256980,attended,EPP,169725
 256981,attended,Patriots,169725
-256983,attended,EPP,169725
+256983,attended,ECR,169725
 256985,attended,EPP,169725
 256986,attended,ECR,169725
 256993,attended,S&D,169725
@@ -574,8 +574,8 @@ mepid,result,eugroup,identifier
 257001,attended,S&D,169725
 257002,attended,S&D,169725
 257019,attended,NA,169725
-257021,attended,NA,169725
-257022,attended,NA,169725
+257021,attended,ECR,169725
+257022,attended,ECR,169725
 257024,attended,Patriots,169725
 257029,attended,Patriots,169725
 257030,attended,EPP,169725
@@ -618,7 +618,7 @@ mepid,result,eugroup,identifier
 257170,attended,S&D,169725
 257238,attended,S&D,169725
 257255,attended,ESN,169725
-257256,attended,Renew,169725
+257256,attended,ECR,169725
 257259,attended,Renew,169725
 257261,attended,EPP,169725
 257262,attended,ESN,169725
