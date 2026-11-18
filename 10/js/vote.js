@@ -415,6 +415,9 @@ function renderVotedText() {
     if (config.part_kind === "without-words" || config.part_kind === "with-words")
       body +=
         "<p class='text-muted small'>This part is that paragraph of the text with those words removed or kept.</p>";
+    if (config.part_kind === "words")
+      body +=
+        "<p class='text-muted small'>This part is those words of the text.</p>";
   }
 
   d3.select("#voted-text").html(
