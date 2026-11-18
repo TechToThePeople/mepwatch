@@ -10,6 +10,7 @@
 
 <style>
 td span.committee{display:block;}
+td div.procedure{font-size:.8em;opacity:.7;}
 td a {color:rgb(33, 150, 243);}
 
     .icon
@@ -465,6 +466,9 @@ td a {color:rgb(33, 150, 243);}
               url = docs[d.report].oeil;
           }
 
+          if (docs[d.report] && docs[d.report].procedure)
+            f = "<div class='procedure' title='the procedure this report belongs to'>"+
+                docs[d.report].procedure +"</div>" + f;
           return f + (url ? "<a href='"+url+"'>"+d.report + "</a>" : d.report);
         }
         ,function(d){
