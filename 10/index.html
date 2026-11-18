@@ -425,6 +425,9 @@
 
       function dl_votes(callback) {
         d3.csv("data/item_rollcall.csv", function (d) {
+          // the time is shown only when a filter narrows the list, but the
+          // Date stays date-only: the heatmap and the sort depend on that
+          d.time = (String(d.date).match(/\b(\d{2}:\d{2})/) || [])[1] || "";
           d.date = dateParse(d.date.substring(0, 10));
           if (!d.date) {
             console.log(d);
@@ -879,6 +882,18 @@
         return null;
       }
 
+      // true while the list is narrowed by the search box, the heat-map or a
+      // URL parameter: several votes of one day then need their time to tell apart
+      function anyFilter() {
+        return dc.chartRegistry.list().some(function (chart) {
+          try {
+            return chart.filters && chart.filters().length > 0;
+          } catch (e) {
+            return false;
+          }
+        });
+      }
+
       function drawTable(dom) {
         var dim = ndx.dimension(function (d) {
           return d.identifier;
@@ -894,14 +909,13 @@
           .showSections(false)
           .columns([
             function (d) {
+              var stamp = dayFormat(d.date) + (d.time ? " " + d.time : "");
               return (
-                "<a title='" +
-                d.identifier +
-                "' target='agenda' href='https://www.europarl.europa.eu/sides/getDoc.do?type=AGENDA&reference=" +
-                yymmdd(d.date) +
-                "&secondRef=SIT&language=EN#TF2'>" +
-                dayFormat(d.date) +
-                "</a>" +
+                "<span title='" +
+                stamp +
+                "'>" +
+                (anyFilter() && d.time ? stamp : dayFormat(d.date)) +
+                "</span>" +
                 (d.requested_by && !d.doc_ref
                   ? "<span class='requested-by' title='" +
                     requestTitle(d) +
