@@ -131,6 +131,13 @@
       .heatmap g.axis text {
         transform: translateX(0.7em);
       }
+      /* a vote whose detail page shows the text it was about */
+      .has-text {
+        color: var(--primary, #9c27b0);
+        font-size: 0.9em;
+        vertical-align: super;
+        cursor: help;
+      }
       tr.dc-table-row {
         cursor: pointer;
       }
@@ -838,6 +845,28 @@
       // Motion rows (an individual motion of a joint resolution) have no
       // roll-call request: requested_by holds the group that tabled the motion,
       // so show it as the author instead of the joint motion's co-sponsors.
+      // what the detail page shows under the vote, named in the tooltip
+      var TEXT_LABELS = {
+        amendment: "amendment text",
+        summary: "report summary",
+        paragraph: "paragraph text",
+        recital: "recital text",
+        citation: "citation text",
+        quoted: "quoted wording",
+        "without-words": "text without the words",
+        "with-words": "text with the words",
+        other: "text of the split part"
+      };
+
+      function textMark(d) {
+        if (!d.text) return "";
+        return (
+          "<span class='has-text' title='the detail page shows the " +
+          (TEXT_LABELS[d.text] || "text") +
+          "'>¶</span>"
+        );
+      }
+
       function votesAuthor(d) {
         if (d.doc_ref && d.requested_by)
           return { name: d.requested_by, title: "group that tabled this motion" };
@@ -924,7 +953,7 @@
                 // For the main resolution vote (not amendments), show report
                 // title in the normal vote-name style and hide the vote name.
                 if (d.title.indexOf("Proposition de résolution") !== -1) {
-                  return docs[d.report].title;
+                  return docs[d.report].title + textMark(d);
                 }
                 // An individual motion repeats the subject in its name
                 // ("B10-0501/2026 (ECR) – <subject>"), which the report title
@@ -935,9 +964,10 @@
                 return "<span class='report-title'>" +
                     docs[d.report].title +
                     "</span>&nbsp;" +
-                    label;
+                    label +
+                    textMark(d);
               }
-              return d.title;
+              return d.title + textMark(d);
             },
             function (d) {
               // Hand votes (and some roll-calls) publish no counts at all, only
