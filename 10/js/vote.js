@@ -419,6 +419,15 @@ function renderVotedText() {
       body +=
         "<p class='text-muted small'>This part is those words of the text.</p>";
   }
+  // the paragraph the part comes from, with the words marked: <del> when the
+  // part removes them, <b> when the part is (or keeps) them
+  if (config.part_context) {
+    body +=
+      "<p class='text-muted small mt-3'>In the text</p>" +
+      "<blockquote class='part-context'>" +
+      config.part_context +
+      "</blockquote>";
+  }
 
   d3.select("#voted-text").html(
     (heading ? "<h4>" + heading + "</h4>" : "") + body,
