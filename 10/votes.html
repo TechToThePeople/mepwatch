@@ -43,6 +43,13 @@ td a {color:rgb(33, 150, 243);}
   }
 }
   .heatmap g.axis text {transform: translateX(0.7em)}
+  /* a vote whose detail page shows the text it was about */
+  .has-text {
+    color:#9c27b0;
+    font-size:.9em;
+    vertical-align:super;
+    cursor:help;
+  }
   tr.dc-table-row {
     cursor:pointer;
   }
@@ -414,6 +421,19 @@ td a {color:rgb(33, 150, 243);}
     return chart;
   }
 
+  // what the detail page will show under the vote
+  var textLabels = {
+    amendment: "amendment text",
+    summary: "report summary",
+    paragraph: "paragraph text",
+    recital: "recital text",
+    citation: "citation text",
+    quoted: "quoted wording",
+    "without-words": "text without the words",
+    "with-words": "text with the words",
+    other: "text of the split part"
+  };
+
   function drawTable(dom){
     var dim = ndx.dimension(function(d) {
       return d.identifier
@@ -447,8 +467,12 @@ td a {color:rgb(33, 150, 243);}
 
           return f + (url ? "<a href='"+url+"'>"+d.report + "</a>" : d.report);
         }
-        ,function(d){ 
-          return docs[d.report]? "<a href='"+docs[d.report].oeil+"'>"+docs[d.report].title +"</a>&nbsp;"+d.title : d.title;}
+        ,function(d){
+          var mark = d.text
+            ? " <span class='has-text' title='the detail page shows the "+
+              (textLabels[d.text] || "text")+"'>¶</span>"
+            : "";
+          return (docs[d.report]? "<a href='"+docs[d.report].oeil+"'>"+docs[d.report].title +"</a>&nbsp;"+d.title : d.title) + mark;}
         ,function(d){ return d.for > d.against ? "<b>"+d.for+"</b>":d.for;}
         ,function(d){ return d.against > d.for ? "<b>"+d.against+"</b>":d.against;}
         ,function(d){ return d.abstention;}
