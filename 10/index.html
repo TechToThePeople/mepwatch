@@ -884,14 +884,25 @@
 
       // true while the list is narrowed by the search box, the heat-map or a
       // URL parameter: several votes of one day then need their time to tell apart
+      // Same test the "reset" link uses: a chart filter (search, heat map) or a
+      // dimension filtered straight from a URL parameter (?report=), which no
+      // chart knows about.
+      // Is the list narrowed? The charts' own hasFilter() stays false for the
+      // search box (it filters a dimension, not a chart), so ask crossfilter.
+      // Memoised for a moment: a render pass calls this once per visible row.
+      var _filteredAt = 0;
+      var _filtered = false;
       function anyFilter() {
-        return dc.chartRegistry.list().some(function (chart) {
+        var now = Date.now();
+        if (now - _filteredAt > 100) {
           try {
-            return chart.filters && chart.filters().length > 0;
+            _filtered = ndx.allFiltered().length !== ndx.size();
           } catch (e) {
-            return false;
+            _filtered = false;
           }
-        });
+          _filteredAt = now;
+        }
+        return _filtered;
       }
 
       function drawTable(dom) {
