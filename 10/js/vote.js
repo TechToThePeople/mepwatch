@@ -429,6 +429,20 @@ function renderVotedText() {
       "</blockquote>";
   }
 
+  // where the text comes from: the range document, the VOT XML, the report page
+  if (config.part_source_url) {
+    body +=
+      "<p class='text-muted small mt-2'>Source: <a target='source' href='" +
+      config.part_source_url +
+      "'>" +
+      (config.part_source === "doceo"
+        ? "the amendment document"
+        : config.part_source === "vot-xml"
+          ? "the vote results XML"
+          : "the report") +
+      "</a></p>";
+  }
+
   d3.select("#voted-text").html(
     (heading ? "<h4>" + heading + "</h4>" : "") + body,
   );
