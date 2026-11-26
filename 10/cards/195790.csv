@@ -185,6 +185,7 @@ mepid,result,eugroup,identifier
 28122,against,PPE,195790
 256814,against,PPE,195790
 124861,against,PPE,195790
+277057,against,PPE,195790
 257034,against,PPE,195790
 257078,against,PPE,195790
 257028,against,PPE,195790
@@ -236,7 +237,6 @@ mepid,result,eugroup,identifier
 97968,against,PPE,195790
 256864,against,PPE,195790
 256865,against,PPE,195790
-277057,against,PPE,195790
 257261,against,PPE,195790
 256920,against,PPE,195790
 95074,against,PPE,195790
@@ -389,9 +389,9 @@ mepid,result,eugroup,identifier
 257112,against,Renew,195790
 130100,against,Renew,195790
 256879,against,Renew,195790
-214839,against,Renew,195790
 197769,against,Renew,195790
 257011,against,Renew,195790
+214839,against,Renew,195790
 256807,against,Renew,195790
 197403,against,S&D,195790
 119652,against,S&D,195790
@@ -593,3 +593,48 @@ mepid,result,eugroup,identifier
 257092,abstention,The Left,195790
 125023,abstention,The Left,195790
 2268,abstention,The Left,195790
+840,attended,Renew,195790
+23868,attended,NA,195790
+28419,attended,S&D,195790
+112747,attended,S&D,195790
+112748,attended,S&D,195790
+118859,attended,EPP,195790
+124715,attended,Patriots,195790
+124867,attended,S&D,195790
+124984,attended,GUE/NGL,195790
+124985,attended,GUE/NGL,195790
+125001,attended,Patriots,195790
+125093,attended,NA,195790
+187917,attended,GUE/NGL,195790
+197392,attended,S&D,195790
+197414,attended,EPP,195790
+197416,attended,GUE/NGL,195790
+197468,attended,GUE/NGL,195790
+197473,attended,EPP,195790
+197533,attended,GUE/NGL,195790
+197543,attended,Renew,195790
+197658,attended,S&D,195790
+197691,attended,Patriots,195790
+197699,attended,GUE/NGL,195790
+197734,attended,NA,195790
+197770,attended,Renew,195790
+197780,attended,Renew,195790
+197794,attended,ECR,195790
+204336,attended,EPP,195790
+256823,attended,S&D,195790
+256824,attended,S&D,195790
+256857,attended,Patriots,195790
+256905,attended,S&D,195790
+256952,attended,GUE/NGL,195790
+256981,attended,Patriots,195790
+257037,attended,Renew,195790
+257083,attended,GUE/NGL,195790
+257113,attended,ECR,195790
+257131,attended,Patriots,195790
+257132,attended,Greens/EFA,195790
+257151,attended,EPP,195790
+257298,attended,Renew,195790
+260035,attended,S&D,195790
+260724,attended,Patriots,195790
+261038,attended,Patriots,195790
+270719,attended,GUE/NGL,195790

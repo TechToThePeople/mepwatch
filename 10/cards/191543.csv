@@ -123,6 +123,7 @@ mepid,result,eugroup,identifier
 256966,for,NI,191543
 256967,for,NI,191543
 197534,for,PPE,191543
+256814,for,PPE,191543
 256919,for,PPE,191543
 220908,for,PPE,191543
 256918,for,PPE,191543
@@ -131,7 +132,6 @@ mepid,result,eugroup,identifier
 72779,for,PPE,191543
 257151,for,PPE,191543
 204449,for,PPE,191543
-256814,for,PPE,191543
 125104,for,PPE,191543
 96933,for,PPE,191543
 130881,for,PfE,191543
@@ -239,6 +239,7 @@ mepid,result,eugroup,identifier
 257296,against,PPE,191543
 28122,against,PPE,191543
 28390,against,PPE,191543
+277057,against,PPE,191543
 257078,against,PPE,191543
 257028,against,PPE,191543
 257030,against,PPE,191543
@@ -286,7 +287,6 @@ mepid,result,eugroup,identifier
 276060,against,PPE,191543
 197525,against,PPE,191543
 97968,against,PPE,191543
-277057,against,PPE,191543
 257261,against,PPE,191543
 95074,against,PPE,191543
 23781,against,PPE,191543
@@ -642,3 +642,46 @@ mepid,result,eugroup,identifier
 257299,abstention,The Left,191543
 125023,abstention,The Left,191543
 256952,abstention,The Left,191543
+4289,attended,EPP,191543
+5729,attended,S&D,191543
+23816,excused,Patriots,191543
+36392,excused,Patriots,191543
+58766,excused,Greens/EFA,191543
+96675,excused,Greens/EFA,191543
+96761,attended,EPP,191543
+96826,excused,Patriots,191543
+96830,attended,Patriots,191543
+96833,attended,S&D,191543
+98341,excused,EPP,191543
+112747,excused,S&D,191543
+118859,attended,EPP,191543
+124813,attended,GUE/NGL,191543
+124828,attended,EPP,191543
+125065,excused,EPP,191543
+125093,attended,NA,191543
+187917,attended,GUE/NGL,191543
+197400,attended,Renew,191543
+197401,attended,Renew,191543
+197443,attended,Renew,191543
+197460,attended,Greens/EFA,191543
+197500,excused,Greens/EFA,191543
+197784,attended,EPP,191543
+197825,attended,Patriots,191543
+198084,attended,Renew,191543
+247735,excused,S&D,191543
+256839,excused,Renew,191543
+256858,attended,NA,191543
+256865,attended,EPP,191543
+256869,attended,Renew,191543
+256874,attended,Patriots,191543
+256917,excused,Greens/EFA,191543
+256934,attended,S&D,191543
+257013,excused,Renew,191543
+257015,excused,Greens/EFA,191543
+257034,attended,EPP,191543
+257035,excused,EPP,191543
+257049,excused,EPP,191543
+257083,attended,GUE/NGL,191543
+257111,attended,S&D,191543
+257132,attended,Greens/EFA,191543
+257163,attended,ECR,191543

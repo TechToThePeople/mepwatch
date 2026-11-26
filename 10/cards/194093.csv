@@ -64,6 +64,7 @@ mepid,result,eugroup,identifier
 257296,for,PPE,194093
 28122,for,PPE,194093
 28390,for,PPE,194093
+277057,for,PPE,194093
 257034,for,PPE,194093
 257078,for,PPE,194093
 257028,for,PPE,194093
@@ -111,7 +112,6 @@ mepid,result,eugroup,identifier
 197525,for,PPE,194093
 256864,for,PPE,194093
 256865,for,PPE,194093
-277057,for,PPE,194093
 256920,for,PPE,194093
 95074,for,PPE,194093
 23781,for,PPE,194093
@@ -250,10 +250,10 @@ mepid,result,eugroup,identifier
 257112,for,Renew,194093
 130100,for,Renew,194093
 256879,for,Renew,194093
-214839,for,Renew,194093
 197769,for,Renew,194093
 257011,for,Renew,194093
 197581,for,Renew,194093
+214839,for,Renew,194093
 256807,for,Renew,194093
 197403,for,S&D,194093
 119652,for,S&D,194093
@@ -636,3 +636,48 @@ mepid,result,eugroup,identifier
 256910,abstention,The Left,194093
 124813,abstention,The Left,194093
 257133,abstention,The Left,194093
+22858,attended,Renew,194093
+23816,attended,Patriots,194093
+28150,attended,Patriots,194093
+28223,attended,EPP,194093
+28226,attended,EPP,194093
+28347,attended,S&D,194093
+34232,attended,S&D,194093
+37324,attended,EPP,194093
+96761,attended,EPP,194093
+96940,attended,Renew,194093
+98341,excused,EPP,194093
+118859,attended,EPP,194093
+124722,attended,S&D,194093
+124784,attended,S&D,194093
+124867,attended,S&D,194093
+125023,attended,GUE/NGL,194093
+125068,attended,EPP,194093
+197408,attended,EPP,194093
+197410,attended,EPP,194093
+197417,attended,EPP,194093
+197439,attended,Greens/EFA,194093
+197491,attended,S&D,194093
+197648,attended,EPP,194093
+197649,attended,EPP,194093
+197718,attended,S&D,194093
+197845,attended,S&D,194093
+198073,attended,Renew,194093
+213330,attended,Patriots,194093
+220908,excused,NA,194093
+256831,excused,EPP,194093
+256855,attended,PfE,194093
+256857,attended,Patriots,194093
+256859,attended,Patriots,194093
+256860,attended,Patriots,194093
+256917,excused,Greens/EFA,194093
+256951,attended,ESN,194093
+256956,excused,ECR,194093
+256962,attended,Renew,194093
+256969,excused,NA,194093
+257013,excused,Renew,194093
+257040,attended,EPP,194093
+257064,attended,Patriots,194093
+257079,attended,S&D,194093
+257084,attended,S&D,194093
+260724,attended,Patriots,194093

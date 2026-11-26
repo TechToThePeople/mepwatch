@@ -146,6 +146,7 @@ mepid,result,eugroup,identifier
 28122,against,PPE,195793
 256814,against,PPE,195793
 124861,against,PPE,195793
+277057,against,PPE,195793
 257034,against,PPE,195793
 257078,against,PPE,195793
 257028,against,PPE,195793
@@ -198,7 +199,6 @@ mepid,result,eugroup,identifier
 97968,against,PPE,195793
 256864,against,PPE,195793
 256865,against,PPE,195793
-277057,against,PPE,195793
 257261,against,PPE,195793
 256920,against,PPE,195793
 95074,against,PPE,195793
@@ -354,9 +354,9 @@ mepid,result,eugroup,identifier
 257112,against,Renew,195793
 130100,against,Renew,195793
 256879,against,Renew,195793
-214839,against,Renew,195793
 197769,against,Renew,195793
 257011,against,Renew,195793
+214839,against,Renew,195793
 256807,against,Renew,195793
 197403,against,S&D,195793
 119652,against,S&D,195793
@@ -603,3 +603,38 @@ mepid,result,eugroup,identifier
 257092,abstention,The Left,195793
 125023,abstention,The Left,195793
 2268,abstention,The Left,195793
+23868,attended,NA,195793
+28400,attended,EPP,195793
+28419,attended,S&D,195793
+96791,attended,EPP,195793
+112747,attended,S&D,195793
+112748,attended,S&D,195793
+118859,attended,EPP,195793
+124715,attended,Patriots,195793
+124867,attended,S&D,195793
+124984,attended,GUE/NGL,195793
+124985,attended,GUE/NGL,195793
+125093,attended,NA,195793
+187917,attended,GUE/NGL,195793
+197414,attended,EPP,195793
+197416,attended,GUE/NGL,195793
+197468,attended,GUE/NGL,195793
+197658,attended,S&D,195793
+197699,attended,GUE/NGL,195793
+197734,attended,NA,195793
+197770,attended,Renew,195793
+197794,attended,ECR,195793
+204336,attended,EPP,195793
+256823,attended,S&D,195793
+256824,attended,S&D,195793
+256857,attended,Patriots,195793
+256885,attended,S&D,195793
+256905,attended,S&D,195793
+256952,attended,GUE/NGL,195793
+256981,attended,Patriots,195793
+257037,attended,Renew,195793
+257083,attended,GUE/NGL,195793
+257113,attended,ECR,195793
+257132,attended,Greens/EFA,195793
+260035,attended,S&D,195793
+261038,attended,Patriots,195793

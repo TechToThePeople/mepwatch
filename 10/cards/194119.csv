@@ -83,10 +83,10 @@ mepid,result,eugroup,identifier
 257112,for,Renew,194119
 130100,for,Renew,194119
 256879,for,Renew,194119
-214839,for,Renew,194119
 197769,for,Renew,194119
 257011,for,Renew,194119
 197581,for,Renew,194119
+214839,for,Renew,194119
 256807,for,Renew,194119
 119652,for,S&D,194119
 202073,for,S&D,194119
@@ -400,6 +400,7 @@ mepid,result,eugroup,identifier
 257051,against,PPE,194119
 28122,against,PPE,194119
 28390,against,PPE,194119
+277057,against,PPE,194119
 257034,against,PPE,194119
 257078,against,PPE,194119
 257028,against,PPE,194119
@@ -447,7 +448,6 @@ mepid,result,eugroup,identifier
 97968,against,PPE,194119
 256864,against,PPE,194119
 256865,against,PPE,194119
-277057,against,PPE,194119
 257261,against,PPE,194119
 256920,against,PPE,194119
 95074,against,PPE,194119
@@ -658,3 +658,26 @@ mepid,result,eugroup,identifier
 30482,abstention,The Left,194119
 256911,abstention,The Left,194119
 256910,abstention,The Left,194119
+28150,attended,Patriots,194119
+28223,attended,EPP,194119
+98341,excused,EPP,194119
+118859,attended,EPP,194119
+124691,attended,S&D,194119
+197417,attended,EPP,194119
+197439,attended,Greens/EFA,194119
+197580,attended,Patriots,194119
+197845,attended,S&D,194119
+204419,attended,Renew,194119
+220908,excused,NA,194119
+256831,excused,EPP,194119
+256904,attended,S&D,194119
+256917,excused,Greens/EFA,194119
+256956,excused,ECR,194119
+256969,excused,NA,194119
+257003,attended,Renew,194119
+257013,excused,Renew,194119
+257038,attended,Renew,194119
+257040,attended,EPP,194119
+257064,attended,Patriots,194119
+257126,attended,GUE/NGL,194119
+277777,attended,EPP,194119

@@ -239,6 +239,7 @@ mepid,result,eugroup,identifier
 28122,against,PPE,195363
 256814,against,PPE,195363
 124861,against,PPE,195363
+277057,against,PPE,195363
 257034,against,PPE,195363
 257078,against,PPE,195363
 257028,against,PPE,195363
@@ -296,7 +297,6 @@ mepid,result,eugroup,identifier
 97968,against,PPE,195363
 256864,against,PPE,195363
 256865,against,PPE,195363
-277057,against,PPE,195363
 257261,against,PPE,195363
 256920,against,PPE,195363
 95074,against,PPE,195363
@@ -528,10 +528,10 @@ mepid,result,eugroup,identifier
 257112,against,Renew,195363
 130100,against,Renew,195363
 256879,against,Renew,195363
-214839,against,Renew,195363
 197769,against,Renew,195363
 220801,against,Renew,195363
 257011,against,Renew,195363
+214839,against,Renew,195363
 256807,against,Renew,195363
 119652,against,S&D,195363
 202073,against,S&D,195363
@@ -664,3 +664,18 @@ mepid,result,eugroup,identifier
 198373,abstention,NI,195363
 256969,abstention,NI,195363
 256955,abstention,NI,195363
+88882,attended,S&D,195363
+96811,attended,EPP,195363
+98341,excused,EPP,195363
+118859,attended,EPP,195363
+124828,attended,EPP,195363
+197400,attended,Renew,195363
+197795,attended,GUE/NGL,195363
+197824,attended,ECR,195363
+256810,attended,EPP,195363
+256898,attended,S&D,195363
+256908,attended,S&D,195363
+256962,attended,Renew,195363
+256971,attended,Renew,195363
+257030,attended,EPP,195363
+257039,attended,EPP,195363

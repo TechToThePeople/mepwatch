@@ -165,6 +165,7 @@ mepid,result,eugroup,identifier
 28122,against,PPE,195218
 28390,against,PPE,195218
 256814,against,PPE,195218
+277057,against,PPE,195218
 257034,against,PPE,195218
 257078,against,PPE,195218
 257028,against,PPE,195218
@@ -219,7 +220,6 @@ mepid,result,eugroup,identifier
 97968,against,PPE,195218
 256864,against,PPE,195218
 256865,against,PPE,195218
-277057,against,PPE,195218
 257261,against,PPE,195218
 256920,against,PPE,195218
 95074,against,PPE,195218
@@ -438,10 +438,10 @@ mepid,result,eugroup,identifier
 257112,against,Renew,195218
 130100,against,Renew,195218
 256879,against,Renew,195218
-214839,against,Renew,195218
 197769,against,Renew,195218
 220801,against,Renew,195218
 257011,against,Renew,195218
+214839,against,Renew,195218
 256807,against,Renew,195218
 197403,against,S&D,195218
 119652,against,S&D,195218
@@ -634,3 +634,47 @@ mepid,result,eugroup,identifier
 124736,abstention,The Left,195218
 127766,abstention,The Left,195218
 2268,abstention,The Left,195218
+2152,attended,Greens/EFA,195218
+2341,attended,EPP,195218
+23816,attended,Patriots,195218
+23868,attended,NA,195218
+28150,attended,Patriots,195218
+96780,attended,EPP,195218
+96808,attended,EPP,195218
+96826,attended,Patriots,195218
+96830,attended,Patriots,195218
+98341,excused,EPP,195218
+118859,attended,EPP,195218
+124691,attended,S&D,195218
+124715,attended,Patriots,195218
+124760,attended,ECR,195218
+124861,attended,EPP,195218
+125042,attended,S&D,195218
+197469,attended,ECR,195218
+197529,attended,GUE/NGL,195218
+197533,attended,GUE/NGL,195218
+197574,attended,GUE/NGL,195218
+197628,attended,Patriots,195218
+197699,attended,GUE/NGL,195218
+197772,attended,Greens/EFA,195218
+236053,attended,GUE/NGL,195218
+245770,attended,GUE/NGL,195218
+256855,attended,PfE,195218
+256857,attended,Patriots,195218
+256859,attended,Patriots,195218
+256898,attended,S&D,195218
+256904,attended,S&D,195218
+256910,attended,GUE/NGL,195218
+256957,attended,ESN,195218
+257000,attended,ECR,195218
+257005,attended,NA,195218
+257007,attended,NA,195218
+257012,attended,GUE/NGL,195218
+257015,attended,Greens/EFA,195218
+257016,attended,Greens/EFA,195218
+257038,attended,Renew,195218
+257063,attended,GUE/NGL,195218
+257075,attended,S&D,195218
+257124,attended,S&D,195218
+257138,attended,GUE/NGL,195218
+260724,attended,Patriots,195218
